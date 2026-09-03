@@ -83,6 +83,26 @@ img {
 
 .menu-btn {
   display: none;
+}@media (max-width: 768px) {
+  .menu-btn {
+    display: block;
+    background: none;
+    border: none;
+    font-size: 32px;
+    cursor: pointer;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    gap: 15px;
+    padding: 15px 0;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
 }
 
 /* HERO */
