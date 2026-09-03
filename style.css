@@ -100,7 +100,7 @@ img {
     padding: 15px 0;
   }
 
-  .nav-links.active {
+  .nav-links.open {
     display: flex;
   }
 }
