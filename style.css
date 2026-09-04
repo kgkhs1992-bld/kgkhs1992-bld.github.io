@@ -60,14 +60,12 @@ img {
 }
 
 .logo {
-  width: 58px;
-  height: 58px;
-  border-radius: 14px;
-  background: #f2a900;
-  display: grid;
-  place-items: center;
-  font-weight: bold;
-  font-size: 20px;
+    width: 68px;
+    height: 68px;
+    object-fit: contain;
+    background: transparent;
+    border-radius: 0;
+    display: block;
 }
 
 .nav-links {
