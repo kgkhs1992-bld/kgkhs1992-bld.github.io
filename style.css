@@ -386,5 +386,28 @@ img {
   .info-box img {
     width: 100%;
     max-width: 100%;
-  }
+  }/* OUR SCHOOL COMMUNITY */
+.community-photo {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.community-photo figure {
+  margin: 0;
+  width: 100%;
+}
+
+.community-photo img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 18px;
+}
+
+.community-photo figcaption {
+  padding: 14px 10px;
+  text-align: center;
+  font-size: 18px;
+  line-height: 1.5;
+}
 }
