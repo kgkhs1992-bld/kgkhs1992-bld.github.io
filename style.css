@@ -57,6 +57,20 @@ img {
   gap: 12px;
   text-decoration: none;
   color: #17324d;
+}.brand > div {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+}
+
+.brand strong {
+    display: block;
+}
+
+.brand small {
+    display: block;
+    font-size: 16px;
+    margin-top: 3px;
 }
 
 .logo {
