@@ -549,7 +549,7 @@ target="_blank">
             <b>🔔 IMPORTANT UPDATE</b>
             <span>Please check this Notice Board regularly for the latest school announcements and updates.</span>
           </div>
-
+<div id="dynamic-notices"></div>
             </div>
   </div>
 </section>
@@ -798,8 +798,55 @@ supabaseClient.auth.onAuthStateChange((event, session) => {
     document.getElementById("login-box").style.display = "none";
     document.getElementById("upload-box").style.display = "block";
   }
-});
+});<script>
+async function loadUploadedNotices() {
+  const container = document.getElementById("dynamic-notices");
+
+  if (!container) return;
+
+  const { data, error } = await supabaseClient.storage
+    .from("school-files")
+    .list("admin/assets/notices", {
+      limit: 100,
+      sortBy: { column: "created_at", order: "desc" }
+    });
+
+  if (error) {
+    console.error("Could not load notices:", error);
+    return;
+  }
+
+  if (!data || data.length === 0) {
+    return;
+  }
+
+  data.forEach(file => {
+    if (!file.name) return;
+
+    const filePath = "admin/assets/notices/" + file.name;
+
+    const { data: publicData } = supabaseClient.storage
+      .from("school-files")
+      .getPublicUrl(filePath);
+
+    const notice = document.createElement("div");
+    notice.className = "notice";
+
+    notice.innerHTML = `
+      <b>📢 SCHOOL NOTICE</b>
+      <span>${file.name}</span>
+      <a href="${publicData.publicUrl}" target="_blank">
+        📄 View / Download
+      </a>
+    `;
+
+    container.appendChild(notice);
+  });
+}
+
+loadUploadedNotices();
 </script>
+
 
 <script src="script.js"></script>
 </body>
