@@ -620,12 +620,71 @@ Headmaster · Since 31 May 2026
 </p>
 
 </div>
-  </section>      </section>
+</section>
 
-PASTE THE ADMIN CODE HERE
+<section id="admin" class="section light">
+  <div class="container">
+    <div class="section-heading">
+      <span class="eyebrow">🔐 SCHOOL ADMIN</span>
+      <h2>Administrator Login</h2>
+      <p>Authorized school administrator only.</p>
+    </div>
 
-<section id="contact" class="section contact-section"><div class="container contact-grid"> 
+    <div class="admin-box">
+
+      <div id="login-box">
+        <input type="email" id="admin-email" placeholder="Admin Email">
+
+        <input type="password" id="admin-password" placeholder="Password">
+
+        <button class="btn primary" onclick="adminLogin()">
+          🔐 Login
+        </button>
+
+        <p id="login-message"></p>
+      </div>
+
+      <div id="upload-box" style="display:none;">
+
+        <h3>📤 Upload School File</h3>
+
+        <select id="file-category">
+          <option value="notices">📢 Notices</option>
+          <option value="exams">📝 Examinations</option>
+          <option value="programs">🎉 Programs</option>
+          <option value="events">📅 Events</option>
+          <option value="holidays">🏖️ Holidays</option>
+          <option value="gallery">🖼️ Gallery</option>
+          <option value="admission">📄 Admission</option>
+          <option value="other">📚 Other Documents</option>
+        </select>
+
+        <input type="file" id="school-file">
+
+        <button class="btn primary" onclick="uploadSchoolFile()">
+          📤 Upload File
+        </button>
+
+        <button class="btn secondary" onclick="adminLogout()">
+          Logout
+        </button>
+
+        <p id="upload-message"></p>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <section id="contact" class="section contact-section"><div class="container contact-grid">
+<div><span class="eyebrow">CONTACT US</span><h2>Karua Gadadhar Kar High School</h2>
+<div class="contact-detail"><b>📍 Address</b><span>At/Po Beldandia, Via - Singla, Dist - Balasore, PIN 756023</span></div>
+<div class="contact-detail"><b>📞 Phone</b><span>+91 79785 56137</span></div>
+<div class="contact-detail"><b>✉️ Email</b><span>kgdkhsbeldandia1992@gmail.com</span></div>
+</div>
+<div class="contact-form"><h3>School Information</h3><p><strong>Headmaster:</strong> Trilochan Panda</p><p><strong>Established:</strong> 20 July 1992</p><p><strong>Classes:</strong> 8th to 10th</p><p><strong>Medium:</strong> Odia, English</p><a class="btn primary" href="mailto:kgdkhsbeldandia1992@gmail.com">Email the School</a></div>
+</div></section>  
 <div><span class="eyebrow">CONTACT US</span><h2>Karua Gadadhar Kar High School</h2>
 <div class="contact-detail"><b>📍 Address</b><span>At/Po Beldandia, Via - Singla, Dist - Balasore, PIN 756023</span></div>
 <div class="contact-detail"><b>📞 Phone</b><span>+91 79785 56137</span></div>
