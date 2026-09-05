@@ -798,7 +798,10 @@ supabaseClient.auth.onAuthStateChange((event, session) => {
     document.getElementById("login-box").style.display = "none";
     document.getElementById("upload-box").style.display = "block";
   }
-});<script>
+});
+</script>
+
+<script>
 async function loadUploadedNotices() {
   const container = document.getElementById("dynamic-notices");
 
@@ -808,7 +811,7 @@ async function loadUploadedNotices() {
     .from("school-files")
     .list("admin/assets/notices", {
       limit: 100,
-      sortBy: { column: "created_at", order: "desc" }
+      sortBy: { column: "name", order: "desc" }
     });
 
   if (error) {
@@ -821,7 +824,7 @@ async function loadUploadedNotices() {
   }
 
   data.forEach(file => {
-    if (!file.name) return;
+    if (!file.name || !file.id) return;
 
     const filePath = "admin/assets/notices/" + file.name;
 
