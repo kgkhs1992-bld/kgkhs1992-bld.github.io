@@ -631,5 +631,20 @@ Headmaster · Since 31 May 2026
 </div></section>
 
 <footer><div class="container footer-inner"><div><strong>Karua Gadadhar Kar High School, Beldandia</strong><p>Education • Character • Excellence</p></div><div>© <span id="year"></span> KGK High School</div></div></footer>
+
+<!-- Supabase -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+const SUPABASE_URL = "https://tpnsjuajpsrclzbyqldt.supabase.co";
+const SUPABASE_KEY = "PASTE_YOUR_PUBLISHABLE_KEY_HERE";
+
+const supabaseClient = supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
+</script>
+
 <script src="script.js"></script>
-</body></html>
+</body>
+</html>
