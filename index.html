@@ -799,57 +799,52 @@ supabaseClient.auth.onAuthStateChange((event, session) => {
     document.getElementById("upload-box").style.display = "block";
   }
 });
+</script>
+
 <script>
 async function loadUploadedNotices() {
   const container = document.getElementById("dynamic-notices");
 
   if (!container) return;
 
-  const categories = {
-    notices: "📢 SCHOOL NOTICE",
-    exams: "📝 EXAMINATION",
-    programs: "🎉 SCHOOL PROGRAM",
-    events: "📅 SCHOOL EVENT",
-    holidays: "🏖️ SCHOOL HOLIDAY",
-    admission: "📄 ADMISSION",
-    other: "📚 SCHOOL DOCUMENT"
-  };
-
-  for (const [folder, title] of Object.entries(categories)) {
-
-    const { data, error } = await supabaseClient.storage
-      .from("school-files")
-      .list("admin/assets/" + folder, {
-        limit: 100,
-        sortBy: { column: "name", order: "desc" }
-      });
-
-    if (error || !data) continue;
-
-    data.forEach(file => {
-      if (!file.name || !file.id) return;
-
-      const filePath = "admin/assets/" + folder + "/" + file.name;
-
-      const { data: publicData } =
-        supabaseClient.storage
-          .from("school-files")
-          .getPublicUrl(filePath);
-
-      const notice = document.createElement("div");
-      notice.className = "notice";
-
-      notice.innerHTML = `
-        <b>${title}</b>
-        <span>${file.name}</span>
-        <a href="${publicData.publicUrl}" target="_blank">
-          📄 View / Download
-        </a>
-      `;
-
-      container.appendChild(notice);
+  const { data, error } = await supabaseClient.storage
+    .from("school-files")
+    .list("admin/assets/notices", {
+      limit: 100,
+      sortBy: { column: "name", order: "desc" }
     });
+
+  if (error) {
+    console.error("Could not load notices:", error);
+    return;
   }
+
+  if (!data || data.length === 0) {
+    return;
+  }
+
+  data.forEach(file => {
+    if (!file.name || !file.id) return;
+
+    const filePath = "admin/assets/notices/" + file.name;
+
+    const { data: publicData } = supabaseClient.storage
+      .from("school-files")
+      .getPublicUrl(filePath);
+
+    const notice = document.createElement("div");
+    notice.className = "notice";
+
+     notice.innerHTML = `
+      <b>📢 SCHOOL NOTICE</b>
+      <span>${file.name}</span>
+      <a href="${publicData.publicUrl}" target="_blank">
+        📄 View / Download
+      </a>
+    `;
+
+    container.appendChild(notice);
+  });
 }
 
 loadUploadedNotices();
