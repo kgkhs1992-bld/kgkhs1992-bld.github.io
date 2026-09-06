@@ -295,7 +295,68 @@ target="_blank">
 </div>
 </div>
  </section>
+<!-- STUDENT RESULTS -->
+<section id="results" class="section">
+  <div class="container">
 
+    <div class="section-heading">
+      <span class="eyebrow">📊 STUDENT RESULTS</span>
+      <h2>Check Student Result</h2>
+      <p>Enter Class, Roll No. and PIN to view the student's result.</p>
+    </div>
+
+    <div class="result-box">
+
+      <div class="result-field">
+        <label for="resultClass">Class</label>
+        <select id="resultClass">
+          <option value="">Select Class</option>
+          <option value="VIII">Class VIII</option>
+          <option value="IX">Class IX</option>
+          <option value="X">Class X</option>
+        </select>
+      </div>
+
+      <div class="result-field">
+        <label for="resultRoll">Roll No.</label>
+        <input
+          type="number"
+          id="resultRoll"
+          placeholder="Enter Roll No."
+          min="1"
+        >
+      </div>
+
+      <div class="result-field">
+        <label for="resultPin">PIN</label>
+        <input
+          type="password"
+          id="resultPin"
+          placeholder="Enter PIN"
+        >
+      </div>
+
+      <button type="button" id="checkResultBtn">
+        🔍 Check Result
+      </button>
+
+      <div id="resultMessage"></div>
+
+      <div id="resultDisplay" class="result-display" style="display:none;">
+        <h3 id="studentName"></h3>
+        <p id="studentDetails"></p>
+
+        <div id="marksTable"></div>
+
+        <button type="button" onclick="window.print()">
+          🖨️ Print / Download Result
+        </button>
+      </div>
+
+    </div>
+  </div>
+</section>
+<!-- END STUDENT RESULTS -->
 
 <section id="staff" class="section">
 <div class="container">
