@@ -777,7 +777,17 @@ async function uploadSchoolFile() {
   message.textContent = "✅ File uploaded successfully!";
   fileInput.value = "";
 }
+async function adminLogout() {
+  await supabaseClient.auth.signOut();
 
+  document.getElementById("upload-box").style.display = "none";
+  document.getElementById("login-box").style.display = "block";
+
+  document.getElementById("admin-email").value = "";
+  document.getElementById("admin-password").value = "";
+  document.getElementById("login-message").textContent = "";
+  document.getElementById("upload-message").textContent = "";
+}
 
 async function adminLogout() {
   await supabaseClient.auth.signOut();
