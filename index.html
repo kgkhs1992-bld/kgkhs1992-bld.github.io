@@ -817,8 +817,8 @@ supabaseClient.auth.onAuthStateChange((event, session) => {
 
 <script>
 async function loadUploadedNotices() {
-  const container = document.getElementById("dynamic-notices");
 
+  const container = document.getElementById("dynamic-notices");
   if (!container) return;
 
   const categories = {
@@ -826,8 +826,13 @@ async function loadUploadedNotices() {
     exams: "📝 EXAMINATION",
     programs: "🎉 SCHOOL PROGRAM",
     events: "📅 SCHOOL EVENT",
-    holidays: "🏖️ SCHOOL HOLIDAY"
-};
+    holidays: "🏖️ SCHOOL HOLIDAY",
+    gallery: "🖼️ SCHOOL GALLERY",
+    admission: "📄 ADMISSION",
+    other: "📚 SCHOOL DOCUMENT"
+  };
+
+  container.innerHTML = "";
 
   for (const [folder, title] of Object.entries(categories)) {
 
@@ -835,18 +840,22 @@ async function loadUploadedNotices() {
       .from("school-files")
       .list("admin/assets/" + folder, {
         limit: 100,
-        sortBy: { column: "name", order: "desc" }
+        sortBy: {
+          column: "name",
+          order: "desc"
+        }
       });
 
     if (error || !data) continue;
 
     data.forEach(file => {
+
       if (
-  !file.name ||
-  !file.id ||
-  file.name === ".emptyFolderPlaceholder" ||
-  file.name.startsWith(".")
-) return;
+        !file.name ||
+        !file.id ||
+        file.name === ".emptyFolderPlaceholder" ||
+        file.name.startsWith(".")
+      ) return;
 
       const filePath =
         "admin/assets/" + folder + "/" + file.name;
@@ -856,12 +865,27 @@ async function loadUploadedNotices() {
           .from("school-files")
           .getPublicUrl(filePath);
 
+      let displayName = file.name;
+
+      /* Remove timestamp prefix */
+      displayName = displayName.replace(/^\d+[-_]/, "");
+
+      /* Remove unnecessary repeated extensions */
+      displayName = displayName.replace(/\.jpg\.jpg\.jpg$/i, ".jpg");
+      displayName = displayName.replace(/\.jpg\.jpg$/i, ".jpg");
+
+      /* Make filename easier to read */
+      displayName = displayName
+        .replace(/_/g, " ")
+        .replace(/\.pdf$/i, "")
+        .replace(/\.jpg$/i, "");
+
       const item = document.createElement("div");
       item.className = "notice";
 
       item.innerHTML = `
         <b>${title}</b>
-        <span>${file.name.replace(/^\d+-/, '').replace(/\.[^/.]+$/, '').replace(/[_-]+/g, ' ')}</span>
+        <span>${displayName}</span>
         <a href="${publicData.publicUrl}" target="_blank">
           📄 View / Download
         </a>
