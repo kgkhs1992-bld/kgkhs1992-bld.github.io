@@ -844,7 +844,12 @@ async function loadUploadedNotices() {
     if (error || !data) continue;
 
     data.forEach(file => {
-      if (!file.name || !file.id) return;
+      if (
+  !file.name ||
+  !file.id ||
+  file.name === ".emptyFolderPlaceholder" ||
+  file.name.startsWith(".")
+) return;
 
       const filePath =
         "admin/assets/" + folder + "/" + file.name;
