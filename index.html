@@ -861,7 +861,7 @@ async function loadUploadedNotices() {
 
       item.innerHTML = `
         <b>${title}</b>
-        <span>${file.name}</span>
+        <span>${file.name.replace(/^\d+-/, '').replace(/\.[^/.]+$/, '').replace(/[_-]+/g, ' ')}</span>
         <a href="${publicData.publicUrl}" target="_blank">
           📄 View / Download
         </a>
