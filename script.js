@@ -120,7 +120,12 @@ const assessmentMap = {
   "UT2": "Unit Test 2",
   "UT3": "Unit Test 3",
   "UT4": "Unit Test 4",
-
+"Summative Assessment 1": "SA1",
+"Summative Assessment 2": "SA2",
+"Unit Test 1": "UT1",
+"Unit Test 2": "UT2",
+"Unit Test 3": "UT3",
+"Unit Test 4": "UT4",
   "Formative Assessment 1": "Formative Assessment 1",
   "Formative Assessment 2": "Formative Assessment 2",
   "Formative Assessment 3": "Formative Assessment 3",
@@ -130,9 +135,7 @@ const assessmentMap = {
 };
 
  const assessment =
-    studentClass === "VIII"
-      ? assessmentLabel
-      : (assessmentMap[assessmentLabel] || assessmentLabel);
+  assessmentMap[assessmentLabel] || assessmentLabel;
 
 
     message.innerHTML = "";
