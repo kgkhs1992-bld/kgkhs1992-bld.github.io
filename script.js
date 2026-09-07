@@ -55,7 +55,32 @@ document.addEventListener("DOMContentLoaded", function () {
   const details = document.getElementById("resultDetails");
 
   if (!form) return;
+const classSelect = document.getElementById("resultClass");
+const resultTypeSelect = document.getElementById("resultType");
 
+function updateResultTypes() {
+  const selectedClass = classSelect.value;
+
+  Array.from(resultTypeSelect.options).forEach(option => {
+    if (option.value === "") {
+      option.hidden = false;
+      return;
+    }
+
+    if (selectedClass === "VIII") {
+      option.hidden = !["SA1", "SA2", "UT1", "UT2", "UT3", "UT4"].includes(option.value);
+    } else if (selectedClass === "IX" || selectedClass === "X") {
+      option.hidden = !["FA1", "FA2", "FA3", "FA4", "HY", "ANNUAL"].includes(option.value);
+    } else {
+      option.hidden = true;
+    }
+  });
+
+  resultTypeSelect.value = "";
+}
+
+classSelect.addEventListener("change", updateResultTypes);
+updateResultTypes();
 
   form.addEventListener("submit", async function (e) {
 
