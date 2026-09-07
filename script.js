@@ -54,7 +54,26 @@ document.addEventListener("DOMContentLoaded", function () {
   const message = document.getElementById("resultMessage");
   const details = document.getElementById("resultDetails");
 
-  if (!form) return;
+  if (!form) return; 
+  const pinInput = document.getElementById("resultPin");
+const rollInput = document.getElementById("resultRoll");
+
+pinInput.maxLength = 7;
+
+pinInput.addEventListener("input", function () {
+  this.value = this.value
+    .toUpperCase()
+    .replace(/[^A-Z0-9]/g, "")
+    .slice(0, 7);
+});
+
+rollInput.addEventListener("input", function () {
+  const roll = this.value.trim();
+
+  if (/^\d{1,2}$/.test(roll)) {
+    pinInput.value = "471CA" + roll.padStart(2, "0");
+  }
+});
 const classSelect = document.getElementById("resultClass");
 const resultTypeSelect = document.getElementById("resultType");
 
@@ -128,7 +147,13 @@ const assessmentMap = {
 
       return;
     }
-
+// Check PIN format
+if (!/^471CA\d{2,3}$/.test(pin)) {
+  
+  message.innerHTML =
+  "<p>❌ Invalid PIN. Use 471CA01, 471CA02, ... 471CA100, 471CA123.</p>";
+  return;
+}
 
     message.innerHTML =
       "<p>Checking result...</p>";
