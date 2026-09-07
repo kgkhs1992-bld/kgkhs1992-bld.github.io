@@ -853,20 +853,22 @@ async function adminLogout() {
   document.getElementById("login-message").textContent = "";
   document.getElementById("upload-message").textContent = "";
 }
-
-
-
-
-supabaseClient.auth.onAuthStateChange((event, session) => {
-  if (
-    session &&
-    session.user &&
-    session.user.id === ADMIN_UID
-  ) {
-    document.getElementById("login-box").style.display = "none";
-    document.getElementById("upload-box").style.display = "block";
-  }
+  supabaseClient.auth.onAuthStateChange((event, session) => {
+    if (
+        session &&
+        session.user &&
+        session.user.id === ADMIN_UID
+    ) {
+        document.getElementById("login-box").style.display = "none";
+        document.getElementById("upload-box").style.display = "block";
+    }
 });
+
+
+
+
+
+  
 </script>
 
 <script>
