@@ -461,7 +461,6 @@ img {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
-  align-items: end;
 }
 
 .result-field {
@@ -495,10 +494,11 @@ img {
   font-size: 17px;
   font-weight: 700;
   cursor: pointer;
+  align-self: end;
 }
 
 #resultMessage,
-.result-display {
+#resultDisplay {
   grid-column: 1 / -1;
 }
 
@@ -507,8 +507,9 @@ img {
     grid-template-columns: 1fr;
     padding: 20px;
   }
+
   #resultMessage,
-  .result-display {
+  #resultDisplay {
     grid-column: auto;
-  
+  }
 }
