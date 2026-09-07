@@ -176,7 +176,8 @@ if (!/^471CA\d{2,3}$/.test(pin)) {
     .select("*")
     .eq("roll_no", Number(rollNo))
     .eq("pin", pin)
-    .eq("assessment", assessment)
+    .eq("roll_no", Number(rollNo))
+.eq("pin", pin)
     .maybeSingle();
 
 
