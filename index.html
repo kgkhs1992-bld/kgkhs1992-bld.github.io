@@ -979,14 +979,21 @@ loadUploadedNotices();
           <option value="X">X</option>
         </select>
 
-        <label for="resultRoll">Roll No.</label>
-        <input type="number" id="resultRoll" min="1" placeholder="Enter Roll No." required>
-
         <label for="resultPin">6-Digit PIN</label>
-        <input type="text" id="resultPin" placeholder="Enter PIN" required>
+<input type="text" id="resultPin" placeholder="Enter PIN" required>
 
-        <button type="submit" class="btn primary">View Result</button>
-      </form>
+<label for="resultType">Result Type</label>
+<select id="resultType" required>
+  <option value="">Select Result</option>
+  <option value="SA1">Summative Assessment 1</option>
+  <option value="SA2">Summative Assessment 2</option>
+  <option value="UT1">Unit Test 1</option>
+  <option value="UT2">Unit Test 2</option>
+  <option value="UT3">Unit Test 3</option>
+  <option value="UT4">Unit Test 4</option>
+</select>
+
+<button type="submit" class="btn primary">View Result</button>
 
       <div id="resultMessage"></div>
       <div id="resultDetails"></div>
