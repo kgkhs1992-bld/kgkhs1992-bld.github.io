@@ -58,19 +58,19 @@ document.addEventListener("DOMContentLoaded", function () {
   const pinInput = document.getElementById("resultPin");
 const rollInput = document.getElementById("resultRoll");
 
-pinInput.maxLength = 7;
+pinInput.maxLength = 8;
 
 pinInput.addEventListener("input", function () {
   this.value = this.value
     .toUpperCase()
     .replace(/[^A-Z0-9]/g, "")
-    .slice(0, 7);
+    .slice(0, 8);
 });
 
 rollInput.addEventListener("input", function () {
   const roll = this.value.trim();
 
-  if (/^\d{1,2}$/.test(roll)) {
+  if (/^\d{1,3}$/.test(roll)) {
     pinInput.value = "471CA" + roll.padStart(2, "0");
   }
 });
