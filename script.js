@@ -286,7 +286,163 @@ if (!data) {
 
 
       details.innerHTML = html;
+const pdfButton = document.createElement("button");
 
+pdfButton.type = "button";
+pdfButton.className = "btn primary";
+pdfButton.style.marginTop = "18px";
+pdfButton.textContent =
+  "📥 DOWNLOAD / SAVE RESULT AS PDF";
+
+pdfButton.onclick = async function () {
+
+  const script = document.createElement("script");
+
+  script.src =
+    "https://unpkg.com/jspdf@4.2.1/dist/jspdf.umd.min.js";
+
+  script.onload = function () {
+
+    const jsPDF = window.jspdf.jsPDF;
+
+    const doc = new jsPDF();
+
+    let y = 20;
+
+    doc.setFontSize(16);
+
+    doc.text(
+      "KARUA GADADHAR KAR HIGH SCHOOL, BELDANDIA",
+      105,
+      y,
+      { align: "center" }
+    );
+
+    y += 12;
+
+    doc.setFontSize(14);
+
+    doc.text(
+      "STUDENT RESULT",
+      105,
+      y,
+      { align: "center" }
+    );
+
+    y += 15;
+
+    doc.setFontSize(11);
+
+    doc.text(
+      "Class: " + (data.class || ""),
+      15,
+      y
+    );
+
+    y += 8;
+
+    doc.text(
+      "Roll No.: " + data.roll_no,
+      15,
+      y
+    );
+
+    y += 8;
+
+    doc.text(
+      "Name: " + (data.student_name || ""),
+      15,
+      y
+    );
+
+    y += 8;
+
+    doc.text(
+      "Assessment: " +
+      (data.assessment || ""),
+      15,
+      y
+    );
+
+    y += 12;
+
+    doc.text(
+      "Subjective: " +
+      (data.subjective ?? "—"),
+      15,
+      y
+    );
+
+    y += 8;
+
+    doc.text(
+      "Objective: " +
+      (data.objective ?? "—"),
+      15,
+      y
+    );
+
+    y += 8;
+
+    doc.text(
+      "Total: " +
+      (data.total ?? "—"),
+      15,
+      y
+    );
+
+    y += 12;
+
+    doc.setFontSize(12);
+
+    doc.text("MARKS", 15, y);
+
+    y += 10;
+
+    doc.setFontSize(11);
+
+    const marks = [
+      ["MIL (Odia)", data.mil_odia],
+      ["English", data.english],
+      ["Hindi / Sanskrit", data.hindi_sanskrit],
+      ["Mathematics", data.mathematics],
+      ["Science", data.science],
+      ["History", data.history],
+      ["Geography", data.geography],
+      ["Drawing", data.drawing]
+    ];
+
+    marks.forEach(item => {
+
+      if (
+        item[1] !== null &&
+        item[1] !== undefined &&
+        item[1] !== ""
+      ) {
+
+        doc.text(
+          item[0] + ": " + item[1],
+          20,
+          y
+        );
+
+        y += 8;
+      }
+    });
+
+    doc.save(
+      "KGKHS_Result_" +
+      (data.student_name || "Student") +
+      "_" +
+      data.roll_no +
+      ".pdf"
+    );
+  };
+
+  document.head.appendChild(script);
+};
+
+details.appendChild(pdfButton);
 
     } catch (err) {
 
@@ -299,3 +455,284 @@ if (!data) {
   });
 
 });
+// ===============================
+// ADMIN RESULT UPLOAD
+// ===============================
+
+function loadSheetJS() {
+  return new Promise((resolve, reject) => {
+    if (window.XLSX) return resolve();
+
+    const s = document.createElement("script");
+    s.src =
+      "https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js";
+
+    s.onload = resolve;
+    s.onerror = () => reject(new Error("Unable to load Excel reader."));
+    document.head.appendChild(s);
+  });
+}
+
+function resultKey(value) {
+  return String(value ?? "")
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "_")
+    .replace(/^_+|_+$/g, "");
+}
+
+function resultNumber(value) {
+  if (value === "" || value === null || value === undefined) {
+    return null;
+  }
+
+  const n = Number(value);
+  return Number.isFinite(n) ? n : value;
+}
+
+async function uploadStudentResults() {
+
+  const fileInput =
+    document.getElementById("result-marks-file");
+
+  const classSelect =
+    document.getElementById("result-upload-class");
+
+  const assessmentSelect =
+    document.getElementById("result-upload-assessment");
+
+  const message =
+    document.getElementById("result-upload-message");
+
+  const file = fileInput.files[0];
+
+  if (!file) {
+    message.textContent =
+      "❌ Please select a CSV or Excel marks file first.";
+    return;
+  }
+
+  try {
+
+    message.textContent =
+      "⏳ Reading marks file...";
+
+    await loadSheetJS();
+
+    const buffer =
+      await file.arrayBuffer();
+
+    const workbook =
+      XLSX.read(buffer, { type: "array" });
+
+    const sheet =
+      workbook.Sheets[workbook.SheetNames[0]];
+
+    const rawRows =
+      XLSX.utils.sheet_to_json(sheet, {
+        defval: ""
+      });
+
+    if (!rawRows.length) {
+      message.textContent =
+        "❌ The marks file is empty.";
+      return;
+    }
+
+    const studentClass =
+      classSelect.value;
+
+    const selectedAssessment =
+      assessmentSelect.value;
+
+    const tableName =
+      "class_" +
+      studentClass.toLowerCase() +
+      "_results";
+
+    const rows = rawRows.map(raw => {
+
+      const r = {};
+
+      Object.keys(raw).forEach(key => {
+        r[resultKey(key)] = raw[key];
+      });
+
+      const roll =
+        r.roll_no ??
+        r.roll ??
+        r.roll_number;
+
+      if (roll === undefined || roll === "") {
+        return null;
+      }
+
+      const pin =
+        String(
+          r.pin ||
+          ("471CA" +
+            String(roll)
+              .trim()
+              .padStart(2, "0"))
+        )
+        .trim()
+        .toUpperCase();
+
+      const payload = {
+
+        class: studentClass,
+
+        roll_no: Number(roll),
+
+        pin: pin,
+
+        student_name:
+          r.student_name ||
+          r.name ||
+          "",
+
+        assessment:
+          r.assessment ||
+          selectedAssessment
+      };
+
+      const markFields = [
+
+        "subjective",
+        "objective",
+        "total",
+
+        "mil_odia",
+        "english",
+        "hindi_sanskrit",
+        "mathematics",
+        "science",
+        "history",
+        "geography",
+        "drawing"
+
+      ];
+
+      markFields.forEach(field => {
+
+        if (
+          r[field] !== undefined &&
+          r[field] !== ""
+        ) {
+          payload[field] =
+            resultNumber(r[field]);
+        }
+
+      });
+
+      return payload;
+
+    }).filter(Boolean);
+
+    if (!rows.length) {
+
+      message.textContent =
+        "❌ No valid students found. Check the Roll No. column.";
+
+      return;
+    }
+
+    message.textContent =
+      "⏳ Saving " +
+      rows.length +
+      " result(s)...";
+
+    let saved = 0;
+    let failed = 0;
+    let firstError = "";
+
+    for (const row of rows) {
+
+      const existing =
+        await supabaseClient
+          .from(tableName)
+          .select("id")
+          .eq("roll_no", row.roll_no)
+          .eq("pin", row.pin)
+          .eq("assessment", row.assessment)
+          .limit(1);
+
+      if (existing.error) {
+
+        failed++;
+        firstError =
+          existing.error.message;
+
+        continue;
+      }
+
+      let result;
+
+      if (
+        existing.data &&
+        existing.data.length
+      ) {
+
+        result =
+          await supabaseClient
+            .from(tableName)
+            .update(row)
+            .eq(
+              "id",
+              existing.data[0].id
+            );
+
+      } else {
+
+        result =
+          await supabaseClient
+            .from(tableName)
+            .insert(row);
+      }
+
+      if (result.error) {
+
+        failed++;
+
+        firstError =
+          result.error.message;
+
+      } else {
+
+        saved++;
+      }
+    }
+
+    if (failed) {
+
+      message.textContent =
+        "⚠️ Saved " +
+        saved +
+        " result(s), but " +
+        failed +
+        " failed. " +
+        firstError;
+
+    } else {
+
+      message.textContent =
+        "✅ Successfully saved/published " +
+        saved +
+        " result(s) for Class " +
+        studentClass +
+        " — " +
+        selectedAssessment +
+        ".";
+
+      fileInput.value = "";
+    }
+
+  } catch (error) {
+
+    console.error(error);
+
+    message.textContent =
+      "❌ Upload failed: " +
+      error.message;
+  }
+}
