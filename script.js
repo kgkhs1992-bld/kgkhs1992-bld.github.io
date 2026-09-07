@@ -182,15 +182,21 @@ const assessmentMap = {
       let html = `
         <div class="info-box">
 
-          <h3>Student Result</h3>
-
           <p><strong>Class:</strong> ${data.class || studentClass}</p>
 
-          <p><strong>Roll No.:</strong> ${data.roll_no}</p>
+<p><strong>Roll No.:</strong> ${data.roll_no}</p>
 
-          <p><strong>Name:</strong> ${data.student_name}</p>
+<p><strong>Name:</strong> ${data.student_name}</p>
 
-          <p><strong>Assessment:</strong> ${data.assessment}</p>
+<p><strong>Assessment:</strong> ${data.assessment}</p>
+
+<hr>
+
+<p><strong>Subjective:</strong> ${data.subjective ?? "—"}</p>
+
+<p><strong>Objective:</strong> ${data.objective ?? "—"}</p>
+
+<p><strong>Total:</strong> ${data.total ?? "—"}</p>
 
           <hr>
 
