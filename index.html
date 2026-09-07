@@ -451,7 +451,7 @@ target="_blank">
 </div>
 </div>
 </section>
-</div></div></section
+
  <section id="gallery" class="section">
   <div class="container">
 
@@ -462,7 +462,7 @@ target="_blank">
     </div>
 
     <div class="gallery">
-<div class="gallery">
+
 
   <figure><img src="school-photo.jpg" alt="School Photo"></figure>
 
@@ -854,14 +854,7 @@ async function adminLogout() {
   document.getElementById("upload-message").textContent = "";
 }
 
-async function adminLogout() {
-  await supabaseClient.auth.signOut();
 
-  document.getElementById("login-box").style.display = "block";
-  document.getElementById("upload-box").style.display = "none";
-  document.getElementById("login-message").textContent = "";
-  document.getElementById("upload-message").textContent = "";
-}
 
 
 supabaseClient.auth.onAuthStateChange((event, session) => {
