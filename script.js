@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
     try {
 
       const { data, error } = await supabaseClient
-        .from("students")
+        .from(`class_${studentClass.toLowerCase()}_students`)
         .select("*")
         .eq("class", studentClass)
         .eq("roll_no", Number(rollNo))
