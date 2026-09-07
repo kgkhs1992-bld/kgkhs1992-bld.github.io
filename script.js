@@ -91,27 +91,27 @@ updateResultTypes();
 
     const pin =
       document.getElementById("resultPin").value.trim();
-const assessment =
-    document.getElementById("resultType").value.trim();
+const assessmentLabel =
+  document.getElementById("resultType").value.trim();
 
 const assessmentMap = {
-    "Formative Assessment 1": "FA1",
-    "Formative Assessment 2": "FA2",
-    "Formative Assessment 3": "FA3",
-    "Formative Assessment 4": "FA4",
-    "Half Yearly": "HY",
-    "Annual": "AN",
-    "Summative Assessment 01": "SA1",
-    "Summative Assessment 02": "SA2",
-    "Unit Test 01": "UT1",
-    "Unit Test 02": "UT2",
-    "Unit Test 03": "UT3",
-    "Unit Test 04": "UT4"
+  "SA1": "Summative Assessment 1",
+  "SA2": "Summative Assessment 2",
+  "UT1": "Unit Test 1",
+  "UT2": "Unit Test 2",
+  "UT3": "Unit Test 3",
+  "UT4": "Unit Test 4",
+
+  "Formative Assessment 1": "Formative Assessment 1",
+  "Formative Assessment 2": "Formative Assessment 2",
+  "Formative Assessment 3": "Formative Assessment 3",
+  "Formative Assessment 4": "Formative Assessment 4",
+  "Half Yearly": "Half Yearly",
+  "Annual": "Annual"
 };
 
 const assessment =
-    assessmentMap[assessmentLabel] || assessmentLabel;
-    
+  assessmentMap[assessmentLabel] || assessmentLabel;
 
 
     message.innerHTML = "";
