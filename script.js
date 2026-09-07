@@ -172,16 +172,13 @@ if (!/^471CA\d{2,3}$/.test(pin)) {
 
       // Search result table
       const { data, error } = await supabaseClient
-        .from(tableName)
-        .select("*")
-        .eq("roll_no", Number(rollNo))
-        .eq("pin", pin)
-        .in("assessment", [
-  assessment,
-  assessmentLabel,
-  `${studentClass}-${String(rollNo).padStart(2, "0")}-${assessment}`
-])
-.maybeSingle();
+    .from(tableName)
+    .select("*")
+    .eq("roll_no", Number(rollNo))
+    .eq("pin", pin)
+    .eq("assessment", assessment)
+    .maybeSingle();
+
 
 
       // Error
