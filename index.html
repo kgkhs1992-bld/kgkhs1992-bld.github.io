@@ -970,7 +970,7 @@ loadUploadedNotices();
     </div>
 
     <div class="info-box">
-      <form id="resultForm">
+      <form id="resultForm" onsubmit="event.preventDefault();">
         <label for="resultClass">Class</label>
         <select id="resultClass" required>
           <option value="">Select Class</option>
