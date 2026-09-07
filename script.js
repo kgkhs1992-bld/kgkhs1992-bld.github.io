@@ -110,12 +110,12 @@ updateResultTypes();
 
     const pin =
       document.getElementById("resultPin").value.trim();
-const assessmentLabel =
-  document.getElementById("resultType").value.trim();
-
-const assessmentMap = {
-  "SA1": "Summative Assessment 1",
-  "SA2": "Summative Assessment 2",
+"SA1": "SA1",
+"SA2": "SA2",
+"UT1": "UT1",
+"UT2": "UT2",
+"UT3": "UT3",
+"UT4": "UT4",
   "UT1": "Unit Test 1",
   "UT2": "Unit Test 2",
   "UT3": "Unit Test 3",
