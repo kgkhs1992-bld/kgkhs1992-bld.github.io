@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const { data, error } = await supabaseClient
         .from(`class_${studentClass.toLowerCase()}_students`)
         .select("*")
-        .eq("class", studentClass)
+        
         .eq("roll_no", Number(rollNo))
         .eq("pin", pin)
         .single();
@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", function () {
           <h3>Student Details</h3>
           <p><strong>Class:</strong> ${data.class}</p>
           <p><strong>Roll No.:</strong> ${data.roll_no}</p>
-          <p><strong>Name:</strong> ${data.name}</p>
+          <p><strong>Name:</strong> ${data.student_name}</p>
         </div>
       `;
 
