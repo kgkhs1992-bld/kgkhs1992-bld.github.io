@@ -134,12 +134,13 @@ const assessmentMap = {
   "Annual": "Annual"
 };
 
- const assessment =
-  assessmentMap[assessmentLabel] || assessmentLabel;
+ const assessment = assessmentMap[assessmentLabel] || assessmentLabel;
 
+message.innerHTML = "";
+details.innerHTML = "";
+  
 
-    message.innerHTML = "";
-    details.innerHTML = "";
+    
 
 
     // Check empty fields
