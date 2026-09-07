@@ -176,8 +176,12 @@ if (!/^471CA\d{2,3}$/.test(pin)) {
         .select("*")
         .eq("roll_no", Number(rollNo))
         .eq("pin", pin)
-        .in("assessment", [assessment, assessmentLabel])
-        .maybeSingle();
+        .in("assessment", [
+  assessment,
+  assessmentLabel,
+  `${studentClass}-${String(rollNo).padStart(2, "0")}-${assessment}`
+])
+.maybeSingle();
 
 
       // Error
