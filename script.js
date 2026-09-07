@@ -110,34 +110,11 @@ updateResultTypes();
 
     const pin =
       document.getElementById("resultPin").value.trim();
-"SA1": "SA1",
-"SA2": "SA2",
-"UT1": "UT1",
-"UT2": "UT2",
-"UT3": "UT3",
-"UT4": "UT4",
-  "UT1": "Unit Test 1",
-  "UT2": "Unit Test 2",
-  "UT3": "Unit Test 3",
-  "UT4": "Unit Test 4",
-"Summative Assessment 1": "SA1",
-"Summative Assessment 2": "SA2",
-"Unit Test 1": "UT1",
-"Unit Test 2": "UT2",
-"Unit Test 3": "UT3",
-"Unit Test 4": "UT4",
-  "Formative Assessment 1": "Formative Assessment 1",
-  "Formative Assessment 2": "Formative Assessment 2",
-  "Formative Assessment 3": "Formative Assessment 3",
-  "Formative Assessment 4": "Formative Assessment 4",
-  "Half Yearly": "Half Yearly",
-  "Annual": "Annual"
-};
+    const assessment = resultTypeSelect.value.trim();
 
- const assessment = assessmentMap[assessmentLabel] || assessmentLabel;
+    message.innerHTML = "";
+    details.innerHTML = "";
 
-message.innerHTML = "";
-details.innerHTML = "";
   
 
     
