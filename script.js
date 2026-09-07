@@ -1,6 +1,52 @@
 const menuBtn=document.querySelector('.menu-btn');const nav=document.querySelector('.nav-links');menuBtn.addEventListener('click',()=>nav.classList.toggle('open'));document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('open')));document.getElementById('year').textContent=new Date().getFullYear();
 document.querySelectorAll('.gallery figure img').forEach(img=>{img.addEventListener('click',()=>{const o=document.createElement('div');o.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,.9);display:flex;align-items:center;justify-content:center;z-index:9999;padding:20px;cursor:pointer';const i=document.createElement('img');i.src=img.src;i.style.cssText='max-width:95%;max-height:90%;object-fit:contain;border-radius:10px';o.appendChild(i);o.onclick=()=>o.remove();document.body.appendChild(o)})});
+
 // ===============================
+// MENU
+// ===============================
+
+const menuBtn = document.querySelector('.menu-btn');
+const nav = document.querySelector('.nav-links');
+
+if (menuBtn && nav) {
+  menuBtn.addEventListener('click', () => {
+    nav.classList.toggle('active');
+  });
+}
+
+
+// ===============================
+// GALLERY IMAGE VIEW
+// ===============================
+
+document.querySelectorAll('.gallery figure img').forEach(img => {
+  img.addEventListener('click', () => {
+    const viewer = document.createElement('div');
+
+    viewer.style.position = 'fixed';
+    viewer.style.inset = '0';
+    viewer.style.background = 'rgba(0,0,0,0.9)';
+    viewer.style.display = 'flex';
+    viewer.style.alignItems = 'center';
+    viewer.style.justifyContent = 'center';
+    viewer.style.zIndex = '9999';
+
+    const bigImage = document.createElement('img');
+    bigImage.src = img.src;
+    bigImage.style.maxWidth = '95%';
+    bigImage.style.maxHeight = '95%';
+
+    viewer.appendChild(bigImage);
+
+    viewer.addEventListener('click', () => {
+      viewer.remove();
+    });
+
+    document.body.appendChild(viewer);
+  });
+});
+
+
 // ===============================
 // STUDENT RESULT CHECK
 // ===============================
@@ -13,7 +59,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (!form) return;
 
+
   form.addEventListener("submit", async function (e) {
+
     e.preventDefault();
 
     const studentClass =
@@ -25,44 +73,139 @@ document.addEventListener("DOMContentLoaded", function () {
     const pin =
       document.getElementById("resultPin").value.trim();
 
+    const assessment =
+      document.getElementById("resultType").value.trim();
+
+
     message.innerHTML = "";
     details.innerHTML = "";
 
-    if (!studentClass || !rollNo || !pin) {
+
+    // Check empty fields
+    if (!studentClass || !rollNo || !pin || !assessment) {
+
       message.innerHTML =
-        "<p>Please enter Class, Roll No. and PIN.</p>";
+        "<p>Please enter Class, Roll No., PIN and Result Type.</p>";
+
       return;
     }
 
-    message.innerHTML = "<p>Checking result...</p>";
+
+    message.innerHTML =
+      "<p>Checking result...</p>";
+
 
     try {
 
+      // Table name
+      const tableName =
+        `class_${studentClass.toLowerCase()}_results`;
+
+
+      // Search result table
       const { data, error } = await supabaseClient
-        .from(`class_${studentClass.toLowerCase()}_students`)
+        .from(tableName)
         .select("*")
-        
         .eq("roll_no", Number(rollNo))
         .eq("pin", pin)
-        .single();
+        .eq("assessment", assessment)
+        .maybeSingle();
 
-      if (error || !data) {
+
+      // Error
+      if (error) {
+
+        console.error(error);
+
         message.innerHTML =
-          "<p>❌ Student details not found. Please check Class, Roll No. and PIN.</p>";
+          "<p>⚠️ Unable to check result. Please try again.</p>";
+
         return;
       }
 
-      message.innerHTML =
-        "<p>✅ Student verified successfully.</p>";
 
-      details.innerHTML = `
+      // No result
+      if (!data) {
+
+        message.innerHTML =
+          "<p>❌ Result not found. Please check Class, Roll No., PIN and Result Type.</p>";
+
+        return;
+      }
+
+
+      // Success
+      message.innerHTML =
+        "<p>✅ Result found successfully.</p>";
+
+
+      // Build result display
+      let html = `
         <div class="info-box">
-          <h3>Student Details</h3>
-          <p><strong>Class:</strong> ${data.class}</p>
+
+          <h3>Student Result</h3>
+
+          <p><strong>Class:</strong> ${data.class || studentClass}</p>
+
           <p><strong>Roll No.:</strong> ${data.roll_no}</p>
+
           <p><strong>Name:</strong> ${data.student_name}</p>
+
+          <p><strong>Assessment:</strong> ${data.assessment}</p>
+
+          <hr>
+
+          <h3>Marks</h3>
+      `;
+
+
+      // Subject columns
+      const subjects = [
+        ["mil_odia", "MIL (Odia)"],
+        ["english", "English"],
+        ["hindi_sanskrit", "Hindi / Sanskrit"],
+        ["mathematics", "Mathematics"],
+        ["science", "Science"],
+        ["history", "History"],
+        ["geography", "Geography"],
+        ["drawing", "Drawing"]
+      ];
+
+
+      let foundMarks = false;
+
+
+      subjects.forEach(([column, name]) => {
+
+        if (data[column] !== null && data[column] !== undefined) {
+
+          foundMarks = true;
+
+          html += `
+            <p>
+              <strong>${name}:</strong>
+              ${data[column]}
+            </p>
+          `;
+        }
+
+      });
+
+
+      if (!foundMarks) {
+
+        html +=
+          "<p>Marks have not been entered yet.</p>";
+      }
+
+
+      html += `
         </div>
       `;
+
+
+      details.innerHTML = html;
+
 
     } catch (err) {
 
@@ -73,3 +216,5 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
   });
+
+});
