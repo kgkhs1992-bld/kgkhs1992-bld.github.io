@@ -171,14 +171,30 @@ if (!/^471CA\d{2,3}$/.test(pin)) {
 
 
       // Search result table
-      const { data, error } = await supabaseClient
-    .from(tableName)
-    .select("*")
-    .eq("roll_no", Number(rollNo))
-    .eq("pin", pin)
-    .eq("roll_no", Number(rollNo))
-.eq("pin", pin)
-    .maybeSingle();
+      const { data: rows, error } = await supabaseClient
+  .from(tableName)
+  .select("*")
+  .eq("roll_no", Number(rollNo))
+  .eq("pin", pin);
+
+if (error) {
+  console.error(error);
+  message.innerHTML =
+    "<p>⚠️ Unable to check result. Please try again.</p>";
+  return;
+}
+
+const data = (rows || []).find(row =>
+  String(row.assessment || "").trim().toLowerCase() ===
+  String(assessment || "").trim().toLowerCase()
+);
+
+if (!data) {
+  message.innerHTML =
+    "<p>❌ Result not found. Please check Class, Roll No., PIN and Result Type.</p>";
+  return;
+}
+    
 
 
 
