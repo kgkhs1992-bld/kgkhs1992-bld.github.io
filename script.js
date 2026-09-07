@@ -390,7 +390,62 @@ pdfButton.onclick = async function () {
       15,
       y
     );
+        // Percentage and Odisha Grade
+        const totalMarks = Number(data.total);
+        const className = String(data.class || "").trim().toUpperCase();
+        const assessmentName = String(data.assessment || "").trim().toUpperCase();
 
+        let maxMarks = 0;
+
+        if (className === "VIII") {
+            if (assessmentName.includes("SUMMATIVE")) {
+                maxMarks = 400;
+            } else if (assessmentName.includes("UNIT TEST")) {
+                maxMarks = 120;
+            }
+        } else if (className === "IX" || className === "X") {
+            if (assessmentName.includes("FORMATIVE")) {
+                maxMarks = 300;
+            } else if (
+                assessmentName.includes("HALF YEARLY") ||
+                assessmentName.includes("ANNUAL")
+            ) {
+                maxMarks = 600;
+            } else if (assessmentName.includes("UNIT TEST")) {
+                maxMarks = 90;
+            }
+        }
+
+        if (totalMarks !== "" && !isNaN(totalMarks) && maxMarks > 0) {
+            const percentage = (totalMarks / maxMarks) * 100;
+
+            let grade = "";
+
+            if (percentage >= 90) grade = "A1";
+else if (percentage >= 80) grade = "A2";
+else if (percentage >= 70) grade = "B1";
+else if (percentage >= 60) grade = "B2";
+else if (percentage >= 50) grade = "C";
+else if (percentage >= 40) grade = "D";
+else if (percentage >= 33) grade = "E";
+else grade = "F";
+
+            y += 8;
+
+            doc.text(
+                "Percentage: " + percentage.toFixed(2) + "%",
+                15,
+                y
+            );
+
+            y += 8;
+
+            doc.text(
+                "Grade: " + grade,
+                15,
+                y
+            );
+        }
     y += 12;
 
     doc.setFontSize(12);
