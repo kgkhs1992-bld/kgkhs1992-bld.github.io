@@ -961,6 +961,38 @@ loadUploadedNotices();
 </script>
 
 <script src="script.js"></script>
+  <section id="results" class="section">
+  <div class="container">
+    <div class="section-heading">
+      <span class="eyebrow">STUDENT RESULTS</span>
+      <h2>Check Your Result</h2>
+      <p>Enter your Class, Roll No. and PIN to view your result.</p>
+    </div>
+
+    <div class="info-box">
+      <form id="resultForm">
+        <label for="resultClass">Class</label>
+        <select id="resultClass" required>
+          <option value="">Select Class</option>
+          <option value="VIII">VIII</option>
+          <option value="IX">IX</option>
+          <option value="X">X</option>
+        </select>
+
+        <label for="resultRoll">Roll No.</label>
+        <input type="number" id="resultRoll" min="1" placeholder="Enter Roll No." required>
+
+        <label for="resultPin">6-Digit PIN</label>
+        <input type="text" id="resultPin" placeholder="Enter PIN" required>
+
+        <button type="submit" class="btn primary">View Result</button>
+      </form>
+
+      <div id="resultMessage"></div>
+      <div id="resultDetails"></div>
+    </div>
+  </div>
+  </section>
 </body>
 </html>
 
