@@ -91,7 +91,7 @@ updateResultTypes();
 
     const pin =
       document.getElementById("resultPin").value.trim();
-const assessmentLabel =
+const assessment =
     document.getElementById("resultType").value.trim();
 
 const assessmentMap = {
