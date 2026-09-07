@@ -184,11 +184,23 @@ if (error) {
   return;
 }
 
-const data = (rows || []).find(row =>
-  String(row.assessment || "").trim().toLowerCase() ===
-  String(assessment || "").trim().toLowerCase()
-);
+const data = (rows || []).find(row => {
+    const dbAssessment = String(row.assessment || "").trim().toLowerCase();
 
+    const aliases = {
+        "sa1": ["sa1", "summative assessment 1"],
+        "sa2": ["sa2", "summative assessment 2"],
+        "ut1": ["ut1", "unit test 1"],
+        "ut2": ["ut2", "unit test 2"],
+        "ut3": ["ut3", "unit test 3"],
+        "ut4": ["ut4", "unit test 4"]
+    };
+
+    const wanted = String(assessment || "").trim().toLowerCase();
+
+    return dbAssessment === wanted ||
+           (aliases[wanted] && aliases[wanted].includes(dbAssessment));
+});
 if (!data) {
   message.innerHTML =
     "<p>❌ Result not found. Please check Class, Roll No., PIN and Result Type.</p>";
