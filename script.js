@@ -110,8 +110,10 @@ const assessmentMap = {
   "Annual": "Annual"
 };
 
-const assessment =
-  assessmentMap[assessmentLabel] || assessmentLabel;
+ const assessment =
+    studentClass === "VIII"
+      ? assessmentLabel
+      : (assessmentMap[assessmentLabel] || assessmentLabel);
 
 
     message.innerHTML = "";
