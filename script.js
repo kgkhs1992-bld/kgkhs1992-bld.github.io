@@ -986,7 +986,7 @@ async function previewStudentResults() {
   rawRows
     .filter(raw =>
       Object.values(raw)
-        .slice(2)
+        .slice(3)
         .some(value =>
           value !== null &&
           value !== undefined &&
