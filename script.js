@@ -983,14 +983,23 @@ async function previewStudentResults() {
 
 
     const rows =
-      rawRows
-        .map(raw =>
-          makeStudentResultPayload(
-            raw,
-            meta
-          )
+  rawRows
+    .filter(raw =>
+      Object.values(raw)
+        .slice(2)
+        .some(value =>
+          value !== null &&
+          value !== undefined &&
+          value !== ""
         )
-        .filter(Boolean);
+    )
+    .map(raw =>
+      makeStudentResultPayload(
+        raw,
+        meta
+      )
+    )
+    .filter(Boolean);
 
 
     if (!rows.length) {
