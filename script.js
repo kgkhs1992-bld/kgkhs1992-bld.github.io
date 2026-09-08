@@ -358,8 +358,15 @@ pdfButton.onclick = async function () {
       15,
       y
     );
+doc.text(
+  "Result Published Date: " +
+  (data.published_date || "—"),
+  15,
+  y
+);
 
-    y += 12;
+y += 8;
+    
 
     doc.text(
       "Subjective: " +
