@@ -545,10 +545,45 @@ function resultNumber(value) {
   return Number.isFinite(n) ? n : value;
 }
 
-async function uploadStudentResults() {
+// ===============================
+// NEW ADMIN RESULT UPLOAD WORKFLOW
+// ===============================
 
-  const fileInput =
-    document.getElementById("result-marks-file");
+let pendingStudentResults = [];
+let pendingResultMeta = null;
+
+const RESULT_ASSESSMENTS = {
+  VIII: [
+    ["SA1", "Summative Assessment 1", "VIII SA-1"],
+    ["SA2", "Summative Assessment 2", "VIII SA-2"],
+    ["UT1", "Unit Test 1", "VIII UT-1"],
+    ["UT2", "Unit Test 2", "VIII UT-2"],
+    ["UT3", "Unit Test 3", "VIII UT-3"],
+    ["UT4", "Unit Test 4", "VIII UT-4"]
+  ],
+
+  IX: [
+    ["FA1", "Formative Assessment 1", "IX FA-1"],
+    ["FA2", "Formative Assessment 2", "IX FA-2"],
+    ["FA3", "Formative Assessment 3", "IX FA-3"],
+    ["FA4", "Formative Assessment 4", "IX FA-4"],
+    ["HALF_YEARLY", "Half Yearly", "IX Half-Yearly"],
+    ["ANNUAL", "Annual", "IX Annual"]
+  ],
+
+  X: [
+    ["FA1", "Formative Assessment 1", "X FA-1"],
+    ["FA2", "Formative Assessment 2", "X FA-2"],
+    ["FA3", "Formative Assessment 3", "X FA-3"],
+    ["FA4", "Formative Assessment 4", "X FA-4"],
+    ["HALF_YEARLY", "Half Yearly", "X Half-Yearly"],
+    ["ANNUAL", "Annual", "X Annual"]
+  ]
+};
+
+
+// Populate assessment list according to class
+function setupResultUploadOptions() {
 
   const classSelect =
     document.getElementById("result-upload-class");
@@ -556,172 +591,680 @@ async function uploadStudentResults() {
   const assessmentSelect =
     document.getElementById("result-upload-assessment");
 
-  const message =
-    document.getElementById("result-upload-message");
+  if (!classSelect || !assessmentSelect) return;
 
-  const file = fileInput.files[0];
+  function refreshAssessments() {
+
+    const list =
+      RESULT_ASSESSMENTS[classSelect.value] || [];
+
+    assessmentSelect.innerHTML = "";
+
+    list.forEach(item => {
+
+      const option =
+        document.createElement("option");
+
+      option.value = item[0];
+      option.textContent = item[1];
+
+      assessmentSelect.appendChild(option);
+
+    });
+  }
+
+  classSelect.addEventListener(
+    "change",
+    refreshAssessments
+  );
+
+  refreshAssessments();
+}
+
+
+// Get selected class / assessment
+function getSelectedResultAssessment() {
+
+  const classValue =
+    document.getElementById(
+      "result-upload-class"
+    ).value;
+
+  const assessmentValue =
+    document.getElementById(
+      "result-upload-assessment"
+    ).value;
+
+  const list =
+    RESULT_ASSESSMENTS[classValue] || [];
+
+  const item =
+    list.find(
+      x => x[0] === assessmentValue
+    );
+
+  return {
+    classValue: classValue,
+    assessmentValue: assessmentValue,
+    assessmentLabel: item ? item[1] : "",
+    sheetName: item ? item[2] : ""
+  };
+}
+
+
+// Convert Excel column names to safe keys
+function normalizeResultKey(value) {
+
+  return String(value ?? "")
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "_")
+    .replace(/^_+|_+$/g, "");
+}
+
+
+// Convert marks to number
+function resultMark(value) {
+
+  if (
+    value === "" ||
+    value === null ||
+    value === undefined
+  ) {
+    return null;
+  }
+
+  const n = Number(value);
+
+  return Number.isFinite(n) ? n : null;
+}
+
+
+// Create Supabase record
+function makeStudentResultPayload(
+  raw,
+  meta
+) {
+
+  const r = {};
+
+  Object.keys(raw).forEach(key => {
+
+    r[normalizeResultKey(key)] =
+      raw[key];
+
+  });
+
+
+  const roll =
+    r.roll_no ??
+    r.roll ??
+    r.roll_number;
+
+
+  const name =
+    r.student_name ??
+    r.name ??
+    "";
+
+
+  if (
+    roll === undefined ||
+    roll === "" ||
+    !name
+  ) {
+    return null;
+  }
+
+
+  const payload = {
+
+    roll_no: Number(roll),
+
+    pin:
+      String(
+        r.pin ||
+        (
+          "471CA" +
+          String(roll)
+            .trim()
+            .padStart(2, "0")
+        )
+      )
+      .trim()
+      .toUpperCase(),
+
+    student_name:
+      String(name).trim(),
+
+    assessment:
+      meta.assessmentValue
+
+  };
+
+
+  // Normal single-mark subjects
+  const fields = [
+
+    "mil_odia",
+    "english",
+    "hindi_sanskrit",
+    "mathematics",
+    "science",
+    "history",
+    "geography",
+    "drawing",
+    "social_science",
+    "total"
+
+  ];
+
+
+  fields.forEach(field => {
+
+    if (
+      r[field] !== undefined &&
+      r[field] !== ""
+    ) {
+
+      payload[field] =
+        resultMark(r[field]);
+
+    }
+
+  });
+
+
+  // Half-Yearly / Annual:
+  // combine Subjective + Objective
+  const subjectPairs = [
+
+    ["mil_odia", "mil_odia_sub", "mil_odia_obj"],
+
+    ["english", "english_sub", "english_obj"],
+
+    [
+      "hindi_sanskrit",
+      "hindi_sanskrit_sub",
+      "hindi_sanskrit_obj"
+    ],
+
+    [
+      "mathematics",
+      "mathematics_sub",
+      "mathematics_obj"
+    ],
+
+    [
+      "science",
+      "science_sub",
+      "science_obj"
+    ],
+
+    [
+      "social_science",
+      "social_science_sub",
+      "social_science_obj"
+    ]
+
+  ];
+
+
+  let calculatedTotal = 0;
+  let hasMarks = false;
+
+
+  subjectPairs.forEach(pair => {
+
+    const subject = pair[0];
+    const sub = resultMark(r[pair[1]]);
+    const obj = resultMark(r[pair[2]]);
+
+
+    if (sub !== null || obj !== null) {
+
+      const total =
+        (sub || 0) +
+        (obj || 0);
+
+      payload[subject] =
+        total;
+
+      calculatedTotal +=
+        total;
+
+      hasMarks = true;
+
+    }
+
+  });
+
+
+  if (
+    hasMarks &&
+    (
+      payload.total === undefined ||
+      payload.total === null
+    )
+  ) {
+
+    payload.total =
+      calculatedTotal;
+
+  }
+
+
+  return payload;
+}
+
+
+// Escape preview text safely
+function escapeResultHtml(value) {
+
+  return String(value ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+
+}
+
+
+// =====================================
+// STEP 1 — READ EXCEL AND PREVIEW
+// =====================================
+
+async function previewStudentResults() {
+
+  const fileInput =
+    document.getElementById(
+      "result-marks-file"
+    );
+
+  const preview =
+    document.getElementById(
+      "result-upload-preview"
+    );
+
+  const actions =
+    document.getElementById(
+      "result-upload-actions"
+    );
+
+  const message =
+    document.getElementById(
+      "result-upload-message"
+    );
+
+
+  const file =
+    fileInput &&
+    fileInput.files[0];
+
 
   if (!file) {
+
     message.textContent =
-      "❌ Please select a CSV or Excel marks file first.";
+      "❌ Please choose the School Marks Entry Master Excel file first.";
+
     return;
   }
+
 
   try {
 
     message.textContent =
-      "⏳ Reading marks file...";
+      "⏳ Reading Excel...";
+
+    preview.innerHTML = "";
+
+    actions.style.display =
+      "none";
+
+
+    pendingStudentResults = [];
+    pendingResultMeta = null;
+
 
     await loadSheetJS();
 
-    const buffer =
-      await file.arrayBuffer();
 
-    const workbook =
-      XLSX.read(buffer, { type: "array" });
+    const meta =
+      getSelectedResultAssessment();
 
-    const sheet =
-      workbook.Sheets[workbook.SheetNames[0]];
 
-    const rawRows =
-      XLSX.utils.sheet_to_json(sheet, {
-        defval: ""
-      });
+    if (!meta.sheetName) {
 
-    if (!rawRows.length) {
       message.textContent =
-        "❌ The marks file is empty.";
+        "❌ Please select Class and Assessment.";
+
       return;
     }
 
-    const studentClass =
-      classSelect.value;
 
-    const selectedAssessment =
-      assessmentSelect.value;
+    const workbook =
+      XLSX.read(
+        await file.arrayBuffer(),
+        { type: "array" }
+      );
 
-    const tableName =
-      "class_" +
-      studentClass.toLowerCase() +
-      "_results";
 
-    const rows = rawRows.map(raw => {
-
-      const r = {};
-
-      Object.keys(raw).forEach(key => {
-        r[resultKey(key)] = raw[key];
-      });
-
-      const roll =
-        r.roll_no ??
-        r.roll ??
-        r.roll_number;
-
-      if (roll === undefined || roll === "") {
-        return null;
-      }
-
-      const pin =
-        String(
-          r.pin ||
-          ("471CA" +
-            String(roll)
-              .trim()
-              .padStart(2, "0"))
-        )
-        .trim()
-        .toUpperCase();
-
-      const payload = {
-
-        class: studentClass,
-
-        roll_no: Number(roll),
-
-        pin: pin,
-
-        student_name:
-          r.student_name ||
-          r.name ||
-          "",
-
-        assessment:
-          r.assessment ||
-          selectedAssessment
-      };
-
-      const markFields = [
-
-        "subjective",
-        "objective",
-        "total",
-
-        "mil_odia",
-        "english",
-        "hindi_sanskrit",
-        "mathematics",
-        "science",
-        "history",
-        "geography",
-        "drawing"
-
+    const sheet =
+      workbook.Sheets[
+        meta.sheetName
       ];
 
-      markFields.forEach(field => {
 
-        if (
-          r[field] !== undefined &&
-          r[field] !== ""
-        ) {
-          payload[field] =
-            resultNumber(r[field]);
-        }
+    if (!sheet) {
 
-      });
+      message.textContent =
+        "❌ Excel sheet not found: " +
+        meta.sheetName;
 
-      return payload;
+      return;
+    }
 
-    }).filter(Boolean);
+
+    const rawRows =
+      XLSX.utils.sheet_to_json(
+        sheet,
+        { defval: "" }
+      );
+
+
+    if (!rawRows.length) {
+
+      message.textContent =
+        "❌ The selected sheet is empty.";
+
+      return;
+    }
+
+
+    const rows =
+      rawRows
+        .map(raw =>
+          makeStudentResultPayload(
+            raw,
+            meta
+          )
+        )
+        .filter(Boolean);
+
 
     if (!rows.length) {
 
       message.textContent =
-        "❌ No valid students found. Check the Roll No. column.";
+        "❌ No valid student records were found.";
 
       return;
     }
 
+
+    pendingStudentResults =
+      rows;
+
+    pendingResultMeta =
+      meta;
+
+
+    // Preview columns
+    const columns = [
+
+      ["roll_no", "Roll No."],
+
+      ["student_name", "Student Name"],
+
+      ["mil_odia", "MIL (Odia)"],
+
+      ["english", "English"],
+
+      ["hindi_sanskrit", "Hindi/Sanskrit"],
+
+      ["mathematics", "Mathematics"],
+
+      ["science", "Science"],
+
+      ["social_science", "Social Science"],
+
+      ["history", "History"],
+
+      ["geography", "Geography"],
+
+      ["drawing", "Drawing"],
+
+      ["total", "Total"]
+
+    ];
+
+
+    const header =
+      columns
+        .map(
+          item =>
+            "<th style='padding:8px;border:1px solid #ccc;'>" +
+            item[1] +
+            "</th>"
+        )
+        .join("");
+
+
+    const body =
+      rows
+        .map(row => {
+
+          return (
+            "<tr>" +
+            columns
+              .map(item => {
+
+                return (
+                  "<td style='padding:8px;border:1px solid #ccc;'>" +
+                  escapeResultHtml(
+                    row[item[0]] ?? ""
+                  ) +
+                  "</td>"
+                );
+
+              })
+              .join("") +
+            "</tr>"
+          );
+
+        })
+        .join("");
+
+
+    preview.innerHTML =
+
+      "<div style='overflow:auto;max-height:420px;border:1px solid #ccc;border-radius:8px;'>" +
+
+      "<table style='width:100%;border-collapse:collapse;min-width:850px;'>" +
+
+      "<thead><tr>" +
+      header +
+      "</tr></thead>" +
+
+      "<tbody>" +
+      body +
+      "</tbody>" +
+
+      "</table></div>" +
+
+      "<p><strong>Preview ready:</strong> " +
+      rows.length +
+      " student result(s) from <strong>" +
+      escapeResultHtml(
+        meta.sheetName
+      ) +
+      "</strong>.</p>" +
+
+      "<p>⚠️ Check the marks carefully before confirming.</p>";
+
+
+    actions.style.display =
+      "block";
+
+
+    message.textContent =
+      "✅ Excel read successfully. Please review the preview.";
+
+  } catch (error) {
+
+    console.error(error);
+
+    message.textContent =
+      "❌ Preview failed: " +
+      error.message;
+
+  }
+
+}
+
+
+// =====================================
+// STEP 2 — CANCEL PREVIEW
+// =====================================
+
+function cancelStudentResultsPreview() {
+
+  pendingStudentResults = [];
+  pendingResultMeta = null;
+
+
+  const preview =
+    document.getElementById(
+      "result-upload-preview"
+    );
+
+  const actions =
+    document.getElementById(
+      "result-upload-actions"
+    );
+
+  const message =
+    document.getElementById(
+      "result-upload-message"
+    );
+
+
+  if (preview)
+    preview.innerHTML = "";
+
+
+  if (actions)
+    actions.style.display =
+      "none";
+
+
+  if (message)
+    message.textContent =
+      "↩️ Cancelled. No results were saved.";
+
+}
+
+
+// =====================================
+// STEP 3 — CONFIRM AND SAVE
+// =====================================
+
+async function confirmStudentResults() {
+
+  const message =
+    document.getElementById(
+      "result-upload-message"
+    );
+
+
+  if (
+    !pendingStudentResults.length ||
+    !pendingResultMeta
+  ) {
+
+    message.textContent =
+      "❌ No preview is ready to save.";
+
+    return;
+  }
+
+
+  const tableName =
+    "class_" +
+    pendingResultMeta.classValue
+      .toLowerCase() +
+    "_results";
+
+
+  try {
+
     message.textContent =
       "⏳ Saving " +
-      rows.length +
-      " result(s)...";
+      pendingStudentResults.length +
+      " result(s) to Supabase...";
+
 
     let saved = 0;
     let failed = 0;
     let firstError = "";
 
-    for (const row of rows) {
+
+    for (
+      const row
+      of pendingStudentResults
+    ) {
+
+
+      /*
+       * IMPORTANT:
+       * We deliberately DO NOT send:
+       *
+       * class: "VIII"
+       *
+       * because class_viii_results
+       * does not contain a class column.
+       */
+
 
       const existing =
         await supabaseClient
+
           .from(tableName)
+
           .select("id")
-          .eq("roll_no", row.roll_no)
-          .eq("pin", row.pin)
-          .eq("assessment", row.assessment)
+
+          .eq(
+            "roll_no",
+            row.roll_no
+          )
+
+          .eq(
+            "pin",
+            row.pin
+          )
+
+          .eq(
+            "assessment",
+            row.assessment
+          )
+
           .limit(1);
+
 
       if (existing.error) {
 
         failed++;
-        firstError =
-          existing.error.message;
+
+        if (!firstError)
+          firstError =
+            existing.error.message;
 
         continue;
       }
 
+
       let result;
+
 
       if (
         existing.data &&
@@ -730,8 +1273,11 @@ async function uploadStudentResults() {
 
         result =
           await supabaseClient
+
             .from(tableName)
+
             .update(row)
+
             .eq(
               "id",
               existing.data[0].id
@@ -741,22 +1287,30 @@ async function uploadStudentResults() {
 
         result =
           await supabaseClient
+
             .from(tableName)
+
             .insert(row);
+
       }
+
 
       if (result.error) {
 
         failed++;
 
-        firstError =
-          result.error.message;
+        if (!firstError)
+          firstError =
+            result.error.message;
 
       } else {
 
         saved++;
+
       }
+
     }
+
 
     if (failed) {
 
@@ -768,26 +1322,65 @@ async function uploadStudentResults() {
         " failed. " +
         firstError;
 
-    } else {
-
-      message.textContent =
-        "✅ Successfully saved/published " +
-        saved +
-        " result(s) for Class " +
-        studentClass +
-        " — " +
-        selectedAssessment +
-        ".";
-
-      fileInput.value = "";
+      return;
     }
+
+
+    message.textContent =
+      "✅ Successfully saved " +
+      saved +
+      " result(s) for Class " +
+      pendingResultMeta.classValue +
+      " — " +
+      pendingResultMeta.assessmentLabel +
+      ".";
+
+
+    const preview =
+      document.getElementById(
+        "result-upload-preview"
+      );
+
+    const actions =
+      document.getElementById(
+        "result-upload-actions"
+      );
+
+
+    if (preview) {
+
+      preview.innerHTML =
+        "<p>✅ Results saved successfully to Supabase.</p>";
+
+    }
+
+
+    if (actions) {
+
+      actions.style.display =
+        "none";
+
+    }
+
+
+    pendingStudentResults = [];
+    pendingResultMeta = null;
+
 
   } catch (error) {
 
     console.error(error);
 
     message.textContent =
-      "❌ Upload failed: " +
+      "❌ Save failed: " +
       error.message;
+
   }
+
 }
+
+
+// Start the assessment selector
+setupResultUploadOptions();
+
+  
