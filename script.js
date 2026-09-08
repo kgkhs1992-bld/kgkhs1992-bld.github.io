@@ -1200,10 +1200,21 @@ async function confirmStudentResults() {
   }
 
 
-  const tableName =
+  const meta =
+    pendingResultMeta ||
+    getSelectedResultAssessment();
+
+if (!meta || !meta.classValue) {
+    message.textContent =
+        "❌ Class and Assessment information is missing.";
+    return;
+}
+
+pendingResultMeta = meta;
+
+const tableName =
     "class_" +
-    pendingResultMeta.classValue
-      .toLowerCase() +
+    meta.classValue.toLowerCase() +
     "_results";
 
 
