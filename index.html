@@ -743,51 +743,98 @@ Headmaster · Since 31 May 2026
         </button>
 <hr>
 
-<h3>📊 Student Results</h3>
 
-<select id="result-upload-class">
-  <option value="VIII">Class VIII</option>
-  <option value="IX">Class IX</option>
-  <option value="X">Class X</option>
-</select>
 
-<select id="result-upload-assessment">
-  <option value="SA1">Summative Assessment 1</option>
-  <option value="SA2">Summative Assessment 2</option>
-  <option value="UT1">Unit Test 1</option>
-  <option value="UT2">Unit Test 2</option>
-  <option value="UT3">Unit Test 3</option>
-  <option value="UT4">Unit Test 4</option>
-  <option value="FA1">Formative Assessment 1</option>
-  <option value="FA2">Formative Assessment 2</option>
-  <option value="FA3">Formative Assessment 3</option>
-  <option value="FA4">Formative Assessment 4</option>
-  <option value="HALF_YEARLY">Half Yearly</option>
-  <option value="ANNUAL">Annual</option>
-<input type="file" id="result-marks-file" accept=".csv,.xlsx,.xls">
+<h3>📊 Student Results / Marks Upload</h3>
+
+<div class="result-upload-workflow">
+
+  <label for="result-upload-class">
+    <strong>1. Select Class</strong>
+  </label>
+
+  <select id="result-upload-class">
+    <option value="VIII">Class VIII</option>
+    <option value="IX">Class IX</option>
+    <option value="X">Class X</option>
+  </select>
+
+
+  <label for="result-upload-assessment">
+    <strong>2. Select Assessment</strong>
+  </label>
+
+  <select id="result-upload-assessment"></select>
+
+
+  <label for="result-marks-file">
+    <strong>3. Choose Excel Master File</strong>
+  </label>
+
+  <input
+    type="file"
+    id="result-marks-file"
+    accept=".xlsx,.xls,.csv"
+  >
+
+
+  <div style="margin-top:12px;">
+
+    <button
+      type="button"
+      class="btn primary"
+      onclick="previewStudentResults()"
+    >
+      👁️ Read Excel & Preview
+    </button>
+
+  </div>
+
+
+  <div
+    id="result-upload-preview"
+    style="margin-top:18px;"
+  ></div>
+
+
+  <div
+    id="result-upload-actions"
+    style="display:none; margin-top:14px;"
+  >
+
+    <button
+      type="button"
+      class="btn primary"
+      onclick="confirmStudentResults()"
+    >
+      ✅ Confirm & Save to Supabase
+    </button>
+
+    <button
+      type="button"
+      class="btn"
+      onclick="cancelStudentResultsPreview()"
+    >
+      ❌ Cancel
+    </button>
+
+  </div>
+
+
+  <p id="result-upload-message"></p>
+
+</div>
+
 
 <button
-  type="button"
-  class="btn primary"
-  onclick="uploadStudentResults()">
-  📊 Upload & Save Results
-</button>
-
-<p id="result-upload-message"></p>
-
-
-
-<p 
-        <button
   type="button"
   onclick="adminLogout()"
   style="display:block !important; margin-top:12px; width:100%;"
 >
   🚪 Logout
-        </button>
+</button>
 
-        <p id="upload-message"></p>
-
+<p id="upload-message"></p>
       </div>
 
     </div>
