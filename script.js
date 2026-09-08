@@ -68,11 +68,21 @@ pinInput.addEventListener("input", function () {
 });
 
 rollInput.addEventListener("input", function () {
-  const roll = this.value.trim();
+    const roll = this.value.trim();
 
-  if (/^\d{1,3}$/.test(roll)) {
-    pinInput.value = "471CA" + roll.padStart(2, "0");
-  }
+    if (/^\d{1,3}$/.test(roll)) {
+        pinInput.value = "471CA" + roll.padStart(2, "0");
+    } else {
+        pinInput.value = "";
+    }
+});
+
+rollInput.addEventListener("change", function () {
+    const roll = this.value.trim();
+
+    if (/^\d{1,3}$/.test(roll)) {
+        pinInput.value = "471CA" + roll.padStart(2, "0");
+    }
 });
 const classSelect = document.getElementById("resultClass");
 const resultTypeSelect = document.getElementById("resultType");
