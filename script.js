@@ -67,23 +67,21 @@ pinInput.addEventListener("input", function () {
     .slice(0, 8);
 });
 
-rollInput.addEventListener("input", function () {
-    const roll = this.value.trim();
+function generatePIN() {
+    const roll = rollInput.value.trim();
 
     if (/^\d{1,3}$/.test(roll)) {
         pinInput.value = "471CA" + roll.padStart(2, "0");
     } else {
         pinInput.value = "";
     }
-});
+}
 
-rollInput.addEventListener("change", function () {
-    const roll = this.value.trim();
+rollInput.addEventListener("input", generatePIN);
+rollInput.addEventListener("change", generatePIN);
+rollInput.addEventListener("keyup", generatePIN);
 
-    if (/^\d{1,3}$/.test(roll)) {
-        pinInput.value = "471CA" + roll.padStart(2, "0");
-    }
-});
+generatePIN();
 const classSelect = document.getElementById("resultClass");
 const resultTypeSelect = document.getElementById("resultType");
 
