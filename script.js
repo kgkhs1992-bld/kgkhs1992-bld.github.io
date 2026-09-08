@@ -220,26 +220,17 @@ if (!data) {
 
           <p><strong>Class:</strong> ${data.class || studentClass}</p>
 
-<p><strong>Roll No.:</strong> ${data.roll_no}</p>
-
-<p><strong>Name:</strong> ${data.student_name}</p>
-
-<p><strong>Assessment:</strong> ${data.assessment}</p>
-
-<hr>
-
+${studentClass === "VIII" ? "" : `
 <p><strong>Subjective:</strong> ${data.subjective ?? "—"}</p>
 
 <p><strong>Objective:</strong> ${data.objective ?? "—"}</p>
+`}
 
 <p><strong>Total:</strong> ${data.total ?? "—"}</p>
 
           <hr>
 
-          <h3>Marks</h3>
-      `;
-
-
+          
       // Subject columns
       const subjects = [
         ["mil_odia", "MIL (Odia)"],
