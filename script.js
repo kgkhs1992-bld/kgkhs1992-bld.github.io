@@ -375,8 +375,13 @@ pdfButton.onclick = async function () {
       "Subjective: " +
       (data.subjective ?? "—"),
       15,
+y
+);
       
-
+const className = String(data.class || "").trim().toUpperCase();
+const assessmentName = String(data.assessment || "").trim().toUpperCase();
+const totalMarks = data.total;
+let maxMarks = 0;
         if (className === "VIII") {
             if (assessmentName.includes("SUMMATIVE")) {
                 maxMarks = 400;
