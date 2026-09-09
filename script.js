@@ -656,12 +656,34 @@ function getSelectedResultAssessment() {
 
 // Convert Excel column names to safe keys
 function normalizeResultKey(value) {
-
-  return String(value ?? "")
+  const key = String(value ?? "")
     .trim()
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, "_")
     .replace(/^_+|_+$/g, "");
+
+  const aliases = {
+    "mil_odia_total": "mil_odia",
+    "mil_odia_marks": "mil_odia",
+    "english_total": "english",
+    "english_marks": "english",
+    "hindi_sanskrit_total": "hindi_sanskrit",
+    "hindi_sanskrit_marks": "hindi_sanskrit",
+    "mathematics_total": "mathematics",
+    "mathematics_marks": "mathematics",
+    "science_total": "science",
+    "science_marks": "science",
+    "history_total": "history",
+    "history_marks": "history",
+    "geography_total": "geography",
+    "geography_marks": "geography",
+    "drawing_total": "drawing",
+    "drawing_marks": "drawing",
+    "social_science_total": "social_science",
+    "social_science_marks": "social_science"
+  };
+
+  return aliases[key] || key;
 }
 
 
