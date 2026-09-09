@@ -169,14 +169,7 @@ if (error) {
   return;
 }
 
-const matchingRows = (rows || []).filter(row => {
-    const dbAssessment = String(row.assessment || "").trim().toLowerCase();
-
-    const wanted = String(assessment || "").trim().toLowerCase();
-
-    return dbAssessment === wanted ||
-        (aliases[wanted] && aliases[wanted].includes(dbAssessment));
-});
+4
 
 // Prefer the row that actually contains marks.
 // This prevents the duplicate "Formative Assessment 1"
