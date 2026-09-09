@@ -465,7 +465,8 @@ else grade = "F";
 
     doc.setFontSize(11);
 
-    const marks = [
+    const marks = className === "VIII"
+  ? [
       ["MIL (Odia)", data.mil_odia],
       ["English", data.english],
       ["Hindi / Sanskrit", data.hindi_sanskrit],
@@ -474,6 +475,14 @@ else grade = "F";
       ["History", data.history],
       ["Geography", data.geography],
       ["Drawing", data.drawing]
+    ]
+  : [
+      ["MIL (Odia)", data.mil_odia],
+      ["English", data.english],
+      ["Hindi / Sanskrit", data.hindi_sanskrit],
+      ["Mathematics", data.mathematics],
+      ["Science", data.science],
+      ["Social Science", data.social_science]
     ];
 
     marks.forEach(item => {
