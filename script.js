@@ -383,11 +383,16 @@ const assessmentName = String(data.assessment || assessment || "").trim().toUppe
 const totalMarks = data.total;
 let maxMarks = 0;
         if (className === "VIII") {
-            if (assessmentName.includes("SUMMATIVE")) {
-                maxMarks = 400;
-            } else if (assessmentName.includes("UNIT TEST")) {
-                maxMarks = 120;
-            }
+    if (
+        assessmentName.includes("SUMMATIVE") ||
+        assessmentName === "SA1" ||
+        assessmentName === "SA2"
+    ) {
+        maxMarks = 400;
+    } else if (assessmentName.includes("UNIT TEST")) {
+        maxMarks = 120;
+    }
+        }
         } else if (className === "IX" || className === "X") {
             if (assessmentName.includes("FORMATIVE")) {
                 maxMarks = 300;
