@@ -384,15 +384,14 @@ const totalMarks = data.total;
 let maxMarks = 0;
         if (className === "VIII") {
     if (
-        assessmentName.includes("SUMMATIVE") ||
-        assessmentName === "SA1" ||
-        assessmentName === "SA2"
-    ) {
-        maxMarks = 400;
-    } else if (assessmentName.includes("UNIT TEST")) {
-        maxMarks = 120;
+    assessmentName.includes("SUMMATIVE") ||
+    assessmentName.includes("SA1") ||
+    assessmentName.includes("SA2")
+) {
+    maxMarks = 400;
+} else if (assessmentName.includes("UNIT TEST")) {
+    maxMarks = 120;
     }
-        }
         } else if (className === "IX" || className === "X") {
             if (assessmentName.includes("FORMATIVE")) {
                 maxMarks = 300;
@@ -491,7 +490,7 @@ else grade = "F";
   doc.setFontSize(11);
 
   const pdfPercentage =
-    (Number(data.total) / maxMarks) * 100;
+    maxMarks > 0 ? (Number(data.total) / maxMarks) * 100 : 0;
 
   doc.text("Total = " + (data.total ?? "—"), 15, y);
 
