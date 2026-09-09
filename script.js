@@ -173,13 +173,30 @@ const data = (rows || []).find(row => {
     const dbAssessment = String(row.assessment || "").trim().toLowerCase();
 
     const aliases = {
-        "sa1": ["sa1", "summative assessment 01"],
-"sa2": ["sa2", "summative assessment 02"],
-"ut1": ["ut1", "unit test 01"],
-"ut2": ["ut2", "unit test 02"],
-"ut3": ["ut3", "unit test 03"],
-"ut4": ["ut4", "unit test 04"]
-    };
+    "fa1": ["fa1", "formative assessment 1"],
+    "formative assessment 1": ["fa1", "formative assessment 1"],
+
+    "fa2": ["fa2", "formative assessment 2"],
+    "formative assessment 2": ["fa2", "formative assessment 2"],
+
+    "sa1": ["sa1", "summative assessment 01"],
+    "summative assessment 01": ["sa1", "summative assessment 01"],
+
+    "sa2": ["sa2", "summative assessment 02"],
+    "summative assessment 02": ["sa2", "summative assessment 02"],
+
+    "ut1": ["ut1", "unit test 01"],
+    "unit test 01": ["ut1", "unit test 01"],
+
+    "ut2": ["ut2", "unit test 02"],
+    "unit test 02": ["ut2", "unit test 02"],
+
+    "ut3": ["ut3", "unit test 03"],
+    "unit test 03": ["ut3", "unit test 03"],
+
+    "ut4": ["ut4", "unit test 04"],
+    "unit test 04": ["ut4", "unit test 04"]
+};
 
     const wanted = String(assessment || "").trim().toLowerCase();
 
