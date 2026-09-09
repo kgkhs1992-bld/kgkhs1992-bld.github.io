@@ -364,7 +364,9 @@ pdfButton.onclick = async function () {
       (data.assessment || ""),
       15,
       y
-    );
+    
+  );
+    y += 8;
 doc.text(
   "Result Published Date: " +
   (data.published_date || "—"),
@@ -372,7 +374,7 @@ doc.text(
   y
 );
 
-y += 8;
+
     
 
     doc.text(
