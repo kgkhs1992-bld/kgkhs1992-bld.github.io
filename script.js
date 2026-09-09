@@ -1037,15 +1037,13 @@ async function previewStudentResults() {
 
       ["science", "Science"],
 
-      ["social_science", "Social Science"],
-
       ["history", "History"],
 
-      ["geography", "Geography"],
+["geography", "Geography"],
 
-      ["drawing", "Drawing"],
+["drawing", "Drawing"],
 
-      ["total", "Total"]
+["total", "Total"]
 
     ];
 
