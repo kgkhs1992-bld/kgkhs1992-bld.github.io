@@ -779,7 +779,7 @@ function makeStudentResultPayload(
     "geography",
     "drawing",
     "social_science",
-    "total"
+    
 
   ];
 
@@ -797,7 +797,25 @@ function makeStudentResultPayload(
     }
 
   });
+// Automatically calculate Class VIII total
+if (meta.classValue === "VIII") {
 
+  const totalSubjects = [
+    "mil_odia",
+    "english",
+    "hindi_sanskrit",
+    "mathematics",
+    "science",
+    "history",
+    "geography",
+    "drawing"
+  ];
+
+  payload.total = totalSubjects.reduce(
+    (sum, field) => sum + (payload[field] ?? 0),
+    0
+  );
+}
 
   // Half-Yearly / Annual:
   // combine Subjective + Objective
