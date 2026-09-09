@@ -159,7 +159,8 @@ if (!/^471CA\d{2,3}$/.test(pin)) {
   .from(tableName)
   .select("*")
   .eq("roll_no", Number(rollNo))
-  .eq("pin", pin);
+  .eq("pin", pin)
+
 
 if (error) {
   console.error(error);
