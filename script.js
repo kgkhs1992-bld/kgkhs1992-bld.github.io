@@ -336,7 +336,7 @@ pdfButton.onclick = async function () {
     doc.setFontSize(11);
 
     doc.text(
-  "Class: " + (data.class || ""),
+  "Class: " + (data.class || studentClass),
   15,
   y
 );
@@ -361,7 +361,7 @@ pdfButton.onclick = async function () {
 
     doc.text(
       "Assessment: " +
-      (data.assessment || ""),
+      (data.assessment || assessment),
       15,
       y
     
