@@ -292,21 +292,7 @@ subjects.forEach(([column, name]) => {
 });
 
 
-      subjects.forEach(([column, name]) => {
-
-        if (data[column] !== null && data[column] !== undefined) {
-
-          foundMarks = true;
-
-          html += `
-            <p>
-              <strong>${name}:</strong>
-              ${data[column]}
-            </p>
-          `;
-        }
-
-      });
+      
 
 
       if (!foundMarks) {
