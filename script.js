@@ -399,7 +399,7 @@ y
 );
       
 const className = String(data.class || studentClass || "").trim().toUpperCase();
-const className = String(data.class || studentClass || "").trim().toUpperCase();
+
 const assessmentName = String(data.assessment || assessment || "").trim().toUpperCase();
 const totalMarks = Number(data.total);
 let maxMarks = 0;
