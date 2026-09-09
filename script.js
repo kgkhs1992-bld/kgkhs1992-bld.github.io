@@ -336,10 +336,10 @@ pdfButton.onclick = async function () {
     doc.setFontSize(11);
 
     doc.text(
-      "Class: " + (data.class || ""),
-      15,
-      y
-    );
+  "Class: " + (data.class || ""),
+  15,
+  y
+);
 
     y += 8;
 
