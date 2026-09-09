@@ -378,8 +378,8 @@ pdfButton.onclick = async function () {
 y
 );
       
-const className = String(data.class || "").trim().toUpperCase();
-const assessmentName = String(data.assessment || "").trim().toUpperCase();
+const className = String(data.class || studentClass || "").trim().toUpperCase();
+const assessmentName = String(data.assessment || assessment || "").trim().toUpperCase();
 const totalMarks = data.total;
 let maxMarks = 0;
         if (className === "VIII") {
