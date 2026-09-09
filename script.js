@@ -478,7 +478,7 @@ else grade = "F";
         y += 8;
       }
     });
-  });
+  
 
   // RESULT SUMMARY - UPDATED
   y += 10;
