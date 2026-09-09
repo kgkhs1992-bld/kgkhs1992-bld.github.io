@@ -275,6 +275,22 @@ if (!data) {
 
       let foundMarks = false;
 
+subjects.forEach(([column, name]) => {
+
+  if (data[column] !== null && data[column] !== undefined) {
+
+    foundMarks = true;
+
+    html += `
+      <p>
+        <strong>${name}:</strong>
+        ${data[column]}
+      </p>
+    `;
+  }
+
+});
+
 
       subjects.forEach(([column, name]) => {
 
