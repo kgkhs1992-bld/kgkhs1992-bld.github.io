@@ -838,7 +838,8 @@ function makeStudentResultPayload(
       String(name).trim(),
 
     assessment:
-      meta.assessmentValue
+      
+    meta.assessmentLabel
 
   };
 
