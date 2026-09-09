@@ -475,7 +475,7 @@ else grade = "F";
     });
   });
 
-  // RESULT SUMMARY
+  // RESULT SUMMARY - UPDATED
   y += 10;
 
   doc.setFontSize(11);
