@@ -513,3 +513,48 @@ img {
     grid-column: auto;
   }
 }
+/* =========================
+   STUDENT RESULT FORM FIX
+   ========================= */
+
+#resultForm {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+#resultForm label {
+  display: block;
+  width: 100%;
+  margin: 0;
+  font-weight: 600;
+  font-size: 18px;
+  color: #17324d;
+}
+
+#resultForm input,
+#resultForm select {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0 0 4px 0;
+  padding: 13px 14px;
+  border: 1px solid #999;
+  border-radius: 8px;
+  font-size: 17px;
+  background: #fff;
+}
+
+#resultForm button {
+  display: block;
+  width: 100%;
+  margin-top: 8px;
+  padding: 14px 20px;
+  border: 0;
+  border-radius: 8px;
+  background: #f2a900;
+  color: #17324d;
+  font-size: 17px;
+  font-weight: 700;
+  cursor: pointer;
+}
