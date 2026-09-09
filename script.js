@@ -235,8 +235,8 @@ if (!data) {
 `;
 
           
-      // Subject columns
-      const subjects = [
+      const subjects = studentClass === "VIII"
+    ? [
         ["mil_odia", "MIL (Odia)"],
         ["english", "English"],
         ["hindi_sanskrit", "Hindi / Sanskrit"],
@@ -245,6 +245,14 @@ if (!data) {
         ["history", "History"],
         ["geography", "Geography"],
         ["drawing", "Drawing"]
+      ]
+    : [
+        ["mil_odia", "MIL (Odia)"],
+        ["english", "English"],
+        ["hindi_sanskrit", "Hindi / Sanskrit"],
+        ["mathematics", "Mathematics"],
+        ["science", "Science"],
+        ["social_science", "Social Science"]
       ];
 
 
