@@ -365,13 +365,7 @@ pdfButton.onclick = async function () {
       15,
       y
     
-  );
-    y += 8;
-doc.text(
-  "Result Published Date: " +
-  (data.published_date || "—"),
-  15,
-  y
+  
 );
 
 
@@ -381,32 +375,7 @@ doc.text(
       "Subjective: " +
       (data.subjective ?? "—"),
       15,
-      y
-    );
-
-    y += 8;
-
-    doc.text(
-      "Objective: " +
-      (data.objective ?? "—"),
-      15,
-      y
-    );
-
-    y += 8;
-
-    doc.text(
-      "Total: " +
-      (data.total ?? "—"),
-      15,
-      y
-    );
-        // Percentage and Odisha Grade
-        const totalMarks = Number(data.total);
-        const className = String(data.class || "").trim().toUpperCase();
-        const assessmentName = String(data.assessment || "").trim().toUpperCase();
-
-        let maxMarks = 0;
+      
 
         if (className === "VIII") {
             if (assessmentName.includes("SUMMATIVE")) {
@@ -504,7 +473,42 @@ else grade = "F";
         y += 8;
       }
     });
+  });
 
+  // RESULT SUMMARY
+  y += 10;
+
+  doc.setFontSize(11);
+
+  const pdfPercentage =
+    (Number(data.total) / maxMarks) * 100;
+
+  doc.text("Total = " + (data.total ?? "—"), 15, y);
+
+  y += 8;
+
+  doc.text(
+    "Percentage = " + pdfPercentage.toFixed(2) + "%",
+    15,
+    y
+  );
+
+  y += 8;
+
+  doc.text(
+    "Result Published on : " +
+      new Date().toLocaleDateString("en-IN"),
+    15,
+    y
+  );
+
+  y += 18;
+
+  doc.text("Sign of HM", 150, y);
+
+  y += 10;
+
+  
     doc.save(
       "KGKHS_Result_" +
       (data.student_name || "Student") +
