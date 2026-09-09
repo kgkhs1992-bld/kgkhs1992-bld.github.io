@@ -797,7 +797,7 @@ function makeStudentResultPayload(
     }
 
   });
-// Automatically calculate Class VIII total
+// Automatically calculate totals
 if (meta.classValue === "VIII") {
 
   const totalSubjects = [
@@ -809,6 +809,25 @@ if (meta.classValue === "VIII") {
     "history",
     "geography",
     "drawing"
+  ];
+
+  payload.total = totalSubjects.reduce(
+    (sum, field) => sum + (payload[field] ?? 0),
+    0
+  );
+
+} else if (
+  (meta.classValue === "IX" || meta.classValue === "X") &&
+  ["FA1", "FA2", "FA3", "FA4"].includes(meta.assessmentValue)
+) {
+
+  const totalSubjects = [
+    "mil_odia",
+    "english",
+    "hindi_sanskrit",
+    "mathematics",
+    "science",
+    "social_science"
   ];
 
   payload.total = totalSubjects.reduce(
