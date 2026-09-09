@@ -111,8 +111,7 @@ updateResultTypes();
     e.preventDefault();
 
     const studentClass =
-      document.getElementById("resultClass").value.trim();
-
+    document.getElementById("resultClass").value.trim().replace(/^Class\s+/i, "");
     const rollNo =
       document.getElementById("resultRoll").value.trim();
 
