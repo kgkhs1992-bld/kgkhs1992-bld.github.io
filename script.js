@@ -1080,31 +1080,32 @@ async function previewStudentResults() {
 
 
     // Preview columns
-    const columns = [
-
-      ["roll_no", "Roll No."],
-
-      ["student_name", "Student Name"],
-
-      ["mil_odia", "MIL (Odia)"],
-
-      ["english", "English"],
-
-      ["hindi_sanskrit", "Hindi/Sanskrit"],
-
-      ["mathematics", "Mathematics"],
-
-      ["science", "Science"],
-
-      ["history", "History"],
-
-["geography", "Geography"],
-
-["drawing", "Drawing"],
-
-["total", "Total"]
-
-    ];
+const columns =
+  meta.classValue === "VIII"
+    ? [
+        ["roll_no", "Roll No."],
+        ["student_name", "Student Name"],
+        ["mil_odia", "MIL (Odia)"],
+        ["english", "English"],
+        ["hindi_sanskrit", "Hindi/Sanskrit"],
+        ["mathematics", "Mathematics"],
+        ["science", "Science"],
+        ["history", "History"],
+        ["geography", "Geography"],
+        ["drawing", "Drawing"],
+        ["total", "Grand Total"]
+      ]
+    : [
+        ["roll_no", "Roll No."],
+        ["student_name", "Student Name"],
+        ["mil_odia", "MIL (Odia)"],
+        ["english", "English"],
+        ["hindi_sanskrit", "Hindi/Sanskrit"],
+        ["mathematics", "Mathematics"],
+        ["science", "Science"],
+        ["social_science", "Social Science"],
+        ["total", "Grand Total"]
+      ];
 
 
     const header =
