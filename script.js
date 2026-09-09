@@ -399,31 +399,56 @@ y
 );
       
 const className = String(data.class || studentClass || "").trim().toUpperCase();
+const className = String(data.class || studentClass || "").trim().toUpperCase();
 const assessmentName = String(data.assessment || assessment || "").trim().toUpperCase();
-const totalMarks = data.total;
+const totalMarks = Number(data.total);
 let maxMarks = 0;
-        if (className === "VIII") {
+
+if (className === "VIII") {
+
     if (
-    assessmentName.includes("SUMMATIVE") ||
-    assessmentName.includes("SA1") ||
-    assessmentName.includes("SA2")
-) {
-    maxMarks = 400;
-} else if (assessmentName.includes("UNIT TEST")) {
-    maxMarks = 120;
+        assessmentName.includes("SUMMATIVE") ||
+        assessmentName.includes("SA1") ||
+        assessmentName.includes("SA2")
+    ) {
+        maxMarks = 400;
+    } 
+    else if (
+        assessmentName.includes("UNIT TEST") ||
+        assessmentName.includes("UT1") ||
+        assessmentName.includes("UT2") ||
+        assessmentName.includes("UT3") ||
+        assessmentName.includes("UT4")
+    ) {
+        maxMarks = 120;
     }
-        } else if (className === "IX" || className === "X") {
-            if (assessmentName.includes("FORMATIVE")) {
-                maxMarks = 300;
-            } else if (
-                assessmentName.includes("HALF YEARLY") ||
-                assessmentName.includes("ANNUAL")
-            ) {
-                maxMarks = 600;
-            } else if (assessmentName.includes("UNIT TEST")) {
-                maxMarks = 90;
-            }
-        }
+
+} else if (className === "IX" || className === "X") {
+    if (
+        assessmentName.includes("FORMATIVE") ||
+        assessmentName === "FA1" ||
+        assessmentName === "FA2" ||
+        assessmentName === "FA3" ||
+        assessmentName === "FA4"
+    ) {
+        maxMarks = 300;
+    } 
+    else if (
+        assessmentName.includes("HALF YEARLY") ||
+        assessmentName.includes("ANNUAL")
+    ) {
+        maxMarks = 600;
+    } 
+    else if (
+        assessmentName.includes("UNIT TEST") ||
+        assessmentName.includes("UT1") ||
+        assessmentName.includes("UT2") ||
+        assessmentName.includes("UT3") ||
+        assessmentName.includes("UT4")
+    ) {
+        maxMarks = 90;
+    }
+}
 
         if (totalMarks !== "" && !isNaN(totalMarks) && maxMarks > 0) {
             const percentage = (totalMarks / maxMarks) * 100;
