@@ -7,7 +7,7 @@ const nav = document.querySelector('.nav-links');
 
 if (menuBtn && nav) {
   menuBtn.addEventListener('click', () => {
-    nav.classList.toggle('active');
+    nav.classList.toggle('open');
   });
 }
 
