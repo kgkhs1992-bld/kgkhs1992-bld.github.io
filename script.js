@@ -169,12 +169,12 @@ if (error) {
   return;
 }
 
-4
+
 
 // Prefer the row that actually contains marks.
 // This prevents the duplicate "Formative Assessment 1"
 // NULL row from being selected instead of the populated "FA1" row.
-const data = matchingRows.find(row => {
+4
     return Object.entries(row).some(([key, value]) => {
         if (["id", "roll_no", "student_name", "class", "assessment", "pin"].includes(key)) {
             return false;
@@ -184,7 +184,7 @@ const data = matchingRows.find(row => {
                value !== "" &&
                !Number.isNaN(Number(value));
     });
-}) || matchingRows[0];
+}) || rows[0];
 if (!data) {
   message.innerHTML =
     "<p>❌ Result not found. Please check Class, Roll No., PIN and Result Type.</p>";
