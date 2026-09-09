@@ -962,8 +962,62 @@ async function adminLogout() {
         document.getElementById("upload-box").style.display = "block";
     }
 });
+document.getElementById("login-box").style.display = "none";
+document.getElementById("upload-box").style.display = "block";
 
+if (typeof setupResultUploadOptions === "function") {
+  setupResultUploadOptions();
+}
 
+message.textContent = "";
+function setupResultUploadOptions() {
+  const classSelect = document.getElementById("result-upload-class");
+  const assessmentSelect = document.getElementById("result-upload-assessment");
+
+  if (!classSelect || !assessmentSelect) return;
+
+  function updateAssessments() {
+    const selectedClass = classSelect.value;
+
+    assessmentSelect.innerHTML = "";
+
+    let assessments = [];
+
+    if (selectedClass === "VIII") {
+      assessments = [
+        ["SA1", "Summative Assessment 01"],
+        ["SA2", "Summative Assessment 02"],
+        ["UT1", "Unit Test 01"],
+        ["UT2", "Unit Test 02"],
+        ["UT3", "Unit Test 03"],
+        ["UT4", "Unit Test 04"]
+      ];
+    } else {
+      assessments = [
+        ["FA1", "Formative Assessment 01"],
+        ["FA2", "Formative Assessment 02"],
+        ["FA3", "Formative Assessment 03"],
+        ["FA4", "Formative Assessment 04"],
+        ["HY", "Half Yearly"],
+        ["ANNUAL", "Annual"]
+      ];
+    }
+
+    assessments.forEach(([value, text]) => {
+      const option = document.createElement("option");
+      option.value = value;
+      option.textContent = text;
+      assessmentSelect.appendChild(option);
+    });
+  }
+
+  classSelect.addEventListener("change", updateAssessments);
+  updateAssessments();
+}
+
+if (typeof setupResultUploadOptions === "function") {
+  setupResultUploadOptions();
+}
 
 
 
