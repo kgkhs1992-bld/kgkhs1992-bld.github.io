@@ -250,7 +250,94 @@ if (!data) {
 `;
 
           
-      const subjects = studentClass === "VIII"
+      const isHalfAnnual =
+  (studentClass === "IX" || studentClass === "X") &&
+  (
+    assessment === "Half Yearly" ||
+    assessment === "Annual"
+  );
+
+let foundMarks = false;
+
+if (isHalfAnnual) {
+
+  const subjectPairs = [
+    ["mil_odia_sub", "mil_odia_obj", "MIL (Odia)"],
+    ["english_sub", "english_obj", "English"],
+    ["hindi_sanskrit_sub", "hindi_sanskrit_obj", "Hindi / Sanskrit"],
+    ["mathematics_sub", "mathematics_obj", "Mathematics"],
+    ["science_sub", "science_obj", "Science"],
+    ["social_science_sub", "social_science_obj", "Social Science"]
+  ];
+
+  html += `
+    <div style="overflow:auto;">
+      <table style="width:100%;border-collapse:collapse;margin-top:15px;">
+        <thead>
+          <tr>
+            <th style="padding:8px;border:1px solid #ccc;">Subject</th>
+            <th style="padding:8px;border:1px solid #ccc;">Subjective</th>
+            <th style="padding:8px;border:1px solid #ccc;">Objective</th>
+          </tr>
+        </thead>
+        <tbody>
+  `;
+
+  subjectPairs.forEach(([subField, objField, subjectName]) => {
+
+    const sub = data[subField];
+    const obj = data[objField];
+
+    if (
+      sub !== null && sub !== undefined && sub !== "" ||
+      obj !== null && obj !== undefined && obj !== ""
+    ) {
+      foundMarks = true;
+
+      html += `
+        <tr>
+          <td style="padding:8px;border:1px solid #ccc;">
+            <strong>${subjectName}</strong>
+          </td>
+          <td style="padding:8px;border:1px solid #ccc;">
+            ${sub ?? "—"}
+          </td>
+          <td style="padding:8px;border:1px solid #ccc;">
+            ${obj ?? "—"}
+          </td>
+        </tr>
+      `;
+    }
+
+  });
+
+  html += `
+        </tbody>
+      </table>
+    </div>
+  `;
+
+  if (foundMarks) {
+
+    html += `
+      <div style="margin-top:15px;">
+        <p>
+          <strong>SECURED MARKS:</strong>
+          ${data.total ?? "—"}
+        </p>
+
+        <p>
+          <strong>FULL MARKS:</strong>
+          ${data.full_marks ?? 600}
+        </p>
+      </div>
+    `;
+
+  }
+
+} else {
+
+  const subjects = studentClass === "VIII"
     ? [
         ["mil_odia", "MIL (Odia)"],
         ["english", "English"],
@@ -270,34 +357,28 @@ if (!data) {
         ["social_science", "Social Science"]
       ];
 
+  subjects.forEach(([column, name]) => {
 
-      let foundMarks = false;
+    if (data[column] !== null && data[column] !== undefined) {
 
-subjects.forEach(([column, name]) => {
+      foundMarks = true;
 
-  if (data[column] !== null && data[column] !== undefined) {
+      html += `
+        <p>
+          <strong>${name}:</strong>
+          ${data[column]}
+        </p>
+      `;
 
-    foundMarks = true;
+    }
 
-    html += `
-      <p>
-        <strong>${name}:</strong>
-        ${data[column]}
-      </p>
-    `;
+  });
+
+  if (!foundMarks) {
+    html += "<p>Marks have not been entered yet.</p>";
   }
 
-});
-
-
-      
-
-
-      if (!foundMarks) {
-
-        html +=
-          "<p>Marks have not been entered yet.</p>";
-      }
+}
 
 
       html += `
@@ -488,45 +569,88 @@ else grade = "F";
 
     doc.setFontSize(11);
 
-    const marks = className === "VIII"
-  ? [
-      ["MIL (Odia)", data.mil_odia],
-      ["English", data.english],
-      ["Hindi / Sanskrit", data.hindi_sanskrit],
-      ["Mathematics", data.mathematics],
-      ["Science", data.science],
-      ["History", data.history],
-      ["Geography", data.geography],
-      ["Drawing", data.drawing]
-    ]
-  : [
-      ["MIL (Odia)", data.mil_odia],
-      ["English", data.english],
-      ["Hindi / Sanskrit", data.hindi_sanskrit],
-      ["Mathematics", data.mathematics],
-      ["Science", data.science],
-      ["Social Science", data.social_science]
-    ];
+    
+const isHalfAnnual =
+  (className === "IX" || className === "X") &&
+  (
+    assessmentName.includes("HALF YEARLY") ||
+    assessmentName.includes("ANNUAL")
+  );
 
-    marks.forEach(item => {
+if (isHalfAnnual) {
 
-      if (
-        item[1] !== null &&
-        item[1] !== undefined &&
-        item[1] !== ""
-      ) {
+  doc.text("Subject", 20, y);
+  doc.text("Subjective", 95, y);
+  doc.text("Objective", 135, y);
 
-        doc.text(
-          item[0] + ": " + item[1],
-          20,
-          y
-        );
+  y += 8;
 
-        y += 8;
-      }
-    });
-  
+  const marks = [
+    ["MIL (Odia)", data.mil_odia_sub, data.mil_odia_obj],
+    ["English", data.english_sub, data.english_obj],
+    ["Hindi / Sanskrit", data.hindi_sanskrit_sub, data.hindi_sanskrit_obj],
+    ["Mathematics", data.mathematics_sub, data.mathematics_obj],
+    ["Science", data.science_sub, data.science_obj],
+    ["Social Science", data.social_science_sub, data.social_science_obj]
+  ];
 
+  marks.forEach(item => {
+
+    if (
+      (item[1] !== null && item[1] !== undefined && item[1] !== "") ||
+      (item[2] !== null && item[2] !== undefined && item[2] !== "")
+    ) {
+
+      doc.text(item[0], 20, y);
+      doc.text(String(item[1] ?? "—"), 95, y);
+      doc.text(String(item[2] ?? "—"), 135, y);
+
+      y += 8;
+    }
+
+  });
+
+} else {
+
+  const marks = className === "VIII"
+    ? [
+        ["MIL (Odia)", data.mil_odia],
+        ["English", data.english],
+        ["Hindi / Sanskrit", data.hindi_sanskrit],
+        ["Mathematics", data.mathematics],
+        ["Science", data.science],
+        ["History", data.history],
+        ["Geography", data.geography],
+        ["Drawing", data.drawing]
+      ]
+    : [
+        ["MIL (Odia)", data.mil_odia],
+        ["English", data.english],
+        ["Hindi / Sanskrit", data.hindi_sanskrit],
+        ["Mathematics", data.mathematics],
+        ["Science", data.science],
+        ["Social Science", data.social_science]
+      ];
+
+  marks.forEach(item => {
+
+    if (
+      item[1] !== null &&
+      item[1] !== undefined &&
+      item[1] !== ""
+    ) {
+
+      doc.text(
+        item[0] + ": " + item[1],
+        20,
+        y
+      );
+
+      y += 8;
+    }
+
+  });
+}
   // RESULT SUMMARY - UPDATED
   y += 10;
 
