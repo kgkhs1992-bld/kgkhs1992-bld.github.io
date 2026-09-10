@@ -1095,7 +1095,8 @@ if (meta.classValue === "VIII") {
 
       payload[subject] =
         total;
-
+payload[pair[1]] = sub;
+payload[pair[2]] = obj;
       calculatedTotal +=
         total;
 
