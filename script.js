@@ -190,17 +190,42 @@ if (error) {
 // Prefer the row that actually contains marks.
 // This prevents the duplicate "Formative Assessment 1"
 // NULL row from being selected instead of the populated "FA1" row.
-const data = rows.find(row => {
+const data =
+  rows.find(row => {
+    return [
+      "mil_odia_sub",
+      "mil_odia_obj",
+      "english_sub",
+      "english_obj",
+      "hindi_sanskrit_sub",
+      "hindi_sanskrit_obj",
+      "mathematics_sub",
+      "mathematics_obj",
+      "science_sub",
+      "science_obj",
+      "social_science_sub",
+      "social_science_obj"
+    ].some(key =>
+      row[key] !== null &&
+      row[key] !== undefined &&
+      row[key] !== ""
+    );
+  }) ||
+  rows.find(row => {
     return Object.entries(row).some(([key, value]) => {
-        if (["id", "roll_no", "student_name", "class", "assessment", "pin"].includes(key)) {
-            return false;
-        }
+      if (
+        ["id", "roll_no", "student_name", "class", "assessment", "pin"]
+          .includes(key)
+      ) {
+        return false;
+      }
 
-        return value !== null &&
-               value !== "" &&
-               !Number.isNaN(Number(value));
+      return value !== null &&
+             value !== "" &&
+             !Number.isNaN(Number(value));
     });
-}) || rows[0];
+  }) ||
+  rows[0];
 if (!data) {
   message.innerHTML =
     "<p>❌ Result not found. Please check Class, Roll No., PIN and Result Type.</p>";
