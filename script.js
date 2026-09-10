@@ -177,8 +177,7 @@ if (!/^471CA\d{2,3}$/.test(pin)) {
   .select("*")
   .eq("roll_no", Number(rollNo))
   .eq("pin", pin)
-.eq("assessment", assessment)
-
+.in("assessment", [assessment, selectedAssessment])
 if (error) {
   console.error(error);
   message.innerHTML =
