@@ -353,7 +353,7 @@ if (isHalfAnnual) {
       <div style="margin-top:15px;">
         <p>
           <strong>SECURED MARKS:</strong>
-          ${data.total ?? "—"}
+          ${data.secured_marks ?? data.total ?? "—"}
         </p>
 
         <p>
