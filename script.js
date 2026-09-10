@@ -723,6 +723,12 @@ function normalizeResultKey(value) {
   const aliases = {
     "mil_odia_total": "mil_odia",
     "mil_odia_marks": "mil_odia",
+        "mil_odia_subj": "mil_odia_sub",
+    "english_subj": "english_sub",
+    "hindi_sanskrit_subj": "hindi_sanskrit_sub",
+    "mathematics_subj": "mathematics_sub",
+    "science_subj": "science_sub",
+    "social_science_subj": "social_science_sub",
     "english_total": "english",
     "english_marks": "english",
     "hindi_sanskrit_total": "hindi_sanskrit",
