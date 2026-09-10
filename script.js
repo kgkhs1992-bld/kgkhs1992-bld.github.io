@@ -973,7 +973,16 @@ if (meta.classValue === "VIII") {
 
   }
 
-
+// Class IX/X Half-Yearly and Annual Full Marks
+if (
+  (meta.classValue === "IX" ||
+   meta.classValue === "X") &&
+  ["HALF_YEARLY", "ANNUAL"].includes(meta.assessmentValue) &&
+  hasMarks
+) {
+  payload.total = calculatedTotal;
+  payload.full_marks = 600;
+}
   return payload;
 }
 
