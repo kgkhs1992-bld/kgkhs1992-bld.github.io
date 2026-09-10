@@ -187,45 +187,50 @@ if (error) {
 
 
 
-// Prefer the row that actually contains marks.
-// This prevents the duplicate "Formative Assessment 1"
-// NULL row from being selected instead of the populated "FA1" row.
-const data =
-  rows.find(row => {
-    return [
-      "mil_odia_sub",
-      "mil_odia_obj",
-      "english_sub",
-      "english_obj",
-      "hindi_sanskrit_sub",
-      "hindi_sanskrit_obj",
-      "mathematics_sub",
-      "mathematics_obj",
-      "science_sub",
-      "science_obj",
-      "social_science_sub",
-      "social_science_obj"
-    ].some(key =>
-      row[key] !== null &&
-      row[key] !== undefined &&
-      row[key] !== ""
-    );
-  }) ||
-  rows.find(row => {
-    return Object.entries(row).some(([key, value]) => {
-      if (
-        ["id", "roll_no", "student_name", "class", "assessment", "pin"]
-          .includes(key)
-      ) {
-        return false;
-      }
+// Select the result row that actually contains marks
+const markFields = [
+  "mil_odia_sub",
+  "mil_odia_obj",
+  "english_sub",
+  "english_obj",
+  "hindi_sanskrit_sub",
+  "hindi_sanskrit_obj",
+  "mathematics_sub",
+  "mathematics_obj",
+  "science_sub",
+  "science_obj",
+  "social_science_sub",
+  "social_science_obj",
+  "mil_odia",
+  "english",
+  "hindi_sanskrit",
+  "mathematics",
+  "science",
+  "social_science",
+  "total",
+  "secured_marks",
+  "full_marks"
+];
 
-      return value !== null &&
-             value !== "" &&
-             !Number.isNaN(Number(value));
-    });
-  }) ||
-  rows[0];
+const data =
+  rows
+    .slice()
+    .sort((a, b) => {
+      const countMarks = row =>
+        markFields.filter(key =>
+          row[key] !== null &&
+          row[key] !== undefined &&
+          row[key] !== ""
+        ).length;
+
+      return countMarks(b) - countMarks(a);
+    })[0];
+
+if (!data) {
+  message.innerHTML =
+    "<p>❌ Result not found. Please check Class, Roll No., PIN and Result Type.</p>";
+  return;
+}
 if (!data) {
   message.innerHTML =
     "<p>❌ Result not found. Please check Class, Roll No., PIN and Result Type.</p>";
