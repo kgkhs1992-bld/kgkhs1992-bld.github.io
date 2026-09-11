@@ -1467,45 +1467,10 @@ function cancelStudentResultsPreview() {
 
 
   if (actions)
-    actions.style.display =
-      "none";
+  actions.style.display = "none";
 
-
-  if (message)
-    message.textContent =
-      "↩️ Cancelled. No results were saved.";
-
-}
-
-
-// =====================================
-// STEP 3 — CONFIRM AND SAVE
-// =====================================
-
-async function confirmStudentResults() {
-
-  const message =
-    document.getElementById(
-      "result-upload-message"
-    );
-
-
-  if (
-    !pendingStudentResults.length ||
-    !pendingResultMeta
-  ) {
-
-    message.textContent =
-      "❌ No preview is ready to save.";
-
-    return;
-  }
-
-
-  const meta =
-    pendingResultMeta ||
-    getSelectedResultAssessment();
-
+const meta =
+  getSelectedResultAssessment();
 if (!meta || !meta.classValue) {
     message.textContent =
         "❌ Class and Assessment information is missing.";
@@ -1549,45 +1514,29 @@ const tableName =
           .eq("roll_no", row.roll_no)
           .eq("pin", row.pin)
           .eq("assessment", row.assessment)
-          .limit(1);
+          
 
       if (existing.error) {
         lastError = existing.error.message;
         await new Promise(r => setTimeout(r, 800));
         continue;
+    result =
+  await supabaseClient
+    .from(tableName)
+    .update(row)
+    .eq("roll_no", row.roll_no)
+    .eq("pin", row.pin)
+    .eq("assessment", row.assessment)
+    .select("*");
+
+      if (result.error) {
+  lastError = result.error.message;
+} else if (!result.data || !result.data.length) {
+  lastError = "Supabase did not return the saved result row.";
+} else {
+  success = true;
+  break;
       }
-
-      let result;
-
-      if (
-        existing.data &&
-        existing.data.length
-      ) {
-
-        result =
-          await supabaseClient
-            .from(tableName)
-            .update(row)
-            .eq("id", existing.data[0].id)
-            .select();
-
-      } else {
-
-        result =
-          await supabaseClient
-            .from(tableName)
-            .insert(row)
-            .select();
-
-      }
-
-      if (!result.error) {
-        success = true;
-        break;
-      }
-
-      lastError = result.error.message;
-
     } catch (err) {
 
       lastError =
@@ -1615,16 +1564,17 @@ const tableName =
   }
     }
 
- message.textContent =
-        "⚠️ Saved " +
-        saved +
-        " result(s), but " +
-        failed +
-        " failed. " +
-        firstError;
-
-      return;
-    }
+ if (failed > 0) {
+  message.textContent =
+    "⚠️ Saved " +
+    saved +
+    " result(s), but " +
+    failed +
+    " failed. " +
+    firstError;
+  return;
+ }
+    
 
 
     message.textContent =
