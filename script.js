@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", function () {
   if (!form) return; 
   const pinInput = document.getElementById("resultPin");
 const rollInput = document.getElementById("resultRoll");
-
+if (!pinInput || !rollInput) return;
 pinInput.maxLength = 8;
 
 pinInput.addEventListener("input", function () {
