@@ -1549,7 +1549,8 @@ const tableName =
         lastError = existing.error.message;
         await new Promise(r => setTimeout(r, 800));
         continue;
-    result =
+   }
+        result =
   await supabaseClient
     .from(tableName)
     .update(row)
