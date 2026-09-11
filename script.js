@@ -1498,125 +1498,74 @@ function cancelStudentResultsPreview() {
 }
 
 async function confirmStudentResults() {
-const message = document.getElementById("result-upload-message");
-const meta =
-  getSelectedResultAssessment();
-if (!meta || !meta.classValue) {
+  const message =
+    document.getElementById("result-upload-message");
+
+  const meta =
+    getSelectedResultAssessment();
+
+  if (!meta || !meta.classValue) {
     message.textContent =
-        "❌ Class and Assessment information is missing.";
+      "❌ Class and Assessment information is missing.";
     return;
-}
+  }
 
-pendingResultMeta = meta;
+  if (
+    !pendingStudentResults ||
+    !pendingStudentResults.length
+  ) {
+    message.textContent =
+      "❌ No student results are ready to save.";
+    return;
+  }
 
-const tableName =
+  pendingResultMeta = meta;
+
+  const tableName =
     "class_" +
     meta.classValue.toLowerCase() +
     "_results";
 
-
   try {
-
     message.textContent =
       "⏳ Saving " +
       pendingStudentResults.length +
       " result(s) to Supabase...";
 
+    const result =
+      await supabaseClient
+        .from(tableName)
+        .insert(pendingStudentResults)
+        .select("*");
 
-    let saved = 0;
-    let failed = 0;
-    let firstError = "";
+    if (result.error) {
+      console.error("Supabase save error:", result.error);
 
+      message.textContent =
+        "❌ Save failed: " +
+        result.error.message;
 
-    for (const row of pendingStudentResults) {
-
-  let success = false;
-  let lastError = "";
-
-  for (let attempt = 1; attempt <= 3; attempt++) {
-
-    try {
-
-      const existing =
-        await supabaseClient
-          .from(tableName)
-          .select("id")
-          .eq("roll_no", row.roll_no)
-          .eq("pin", row.pin)
-          .eq("assessment", row.assessment)
-          
-
-      if (existing.error) {
-        lastError = existing.error.message;
-        await new Promise(r => setTimeout(r, 800));
-        continue;
-   }
-  const result =
-  await supabaseClient
-    .from(tableName)
-    .update(row)
-    .eq("roll_no", row.roll_no)
-    .eq("pin", row.pin)
-    .eq("assessment", row.assessment)
-    .select("*");
-
-      if (result.error) {
-  lastError = result.error.message;
-} else if (!result.data || !result.data.length) {
-  lastError = "Supabase did not return the saved result row.";
-} else {
-  success = true;
-  break;
-      }
-    } catch (err) {
-
-      lastError =
-        err?.message || String(err);
-
+      return;
     }
 
-    await new Promise(
-      r => setTimeout(r, 1000)
-    );
-  }
+    if (
+      !result.data ||
+      result.data.length === 0
+    ) {
+      message.textContent =
+        "❌ Supabase did not return the saved result rows.";
 
-  if (success) {
-
-    saved++;
-
-  } else {
-
-    failed++;
-
-    if (!firstError) {
-      firstError = lastError;
+      return;
     }
-
-  }
-    }
-
- if (failed > 0) {
-  message.textContent =
-    "⚠️ Saved " +
-    saved +
-    " result(s), but " +
-    failed +
-    " failed. " +
-    firstError;
-  return;
- }
-    
-
 
     message.textContent =
       "✅ Successfully saved " +
-      saved +
+      result.data.length +
       " result(s) for Class " +
       pendingResultMeta.classValue +
       " — " +
       pendingResultMeta.assessmentLabel +
       ".";
-
 
     const preview =
       document.getElementById(
@@ -1628,41 +1577,28 @@ const tableName =
         "result-upload-actions"
       );
 
-
     if (preview) {
-
       preview.innerHTML =
         "<p>✅ Results saved successfully to Supabase.</p>";
-
     }
-
 
     if (actions) {
-
-      actions.style.display =
-        "none";
-
+      actions.style.display = "none";
     }
-
 
     pendingStudentResults = [];
     pendingResultMeta = null;
 
-
   } catch (error) {
-
-    console.error(error);
+    console.error(
+      "Unexpected result save error:",
+      error
+    );
 
     message.textContent =
       "❌ Save failed: " +
-      error.message;
-
+      (error.message || String(error));
   }
+} 
 
-}
-
-
-// Start the assessment selector
-setupResultUploadOptions();
-initStudentResultForm();
 
