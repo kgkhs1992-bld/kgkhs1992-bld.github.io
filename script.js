@@ -779,8 +779,7 @@ function resultNumber(value) {
 // NEW ADMIN RESULT UPLOAD WORKFLOW
 // ===============================
 
-let pendingStudentResults = [];
-let pendingResultMeta = null;
+
 
 const RESULT_ASSESSMENTS = {
   VIII: [
