@@ -194,7 +194,8 @@ if (!/^471CA\d{2,3}$/.test(pin)) {
   .select("*")
   .eq("roll_no", Number(rollNo))
   .eq("pin", pin)
-.in("assessment", [assessment, selectedAssessment])
+.eq("assessment", assessment)
+.limit(1);
 if (error) {
   console.error(error);
   message.innerHTML =
@@ -204,44 +205,7 @@ if (error) {
 
 
 
-// Select the result row that actually contains marks
-const markFields = [
-  "mil_odia_sub",
-  "mil_odia_obj",
-  "english_sub",
-  "english_obj",
-  "hindi_sanskrit_sub",
-  "hindi_sanskrit_obj",
-  "mathematics_sub",
-  "mathematics_obj",
-  "science_sub",
-  "science_obj",
-  "social_science_sub",
-  "social_science_obj",
-  "mil_odia",
-  "english",
-  "hindi_sanskrit",
-  "mathematics",
-  "science",
-  "social_science",
-  "total",
-  "secured_marks",
-  "full_marks"
-];
-
-const data =
-  rows
-    .slice()
-    .sort((a, b) => {
-      const countMarks = row =>
-        markFields.filter(key =>
-          row[key] !== null &&
-          row[key] !== undefined &&
-          row[key] !== ""
-        ).length;
-
-      return countMarks(b) - countMarks(a);
-    })[0];
+const data = rows && rows.length ? rows[0] : null;
 
 if (!data) {
   message.innerHTML =
