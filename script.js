@@ -1,15 +1,23 @@
 
-// MENU
+// ===============================
+// PAGE INITIALIZATION
 // ===============================
 
-const menuBtn = document.querySelector('.menu-btn');
-const nav = document.querySelector('.nav-links');
+document.addEventListener("DOMContentLoaded", function () {
 
-if (menuBtn && nav) {
-  menuBtn.addEventListener('click', () => {
-    nav.classList.toggle('open');
-  });
-}
+  // MENU
+  const menuBtn = document.querySelector(".menu-btn");
+  const nav = document.querySelector(".nav-links");
+
+  if (menuBtn && nav) {
+    menuBtn.addEventListener("click", function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      nav.classList.toggle("open");
+    });
+  }
+
+});
 
 // ===============================
 // GALLERY IMAGE VIEW
