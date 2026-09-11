@@ -478,7 +478,7 @@ pdfButton.onclick = async function () {
 );
 
 
-    
+  
 
     doc.text(
       "Subjective: " +
