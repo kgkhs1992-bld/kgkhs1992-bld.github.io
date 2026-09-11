@@ -257,7 +257,9 @@ the Government of Odisha</strong>, the school has
   type="number"
   id="resultRoll"
   placeholder="Enter Roll No."
-  oninput="document.getElementById('resultPin').value = this.value ? '471CA' + this.value.padStart(2,'0') : '';"
+   oninput="document.getElementById('resultPin').value = this.value ? '471CA' + ('0' + this.value).slice(-2) : '';"
+onkeyup="document.getElementById('resultPin').value = this.value ? '471CA' + ('0' + this.value).slice(-2) : '';"
+onchange="document.getElementById('resultPin').value = this.value ? '471CA' + ('0' + this.value).slice(-2) : '';"
   required
 >
 
