@@ -46,8 +46,7 @@ document.querySelectorAll('.gallery figure img').forEach(img => {
 // ===============================
 // STUDENT RESULT CHECK
 // ===============================
-
-document.addEventListener("DOMContentLoaded", function () {
+function initStudentResultForm() {
 
   const form = document.getElementById("resultForm");
   const message = document.getElementById("resultMessage");
@@ -720,7 +719,12 @@ details.appendChild(pdfButton);
 
   });
 
-});
+}
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initStudentResultForm);
+} else {
+  initStudentResultForm();
+}
 // ===============================
 // ADMIN RESULT UPLOAD
 // ===============================
@@ -770,7 +774,7 @@ const RESULT_ASSESSMENTS = {
     ["UT2", "Unit Test 2", "VIII UT-2"],
     ["UT3", "Unit Test 3", "VIII UT-3"],
     ["UT4", "Unit Test 4", "VIII UT-4"]
-  ],
+    }
 
   IX: [
     ["FA1", "Formative Assessment 1", "IX FA-1"],
