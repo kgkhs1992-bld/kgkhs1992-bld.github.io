@@ -77,11 +77,29 @@ function generatePIN() {
     }
 }
 
-rollInput.addEventListener("input", generatePIN);
-rollInput.addEventListener("change", generatePIN);
-rollInput.addEventListener("keyup", generatePIN);
+rollInput.addEventListener("input", function () {
+  const roll = this.value.trim();
 
-generatePIN();
+  if (/^\d{1,3}$/.test(roll)) {
+    pinInput.value = "471CA" + roll.padStart(2, "0");
+  } else {
+    pinInput.value = "";
+  }
+});
+
+rollInput.addEventListener("change", function () {
+  const roll = this.value.trim();
+
+  if (/^\d{1,3}$/.test(roll)) {
+    pinInput.value = "471CA" + roll.padStart(2, "0");
+  } else {
+    pinInput.value = "";
+  }
+});
+
+if (rollInput.value.trim()) {
+  rollInput.dispatchEvent(new Event("input"));
+}
 const classSelect = document.getElementById("resultClass");
 const resultTypeSelect = document.getElementById("resultType");
 
