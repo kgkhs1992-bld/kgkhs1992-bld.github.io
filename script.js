@@ -726,6 +726,69 @@ if (document.readyState === "loading") {
   initStudentResultForm();
 }
 // ===============================
+// SCHOOL FILE UPLOAD
+// ===============================
+
+async function uploadSchoolFile() {
+
+  const fileInput = document.getElementById("school-file");
+  const categorySelect = document.getElementById("school-file-category");
+  const message = document.getElementById("school-file-message");
+
+  if (!fileInput || !fileInput.files.length) {
+    if (message) message.textContent = "❌ Please choose a file first.";
+    return;
+  }
+
+  const file = fileInput.files[0];
+
+  try {
+
+    if (message) message.textContent = "⏳ Uploading...";
+
+    const category =
+      categorySelect ? categorySelect.value : "Gallery";
+
+    const fileName =
+      Date.now() + "_" + file.name.replace(/\s+/g, "_");
+
+    const filePath =
+      category + "/" + fileName;
+
+    const { error } = await supabaseClient.storage
+      .from("school-files")
+      .upload(filePath, file, {
+        upsert: true
+      });
+
+    if (error) {
+      console.error(error);
+      if (message) {
+        message.textContent =
+          "❌ Upload failed: " + error.message;
+      }
+      return;
+    }
+
+    if (message) {
+      message.textContent =
+        "✅ File uploaded successfully.";
+    }
+
+    fileInput.value = "";
+
+  } catch (error) {
+
+    console.error(error);
+
+    if (message) {
+      message.textContent =
+        "❌ Upload failed: " + error.message;
+    }
+  }
+}
+
+// ===============================
 // ADMIN RESULT UPLOAD
 // ===============================
 
