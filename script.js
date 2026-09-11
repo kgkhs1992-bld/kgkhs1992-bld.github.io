@@ -120,7 +120,7 @@ function updateResultTypes() {
     resultTypeSelect.value = "";
 }
 
-classSelect.addEventListener("change", updateResultTypes);
+if (classSelect) classSelect.addEventListener("change", updateResultTypes);
 if (classSelect && resultTypeSelect) updateResultTypes();
 
   form.addEventListener("submit", async function (e) {
