@@ -254,11 +254,12 @@ the Government of Odisha</strong>, the school has
 
         <label for="resultRoll">Roll No.</label>
         <input
-          type="number"
-          id="resultRoll"
-          placeholder="Enter Roll No."
-          required
-        >
+  type="number"
+  id="resultRoll"
+  placeholder="Enter Roll No."
+  oninput="document.getElementById('resultPin').value = this.value ? '471CA' + this.value.padStart(2,'0') : '';"
+  required
+>
 
         <label for="resultPin">PIN</label>
         <input
