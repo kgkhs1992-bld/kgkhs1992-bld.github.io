@@ -1495,7 +1495,9 @@ function cancelStudentResultsPreview() {
 
   if (actions)
   actions.style.display = "none";
+}
 
+async function confirmStudentResults() {
 const meta =
   getSelectedResultAssessment();
 if (!meta || !meta.classValue) {
