@@ -1113,7 +1113,39 @@ loadUploadedNotices();
 
 
 <script src="script.js?v=20260911C"></script>
-   
+ <script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  /* FIX MOBILE MENU */
+  const menuBtn = document.querySelector(".menu-btn");
+  const nav = document.querySelector(".nav-links");
+
+  if (menuBtn && nav) {
+    menuBtn.onclick = function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      nav.classList.toggle("open");
+    };
+  }
+
+  /* FIX RESULT FORM SUBMIT */
+  const resultForm = document.getElementById("resultForm");
+
+  if (resultForm) {
+    resultForm.onsubmit = function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+
+      if (typeof initStudentResultForm === "function") {
+        initStudentResultForm();
+      }
+
+      return false;
+    };
+  }
+
+});
+ </script>  
 </body>
 </html>
 
