@@ -1605,7 +1605,8 @@ const tableName =
             .eq(
               "id",
               existing.data[0].id
-            );
+            )
+.select();
 
       } else {
 
@@ -1614,7 +1615,8 @@ const tableName =
 
             .from(tableName)
 
-            .insert(row);
+            .insert(row)
+.select();
 
       }
 
