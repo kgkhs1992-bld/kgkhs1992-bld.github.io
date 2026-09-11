@@ -1533,62 +1533,31 @@ const tableName =
     let firstError = "";
 
 
-    for (
-      const row
-      of pendingStudentResults
-    ) {
+    for (const row of pendingStudentResults) {
 
+  let success = false;
+  let lastError = "";
 
-      /*
-       * IMPORTANT:
-       * We deliberately DO NOT send:
-       *
-       * class: "VIII"
-       *
-       * because class_viii_results
-       * does not contain a class column.
-       */
+  for (let attempt = 1; attempt <= 3; attempt++) {
 
+    try {
 
       const existing =
         await supabaseClient
-
           .from(tableName)
-
           .select("id")
-
-          .eq(
-            "roll_no",
-            row.roll_no
-          )
-
-          .eq(
-            "pin",
-            row.pin
-          )
-
-          .eq(
-            "assessment",
-            row.assessment
-          )
-
+          .eq("roll_no", row.roll_no)
+          .eq("pin", row.pin)
+          .eq("assessment", row.assessment)
           .limit(1);
 
-
       if (existing.error) {
-
-        failed++;
-
-        if (!firstError)
-          firstError =
-            existing.error.message;
-
+        lastError = existing.error.message;
+        await new Promise(r => setTimeout(r, 800));
         continue;
       }
 
-
       let result;
-
 
       if (
         existing.data &&
@@ -1597,50 +1566,56 @@ const tableName =
 
         result =
           await supabaseClient
-
             .from(tableName)
-
             .update(row)
-
-            .eq(
-              "id",
-              existing.data[0].id
-            )
-.select();
+            .eq("id", existing.data[0].id)
+            .select();
 
       } else {
 
         result =
           await supabaseClient
-
             .from(tableName)
-
             .insert(row)
-.select();
+            .select();
 
       }
 
-
-      if (result.error) {
-
-        failed++;
-
-        if (!firstError)
-          firstError =
-            result.error.message;
-
-      } else {
-
-        saved++;
-
+      if (!result.error) {
+        success = true;
+        break;
       }
+
+      lastError = result.error.message;
+
+    } catch (err) {
+
+      lastError =
+        err?.message || String(err);
 
     }
 
+    await new Promise(
+      r => setTimeout(r, 1000)
+    );
+  }
 
-    if (failed) {
+  if (success) {
 
-      message.textContent =
+    saved++;
+
+  } else {
+
+    failed++;
+
+    if (!firstError) {
+      firstError = lastError;
+    }
+
+  }
+    }
+
+ message.textContent =
         "⚠️ Saved " +
         saved +
         " result(s), but " +
