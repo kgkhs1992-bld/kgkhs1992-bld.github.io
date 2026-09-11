@@ -219,35 +219,6 @@ if (!data) {
     "<p>❌ Result not found. Please check Class, Roll No., PIN and Result Type.</p>";
   return;
 }
-if (!data) {
-  message.innerHTML =
-    "<p>❌ Result not found. Please check Class, Roll No., PIN and Result Type.</p>";
-  return;
-}
-    
-
-
-
-      // Error
-      if (error) {
-
-        console.error(error);
-
-        message.innerHTML =
-          "<p>⚠️ Unable to check result. Please try again.</p>";
-
-        return;
-      }
-
-
-      // No result
-      if (!data) {
-
-        message.innerHTML =
-          "<p>❌ Result not found. Please check Class, Roll No., PIN and Result Type.</p>";
-
-        return;
-      }
 
 
       // Success
