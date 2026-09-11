@@ -1128,21 +1128,7 @@ document.addEventListener("DOMContentLoaded", function () {
     };
   }
 
-  /* FIX RESULT FORM SUBMIT */
-  const resultForm = document.getElementById("resultForm");
-
-  if (resultForm) {
-    resultForm.onsubmit = function (e) {
-      e.preventDefault();
-      e.stopPropagation();
-
-      if (typeof initStudentResultForm === "function") {
-        initStudentResultForm();
-      }
-
-      return false;
-    };
-  }
+  
 
 });
  </script>  
