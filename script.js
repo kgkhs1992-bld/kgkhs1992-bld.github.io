@@ -1498,6 +1498,7 @@ function cancelStudentResultsPreview() {
 }
 
 async function confirmStudentResults() {
+const message = document.getElementById("result-upload-message");
 const meta =
   getSelectedResultAssessment();
 if (!meta || !meta.classValue) {
@@ -1550,7 +1551,7 @@ const tableName =
         await new Promise(r => setTimeout(r, 800));
         continue;
    }
-        result =
+  const result =
   await supabaseClient
     .from(tableName)
     .update(row)
