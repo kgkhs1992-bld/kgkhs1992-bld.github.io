@@ -1660,5 +1660,5 @@ const tableName =
 
 // Start the assessment selector
 setupResultUploadOptions();
-initStudentResultForm();
+
   
