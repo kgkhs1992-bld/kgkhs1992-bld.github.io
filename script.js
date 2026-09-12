@@ -384,7 +384,8 @@ pdfButton.style.marginTop = "18px";
 pdfButton.textContent =
   "📥 DOWNLOAD / SAVE RESULT AS PDF";
 
-pdfButton.onclick = async function () {
+details.appendChild(pdfButton);
+      pdfButton.onclick = async function () {
 
   const script = document.createElement("script");
 
@@ -729,7 +730,7 @@ doc.text(
       );
 };
 document.head.appendChild(script);
-  details.appendChild(pdfButton);
+  
      };
     } catch (err) {
 
