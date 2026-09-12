@@ -682,9 +682,33 @@ doc.text(
 
   y += 18;
 
-  doc.text("Sign of HM", 150, y);
+ const signatureUrl = supabaseClient.storage
+  .from("school-files")
+  .getPublicUrl("admin/assets/exams/hm-signature.jpg").data.publicUrl;
+
+const signatureImg = new Image();
+signatureImg.crossOrigin = "anonymous";
+
+signatureImg.onload = function () {
+  doc.addImage(
+    signatureImg,
+    "JPEG",
+    150,
+    y - 8,
+    35,
+    18
+  );
+
+  y += 15;
+
+  doc.text(
+    "Trilochan Panda",
+    150,
+    y
+  );
 
   y += 10;
+
 
   
     doc.save(
@@ -695,7 +719,7 @@ doc.text(
       ".pdf"
     );
   };
-
+signatureImg.src = signatureUrl;
   document.head.appendChild(script);
 };
 
