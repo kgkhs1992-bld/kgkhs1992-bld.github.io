@@ -391,8 +391,8 @@ pdfButton.onclick = async function () {
   script.src =
     "https://unpkg.com/jspdf@4.2.1/dist/jspdf.umd.min.js";
 
-  script.onload = function () {
 
+script.onload = async function () {
     const jsPDF = window.jspdf.jsPDF;
 
     const doc = new jsPDF();
@@ -680,53 +680,56 @@ doc.text(
   y
 );
 
-  y += 18;
+      y += 18;
 
- const signatureUrl = supabaseClient.storage
-  .from("school-files")
-  .getPublicUrl("admin/assets/exams/hm-signature.jpg").data.publicUrl;
+      const signatureUrl = supabaseClient.storage
+        .from("school-files")
+        .getPublicUrl("admin/assets/exams/hm-signature.jpg").data.publicUrl;
 
-const signatureImg = new Image();
-signatureImg.crossOrigin = "anonymous";
+      try {
+        const response = await fetch(signatureUrl, { cache: "no-store" });
 
-signatureImg.onload = function () {
-  doc.addImage(
-    signatureImg,
-    "JPEG",
-    150,
-    y - 8,
-    35,
-    18
-  );
+        if (!response.ok) {
+          throw new Error("Unable to load HM signature");
+        }
 
-  y += 15;
+        const blob = await response.blob();
 
-  doc.text(
-    "Trilochan Panda",
-    150,
-    y
-  );
+        const signatureData = await new Promise((resolve, reject) => {
+          const reader = new FileReader();
 
-  y += 10;
+          reader.onload = () => resolve(reader.result);
+          reader.onerror = () => reject(new Error("Unable to read HM signature"));
 
+          reader.readAsDataURL(blob);
+        });
 
-  
-    doc.save(
-      "KGKHS_Result_" +
-      (data.student_name || "Student") +
-      "_" +
-      data.roll_no +
-      ".pdf"
-    );
-  };
-signatureImg.src = signatureUrl;
-  document.head.appendChild(script);
+        doc.addImage(signatureData, "JPEG", 150, y - 8, 35, 18);
+
+        y += 15;
+
+        doc.text("Trilochan Panda", 150, y);
+
+        y += 10;
+
+      } catch (signatureError) {
+        console.error("Signature error:", signatureError);
+
+        doc.text("Trilochan Panda", 150, y);
+
+        y += 10;
+      }
+
+      doc.save(
+        "KGKHS_Result_" +
+        (data.student_name || "Student") +
+        "_" +
+        data.roll_no +
+        ".pdf"
+      );
 };
-  
 
-details.appendChild(pdfButton);
-
-    } catch (err) {
+   } catch (err) {
 
       console.error(err);
 
