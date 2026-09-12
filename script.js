@@ -728,7 +728,7 @@ doc.text(
         ".pdf"
       );
 };
-
+document.head.appendChild(script);
    } catch (err) {
 
       console.error(err);
