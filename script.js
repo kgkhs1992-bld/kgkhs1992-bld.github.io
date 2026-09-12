@@ -722,6 +722,7 @@ signatureImg.onload = function () {
 signatureImg.src = signatureUrl;
   document.head.appendChild(script);
 };
+  
 
 details.appendChild(pdfButton);
 
