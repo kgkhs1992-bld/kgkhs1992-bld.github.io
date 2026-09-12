@@ -729,6 +729,7 @@ doc.text(
       );
 };
 document.head.appendChild(script);
+  details.appendChild(pdfButton);
      };
     } catch (err) {
 
