@@ -1564,15 +1564,18 @@ async function confirmStudentResults() {
   }
 
   pendingResultMeta = meta;
+
 const publicationDate = new Date();
 
-pendingStudentResults =
-  pendingStudentResults.map(row => ({
+const localPublicationDate =
+    publicationDate.getFullYear() + "-" +
+    String(publicationDate.getMonth() + 1).padStart(2, "0") + "-" +
+    String(publicationDate.getDate()).padStart(2, "0");
+
+pendingStudentResults = pendingStudentResults.map(row => ({
     ...row,
-    result_publication_date: publicationDate
-      .toISOString()
-      .split("T")[0]
-  }));
+    result_publication_date: localPublicationDate
+}));
   const tableName =
     "class_" +
     meta.classValue.toLowerCase() +
