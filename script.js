@@ -729,9 +729,8 @@ doc.text(
       );
 };
 document.head.appendChild(script);
-   } catch (err) {
-
-      console.error(err);
+     };
+    } catch (err) {
 
       message.innerHTML =
         "<p>⚠️ Something went wrong. Please try again.</p>";
