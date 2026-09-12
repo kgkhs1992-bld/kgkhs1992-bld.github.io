@@ -707,10 +707,13 @@ doc.text(
 
         doc.addImage(signatureData, "JPEG", 150, y - 8, 35, 18);
 
-        y += 15;
+y += 15;
 
-        doc.text("Trilochan Panda", 150, y);
+doc.text("Trilochan Panda", 150, y);
 
+y += 8;
+
+doc.text("Sign of HM", 150, y);
         y += 10;
 
       } catch (signatureError) {
