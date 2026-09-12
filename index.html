@@ -955,18 +955,19 @@ async function adminLogout() {
   document.getElementById("login-message").textContent = "";
   document.getElementById("upload-message").textContent = "";
 }
-  supabaseClient.auth.onAuthStateChange((event, session) => {
-    if (
-        session &&
-        session.user &&
-        session.user.id === ADMIN_UID
-    ) {
-        document.getElementById("login-box").style.display = "none";
-        document.getElementById("upload-box").style.display = "block";
-    }
+supabaseClient.auth.onAuthStateChange((event, session) => {
+  if (
+    session &&
+    session.user &&
+    session.user.id === ADMIN_UID
+  ) {
+    document.getElementById("login-box").style.display = "none";
+    document.getElementById("upload-box").style.display = "block";
+  } else {
+    document.getElementById("login-box").style.display = "block";
+    document.getElementById("upload-box").style.display = "none";
+  }
 });
-document.getElementById("login-box").style.display = "none";
-document.getElementById("upload-box").style.display = "block";
 
 if (typeof setupResultUploadOptions === "function") {
   setupResultUploadOptions();
