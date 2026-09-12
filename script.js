@@ -660,12 +660,25 @@ if (isHalfAnnual) {
 
   y += 8;
 
-  doc.text(
-    "Result Published on : " +
-      new Date().toLocaleDateString("en-IN"),
-    15,
-    y
-  );
+doc.text(
+  "Result Published on : " +
+    (
+      data.result_publication_date
+        ? new Date(data.result_publication_date).toLocaleDateString("en-IN")
+        : "Not available"
+    ),
+  15,
+  y
+);
+
+y += 8;
+
+doc.text(
+  "Downloaded on : " +
+    new Date().toLocaleDateString("en-IN"),
+  15,
+  y
+);
 
   y += 18;
 
