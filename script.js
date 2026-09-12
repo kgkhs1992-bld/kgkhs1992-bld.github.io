@@ -1564,7 +1564,15 @@ async function confirmStudentResults() {
   }
 
   pendingResultMeta = meta;
+const publicationDate = new Date();
 
+pendingStudentResults =
+  pendingStudentResults.map(row => ({
+    ...row,
+    result_publication_date: publicationDate
+      .toISOString()
+      .split("T")[0]
+  }));
   const tableName =
     "class_" +
     meta.classValue.toLowerCase() +
