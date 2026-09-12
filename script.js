@@ -725,7 +725,7 @@ signatureImg.src = signatureUrl;
   
 
 details.appendChild(pdfButton);
-
+};
     } catch (err) {
 
       console.error(err);
