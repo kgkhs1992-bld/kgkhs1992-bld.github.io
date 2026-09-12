@@ -724,9 +724,8 @@ if (document.readyState === "loading") {
 async function uploadSchoolFile() {
 
   const fileInput = document.getElementById("school-file");
-  const categorySelect = document.getElementById("school-file-category");
-  const message = document.getElementById("school-file-message");
-
+ const categorySelect = document.getElementById("file-category");
+const message = document.getElementById("upload-message");
   if (!fileInput || !fileInput.files.length) {
     if (message) message.textContent = "❌ Please choose a file first.";
     return;
