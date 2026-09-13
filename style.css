@@ -626,3 +626,16 @@ img {
     padding: 20px 16px;
   }
 }
+/* OUR DIGITAL CLASS ROOM - MAIN HEADING */
+
+.learning-section .section-heading .eyebrow {
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.learning-section .section-heading h2 {
+  font-size: 38px;
+  font-weight: 800;
+  margin-top: 10px;
+}
