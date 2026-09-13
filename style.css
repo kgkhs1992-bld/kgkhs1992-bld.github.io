@@ -645,3 +645,12 @@ img {
   margin-left: 0;
 }
 }
+/* ENLARGE ONLY CURRENT HEADMASTER PHOTO */
+
+.staff-card img.current-hm-photo {
+  width: 100%;
+  height: 520px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 12px;
+}
