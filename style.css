@@ -639,8 +639,9 @@ img {
   font-weight: 800;
   margin-top: 10px;
 }
-/* MOVE CONTACT CONTENT SLIGHTLY TO THE RIGHT */
+/* CONTACT SECTION POSITION */
 
 .contact-section .contact-grid {
-  margin-left: 25px !important;
+  margin-left: 0;
+}
 }
