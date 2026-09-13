@@ -1679,4 +1679,4 @@ pendingStudentResults = pendingStudentResults.map(row => ({
   }
 } 
 
-
+setupResultUploadOptions();
