@@ -642,15 +642,30 @@ img {
 /* CONTACT SECTION POSITION */
 
 .contact-section .contact-grid {
-  margin-left: 0;
+  margin-left: auto;
+  margin-right: auto;
 }
-}
-/* ENLARGE ONLY CURRENT HEADMASTER PHOTO */
+/* ENLARGE ONLY CURRENT HEADMASTER CARD */
 
-.staff-card img.current-hm-photo {
+.staff-card:has(.current-hm-photo) {
+  grid-column: span 2;
+}
+
+.staff-card .current-hm-photo {
   width: 100%;
-  height: 520px;
+  height: 560px;
   object-fit: cover;
   object-position: center;
   border-radius: 12px;
+}
+
+@media (max-width: 700px) {
+  .staff-card:has(.current-hm-photo) {
+    grid-column: span 1;
+  }
+
+  .staff-card .current-hm-photo {
+    height: auto;
+  }
+}
 }
