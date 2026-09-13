@@ -642,6 +642,5 @@ img {
 /* MOVE CONTACT CONTENT SLIGHTLY TO THE RIGHT */
 
 .contact-section .contact-grid {
-  padding-left: 30px;
-  padding-right: 30px;
+  margin-left: 25px !important;
 }
