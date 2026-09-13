@@ -558,3 +558,71 @@ img {
   font-weight: 700;
   cursor: pointer;
 }
+/* DIGITAL CLASSROOM */
+
+.learning-section .section-heading {
+  text-align: center;
+}
+
+.learning-subjects {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  margin-top: 30px;
+}
+
+.learning-subject {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 22px;
+  box-shadow: 0 5px 18px rgba(0,0,0,0.08);
+  text-align: center;
+  border: 1px solid #e6e6e6;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.learning-subject:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 22px rgba(0,0,0,0.12);
+}
+
+.learning-subject h3 {
+  margin: 0 0 18px;
+  font-size: 21px;
+  font-weight: 700;
+}
+
+.learning-subject a {
+  display: inline-block;
+  padding: 9px 16px;
+  margin: 4px;
+  border-radius: 8px;
+  background: #f2a900;
+  color: #17324d;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 700;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.learning-subject a:hover {
+  transform: translateY(-2px);
+  background: #17324d;
+  color: #ffffff;
+}
+
+@media (max-width: 900px) {
+  .learning-subjects {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .learning-subjects {
+    grid-template-columns: 1fr;
+  }
+
+  .learning-subject {
+    padding: 20px 16px;
+  }
+}
