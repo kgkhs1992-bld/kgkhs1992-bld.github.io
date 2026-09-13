@@ -960,33 +960,56 @@ function normalizeResultKey(value) {
     .replace(/[^a-z0-9]+/g, "_")
     .replace(/^_+|_+$/g, "");
 
-  const aliases = {
-    "mil_odia_total": "mil_odia",
-    "mil_odia_marks": "mil_odia",
-        "mil_odia_subj": "mil_odia_sub",
-    "english_subj": "english_sub",
-    "hindi_sanskrit_subj": "hindi_sanskrit_sub",
-    "mathematics_subj": "mathematics_sub",
-    "science_subj": "science_sub",
-    "social_science_subj": "social_science_sub",
-    "english_total": "english",
-    "english_marks": "english",
-    "hindi_sanskrit_total": "hindi_sanskrit",
-    "hindi_sanskrit_marks": "hindi_sanskrit",
-    "mathematics_total": "mathematics",
-    "mathematics_marks": "mathematics",
-    "science_total": "science",
-    "science_marks": "science",
-    "history_total": "history",
-    "history_marks": "history",
-    "geography_total": "geography",
-    "geography_marks": "geography",
-    "drawing_total": "drawing",
-    "drawing_marks": "drawing",
-    "social_science_total": "social_science",
-    "social_science_marks": "social_science"
-  };
+ const aliases = {
+  "mil_odia_total": "mil_odia",
+  "mil_odia_marks": "mil_odia",
+  "mil_odia_subj": "mil_odia_sub",
+  "mil_odia_subjective": "mil_odia_sub",
+  "mil_odia_obj": "mil_odia_obj",
+  "mil_odia_objective": "mil_odia_obj",
 
+  "english_subj": "english_sub",
+  "english_subjective": "english_sub",
+  "english_obj": "english_obj",
+  "english_objective": "english_obj",
+
+  "hindi_sanskrit_subj": "hindi_sanskrit_sub",
+  "hindi_sanskrit_subjective": "hindi_sanskrit_sub",
+  "hindi_sanskrit_obj": "hindi_sanskrit_obj",
+  "hindi_sanskrit_objective": "hindi_sanskrit_obj",
+
+  "mathematics_subj": "mathematics_sub",
+  "mathematics_subjective": "mathematics_sub",
+  "mathematics_obj": "mathematics_obj",
+  "mathematics_objective": "mathematics_obj",
+
+  "science_subj": "science_sub",
+  "science_subjective": "science_sub",
+  "science_obj": "science_obj",
+  "science_objective": "science_obj",
+
+  "social_science_subj": "social_science_sub",
+  "social_science_subjective": "social_science_sub",
+  "social_science_obj": "social_science_obj",
+  "social_science_objective": "social_science_obj",
+
+  "english_total": "english",
+  "english_marks": "english",
+  "hindi_sanskrit_total": "hindi_sanskrit",
+  "hindi_sanskrit_marks": "hindi_sanskrit",
+  "mathematics_total": "mathematics",
+  "mathematics_marks": "mathematics",
+  "science_total": "science",
+  "science_marks": "science",
+  "history_total": "history",
+  "history_marks": "history",
+  "geography_total": "geography",
+  "geography_marks": "geography",
+  "drawing_total": "drawing",
+  "drawing_marks": "drawing",
+  "social_science_total": "social_science",
+  "social_science_marks": "social_science"
+};
   return aliases[key] || key;
 }
 
