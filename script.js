@@ -1088,10 +1088,10 @@ function makeStudentResultPayload(
     student_name:
       String(name).trim(),
 
-    assessment:
-      
-    meta.assessmentLabel
-
+  assessment:
+  meta.classValue === "VIII"
+    ? meta.assessmentValue
+    : meta.assessmentLabel
   };
 
 
