@@ -202,6 +202,7 @@ if (!/^471CA\d{2,3}$/.test(pin)) {
   .eq("roll_no", Number(rollNo))
   .eq("pin", pin)
 .eq("assessment", assessment)
+.order("id", { ascending: false })
 .limit(1);
 if (error) {
   console.error(error);
