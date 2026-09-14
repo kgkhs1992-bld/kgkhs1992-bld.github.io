@@ -212,7 +212,6 @@ if (error) {
 }
 
 
-
 const data = rows && rows.length ? rows[0] : null;
 
 if (!data) {
