@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mark Upload System | Karua Gadadhar Kar High School</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+body{margin:0;background:#f3f6fa;color:#1f2937;font-family:Arial,"Nirmala UI","Kalinga",sans-serif}
+header{background:linear-gradient(135deg,#12355b,#0f766e);color:#fff;padding:24px}
+.header-inner,.wrap{max-width:1400px;margin:auto}
+.wrap{padding:18px}.card{background:#fff;border-radius:16px;padding:20px;margin-bottom:18px;box-shadow:0 8px 22px rgba(0,0,0,.07)}
+h1,h2{margin:0 0 10px;color:#fff}h2{color:#12355b}.small{font-size:13px;color:#64748b}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+label{display:block;font-weight:700;font-size:14px;margin-bottom:6px}
+input,select{width:100%;padding:10px 11px;border:1px solid #d8e0ea;border-radius:9px;background:#fff;box-sizing:border-box}
+.btn{border:0;border-radius:9px;padding:11px 16px;cursor:pointer;font-weight:700}
+.primary{background:#12355b;color:#fff}.success{background:#166534;color:#fff}.secondary{background:#e8eef5;color:#12355b}.danger{background:#7f1d1d;color:#fff}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}.btn:disabled{opacity:.5;cursor:not-allowed}
+.badge{display:inline-block;padding:5px 9px;border-radius:999px;background:#eef6f5;color:#0f766e;font-size:13px;font-weight:700}
+.msg{display:none;margin-top:12px;padding:10px;border-radius:9px}.msg.show{display:block}.ok{background:#ecfdf5;color:#166534}.err{background:#fef2f2;color:#991b1b}.info{background:#eff6ff;color:#1d4ed8}
+#loginCard{max-width:520px;margin:40px auto}.hidden{display:none!important}
+.table-wrap{overflow:auto;border:1px solid #d8e0ea;border-radius:12px}
+table{border-collapse:separate;border-spacing:0;width:100%;min-width:980px}th,td{padding:8px;border-right:1px solid #d8e0ea;border-bottom:1px solid #d8e0ea;white-space:nowrap}
+th{background:#edf3f8;color:#12355b;position:sticky;top:0;z-index:3}td:first-child,th:first-child{position:sticky;left:0;background:#f8fafc;z-index:2}td:nth-child(2),th:nth-child(2){position:sticky;left:70px;background:#f8fafc;z-index:2}
+.mark{width:76px;padding:8px;border:1px solid #d8e0ea;border-radius:7px;text-align:center}.student{font-weight:700}.total{text-align:center;font-weight:800}
+.topline{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+@media(max-width:900px){.grid{grid-template-columns:1fr 1fr}}@media(max-width:560px){.grid{grid-template-columns:1fr}.wrap{padding:10px}}
+</style>
+</head>
+<body>
+<header><div class="header-inner"><h1>🔐 Mark Upload System</h1><p>Karua Gadadhar Kar High School, Beldandia</p></div></header>
+
+<div class="wrap">
+<section id="loginCard" class="card">
+<h2>Administrator Login</h2>
+<p class="small">Only the authorised school administrator can enter or publish marks.</p>
+<label for="email">Admin Email</label><input id="email" type="email" autocomplete="username">
+<label for="password" style="margin-top:12px">Password</label><input id="password" type="password" autocomplete="current-password">
+<div class="actions"><button id="loginBtn" class="btn primary">🔐 Login</button></div>
+<div id="loginMsg" class="msg"></div>
+</section>
+
+<section id="app" class="hidden">
+<div class="card">
+<div class="topline"><div><h2>Marks Entry</h2><span class="badge">Administrator Only</span></div><button id="logoutBtn" class="btn secondary">🚪 Logout</button></div>
+<div class="grid" style="margin-top:16px">
+<div><label for="classSelect">Class</label><select id="classSelect"><option value="">Select Class</option><option value="VIII">Class VIII</option><option value="IX">Class IX</option><option value="X">Class X</option></select></div>
+<div><label for="examSelect">Examination</label><select id="examSelect" disabled><option value="">Select Examination</option></select></div>
+<div><label for="search">Find Student</label><input id="search" type="text" placeholder="Roll No. or student name"></div>
+<div><label>Full Marks</label><input id="fullMarks" type="text" readonly></div>
+</div>
+<div class="actions">
+<button id="loadBtn" class="btn primary" disabled>↻ Load Students / Marks</button>
+<button id="saveBtn" class="btn secondary" disabled>💾 Save Draft</button>
+<button id="publishBtn" class="btn success" disabled>✅ Submit / Publish</button>
+<button id="clearBtn" class="btn danger" disabled>Clear Draft</button>
+</div>
+<div id="appMsg" class="msg"></div>
+<div class="small" style="margin-top:10px">Save Draft keeps your work in this browser. Submit / Publish sends the marks directly to the existing Supabase result table.</div>
+</div>
+
+<div id="tableCard" class="card hidden"><div id="tableTitle"></div><div class="table-wrap"><table id="marksTable"></table></div></div>
+</section>
+</div>
+
+<script>
+let supabaseClient=null, ADMIN_UID=null, existingRows=new Map(), roster=[];
+const patterns={
+VIII:{
+SA1:{label:"Summative Assessment 01",max:400,fields:[["mil_odia","MIL (Odia)"],["english","English"],["hindi_sanskrit","Hindi / Sanskrit"],["mathematics","Mathematics"],["science","Science"],["history","History"],["geography","Geography"],["drawing","Drawing"]],per:50},
+SA2:{label:"Summative Assessment 02",max:400,fields:[["mil_odia","MIL (Odia)"],["english","English"],["hindi_sanskrit","Hindi / Sanskrit"],["mathematics","Mathematics"],["science","Science"],["history","History"],["geography","Geography"],["drawing","Drawing"]],per:50},
+UT1:{label:"Unit Test 01",max:120,fields:[["mil_odia","MIL (Odia)"],["english","English"],["hindi_sanskrit","Hindi / Sanskrit"],["mathematics","Mathematics"],["science","Science"],["history","History"],["geography","Geography"],["drawing","Drawing"]],per:15},
+UT2:{label:"Unit Test 02",max:120,fields:[["mil_odia","MIL (Odia)"],["english","English"],["hindi_sanskrit","Hindi / Sanskrit"],["mathematics","Mathematics"],["science","Science"],["history","History"],["geography","Geography"],["drawing","Drawing"]],per:15},
+UT3:{label:"Unit Test 03",max:120,fields:[["mil_odia","MIL (Odia)"],["english","English"],["hindi_sanskrit","Hindi / Sanskrit"],["mathematics","Mathematics"],["science","Science"],["history","History"],["geography","Geography"],["drawing","Drawing"]],per:15},
+UT4:{label:"Unit Test 04",max:120,fields:[["mil_odia","MIL (Odia)"],["english","English"],["hindi_sanskrit","Hindi / Sanskrit"],["mathematics","Mathematics"],["science","Science"],["history","History"],["geography","Geography"],["drawing","Drawing"]],per:15}
+},
+IX:{},X:{}};
+const base=[["mil_odia","MIL (Odia)"],["english","English"],["hindi_sanskrit","Hindi / Sanskrit"],["mathematics","Mathematics"],["science","Science"],["social_science","Social Science"]];
+["IX","X"].forEach(c=>{patterns[c]={FA1:{label:"Formative Assessment 1",max:300,fields:base,per:50},FA2:{label:"Formative Assessment 2",max:300,fields:base,per:50},FA3:{label:"Formative Assessment 3",max:300,fields:base,per:50},FA4:{label:"Formative Assessment 4",max:300,fields:base,per:50},HALF_YEARLY:{label:"Half Yearly",max:600,half:true},ANNUAL:{label:"Annual",max:600,half:true}}});
+
+const loginCard=document.getElementById("loginCard"),app=document.getElementById("app"),loginMsg=document.getElementById("loginMsg"),appMsg=document.getElementById("appMsg"),classSelect=document.getElementById("classSelect"),examSelect=document.getElementById("examSelect"),search=document.getElementById("search"),fullMarks=document.getElementById("fullMarks"),marksTable=document.getElementById("marksTable"),tableCard=document.getElementById("tableCard"),loadBtn=document.getElementById("loadBtn"),saveBtn=document.getElementById("saveBtn"),publishBtn=document.getElementById("publishBtn"),clearBtn=document.getElementById("clearBtn");
+
+function show(el,text,type){el.className="msg show "+type;el.textContent=text}
+function clear(el){el.className="msg";el.textContent=""}
+function esc(s){return String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]))}
+function pat(){return patterns[classSelect.value]?.[examSelect.value]||null}
+function key(){return "kgkhs_mark_upload_"+classSelect.value+"_"+examSelect.value}
+function draft(){try{return JSON.parse(localStorage.getItem(key())||"{}")}catch{return{}}}
+function half(){return !!pat()?.half}
+
+async function initConfig(){
+  const text=await fetch("index.html",{cache:"no-store"}).then(r=>{if(!r.ok)throw new Error("Could not load school configuration");return r.text()});
+  const u=text.match(/const\s+SUPABASE_URL\s*=\s*["']([^"']+)["']/);
+  const k=text.match(/const\s+SUPABASE_KEY\s*=\s*["']([^"']+)["']/);
+  const a=text.match(/const\s+ADMIN_UID\s*=\s*["']([^"']+)["']/);
+  if(!u||!k||!a)throw new Error("School Supabase configuration was not found");
+  ADMIN_UID=a[1];supabaseClient=supabase.createClient(u[1],k[1]);
+}
+
+async function login(){
+  clear(loginMsg);const email=document.getElementById("email").value.trim(),password=document.getElementById("password").value;
+  if(!email||!password){show(loginMsg,"Please enter admin email and password.","err");return}
+  try{const {data,error}=await supabaseClient.auth.signInWithPassword({email,password});if(error)throw error;
+  if(!data.user||data.user.id!==ADMIN_UID){await supabaseClient.auth.signOut();show(loginMsg,"❌ This account is not authorised for the Mark Upload System.","err");return}
+  loginCard.classList.add("hidden");app.classList.remove("hidden");}
+  catch(e){show(loginMsg,"❌ Login failed. Check the administrator email and password.","err")}
+}
+
+async function loadRosterAndMarks(){
+  clear(appMsg);const table="class_"+classSelect.value.toLowerCase()+"_results";
+  const {data,error}=await supabaseClient.from(table).select("roll_no,student_name").order("roll_no",{ascending:true}).limit(1000);
+  if(error){show(appMsg,"Unable to load student list: "+error.message,"err");return}
+  if(!(data||[]).length){show(appMsg,"No student list is available yet for this class. Publish/import one existing result set first.","err");return}
+  const seen=new Set();roster=[];(data||[]).forEach(r=>{const roll=Number(r.roll_no);if(!seen.has(roll)&&r.student_name){seen.add(roll);roster.push({roll,name:String(r.student_name).trim()})}});
+  const a=classSelect.value==="VIII"?examSelect.value:pat().label;
+  const full=await supabaseClient.from(table).select("*").eq("assessment",a).order("id",{ascending:false}).limit(1000);
+  if(full.error){show(appMsg,"Unable to load existing marks: "+full.error.message,"err");return}
+  existingRows=new Map();(full.data||[]).forEach(r=>{if(!existingRows.has(Number(r.roll_no)))existingRows.set(Number(r.roll_no),r)});
+  fullMarks.value=pat().max;render();loadBtn.disabled=saveBtn.disabled=publishBtn.disabled=clearBtn.disabled=false;
+  show(appMsg,`✅ Loaded ${roster.length} students. Existing published records for this assessment: ${existingRows.size}.`,"ok");
+}
+
+function render(){
+  const p=pat();if(!p)return;const d=draft(),q=search.value.trim().toLowerCase();
+  let fields=p.half?[["mil_odia_sub","MIL Sub"],["mil_odia_obj","MIL Obj"],["english_sub","English Sub"],["english_obj","English Obj"],["hindi_sanskrit_sub","Hindi/Skt Sub"],["hindi_sanskrit_obj","Hindi/Skt Obj"],["mathematics_sub","Math Sub"],["mathematics_obj","Math Obj"],["science_sub","Science Sub"],["science_obj","Science Obj"],["social_science_sub","Social Sub"],["social_science_obj","Social Obj"]]:p.fields;
+  let h="<thead><tr><th>Roll</th><th>Student Name</th>"+fields.map(x=>"<th>"+x[1]+"</th>").join("")+(p.half?"":"<th>Total</th>")+"</tr></thead><tbody>";
+  roster.filter(r=>!q||String(r.roll).includes(q)||r.name.toLowerCase().includes(q)).forEach(r=>{
+    const e=existingRows.get(r.roll)||{},z=d[r.roll]||{};h+=`<tr data-roll="${r.roll}"><td>${r.roll}</td><td class="student">${esc(r.name)}</td>`;
+    fields.forEach(([f])=>{const v=z[f]??(e[f]??"");h+=`<td><input class="mark" type="number" min="0" max="${p.half?50:p.per}" step="1" data-field="${f}" value="${v}"></td>`});
+    if(!p.half){let t=0;fields.forEach(([f])=>{const v=z[f]??(e[f]??"");if(v!=="")t+=Number(v)||0});h+=`<td class="total">${t||""}</td>`}h+="</tr>";
+  });marksTable.innerHTML=h+"</tbody>";
+  marksTable.querySelectorAll(".mark").forEach(i=>i.addEventListener("input",()=>{let n=Number(i.value);if(i.value!==""&&Number.isFinite(n)){n=Math.max(0,Math.min(Number(i.max),Math.round(n)));i.value=String(n)}
+    if(!p.half){let t=0;i.closest("tr").querySelectorAll(".mark").forEach(m=>{if(m.value!=="")t+=Number(m.value)||0});i.closest("tr").querySelector(".total").textContent=t||""}
+  }));
+  tableCard.classList.remove("hidden");document.getElementById("tableTitle").innerHTML="<h2>"+esc(p.label)+" — Class "+classSelect.value+"</h2><p class='small'>Enter marks in the sheet. Save Draft before submitting when needed.</p>";
+}
+function current(){const d=draft();marksTable.querySelectorAll("tbody tr").forEach(tr=>{const r=Number(tr.dataset.roll),o={};tr.querySelectorAll(".mark").forEach(i=>{if(i.value!=="")o[i.dataset.field]=Number(i.value)});d[r]=o});return d}
+function save(){localStorage.setItem(key(),JSON.stringify(current()));show(appMsg,"✅ Draft saved on this device. Nothing has been published.","ok");render()}
+function clearDraft(){localStorage.removeItem(key());render();show(appMsg,"Draft cleared from this browser.","info")}
+function validate(){const d=current(),mx=half()?50:pat().per,errors=[],count=Object.values(d).filter(o=>Object.keys(o).length).length;Object.entries(d).forEach(([r,o])=>Object.values(o).forEach(v=>{if(!Number.isFinite(v)||v<0||v>mx)errors.push("Roll "+r+" has an invalid mark")}));if(!count)errors.push("No marks entered.");return{d,errors,count}}
+
+async function publish(){
+  const v=validate();if(v.errors.length){show(appMsg,"❌ "+v.errors.slice(0,5).join(" | "),"err");return}
+  const cls=classSelect.value,table="class_"+cls.toLowerCase()+"_results",assessment=cls==="VIII"?examSelect.value:pat().label,ro=new Map(roster.map(r=>[r.roll,r])),p=pat();publishBtn.disabled=true;show(appMsg,"Publishing marks… please wait.","info");let ok=0,fail=0;
+  for(const [rs,o] of Object.entries(v.d)){
+    const roll=Number(rs),st=ro.get(roll);if(!st||!Object.keys(o).length)continue;const pay={roll_no:roll,pin:("471CA"+String(roll).padStart(2,"0")).toUpperCase(),student_name:st.name,assessment};
+    if(p.half){let total=0,has=false;[["mil_odia","mil_odia_sub","mil_odia_obj"],["english","english_sub","english_obj"],["hindi_sanskrit","hindi_sanskrit_sub","hindi_sanskrit_obj"],["mathematics","mathematics_sub","mathematics_obj"],["science","science_sub","science_obj"],["social_science","social_science_sub","social_science_obj"]].forEach(([t,su,ob])=>{const s=o[su]??null,obv=o[ob]??null;pay[su]=s;pay[ob]=obv;if(s!==null||obv!==null){pay[t]=(s||0)+(obv||0);total+=pay[t];has=true}});if(!has)continue;pay.total=total;pay.full_marks=600}
+    else{let total=0,has=false;p.fields.forEach(([f])=>{const val=o[f];pay[f]=val===undefined?null:val;if(val!==undefined){total+=Number(val);has=true}});if(!has)continue;pay.total=total;pay.full_marks=p.max}
+    const found=await supabaseClient.from(table).select("id").eq("roll_no",roll).eq("pin",pay.pin).eq("assessment",assessment).order("id",{ascending:false}).limit(1);
+    if(found.error){fail++;continue}
+    if(found.data?.length){const up=await supabaseClient.from(table).update(pay).eq("id",found.data[0].id);if(up.error){const ins=await supabaseClient.from(table).insert(pay);ins.error?fail++:ok++}else ok++}
+    else{const ins=await supabaseClient.from(table).insert(pay);ins.error?fail++:ok++}
+  }
+  publishBtn.disabled=false;
+  if(fail)show(appMsg,`⚠️ Published ${ok} records; ${fail} failed. Check Supabase permissions.`,"err");
+  else{localStorage.removeItem(key());show(appMsg,`✅ Successfully published ${ok} records for Class ${cls} — ${p.label}.`,"ok");await loadRosterAndMarks()}
+}
+
+classSelect.addEventListener("change",()=>{examSelect.innerHTML='<option value="">Select Examination</option>';if(!classSelect.value){examSelect.disabled=true;return}examSelect.disabled=false;Object.values(patterns[classSelect.value]).forEach(p=>{const o=document.createElement("option");o.value=p.code;o.textContent=p.label;examSelect.appendChild(o)});tableCard.classList.add("hidden");loadBtn.disabled=saveBtn.disabled=publishBtn.disabled=clearBtn.disabled=true});
+examSelect.addEventListener("change",()=>{if(pat())loadRosterAndMarks()});loadBtn.addEventListener("click",loadRosterAndMarks);saveBtn.addEventListener("click",save);publishBtn.addEventListener("click",publish);clearBtn.addEventListener("click",clearDraft);search.addEventListener("input",render);document.getElementById("loginBtn").addEventListener("click",login);document.getElementById("logoutBtn").addEventListener("click",async()=>{await supabaseClient.auth.signOut();location.reload()});
+initConfig().catch(e=>{show(loginMsg,"⚠️ "+e.message,"err")});
+</script>
+</body>
+</html>
