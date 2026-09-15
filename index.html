@@ -1270,6 +1270,142 @@ loadUploadedNotices();
     </div>
   </div>
 </section>
+<style>
+  /* LARGE ATTRACTIVE OUR WANTINGS DESIGN */
+
+  .our-wantings-section {
+    padding: 70px 0;
+    background: linear-gradient(135deg, #f4f9ff, #eefaf3);
+  }
+
+  .our-wantings-section .container {
+    max-width: 1250px;
+    margin: 0 auto;
+    padding: 0 25px;
+  }
+
+  .our-wantings-section .section-heading {
+    text-align: center;
+    margin-bottom: 35px;
+  }
+
+  .our-wantings-section .eyebrow {
+    display: block;
+    color: #f39a00;
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    margin-bottom: 12px;
+  }
+
+  .our-wantings-section .section-heading h2 {
+    color: #123c69;
+    font-size: 2.6rem;
+    margin: 0 0 20px;
+    font-weight: 800;
+  }
+
+  .wantings-intro-message {
+    max-width: 1100px;
+    margin: 0 auto 40px;
+    padding: 30px 35px;
+    background: linear-gradient(135deg, #e5f3ff, #f0fbff);
+    border-left: 6px solid #2186e8;
+    border-radius: 18px;
+    box-shadow: 0 8px 25px rgba(18, 60, 105, 0.12);
+  }
+
+  .wantings-intro-message p {
+    color: #123c69;
+    font-size: 1.08rem;
+    line-height: 1.85;
+    margin: 0 0 18px;
+  }
+
+  .wantings-intro-message p:last-child {
+    margin-bottom: 0;
+    font-weight: 700;
+  }
+
+  .wantings-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    margin-top: 30px;
+  }
+
+  .wanting-card {
+    min-height: 125px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 28px 20px;
+    border-radius: 20px;
+    background: #ffffff;
+    border: 1px solid rgba(18, 60, 105, 0.12);
+    box-shadow: 0 8px 22px rgba(18, 60, 105, 0.12);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .wanting-card h3 {
+    color: #123c69;
+    font-size: 1.2rem;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .wanting-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 32px rgba(18, 60, 105, 0.22);
+  }
+
+  .wantings-grid .wanting-card:nth-child(3n + 1) {
+    background: linear-gradient(135deg, #e8f5ff, #ffffff);
+  }
+
+  .wantings-grid .wanting-card:nth-child(3n + 2) {
+    background: linear-gradient(135deg, #fff8df, #ffffff);
+  }
+
+  .wantings-grid .wanting-card:nth-child(3n + 3) {
+    background: linear-gradient(135deg, #e8faef, #ffffff);
+  }
+
+  @media (max-width: 950px) {
+    .wantings-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 600px) {
+    .our-wantings-section {
+      padding: 45px 0;
+    }
+
+    .our-wantings-section .container {
+      padding: 0 15px;
+    }
+
+    .our-wantings-section .section-heading h2 {
+      font-size: 2rem;
+    }
+
+    .wantings-intro-message {
+      padding: 22px 20px;
+    }
+
+    .wantings-intro-message p {
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    .wantings-grid {
+      grid-template-columns: 1fr;
+      gap: 18px;
+    }
+  }
+</style>
   <script src="script.js?v=20260913A"></script>
  <script>
 document.addEventListener("DOMContentLoaded", function () {
