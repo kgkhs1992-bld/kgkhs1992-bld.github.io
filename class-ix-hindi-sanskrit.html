@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Class IX Hindi & Sanskrit | KGKHS Beldandia</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #fff8e7, #eef7ff);
+            color: #222;
+            min-height: 100vh;
+        }
+
+        header {
+            background: linear-gradient(135deg, #7b1fa2, #512da8);
+            color: white;
+            text-align: center;
+            padding: 25px 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        header h1 {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        header p {
+            font-size: 15px;
+            opacity: 0.95;
+        }
+
+        .page-container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 25px 15px 40px;
+        }
+
+        .welcome-box {
+            background: white;
+            border-left: 6px solid #7b1fa2;
+            border-radius: 14px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            text-align: center;
+        }
+
+        .welcome-box h2 {
+            color: #6a1b9a;
+            margin-bottom: 8px;
+        }
+
+        .welcome-box p {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .subject-section {
+            margin-top: 30px;
+        }
+
+        .subject-title {
+            color: white;
+            padding: 15px 18px;
+            border-radius: 12px;
+            margin-bottom: 18px;
+            font-size: 23px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .hindi-title {
+            background: linear-gradient(135deg, #e65100, #ef6c00);
+        }
+
+        .sanskrit-title {
+            background: linear-gradient(135deg, #00695c, #00897b);
+        }
+
+        .lesson-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 18px;
+        }
+
+        .lesson-card {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            border-top: 5px solid #7b1fa2;
+            box-shadow: 0 5px 16px rgba(0, 0, 0, 0.1);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .lesson-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 9px 22px rgba(0, 0, 0, 0.16);
+        }
+
+        .lesson-card h3 {
+            color: #4527a0;
+            font-size: 19px;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        .lesson-card p {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .lesson-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+        }
+
+        .lesson-buttons a {
+            text-decoration: none;
+            color: white;
+            text-align: center;
+            padding: 11px 12px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: bold;
+            transition: opacity 0.2s ease;
+        }
+
+        .lesson-buttons a:hover {
+            opacity: 0.85;
+        }
+
+        .study-btn {
+            background: #3949ab;
+        }
+
+        .question-btn {
+            background: #00897b;
+        }
+
+        .practice-btn {
+            background: #ef6c00;
+        }
+
+        .disabled-btn {
+            background: #9e9e9e;
+            cursor: not-allowed;
+        }
+
+        .bottom-actions {
+            text-align: center;
+            margin-top: 35px;
+        }
+
+        .back-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #283593, #5e35b1);
+            color: white;
+            text-decoration: none;
+            padding: 14px 25px;
+            border-radius: 30px;
+            font-weight: bold;
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.18);
+        }
+
+        .back-btn:hover {
+            opacity: 0.88;
+        }
+
+        footer {
+            background: #311b92;
+            color: white;
+            text-align: center;
+            padding: 18px 10px;
+            margin-top: 35px;
+            font-size: 14px;
+        }
+
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 23px;
+            }
+
+            .subject-title {
+                font-size: 20px;
+            }
+
+            .lesson-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .page-container {
+                padding: 18px 12px 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Class IX Hindi & Sanskrit</h1>
+        <p>Karua Gadadhar Kar High School, Beldandia</p>
+    </header>
+
+    <main class="page-container">
+
+        <section class="welcome-box">
+            <h2>📚 Digital Study Materials</h2>
+            <p>
+                Welcome to the Class IX Hindi and Sanskrit study material page.
+                Select a lesson to view study notes, questions and practice materials.
+            </p>
+        </section>
+
+        <!-- HINDI SECTION -->
+
+        <section class="subject-section">
+
+            <h2 class="subject-title hindi-title">
+                🇮🇳 Hindi
+            </h2>
+
+            <div class="lesson-grid">
+
+                <div class="lesson-card">
+                    <h3>Hindi Lesson 1</h3>
+                    <p>Study material and questions will be added here.</p>
+
+                    <div class="lesson-buttons">
+                        <a href="#" class="disabled-btn"
+                           onclick="return false;">
+                            📖 Study Material
+                        </a>
+
+                        <a href="#" class="disabled-btn"
+                           onclick="return false;">
+                            ✍️ Questions & Answers
+                        </a>
+
+                        <a href="#" class="disabled-btn"
+                           onclick="return false;">
+                            📝 Practice Questions
+                        </a>
+                    </div>
+                </div>
+
+                <div class="lesson-card">
+                    <h3>Hindi Lesson 2</h3>
+                    <p>Study material and questions will be added here.</p>
+
+                    <div class="lesson-buttons">
+                        <a href="#" class="disabled-btn"
+                           onclick="return false;">
+                            📖 Study Material
+                        </a>
+
+                        <a href="#" class="disabled-btn"
+                           onclick="return false;">
+                            ✍️ Questions & Answers
+                        </a>
+
+                        <a href="#" class="disabled-btn"
+                           onclick="return false;">
+                            📝 Practice Questions
+                        </a>
+                    </div>
+                </div>
+
+                <div class="lesson-card">
+                    <h3>Hindi Lesson 3</h3>
+                    <p>Study material and questions will be added here.</p>
+
+                    <div class="lesson-buttons">
+                        <a href="#" class="disabled-btn"
+                           onclick="return false;">
+                            📖 Study Material
+                        </a>
+
+                        <a href="#" class="disabled-btn"
+                           onclick="return false;">
+                            ✍️ Questions & Answers
+                        </a>
+
+                        <a href="#" class="disabled-btn"
+                           onclick="return false;">
+                            📝 Practice Questions
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SANSKRIT SECTION -->
+
+        <section class="subject-section">
+
+            <h2 class="subject-title sanskrit-title">
+                🕉️ Sanskrit
+            </h2>
+
+            <div class="lesson-grid">
+
+                <div class="lesson-card">
+                    <h3>संस्कृत पाठ 1</h3>
+                    <p>Study material and questions will be added here.</p>
+
+                    <div class="lesson-buttons">
+                        <a href="#" class="disabled-btn"
+                           onclick="return false;">
+                            📖 Study Material
+                        </a>
+
+                        <a href="#" class="disabled-btn"
+                           onclick="return false;">
+                            ✍️ Questions & Answers
+                        </a>
+
+                        <a href="#" class="disabled-btn"
+                           onclick="return false;">
+                            📝 Practice Questions
+                        </a>
+                    </div>
+                </div>
+
+                <div class="lesson-card">
+                    <h3>संस्कृत पाठ 2</h3>
+                    <p>Study material and questions will be added here.</p>
+
+                    <div class="lesson-buttons">
+                        <a href="#" class="disabled-btn"
+                           onclick="return false;">
+                            📖 Study Material
+                        </a>
+
+                        <a href="#" class="disabled-btn"
+                           onclick="return false;">
+                            ✍️ Questions & Answers
+                        </a>
+
+                        <a href="#" class="disabled-btn"
+                           onclick="return false;">
+                            📝 Practice Questions
+                        </a>
+                    </div>
+                </div>
+
+                <div class="lesson-card">
+                    <h3>संस्कृत पाठ 3</h3>
+                    <p>Study material and questions will be added here.</p>
+
+                    <div class="lesson-buttons">
+                        <a href="#" class="disabled-btn"
+                           onclick="return false;">
+                            📖 Study Material
+                        </a>
+
+                        <a href="#" class="disabled-btn"
+                           onclick="return false;">
+                            ✍️ Questions & Answers
+                        </a>
+
+                        <a href="#" class="disabled-btn"
+                           onclick="return false;">
+                            📝 Practice Questions
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <div class="bottom-actions">
+            <a href="learning.html" class="back-btn">
+                ⬅ Back to Digital Learning
+            </a>
+        </div>
+
+    </main>
+
+    <footer>
+        © 2026 Karua Gadadhar Kar High School, Beldandia
+    </footer>
+
+</body>
+</html>
