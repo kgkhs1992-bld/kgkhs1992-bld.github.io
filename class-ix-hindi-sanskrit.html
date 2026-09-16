@@ -1,397 +1,641 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Class IX Hindi & Sanskrit | KGKHS Beldandia</title>
+<title>Class IX Hindi / Sanskrit | KGKHSS Beldandia</title>
 
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+<style>
 
-        body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #fff8e7, #eef7ff);
-            color: #222;
-            min-height: 100vh;
-        }
+* {
+    box-sizing: border-box;
+}
 
-        header {
-            background: linear-gradient(135deg, #7b1fa2, #512da8);
-            color: white;
-            text-align: center;
-            padding: 25px 15px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        }
+body {
+    margin: 0;
+    font-family: Arial, "Noto Sans Devanagari", sans-serif;
+    background: linear-gradient(135deg, #fff8e7, #eef7ff);
+    color: #172554;
+}
 
-        header h1 {
-            font-size: 28px;
-            margin-bottom: 8px;
-        }
+header {
+    background: linear-gradient(135deg, #7c2d12, #be123c);
+    color: white;
+    text-align: center;
+    padding: 30px 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.20);
+}
 
-        header p {
-            font-size: 15px;
-            opacity: 0.95;
-        }
+header h1 {
+    margin: 0;
+    font-size: 30px;
+}
 
-        .page-container {
-            max-width: 1100px;
-            margin: auto;
-            padding: 25px 15px 40px;
-        }
+header p {
+    margin: 10px 0 0;
+    font-size: 16px;
+}
 
-        .welcome-box {
-            background: white;
-            border-left: 6px solid #7b1fa2;
-            border-radius: 14px;
-            padding: 20px;
-            margin-bottom: 25px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-            text-align: center;
-        }
+.container {
+    width: 94%;
+    max-width: 1150px;
+    margin: 25px auto;
+}
 
-        .welcome-box h2 {
-            color: #6a1b9a;
-            margin-bottom: 8px;
-        }
+.subject-title {
+    text-align: center;
+    background: white;
+    border-radius: 18px;
+    padding: 22px 15px;
+    margin-bottom: 25px;
+    box-shadow: 0 5px 18px rgba(0,0,0,0.10);
+}
 
-        .welcome-box p {
-            color: #555;
-            line-height: 1.6;
-        }
+.subject-title h2 {
+    margin: 0;
+    color: #9f1239;
+    font-size: 27px;
+}
 
-        .subject-section {
-            margin-top: 30px;
-        }
+.subject-title p {
+    margin: 10px 0 0;
+    color: #475569;
+}
 
-        .subject-title {
-            color: white;
-            padding: 15px 18px;
-            border-radius: 12px;
-            margin-bottom: 18px;
-            font-size: 23px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-        }
+.section-title {
+    color: white;
+    padding: 15px 18px;
+    border-radius: 14px;
+    margin: 30px 0 18px;
+    font-size: 23px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
 
-        .hindi-title {
-            background: linear-gradient(135deg, #e65100, #ef6c00);
-        }
+.hindi-title {
+    background: linear-gradient(135deg, #1d4ed8, #2563eb);
+}
 
-        .sanskrit-title {
-            background: linear-gradient(135deg, #00695c, #00897b);
-        }
+.sanskrit-title {
+    background: linear-gradient(135deg, #047857, #059669);
+}
 
-        .lesson-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 18px;
-        }
+.topic-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 18px;
+}
 
-        .lesson-card {
-            background: white;
-            border-radius: 16px;
-            padding: 20px;
-            border-top: 5px solid #7b1fa2;
-            box-shadow: 0 5px 16px rgba(0, 0, 0, 0.1);
-            transition: transform 0.25s ease, box-shadow 0.25s ease;
-        }
+.topic-card {
+    background: white;
+    border-radius: 17px;
+    padding: 20px;
+    border-left: 6px solid #f59e0b;
+    box-shadow: 0 5px 16px rgba(0,0,0,0.10);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
 
-        .lesson-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 9px 22px rgba(0, 0, 0, 0.16);
-        }
+.topic-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 22px rgba(0,0,0,0.16);
+}
 
-        .lesson-card h3 {
-            color: #4527a0;
-            font-size: 19px;
-            margin-bottom: 15px;
-            line-height: 1.4;
-        }
+.topic-number {
+    display: inline-block;
+    background: #fef3c7;
+    color: #92400e;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
 
-        .lesson-card p {
-            color: #666;
-            font-size: 14px;
-            margin-bottom: 15px;
-            line-height: 1.5;
-        }
+.topic-card h3 {
+    margin: 5px 0 8px;
+    color: #1e3a8a;
+    font-size: 21px;
+    line-height: 1.5;
+}
 
-        .lesson-buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 9px;
-        }
+.sanskrit-card {
+    border-left-color: #10b981;
+}
 
-        .lesson-buttons a {
-            text-decoration: none;
-            color: white;
-            text-align: center;
-            padding: 11px 12px;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: bold;
-            transition: opacity 0.2s ease;
-        }
+.sanskrit-card h3 {
+    color: #065f46;
+}
 
-        .lesson-buttons a:hover {
-            opacity: 0.85;
-        }
+.author {
+    color: #64748b;
+    font-size: 15px;
+    margin-bottom: 14px;
+    line-height: 1.6;
+}
 
-        .study-btn {
-            background: #3949ab;
-        }
+.lesson-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
 
-        .question-btn {
-            background: #00897b;
-        }
+.lesson-links a {
+    display: inline-block;
+    text-decoration: none;
+    background: #e5e7eb;
+    color: #6b7280;
+    padding: 9px 12px;
+    border-radius: 9px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: not-allowed;
+}
 
-        .practice-btn {
-            background: #ef6c00;
-        }
+.lesson-links a::before {
+    content: "🔒 ";
+}
 
-        .disabled-btn {
-            background: #9e9e9e;
-            cursor: not-allowed;
-        }
+.notice {
+    background: #fff7ed;
+    border: 1px solid #fdba74;
+    color: #9a3412;
+    border-radius: 14px;
+    padding: 18px;
+    margin: 30px 0;
+    line-height: 1.7;
+    text-align: center;
+}
 
-        .bottom-actions {
-            text-align: center;
-            margin-top: 35px;
-        }
+.back-button {
+    display: block;
+    width: fit-content;
+    margin: 30px auto;
+    padding: 13px 22px;
+    border-radius: 30px;
+    background: linear-gradient(135deg, #7c3aed, #4f46e5);
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.18);
+}
 
-        .back-btn {
-            display: inline-block;
-            background: linear-gradient(135deg, #283593, #5e35b1);
-            color: white;
-            text-decoration: none;
-            padding: 14px 25px;
-            border-radius: 30px;
-            font-weight: bold;
-            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.18);
-        }
+footer {
+    text-align: center;
+    background: #172554;
+    color: white;
+    padding: 22px 15px;
+    margin-top: 35px;
+    line-height: 1.7;
+}
 
-        .back-btn:hover {
-            opacity: 0.88;
-        }
+@media (max-width: 600px) {
 
-        footer {
-            background: #311b92;
-            color: white;
-            text-align: center;
-            padding: 18px 10px;
-            margin-top: 35px;
-            font-size: 14px;
-        }
+    header h1 {
+        font-size: 24px;
+    }
 
-        @media (max-width: 600px) {
-            header h1 {
-                font-size: 23px;
-            }
+    .subject-title h2 {
+        font-size: 23px;
+    }
 
-            .subject-title {
-                font-size: 20px;
-            }
+    .section-title {
+        font-size: 20px;
+    }
 
-            .lesson-grid {
-                grid-template-columns: 1fr;
-            }
+    .topic-card h3 {
+        font-size: 19px;
+    }
 
-            .page-container {
-                padding: 18px 12px 30px;
-            }
-        }
-    </style>
+    .lesson-links a {
+        font-size: 13px;
+    }
+
+}
+
+</style>
 </head>
 
 <body>
 
-    <header>
-        <h1>Class IX Hindi & Sanskrit</h1>
-        <p>Karua Gadadhar Kar High School, Beldandia</p>
-    </header>
+<header>
+    <h1>📚 Class IX Hindi / Sanskrit</h1>
+    <p>Karua Gadadhar Kar High School, Beldandia</p>
+</header>
 
-    <main class="page-container">
+<main class="container">
 
-        <section class="welcome-box">
-            <h2>📚 Digital Study Materials</h2>
-            <p>
-                Welcome to the Class IX Hindi and Sanskrit study material page.
-                Select a lesson to view study notes, questions and practice materials.
-            </p>
-        </section>
+    <div class="subject-title">
+        <h2>कक्षा नवम — हिन्दी एवं संस्कृत</h2>
+        <p>Study Material • Questions & Answers • Practice Questions</p>
+    </div>
 
-        <!-- HINDI SECTION -->
 
-        <section class="subject-section">
+    <!-- HINDI SECTION -->
 
-            <h2 class="subject-title hindi-title">
-                🇮🇳 Hindi
-            </h2>
+    <div class="section-title hindi-title">
+        📘 Class IX Hindi — हिन्दी
+    </div>
 
-            <div class="lesson-grid">
+    <div class="topic-grid">
 
-                <div class="lesson-card">
-                    <h3>Hindi Lesson 1</h3>
-                    <p>Study material and questions will be added here.</p>
-
-                    <div class="lesson-buttons">
-                        <a href="#" class="disabled-btn"
-                           onclick="return false;">
-                            📖 Study Material
-                        </a>
-
-                        <a href="#" class="disabled-btn"
-                           onclick="return false;">
-                            ✍️ Questions & Answers
-                        </a>
-
-                        <a href="#" class="disabled-btn"
-                           onclick="return false;">
-                            📝 Practice Questions
-                        </a>
-                    </div>
-                </div>
-
-                <div class="lesson-card">
-                    <h3>Hindi Lesson 2</h3>
-                    <p>Study material and questions will be added here.</p>
-
-                    <div class="lesson-buttons">
-                        <a href="#" class="disabled-btn"
-                           onclick="return false;">
-                            📖 Study Material
-                        </a>
-
-                        <a href="#" class="disabled-btn"
-                           onclick="return false;">
-                            ✍️ Questions & Answers
-                        </a>
-
-                        <a href="#" class="disabled-btn"
-                           onclick="return false;">
-                            📝 Practice Questions
-                        </a>
-                    </div>
-                </div>
-
-                <div class="lesson-card">
-                    <h3>Hindi Lesson 3</h3>
-                    <p>Study material and questions will be added here.</p>
-
-                    <div class="lesson-buttons">
-                        <a href="#" class="disabled-btn"
-                           onclick="return false;">
-                            📖 Study Material
-                        </a>
-
-                        <a href="#" class="disabled-btn"
-                           onclick="return false;">
-                            ✍️ Questions & Answers
-                        </a>
-
-                        <a href="#" class="disabled-btn"
-                           onclick="return false;">
-                            📝 Practice Questions
-                        </a>
-                    </div>
-                </div>
-
+        <article class="topic-card">
+            <span class="topic-number">Hindi 01</span>
+            <h3>अनमोल मोती</h3>
+            <div class="author">
+                दोहे — कबीरदास<br>
+                पद — सूरदास<br>
+                दोहे — तुलसीदास<br>
+                दोहे — रहीम<br>
+                कुंडलिया — गिरिधर कविराय
             </div>
-        </section>
 
-        <!-- SANSKRIT SECTION -->
-
-        <section class="subject-section">
-
-            <h2 class="subject-title sanskrit-title">
-                🕉️ Sanskrit
-            </h2>
-
-            <div class="lesson-grid">
-
-                <div class="lesson-card">
-                    <h3>संस्कृत पाठ 1</h3>
-                    <p>Study material and questions will be added here.</p>
-
-                    <div class="lesson-buttons">
-                        <a href="#" class="disabled-btn"
-                           onclick="return false;">
-                            📖 Study Material
-                        </a>
-
-                        <a href="#" class="disabled-btn"
-                           onclick="return false;">
-                            ✍️ Questions & Answers
-                        </a>
-
-                        <a href="#" class="disabled-btn"
-                           onclick="return false;">
-                            📝 Practice Questions
-                        </a>
-                    </div>
-                </div>
-
-                <div class="lesson-card">
-                    <h3>संस्कृत पाठ 2</h3>
-                    <p>Study material and questions will be added here.</p>
-
-                    <div class="lesson-buttons">
-                        <a href="#" class="disabled-btn"
-                           onclick="return false;">
-                            📖 Study Material
-                        </a>
-
-                        <a href="#" class="disabled-btn"
-                           onclick="return false;">
-                            ✍️ Questions & Answers
-                        </a>
-
-                        <a href="#" class="disabled-btn"
-                           onclick="return false;">
-                            📝 Practice Questions
-                        </a>
-                    </div>
-                </div>
-
-                <div class="lesson-card">
-                    <h3>संस्कृत पाठ 3</h3>
-                    <p>Study material and questions will be added here.</p>
-
-                    <div class="lesson-buttons">
-                        <a href="#" class="disabled-btn"
-                           onclick="return false;">
-                            📖 Study Material
-                        </a>
-
-                        <a href="#" class="disabled-btn"
-                           onclick="return false;">
-                            ✍️ Questions & Answers
-                        </a>
-
-                        <a href="#" class="disabled-btn"
-                           onclick="return false;">
-                            📝 Practice Questions
-                        </a>
-                    </div>
-                </div>
-
+            <div class="lesson-links">
+                <a href="#" onclick="return false;">Study Material</a>
+                <a href="#" onclick="return false;">Questions &amp; Answers</a>
+                <a href="#" onclick="return false;">Practice Questions</a>
             </div>
-        </section>
+        </article>
 
-        <div class="bottom-actions">
-            <a href="learning.html" class="back-btn">
-                ⬅ Back to Digital Learning
-            </a>
-        </div>
 
-    </main>
+        <article class="topic-card">
+            <span class="topic-number">Hindi 02</span>
+            <h3>प्रियतम</h3>
+            <div class="author">सूर्यकान्त त्रिपाठी ‘निराला’</div>
 
-    <footer>
-        © 2026 Karua Gadadhar Kar High School, Beldandia
-    </footer>
+            <div class="lesson-links">
+                <a href="#" onclick="return false;">Study Material</a>
+                <a href="#" onclick="return false;">Questions &amp; Answers</a>
+                <a href="#" onclick="return false;">Practice Questions</a>
+            </div>
+        </article>
 
-</body>
-</html>
+
+        <article class="topic-card">
+            <span class="topic-number">Hindi 03</span>
+            <h3>राहुल जननी</h3>
+            <div class="author">मैथिली शरण गुप्त</div>
+
+            <div class="lesson-links">
+                <a href="#" onclick="return false;">Study Material</a>
+                <a href="#" onclick="return false;">Questions &amp; Answers</a>
+                <a href="#" onclick="return false;">Practice Questions</a>
+            </div>
+        </article>
+
+
+        <article class="topic-card">
+            <span class="topic-number">Hindi 04</span>
+            <h3>फिर महान बन</h3>
+            <div class="author">नरेन्द्र शर्मा</div>
+
+            <div class="lesson-links">
+                <a href="#" onclick="return false;">Study Material</a>
+                <a href="#" onclick="return false;">Questions &amp; Answers</a>
+                <a href="#" onclick="return false;">Practice Questions</a>
+            </div>
+        </article>
+
+
+        <article class="topic-card">
+            <span class="topic-number">Hindi 05</span>
+            <h3>मेरा नया बचपन</h3>
+            <div class="author">सुभद्रा कुमारी चौहान</div>
+
+            <div class="lesson-links">
+                <a href="#" onclick="return false;">Study Material</a>
+                <a href="#" onclick="return false;">Questions &amp; Answers</a>
+                <a href="#" onclick="return false;">Practice Questions</a>
+            </div>
+        </article>
+
+
+        <article class="topic-card">
+            <span class="topic-number">Hindi 06</span>
+            <h3>साथी! दुःख से घबराता है?</h3>
+            <div class="author">गोपाल दास ‘नीरज’</div>
+
+            <div class="lesson-links">
+                <a href="#" onclick="return false;">Study Material</a>
+                <a href="#" onclick="return false;">Questions &amp; Answers</a>
+                <a href="#" onclick="return false;">Practice Questions</a>
+            </div>
+        </article>
+
+
+        <article class="topic-card">
+            <span class="topic-number">Hindi 07</span>
+            <h3>श्रम की प्रतिष्ठा (निबंध)</h3>
+            <div class="author">विनोबा भावे</div>
+
+            <div class="lesson-links">
+                <a href="#" onclick="return false;">Study Material</a>
+                <a href="#" onclick="return false;">Questions &amp; Answers</a>
+                <a href="#" onclick="return false;">Practice Questions</a>
+            </div>
+        </article>
+
+
+        <article class="topic-card">
+            <span class="topic-number">Hindi 08</span>
+            <h3>ममता (कहानी)</h3>
+            <div class="author">जयशंकर प्रसाद</div>
+
+            <div class="lesson-links">
+                <a href="#" onclick="return false;">Study Material</a>
+                <a href="#" onclick="return false;">Questions &amp; Answers</a>
+                <a href="#" onclick="return false;">Practice Questions</a>
+            </div>
+        </article>
+
+
+        <article class="topic-card">
+            <span class="topic-number">Hindi 09</span>
+            <h3>जेल में मेरे मित्र (अनुभव)</h3>
+            <div class="author">पं. जवाहरलाल नेहरू</div>
+
+            <div class="lesson-links">
+                <a href="#" onclick="return false;">Study Material</a>
+                <a href="#" onclick="return false;">Questions &amp; Answers</a>
+                <a href="#" onclick="return false;">Practice Questions</a>
+            </div>
+        </article>
+
+
+        <article class="topic-card">
+            <span class="topic-number">Hindi 10</span>
+            <h3>वैज्ञानिक चेतना के वाहक</h3>
+            <div class="author">
+                चंद्रशेखर वेंकट रामन (विज्ञान)<br>
+                धीरंजन मालवे
+            </div>
+
+            <div class="lesson-links">
+                <a href="#" onclick="return false;">Study Material</a>
+                <a href="#" onclick="return false;">Questions &amp; Answers</a>
+                <a href="#" onclick="return false;">Practice Questions</a>
+            </div>
+        </article>
+
+
+        <article class="topic-card">
+            <span class="topic-number">Hindi 11</span>
+            <h3>अध्यापक के नाम पत्र (पत्र)</h3>
+            <div class="author">अब्राहम लिंकन</div>
+
+            <div class="lesson-links">
+                <a href="#" onclick="return false;">Study Material</a>
+                <a href="#" onclick="return false;">Questions &amp; Answers</a>
+                <a href="#" onclick="return false;">Practice Questions</a>
+            </div>
+        </article>
+
+    </div>
+
+
+    <!-- SANSKRIT SECTION -->
+
+    <div class="section-title sanskrit-title">
+        📗 Class IX Sanskrit — संस्कृत
+    </div>
+
+
+    <h2 style="color:#065f46;">गद्यभागः — Prose</h2>
+
+    <div class="topic-grid">
+
+        <article class="topic-card sanskrit-card">
+            <span class="topic-number">Sanskrit 01</span>
+            <h3>भारतवन्दनगीतिका</h3>
+            <div class="lesson-links">
+                <a href="#" onclick="return false;">Study Material</a>
+                <a href="#" onclick="return false;">Questions &amp; Answers</a>
+                <a href="#" onclick="return false;">Practice Questions</a>
+            </div>
+        </article>
+
+        <article class="topic-card sanskrit-card">
+            <span class="topic-number">Sanskrit 02</span>
+            <h3>सिंहशावककथा</h3>
+            <div class="lesson-links">
+                <a href="#" onclick="return false;">Study Material</a>
+                <a href="#" onclick="return false;">Questions &amp; Answers</a>
+                <a href="#" onclick="return false;">Practice Questions</a>
+            </div>
+        </article>
+
+        <article class="topic-card sanskrit-card">
+            <span class="topic-number">Sanskrit 03</span>
+            <h3>सत्यम्</h3>
+            <div class="lesson-links">
+                <a href="#" onclick="return false;">Study Material</a>
+                <a href="#" onclick="return false;">Questions &amp; Answers</a>
+                <a href="#" onclick="return false;">Practice Questions</a>
+            </div>
+        </article>
+
+        <article class="topic-card sanskrit-card">
+            <span class="topic-number">Sanskrit 04</span>
+            <h3>आत्मगुणविकासनम्</h3>
+            <div class="lesson-links">
+                <a href="#" onclick="return false;">Study Material</a>
+                <a href="#" onclick="return false;">Questions &amp; Answers</a>
+                <a href="#" onclick="return false;">Practice Questions</a>
+            </div>
+        </article>
+
+        <article class="topic-card sanskrit-card">
+            <span class="topic-number">Sanskrit 05</span>
+            <h3>उत्कलगौरवम्</h3>
+            <div class="lesson-links">
+                <a href="#" onclick="return false;">Study Material</a>
+                <a href="#" onclick="return false;">Questions &amp; Answers</a>
+                <a href="#" onclick="return false;">Practice Questions</a>
+            </div>
+        </article>
+
+        <article class="topic-card sanskrit-card">
+            <span class="topic-number">Sanskrit 06</span>
+            <h3>समयानुवर्तिता</h3>
+            <div class="lesson-links">
+                <a href="#" onclick="return false;">Study Material</a>
+                <a href="#" onclick="return false;">Questions &amp; Answers</a>
+                <a href="#" onclick="return false;">Practice Questions</a>
+            </div>
+        </article>
+
+        <article class="topic-card sanskrit-card">
+            <span class="topic-number">Sanskrit 07</span>
+            <h3>मूढः सहायकः</h3>
+            <div class="lesson-links">
+                <a href="#" onclick="return false;">Study Material</a>
+                <a href="#" onclick="return false;">Questions &amp; Answers</a>
+                <a href="#" onclick="return false;">Practice Questions</a>
+            </div>
+        </article>
+
+    </div>
+
+
+    <h2 style="color:#065f46;">सम्भाषणभागः — Conversation</h2>
+
+    <div class="topic-grid">
+
+        <article class="topic-card sanskrit-card">
+            <span class="topic-number">Sanskrit 08</span>
+            <h3>सम्भाषणम् (प्रथमम्)</h3>
+            <div class="lesson-links">
+                <a href="#" onclick="return false;">Study Material</a>
+                <a href="#" onclick="return false;">Questions &amp; Answers</a>
+                <a href="#" onclick="return false;">Practice Questions</a>
+            </div>
+        </article>
+
+        <article class="topic-card sanskrit-card">
+            <span class="topic-number">Sanskrit 09</span>
+            <h3>सम्भाषणम् (द्वितीयम्)</h3>
+            <div class="lesson-links">
+                <a href="#" onclick="return false;">Study Material</a>
+                <a href="#" onclick="return false;">Questions &amp; Answers</a>
+                <a href="#" onclick="return false;">Practice Questions</a>
+            </div>
+        </article>
+
+        <article class="topic-card sanskrit-card">
+            <span class="topic-number">Sanskrit 10</span>
+            <h3>समयः</h3>
+            <div class="lesson-links">
+                <a href="#" onclick="return false;">Study Material</a>
+                <a href="#" onclick="return false;">Questions &amp; Answers</a>
+                <a href="#" onclick="return false;">Practice Questions</a>
+            </div>
+        </article>
+
+        <article class="topic-card sanskrit-card">
+            <span class="topic-number">Sanskrit 11</span>
+            <h3>सम्भाषणम् (तृतीयम्)</h3>
+            <div class="lesson-links">
+                <a href="#" onclick="return false;">Study Material</a>
+                <a href="#" onclick="return false;">Questions &amp; Answers</a>
+                <a href="#" onclick="return false;">Practice Questions</a>
+            </div>
+        </article>
+
+    </div>
+
+
+    <h2 style="color:#065f46;">पद्यभागः — Poetry</h2>
+
+    <div class="topic-grid">
+
+        <article class="topic-card sanskrit-card">
+            <span class="topic-number">Sanskrit 12</span>
+            <h3>नीतिवाणी</h3>
+            <div class="lesson-links">
+                <a href="#" onclick="return false;">Study Material</a>
+                <a href="#" onclick="return false;">Questions &amp; Answers</a>
+                <a href="#" onclick="return false;">Practice Questions</a>
+            </div>
+        </article>
+
+        <article class="topic-card sanskrit-card">
+            <span class="topic-number">Sanskrit 13</span>
+            <h3>प्रहेलिकाः</h3>
+            <div class="lesson-links">
+                <a href="#" onclick="return false;">Study Material</a>
+                <a href="#" onclick="return false;">Questions &amp; Answers</a>
+                <a href="#" onclick="return false;">Practice Questions</a>
+            </div>
+        </article>
+
+        <article class="topic-card sanskrit-card">
+            <span class="topic-number">Sanskrit 14</span>
+            <h3>समयगीतिका</h3>
+            <div class="lesson-links">
+                <a href="#" onclick="return false;">Study Material</a>
+                <a href="#" onclick="return false;">Questions &amp; Answers</a>
+                <a href="#" onclick="return false;">Practice Questions</a>
+            </div>
+        </article>
+
+        <article class="topic-card sanskrit-card">
+            <span class="topic-number">Sanskrit 15</span>
+            <h3>वसुमती</h3>
+            <div class="lesson-links">
+                <a href="#" onclick="return false;">Study Material</a>
+                <a href="#" onclick="return false;">Questions &amp; Answers</a>
+                <a href="#" onclick="return false;">Practice Questions</a>
+            </div>
+        </article>
+
+    </div>
+
+
+    <h2 style="color:#065f46;">अनुच्छेदभागः — Paragraphs</h2>
+
+    <div class="topic-grid">
+
+        <article class="topic-card sanskrit-card">
+            <span class="topic-number">Sanskrit 16</span>
+            <h3>प्रथमः अनुच्छेदः</h3>
+            <div class="lesson-links">
+                <a href="#" onclick="return false;">Study Material</a>
+                <a href="#" onclick="return false;">Questions &amp; Answers</a>
+                <a href="#" onclick="return false;">Practice Questions</a>
+            </div>
+        </article>
+
+        <article class="topic-card sanskrit-card">
+            <span class="topic-number">Sanskrit 17</span>
+            <h3>द्वितीयः अनुच्छेदः</h3>
+            <div class="lesson-links">
+                <a href="#" onclick="return false;">Study Material</a>
+                <a href="#" onclick="return false;">Questions &amp; Answers</a>
+                <a href="#" onclick="return false;">Practice Questions</a>
+            </div>
+        </article>
+
+        <article class="topic-card sanskrit-card">
+            <span class="topic-number">Sanskrit 18</span>
+            <h3>तृतीयः अनुच्छेदः</h3>
+            <div class="lesson-links">
+                <a href="#" onclick="return false;">Study Material</a>
+                <a href="#" onclick="return false;">Questions &amp; Answers</a>
+                <a href="#" onclick="return false;">Practice Questions</a>
+            </div>
+        </article>
+
+        <article class="topic-card sanskrit-card">
+            <span class="topic-number">Sanskrit 19</span>
+            <h3>चतुर्थः अनुच्छेदः</h3>
+            <div class="lesson-links">
+                <a href="#" onclick="return false;">Study Material</a>
+                <a href="#" onclick="return false;">Questions &amp; Answers</a>
+                <a href="#" onclick="return false;">Practice Questions</a>
+            </div>
+        </article>
+
+        <article class="topic-card sanskrit-card">
+            <span class="topic-number">Sanskrit 20</span>
+            <h3>पञ्चमः अनुच्छेदः</h3>
+            <div class="lesson-links">
+                <a href="#" onclick="return false;">Study Material</a>
+                <a href="#" onclick="return false;">Questions &amp; Answers</a>
+                <a href="#" onclick="return false;">Practice Questions</a>
+            </div>
+        </article>
+
+        <article class="topic-card sanskrit-card">
+            <span class="topic-number">Sanskrit 21</span>
+            <h3>षष्ठः अनुच्छेदः</h3>
+            <div class="lesson-links">
+                <a href="#" onclick="return false;">Study Material</a>
+                <a href="#" onclick="return false;">Questions &amp; Answers</a>
+                <a href="#" onclick="return false;">Practice Questions</a>
+            </div>
+        </article>
+
+        <article class="topic-card sanskrit-card">
+            <span class="topic-number">Sanskrit 22</span>
+            <h3>सप्तमः अनुच्छेदः</h3>
+            <div class="lesson-links">
+                <a href="#" onclick="return false;">St
