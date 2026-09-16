@@ -354,7 +354,525 @@
     <a class="back-button" href="learning.html">
       ← Back to Learning
     </a>
+<!DOCTYPE html>
+<html lang="sa">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <title>Class VIII Sanskrit | KGKHSS Beldandia</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, "Noto Sans Devanagari", sans-serif;
+      background: linear-gradient(135deg, #eff6ff, #f5f3ff);
+      color: #1f2937;
+    }
+
+    header {
+      background: linear-gradient(135deg, #312e81, #4338ca, #6d28d9);
+      color: white;
+      text-align: center;
+      padding: 30px 15px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 30px;
+    }
+
+    header p {
+      margin: 10px 0 0;
+      font-size: 16px;
+    }
+
+    .container {
+      width: 92%;
+      max-width: 1150px;
+      margin: 25px auto 40px;
+    }
+
+    .back-button {
+      display: inline-block;
+      text-decoration: none;
+      background: #1d4ed8;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 25px;
+      font-weight: bold;
+      margin-bottom: 25px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+      transition: 0.3s;
+    }
+
+    .back-button:hover {
+      background: #1e40af;
+      transform: translateY(-2px);
+    }
+
+    .intro {
+      background: white;
+      text-align: center;
+      padding: 22px;
+      border-radius: 18px;
+      margin-bottom: 28px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    .intro h2 {
+      color: #4338ca;
+      margin-top: 0;
+      font-size: 28px;
+    }
+
+    .intro p {
+      line-height: 1.7;
+    }
+
+    .lesson-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 22px;
+    }
+
+    .lesson-card {
+      background: white;
+      border-radius: 20px;
+      padding: 22px;
+      border-top: 6px solid #6366f1;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+      transition: 0.3s;
+    }
+
+    .lesson-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.18);
+    }
+
+    .chapter {
+      color: #6d28d9;
+      font-size: 15px;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    .lesson-card h3 {
+      color: #312e81;
+      font-size: 21px;
+      line-height: 1.6;
+      margin: 0 0 12px;
+    }
+
+    .lesson-type {
+      display: inline-block;
+      background: #ede9fe;
+      color: #5b21b6;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: bold;
+      margin-bottom: 18px;
+    }
+
+    .lesson-links {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .lesson-links a {
+      display: block;
+      text-align: center;
+      text-decoration: none;
+      color: white;
+      padding: 12px 10px;
+      border-radius: 10px;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .study {
+      background: #2563eb;
+    }
+
+    .study:hover {
+      background: #1d4ed8;
+    }
+
+    .qa {
+      background: #16a34a;
+    }
+
+    .qa:hover {
+      background: #15803d;
+    }
+
+    .additional {
+      background: #9333ea;
+    }
+
+    .additional:hover {
+      background: #7e22ce;
+    }
+
+    .disabled {
+      background: #9ca3af;
+      cursor: not-allowed;
+    }
+
+    .notice {
+      margin-top: 28px;
+      background: #fff7ed;
+      color: #9a3412;
+      border-left: 5px solid #f97316;
+      padding: 16px;
+      border-radius: 12px;
+      line-height: 1.7;
+    }
+
+    footer {
+      background: #312e81;
+      color: white;
+      text-align: center;
+      padding: 18px 12px;
+      font-size: 14px;
+    }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 24px;
+      }
+
+      .container {
+        width: 94%;
+      }
+
+      .lesson-card h3 {
+        font-size: 19px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>Class VIII Sanskrit</h1>
+    <p>संस्कृत अध्ययन सामग्री</p>
+    <p>Karua Gadadhar Kar High School, Beldandia</p>
+  </header>
+
+  <main class="container">
+
+    <a class="back-button" href="learning.html">
+      ← Back to Learning
+    </a>
+
+    <section class="intro">
+      <h2>कक्षा अष्टमी — संस्कृतम्</h2>
+
+      <p>
+        Select a lesson to open Study Material,
+        Book Questions &amp; Answers, or Additional Questions.
+      </p>
+    </section>
+
+    <section class="lesson-grid">
+
+      <!-- Chapter 1 -->
+      <article class="lesson-card">
+        <div class="chapter">CHAPTER 1</div>
+        <h3>भेदभावो न कर्तव्यः</h3>
+        <span class="lesson-type">पाठः १</span>
+
+        <div class="lesson-links">
+          <a class="disabled" href="#" onclick="return false;">
+            📘 Study Material
+          </a>
+          <a class="disabled" href="#" onclick="return false;">
+            ✍️ Book Q &amp; A
+          </a>
+          <a class="disabled" href="#" onclick="return false;">
+            📝 Additional Questions
+          </a>
+        </div>
+      </article>
+
+      <!-- Chapter 2 -->
+      <article class="lesson-card">
+        <div class="chapter">CHAPTER 2</div>
+        <h3>यः क्रियावान् सः पण्डितः</h3>
+        <span class="lesson-type">पाठः २</span>
+
+        <div class="lesson-links">
+          <a class="disabled" href="#" onclick="return false;">
+            📘 Study Material
+          </a>
+          <a class="disabled" href="#" onclick="return false;">
+            ✍️ Book Q &amp; A
+          </a>
+          <a class="disabled" href="#" onclick="return false;">
+            📝 Additional Questions
+          </a>
+        </div>
+      </article>
+
+      <!-- Chapter 3 -->
+      <article class="lesson-card">
+        <div class="chapter">CHAPTER 3</div>
+        <h3>कोऽरुक्? कोऽरुक्? कोऽरुक्?</h3>
+        <span class="lesson-type">पाठः ३</span>
+
+        <div class="lesson-links">
+          <a class="disabled" href="#" onclick="return false;">
+            📘 Study Material
+          </a>
+          <a class="disabled" href="#" onclick="return false;">
+            ✍️ Book Q &amp; A
+          </a>
+          <a class="disabled" href="#" onclick="return false;">
+            📝 Additional Questions
+          </a>
+        </div>
+      </article>
+
+      <!-- Chapter 4 -->
+      <article class="lesson-card">
+        <div class="chapter">CHAPTER 4</div>
+        <h3>मृच्छकटं संवादम्</h3>
+        <span class="lesson-type">पाठः ४</span>
+
+        <div class="lesson-links">
+          <a class="disabled" href="#" onclick="return false;">
+            📘 Study Material
+          </a>
+          <a class="disabled" href="#" onclick="return false;">
+            ✍️ Book Q &amp; A
+          </a>
+          <a class="disabled" href="#" onclick="return false;">
+            📝 Additional Questions
+          </a>
+        </div>
+      </article>
+
+      <!-- Chapter 5 -->
+      <article class="lesson-card">
+        <div class="chapter">CHAPTER 5</div>
+        <h3>उत्कलमणिः गोपबन्धुः</h3>
+        <span class="lesson-type">पाठः ५</span>
+
+        <div class="lesson-links">
+          <a class="disabled" href="#" onclick="return false;">
+            📘 Study Material
+          </a>
+          <a class="disabled" href="#" onclick="return false;">
+            ✍️ Book Q &amp; A
+          </a>
+          <a class="disabled" href="#" onclick="return false;">
+            📝 Additional Questions
+          </a>
+        </div>
+      </article>
+
+      <!-- Chapter 6 -->
+      <article class="lesson-card">
+        <div class="chapter">CHAPTER 6</div>
+        <h3>वीराङ्गना शुकदेवी</h3>
+        <span class="lesson-type">पाठः ६</span>
+
+        <div class="lesson-links">
+          <a class="disabled" href="#" onclick="return false;">
+            📘 Study Material
+          </a>
+          <a class="disabled" href="#" onclick="return false;">
+            ✍️ Book Q &amp; A
+          </a>
+          <a class="disabled" href="#" onclick="return false;">
+            📝 Additional Questions
+          </a>
+        </div>
+      </article>
+
+      <!-- Chapter 7 -->
+      <article class="lesson-card">
+        <div class="chapter">CHAPTER 7</div>
+        <h3>गीता सुगीता कर्तव्या</h3>
+        <span class="lesson-type">पाठः ७</span>
+
+        <div class="lesson-links">
+          <a class="disabled" href="#" onclick="return false;">
+            📘 Study Material
+          </a>
+          <a class="disabled" href="#" onclick="return false;">
+            ✍️ Book Q &amp; A
+          </a>
+          <a class="disabled" href="#" onclick="return false;">
+            📝 Additional Questions
+          </a>
+        </div>
+      </article>
+
+      <!-- Chapter 8 -->
+      <article class="lesson-card">
+        <div class="chapter">CHAPTER 8</div>
+        <h3>कुष्माण्डभोजनालयः</h3>
+        <span class="lesson-type">पाठः ८</span>
+
+        <div class="lesson-links">
+          <a class="disabled" href="#" onclick="return false;">
+            📘 Study Material
+          </a>
+          <a class="disabled" href="#" onclick="return false;">
+            ✍️ Book Q &amp; A
+          </a>
+          <a class="disabled" href="#" onclick="return false;">
+            📝 Additional Questions
+          </a>
+        </div>
+      </article>
+
+      <!-- Chapter 9 -->
+      <article class="lesson-card">
+        <div class="chapter">CHAPTER 9</div>
+        <h3>डिजि-भारतम्</h3>
+        <span class="lesson-type">पाठः ९</span>
+
+        <div class="lesson-links">
+          <a class="disabled" href="#" onclick="return false;">
+            📘 Study Material
+          </a>
+          <a class="disabled" href="#" onclick="return false;">
+            ✍️ Book Q &amp; A
+          </a>
+          <a class="disabled" href="#" onclick="return false;">
+            📝 Additional Questions
+          </a>
+        </div>
+      </article>
+
+      <!-- Chapter 10 -->
+      <article class="lesson-card">
+        <div class="chapter">CHAPTER 10</div>
+        <h3>सुभाषितरसाः</h3>
+        <span class="lesson-type">पाठः १०</span>
+
+        <div class="lesson-links">
+          <a class="disabled" href="#" onclick="return false;">
+            📘 Study Material
+          </a>
+          <a class="disabled" href="#" onclick="return false;">
+            ✍️ Book Q &amp; A
+          </a>
+          <a class="disabled" href="#" onclick="return false;">
+            📝 Additional Questions
+          </a>
+        </div>
+      </article>
+
+      <!-- Chapter 11 -->
+      <article class="lesson-card">
+        <div class="chapter">CHAPTER 11</div>
+        <h3>प्रियं मे भारतवर्षम्</h3>
+        <span class="lesson-type">पाठः ११</span>
+
+        <div class="lesson-links">
+          <a class="disabled" href="#" onclick="return false;">
+            📘 Study Material
+          </a>
+          <a class="disabled" href="#" onclick="return false;">
+            ✍️ Book Q &amp; A
+          </a>
+          <a class="disabled" href="#" onclick="return false;">
+            📝 Additional Questions
+          </a>
+        </div>
+      </article>
+
+      <!-- Chapter 12 -->
+      <article class="lesson-card">
+        <div class="chapter">CHAPTER 12</div>
+        <h3>नववर्षं शुभमस्तु</h3>
+        <span class="lesson-type">पाठः १२</span>
+
+        <div class="lesson-links">
+          <a class="disabled" href="#" onclick="return false;">
+            📘 Study Material
+          </a>
+          <a class="disabled" href="#" onclick="return false;">
+            ✍️ Book Q &amp; A
+          </a>
+          <a class="disabled" href="#" onclick="return false;">
+            📝 Additional Questions
+          </a>
+        </div>
+      </article>
+
+      <!-- Chapter 13 -->
+      <article class="lesson-card">
+        <div class="chapter">CHAPTER 13</div>
+        <h3>पितामहस्य पत्रम्</h3>
+        <span class="lesson-type">पाठः १३</span>
+
+        <div class="lesson-links">
+          <a class="disabled" href="#" onclick="return false;">
+            📘 Study Material
+          </a>
+          <a class="disabled" href="#" onclick="return false;">
+            ✍️ Book Q &amp; A
+          </a>
+          <a class="disabled" href="#" onclick="return false;">
+            📝 Additional Questions
+          </a>
+        </div>
+      </article>
+
+      <!-- Chapter 14 -->
+      <article class="lesson-card">
+        <div class="chapter">CHAPTER 14</div>
+        <h3>भारतगीतिकाः</h3>
+        <span class="lesson-type">पाठः १४</span>
+
+        <div class="lesson-links">
+          <a class="disabled" href="#" onclick="return false;">
+            📘 Study Material
+          </a>
+          <a class="disabled" href="#" onclick="return false;">
+            ✍️ Book Q &amp; A
+          </a>
+          <a class="disabled" href="#" onclick="return false;">
+            📝 Additional Questions
+          </a>
+        </div>
+      </article>
+
+    </section>
+
+    <div class="notice">
+      <strong>सूचना:</strong>
+      Sanskrit lesson links will be activated after the Study Material,
+      Book Questions &amp; Answers, and Additional Questions pages are prepared.
+    </div>
+
+    <br>
+
+    <a class="back-button" href="learning.html">
+      ← Back to Learning
+    </a>
+
+  </main>
+
+  <footer>
+    © 2026 Karua Gadadhar Kar High School, Beldandia
+  </footer>
+
+</body>
+</html>
   </main>
 
   <footer>
