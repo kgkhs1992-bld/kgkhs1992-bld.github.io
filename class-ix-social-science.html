@@ -1,269 +1,286 @@
 <!DOCTYPE html>
 <html lang="or">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
 
-<title>Class IX Social Science</title>
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
-<style>
-* {
-  box-sizing: border-box;
-}
+  <title>Class IX Social Science</title>
 
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: linear-gradient(135deg, #eef7ff, #fff8ef);
-  color: #123b5d;
-}
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-.header {
-  text-align: center;
-  padding: 35px 15px 25px;
-}
+    body {
+      margin: 0;
+      padding: 20px 12px 40px;
+      font-family: Arial, sans-serif;
+      background: #eef7ff;
+      color: #123b56;
+    }
 
-.header h1 {
-  font-size: 32px;
-  margin: 0 0 12px;
-  color: #064f78;
-}
+    .top-area {
+      text-align: center;
+      padding: 20px 10px 30px;
+    }
 
-.header p {
-  font-size: 18px;
-  color: #555;
-  margin: 0;
-}
+    .top-area h1 {
+      margin: 0;
+      color: #005b82;
+      font-size: 34px;
+      line-height: 1.25;
+    }
 
-.container {
-  width: 94%;
-  max-width: 850px;
-  margin: auto;
-  padding-bottom: 35px;
-}
+    .top-area p {
+      margin-top: 18px;
+      font-size: 22px;
+      color: #555;
+      line-height: 1.4;
+    }
 
-.subject-card {
-  background: white;
-  border-radius: 25px;
-  padding: 22px;
-  margin: 22px 0;
-  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.10);
-  border: 4px solid;
-}
+    .back-button {
+      display: inline-block;
+      margin: 10px 0 25px;
+      padding: 12px 22px;
+      border-radius: 25px;
+      background: #123b56;
+      color: white;
+      text-decoration: none;
+      font-size: 17px;
+      font-weight: bold;
+    }
 
-.subject-card h2 {
-  text-align: center;
-  font-size: 27px;
-  margin: 5px 0 22px;
-}
+    .subject-card {
+      margin: 25px auto;
+      max-width: 850px;
+      padding: 25px 18px 30px;
+      border-radius: 30px;
+      border: 6px solid;
+      background: white;
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.10);
+    }
 
-.history {
-  border-color: #e889aa;
-  background: #fff0f5;
-}
+    .subject-card h2 {
+      margin: 0 0 25px;
+      text-align: center;
+      font-size: 30px;
+      line-height: 1.4;
+    }
 
-.history h2 {
-  color: #b0185a;
-}
+    .history {
+      background: #fff0f7;
+      border-color: #ed75ad;
+    }
 
-.political {
-  border-color: #8bb8ed;
-  background: #eef5ff;
-}
+    .history h2 {
+      color: #b40068;
+    }
 
-.political h2 {
-  color: #075b9b;
-}
+    .political {
+      background: #eef5ff;
+      border-color: #73afe9;
+    }
 
-.geography {
-  border-color: #82c9a1;
-  background: #effff5;
-}
+    .political h2 {
+      color: #005b91;
+    }
 
-.geography h2 {
-  color: #167044;
-}
+    .geography {
+      background: #effff3;
+      border-color: #65c98a;
+    }
 
-.economics {
-  border-color: #e5b85c;
-  background: #fff9e8;
-}
+    .geography h2 {
+      color: #08753b;
+    }
 
-.economics h2 {
-  color: #9a6500;
-}
+    .economics {
+      background: #fff8e8;
+      border-color: #e8b64d;
+    }
 
-.topic-box {
-  background: white;
-  border: 2px solid #c9dce8;
-  border-radius: 15px;
-  padding: 15px;
-  margin: 12px 0;
-  font-size: 18px;
-  font-weight: bold;
-  color: #173f63;
-}
+    .economics h2 {
+      color: #a35b00;
+    }
 
-.topic-box a {
-  color: #173f63;
-  text-decoration: none;
-  display: block;
-}
+    .resource-box {
+      display: block;
+      margin: 15px auto;
+      max-width: 720px;
+      padding: 20px 18px;
+      border: 3px solid #c9dce8;
+      border-radius: 22px;
+      background: white;
+      color: #123b56;
+      text-decoration: none;
+      font-size: 22px;
+      font-weight: bold;
+      line-height: 1.4;
+      text-align: left;
+      transition: 0.2s;
+    }
 
-.topic-box a:hover {
-  color: #d35400;
-}
+    .resource-box:hover {
+      background: #fff3c4;
+      transform: scale(1.01);
+    }
 
-.back-button {
-  display: block;
-  width: 220px;
-  margin: 30px auto 10px;
-  padding: 14px;
-  text-align: center;
-  background: #064f78;
-  color: white;
-  text-decoration: none;
-  border-radius: 30px;
-  font-size: 18px;
-  font-weight: bold;
-}
+    .footer-note {
+      margin-top: 35px;
+      text-align: center;
+      font-size: 16px;
+      color: #666;
+    }
 
-.back-button:hover {
-  background: #032f49;
-}
-</style>
+    @media (max-width: 600px) {
+      body {
+        padding: 12px 8px 30px;
+      }
+
+      .top-area h1 {
+        font-size: 30px;
+      }
+
+      .top-area p {
+        font-size: 19px;
+      }
+
+      .subject-card {
+        padding: 22px 12px 25px;
+        border-width: 5px;
+        border-radius: 25px;
+      }
+
+      .subject-card h2 {
+        font-size: 27px;
+      }
+
+      .resource-box {
+        font-size: 20px;
+        padding: 18px 15px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<header class="header">
-  <h1>🏛️ Class IX Social Science</h1>
-  <p>History, Political Science, Geography and Economics</p>
-</header>
+  <div class="top-area">
 
-<main class="container">
+    <a class="back-button" href="learning.html">
+      ⬅ Back to Learning Section
+    </a>
+
+    <h1>🏛️ Class IX Social Science</h1>
+
+    <p>
+      History, Political Science, Geography and Economics
+    </p>
+
+  </div>
+
 
   <!-- HISTORY -->
+
   <section class="subject-card history">
+
     <h2>📜 ଇତିହାସ — History</h2>
 
-    <div class="topic-box">
-      <a href="#">
-        📘 ପ୍ରଥମ ଅଧ୍ୟାୟ — ଦକ୍ଷିଣ ଏସିଆର ଗୁରୁତ୍ୱପୂର୍ଣ୍ଣ ପ୍ରସଙ୍ଗ
-      </a>
-    </div>
+    <a class="resource-box"
+       href="class-ix-social-science-history-textbook.html">
+      📘 ପାଠ୍ୟପୁସ୍ତକ — Text Book
+    </a>
 
-    <div class="topic-box">
-      <a href="#">
-        📘 ପ୍ରଥମ ବିଶ୍ୱଯୁଦ୍ଧ — କାରଣ ଓ ପରିଣାମ
-      </a>
-    </div>
+    <a class="resource-box"
+       href="class-ix-social-science-history-short-question-answer.html">
+      📝 ସଂକ୍ଷିପ୍ତ ପ୍ରଶ୍ନୋତ୍ତର — Short Question / Answer
+    </a>
 
-    <div class="topic-box">
-      <a href="#">
-        📘 ଦ୍ୱିତୀୟ ବିଶ୍ୱଯୁଦ୍ଧ — କାରଣ ଓ ପରିଣାମ
-      </a>
-    </div>
+    <a class="resource-box"
+       href="class-ix-social-science-history-long-question-answer.html">
+      ✍️ ଦୀର୍ଘ ପ୍ରଶ୍ନୋତ୍ତର — Long Question / Answer
+    </a>
 
-    <div class="topic-box">
-      <a href="#">
-        📘 ଚତୁର୍ଥ ଅଧ୍ୟାୟ — ଭାରତରେ ଜାତୀୟତାବାଦ
-      </a>
-    </div>
   </section>
+
 
   <!-- POLITICAL SCIENCE -->
+
   <section class="subject-card political">
+
     <h2>⚖️ ରାଜନୀତି ବିଜ୍ଞାନ — Political Science</h2>
 
-    <div class="topic-box">
-      <a href="#">
-        📘 ମୌଳିକ ଅଧିକାର
-      </a>
-    </div>
+    <a class="resource-box"
+       href="class-ix-social-science-political-science-textbook.html">
+      📘 ପାଠ୍ୟପୁସ୍ତକ — Text Book
+    </a>
 
-    <div class="topic-box">
-      <a href="#">
-        📘 ମୌଳିକ କର୍ତ୍ତବ୍ୟ
-      </a>
-    </div>
+    <a class="resource-box"
+       href="class-ix-social-science-political-science-short-question-answer.html">
+      📝 ସଂକ୍ଷିପ୍ତ ପ୍ରଶ୍ନୋତ୍ତର — Short Question / Answer
+    </a>
 
-    <div class="topic-box">
-      <a href="#">
-        📘 ରାଷ୍ଟ୍ରନୀତି ନିର୍ଦ୍ଦେଶକ ତତ୍ତ୍ୱ
-      </a>
-    </div>
+    <a class="resource-box"
+       href="class-ix-social-science-political-science-long-question-answer.html">
+      ✍️ ଦୀର୍ଘ ପ୍ରଶ୍ନୋତ୍ତର — Long Question / Answer
+    </a>
 
-    <div class="topic-box">
-      <a href="#">
-        📘 ଭାରତୀୟ ଗଣତନ୍ତ୍ର
-      </a>
-    </div>
   </section>
+
 
   <!-- GEOGRAPHY -->
+
   <section class="subject-card geography">
+
     <h2>🌍 ଭୂଗୋଳ — Geography</h2>
 
-    <div class="topic-box">
-      <a href="#">
-        📘 ମୌଳିକ ଅଧ୍ୟୟନ — ଭୂଗୋଳ
-      </a>
-    </div>
+    <a class="resource-box"
+       href="class-ix-social-science-geography-textbook.html">
+      📘 ପାଠ୍ୟପୁସ୍ତକ — Text Book
+    </a>
 
-    <div class="topic-box">
-      <a href="#">
-        📘 ଭୌତିକ ଲକ୍ଷଣ
-      </a>
-    </div>
+    <a class="resource-box"
+       href="class-ix-social-science-geography-short-question-answer.html">
+      📝 ସଂକ୍ଷିପ୍ତ ପ୍ରଶ୍ନୋତ୍ତର — Short Question / Answer
+    </a>
 
-    <div class="topic-box">
-      <a href="#">
-        📘 ଜଳବାୟୁ
-      </a>
-    </div>
+    <a class="resource-box"
+       href="class-ix-social-science-geography-long-question-answer.html">
+      ✍️ ଦୀର୍ଘ ପ୍ରଶ୍ନୋତ୍ତର — Long Question / Answer
+    </a>
 
-    <div class="topic-box">
-      <a href="#">
-        📘 ପ୍ରାକୃତିକ ଉଦ୍ଭିଦ ଓ ବନ୍ୟଜନ୍ତୁ
-      </a>
-    </div>
   </section>
+
 
   <!-- ECONOMICS -->
+
   <section class="subject-card economics">
+
     <h2>💰 ଅର୍ଥନୀତି — Economics</h2>
 
-    <div class="topic-box">
-      <a href="#">
-        📘 ଆର୍ଥିକ ବିକାଶ
-      </a>
-    </div>
+    <a class="resource-box"
+       href="class-ix-social-science-economics-textbook.html">
+      📘 ପାଠ୍ୟପୁସ୍ତକ — Text Book
+    </a>
 
-    <div class="topic-box">
-      <a href="#">
-        📘 ମୁଦ୍ରା ଓ ବ୍ୟାଙ୍କ
-      </a>
-    </div>
+    <a class="resource-box"
+       href="class-ix-social-science-economics-short-question-answer.html">
+      📝 ସଂକ୍ଷିପ୍ତ ପ୍ରଶ୍ନୋତ୍ତର — Short Question / Answer
+    </a>
 
-    <div class="topic-box">
-      <a href="#">
-        📘 ଯୋଜନା ଓ ବିକାଶ
-      </a>
-    </div>
+    <a class="resource-box"
+       href="class-ix-social-science-economics-long-question-answer.html">
+      ✍️ ଦୀର୍ଘ ପ୍ରଶ୍ନୋତ୍ତର — Long Question / Answer
+    </a>
 
-    <div class="topic-box">
-      <a href="#">
-        📘 ଭାରତୀୟ ଅର୍ଥନୀତି
-      </a>
-    </div>
   </section>
 
-  <a class="back-button" href="learning.html">
-    ⬅️ Back to Learning
-  </a>
 
-</main>
+  <div class="footer-note">
+    © Karua Gadadhar Kar High School, Beldandia
+  </div>
 
 </body>
 </html>
