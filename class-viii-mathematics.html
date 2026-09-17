@@ -1,374 +1,389 @@
 <!DOCTYPE html>
 <html lang="or">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>ଶ୍ରେଣୀ ୮ : ଗଣିତ | KGKHS Beldandia</title>
+  <title>Class VIII Mathematics | KGKHS Beldandia</title>
 
-<style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-body{
-  font-family:"Noto Sans Odia","Kalinga","Nirmala UI",Arial,sans-serif;
-  background:linear-gradient(135deg,#e0f7fa,#fff3e0,#f3e5f5);
-  color:#222;
-  line-height:1.7;
-}
+    body {
+      margin: 0;
+      font-family: Arial, "Noto Sans Oriya", sans-serif;
+      background: linear-gradient(135deg, #eff6ff, #fff7ed);
+      color: #1f2937;
+    }
 
-a{
-  text-decoration:none;
-}
+    header {
+      background: linear-gradient(135deg, #1d4ed8, #2563eb);
+      color: white;
+      text-align: center;
+      padding: 30px 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.18);
+    }
 
-.topbar{
-  background:linear-gradient(90deg,#073b91,#0077b6,#00a896);
-  color:white;
-  padding:15px 20px;
-  text-align:center;
-  font-weight:bold;
-  font-size:15px;
-}
+    header h1 {
+      margin: 0;
+      font-size: 30px;
+    }
 
-.back-btn{
-  display:inline-block;
-  margin-top:12px;
-  background:#ffd21f;
-  color:#111;
-  padding:9px 20px;
-  border-radius:30px;
-  font-weight:bold;
-  box-shadow:0 4px 10px #0003;
-}
+    header p {
+      margin: 10px 0 0;
+      font-size: 16px;
+    }
 
-.hero{
-  text-align:center;
-  padding:35px 18px;
-  background:linear-gradient(135deg,#fffde7,#e3f2fd,#fce4ec);
-  border-bottom:6px solid #087fca;
-}
+    .container {
+      width: 92%;
+      max-width: 1100px;
+      margin: 25px auto 45px;
+    }
 
-.hero h1{
-  color:#075985;
-  font-size:clamp(28px,6vw,45px);
-  margin-bottom:10px;
-}
+    .back-button {
+      display: inline-block;
+      text-decoration: none;
+      background: #1d4ed8;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 25px;
+      font-weight: bold;
+      margin-bottom: 25px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    }
 
-.hero p{
-  color:#555;
-  font-size:18px;
-  font-weight:bold;
-}
+    .intro {
+      text-align: center;
+      background: white;
+      padding: 22px;
+      border-radius: 18px;
+      margin-bottom: 28px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
 
-.container{
-  max-width:1150px;
-  margin:auto;
-  padding:25px 15px 45px;
-}
+    .intro h2 {
+      color: #1d4ed8;
+      margin-top: 0;
+    }
 
-.subject-heading{
-  text-align:center;
-  background:linear-gradient(90deg,#9c27b0,#e91e63);
-  color:white;
-  padding:15px;
-  border-radius:25px;
-  margin-bottom:22px;
-  box-shadow:0 6px 15px #0002;
-}
+    .lesson-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 22px;
+    }
 
-.subject-heading h2{
-  font-size:28px;
-}
+    .lesson-card {
+      background: white;
+      border-radius: 20px;
+      padding: 22px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+      border-top: 6px solid #2563eb;
+    }
 
-.quote{
-  background:white;
-  color:#444;
-  padding:12px 18px;
-  border-radius:30px;
-  text-align:center;
-  margin:0 auto 28px;
-  max-width:650px;
-  box-shadow:0 4px 12px #0002;
-  font-weight:bold;
-}
+    .lesson-number {
+      color: #2563eb;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
 
-.category-title{
-  display:inline-block;
-  color:white;
-  padding:9px 25px;
-  border-radius:25px;
-  margin:22px 0 18px;
-  background:linear-gradient(90deg,#ff6f00,#ff9800);
-  font-size:22px;
-}
+    .lesson-icon {
+      font-size: 35px;
+      margin-bottom: 8px;
+    }
 
-.lesson-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(245px,1fr));
-  gap:20px;
-}
+    .lesson-card h3 {
+      margin: 0 0 10px;
+      color: #1e3a8a;
+      font-size: 22px;
+      line-height: 1.5;
+    }
 
-.lesson-card{
-  border-radius:25px;
-  padding:22px 18px;
-  min-height:245px;
-  text-align:center;
-  border:3px solid white;
-  box-shadow:0 8px 18px #0002;
-  transition:transform .25s,box-shadow .25s;
-}
+    .lesson-card p {
+      line-height: 1.7;
+      margin-bottom: 18px;
+    }
 
-.lesson-card:hover{
-  transform:translateY(-6px);
-  box-shadow:0 14px 25px #0003;
-}
+    .lesson-btn {
+      display: block;
+      width: 100%;
+      border: none;
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      color: white;
+      padding: 13px 16px;
+      border-radius: 25px;
+      text-align: center;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 10px;
+    }
 
-.lesson-card:nth-child(6n+1){
-  background:linear-gradient(145deg,#ffe0e6,#fff5f7);
-}
+    .lesson-btn:hover {
+      background: linear-gradient(135deg, #1d4ed8, #1e40af);
+    }
 
-.lesson-card:nth-child(6n+2){
-  background:linear-gradient(145deg,#dff3ff,#f5fbff);
-}
+    .resource-buttons {
+      display: none;
+      margin-top: 12px;
+      padding: 12px;
+      background: #eff6ff;
+      border-radius: 15px;
+    }
 
-.lesson-card:nth-child(6n+3){
-  background:linear-gradient(145deg,#fff0c2,#fffaf0);
-}
+    .resource-buttons.show {
+      display: block;
+    }
 
-.lesson-card:nth-child(6n+4){
-  background:linear-gradient(145deg,#e3f8e8,#f7fff9);
-}
+    .resource-btn {
+      display: block;
+      text-decoration: none;
+      background: white;
+      color: #1e3a8a;
+      border: 2px solid #93c5fd;
+      padding: 11px 13px;
+      border-radius: 12px;
+      margin: 8px 0;
+      text-align: center;
+      font-weight: bold;
+    }
 
-.lesson-card:nth-child(6n+5){
-  background:linear-gradient(145deg,#eee1ff,#fbf7ff);
-}
+    .resource-btn:hover {
+      background: #dbeafe;
+    }
 
-.lesson-card:nth-child(6n+6){
-  background:linear-gradient(145deg,#d9f7f4,#f5fffe);
-}
-
-.lesson-number{
-  width:48px;
-  height:48px;
-  line-height:48px;
-  margin:0 auto 10px;
-  background:white;
-  color:#ad1457;
-  border-radius:50%;
-  font-size:23px;
-  font-weight:bold;
-  box-shadow:0 4px 10px #0002;
-}
-
-.lesson-icon{
-  font-size:42px;
-  margin-bottom:5px;
-}
-
-.lesson-card h3{
-  color:#8e174f;
-  font-size:22px;
-  margin:8px 0;
-}
-
-.lesson-card p{
-  color:#444;
-  font-size:15px;
-  min-height:45px;
-}
-
-.lesson-btn{
-  display:inline-block;
-  margin-top:18px;
-  padding:9px 18px;
-  border-radius:25px;
-  background:linear-gradient(90deg,#087fca,#0066d6);
-  color:white;
-  font-weight:bold;
-  font-size:14px;
-  box-shadow:0 4px 8px #0002;
-}
-
-.lesson-btn:hover{
-  background:linear-gradient(90deg,#e91e63,#9c27b0);
-}
-
-.note{
-  margin-top:30px;
-  padding:18px;
-  border-left:6px solid #ff9800;
-  border-radius:15px;
-  background:#fff8e1;
-  color:#5d4037;
-  font-weight:bold;
-}
-
-.footer{
-  text-align:center;
-  padding:22px;
-  background:linear-gradient(90deg,#073b91,#0077b6);
-  color:white;
-  font-size:14px;
-}
-
-@media(max-width:500px){
-  .container{
-    padding:18px 10px 35px;
-  }
-
-  .lesson-grid{
-    grid-template-columns:1fr;
-  }
-
-  .hero{
-    padding:28px 12px;
-  }
-
-  .subject-heading h2{
-    font-size:23px;
-  }
-}
-</style>
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #1e3a8a;
+      color: white;
+      margin-top: 35px;
+    }
+  </style>
 </head>
 
 <body>
 
-<header class="topbar">
-  🏠 Home › Digital Learning › Class VIII › Mathematics
+  <header>
+    <h1>📘 ଗଣିତ — ଶ୍ରେଣୀ ୮</h1>
+    <p>Karua Gadadhar Kar High School, Beldandia</p>
+  </header>
 
-  <br>
+  <main class="container">
 
-  <a class="back-btn" href="learning.html">
-    ← Back to Digital Learning
-  </a>
-</header>
+    <a class="back-button" href="learning.html">
+      ← Back to Digital Learning
+    </a>
 
-<section class="hero">
-  <h1>ଶ୍ରେଣୀ ୮ : ଗଣିତ</h1>
-  <p>ଜ୍ଞାନ, ତର୍କ ଓ ସଫଳତାର ପଥରେ</p>
-  <p>“ଗଣିତ ହେଉଛି ଚିନ୍ତାଧାରାର ସୁନ୍ଦର ଭାଷା”</p>
-</section>
-
-<main class="container">
-
-  <div class="subject-heading">
-    <h2>📘 ଗଣିତ — ଶ୍ରେଣୀ ୮</h2>
-  </div>
-
-  <div class="quote">
-    ଅଧ୍ୟୟନ ସାମଗ୍ରୀ • ପ୍ରଶ୍ନ ଓ ଉତ୍ତର • ଅଭ୍ୟାସ ପ୍ରଶ୍ନ
-  </div>
-<div class="lesson-grid">
-
-  <a class="lesson-card" href="#">
-    <div class="lesson-icon">📘</div>
-    <h3>ପାଠ୍ୟପୁସ୍ତକ</h3>
-    <p>ପାଠ୍ୟପୁସ୍ତକ ପଢନ୍ତୁ</p>
-  </a>
-
-  <a class="lesson-card" href="#">
-    <div class="lesson-icon">📝</div>
-    <h3>ଶିକ୍ଷକଙ୍କ ନୋଟ୍</h3>
-    <p>ପାଠର ନୋଟ୍ ପଢନ୍ତୁ</p>
-  </a>
-
-  <a class="lesson-card" href="#">
-    <div class="lesson-icon">❓</div>
-    <h3>ଅଭ୍ୟାସ ପ୍ରଶ୍ନ ଓ ଉତ୍ତର</h3>
-    <p>ପ୍ରଶ୍ନ ଓ ଉତ୍ତର ଅଭ୍ୟାସ କରନ୍ତୁ</p>
-  </a>
-
-</div>
-  <h2 class="category-title">📚 ପାଠ୍ୟ ବିଭାଗ</h2>
-
-  <div class="lesson-grid">
-
-    <div class="lesson-card">
-      <div class="lesson-number">୧</div>
-      <div class="lesson-icon">🔢</div>
-      <h3>ବର୍ଗ ଓ ଘନ</h3>
-      <p>ବର୍ଗ, ବର୍ଗମୂଳ, ଘନ ଓ ଘନମୂଳର ଧାରଣା</p>
-<a class="lesson-btn" href="class-viii-mathematics-lesson-1.html">
-        📖 ଅଧ୍ୟୟନ ସାମଗ୍ରୀ ›
-      </a>
+    <div class="intro">
+      <h2>ଅଧ୍ୟୟନ ସାମଗ୍ରୀ</h2>
+      <p>
+        ପ୍ରତ୍ୟେକ ପାଠ ପାଇଁ “ଅଧ୍ୟୟନ ସାମଗ୍ରୀ” ବଟନ୍‌ରେ ଟ୍ୟାପ୍ କରନ୍ତୁ।
+        ତା’ପରେ ତିନୋଟି ବଟନ୍ ଦେଖାଯିବ।
+      </p>
     </div>
 
-    <div class="lesson-card">
-      <div class="lesson-number">୨</div>
-      <div class="lesson-icon">⚡</div>
-      <h3>ଘାତର ଖେଳ</h3>
-      <p>ଘାତ, ଘାତାଙ୍କ ଓ ଘାତର ନିୟମ</p>
-      <a class="lesson-btn" href="#">
-        📖 ଅଧ୍ୟୟନ ସାମଗ୍ରୀ ›
-      </a>
+    <h2>📚 ପାଠ୍ୟ ବିଭାଗ</h2>
+
+    <div class="lesson-grid">
+
+      <!-- Topic 1 -->
+      <div class="lesson-card">
+        <div class="lesson-number">ପାଠ ୧</div>
+        <div class="lesson-icon">🔢</div>
+
+        <h3>ବର୍ଗ ଓ ଘନ</h3>
+
+        <p>
+          ବର୍ଗ, ବର୍ଗମୂଳ, ଘନ ଓ ଘନମୂଳର ଧାରଣା।
+        </p>
+
+        <button class="lesson-btn" onclick="toggleResources('topic1', this)">
+          📖 ଅଧ୍ୟୟନ ସାମଗ୍ରୀ
+        </button>
+
+        <div class="resource-buttons" id="topic1">
+
+          <a class="resource-btn"
+             href="class-viii-mathematics-lesson-1.html">
+            📘 ପାଠ୍ୟପୁସ୍ତକ
+          </a>
+
+          <a class="resource-btn"
+             href="class-viii-mathematics-lesson-1-notes.html">
+            📝 ଶିକ୍ଷକଙ୍କ ନୋଟ୍
+          </a>
+
+          <a class="resource-btn"
+             href="class-viii-mathematics-lesson-1-practice.html">
+            ❓ ଅଭ୍ୟାସ ପ୍ରଶ୍ନ ଓ ଉତ୍ତର
+          </a>
+
+        </div>
+      </div>
+
+      <!-- Topic 2 -->
+      <div class="lesson-card">
+        <div class="lesson-number">ପାଠ ୨</div>
+        <div class="lesson-icon">⚡</div>
+
+        <h3>ଘାତର ଖେଳ</h3>
+
+        <p>
+          ଘାତ, ଘାତାଙ୍କ ଓ ଘାତର ନିୟମ।
+        </p>
+
+        <button class="lesson-btn" onclick="toggleResources('topic2', this)">
+          📖 ଅଧ୍ୟୟନ ସାମଗ୍ରୀ
+        </button>
+
+        <div class="resource-buttons" id="topic2">
+
+          <a class="resource-btn"
+             href="class-viii-mathematics-lesson-2.html">
+            📘 ପାଠ୍ୟପୁସ୍ତକ
+          </a>
+
+          <a class="resource-btn"
+             href="class-viii-mathematics-lesson-2-notes.html">
+            📝 ଶିକ୍ଷକଙ୍କ ନୋଟ୍
+          </a>
+
+          <a class="resource-btn"
+             href="class-viii-mathematics-lesson-2-practice.html">
+            ❓ ଅଭ୍ୟାସ ପ୍ରଶ୍ନ ଓ ଉତ୍ତର
+          </a>
+
+        </div>
+      </div>
+
+      <!-- Topic 3 -->
+      <div class="lesson-card">
+        <div class="lesson-number">ପାଠ ୩</div>
+        <div class="lesson-icon">🧮</div>
+
+        <h3>ସଂଖ୍ୟାର ଲୀଳା</h3>
+
+        <p>
+          ସଂଖ୍ୟା ସମ୍ବନ୍ଧୀୟ ଧାରଣା ଓ ଗଣିତୀୟ କ୍ରିୟା।
+        </p>
+
+        <button class="lesson-btn" onclick="toggleResources('topic3', this)">
+          📖 ଅଧ୍ୟୟନ ସାମଗ୍ରୀ
+        </button>
+
+        <div class="resource-buttons" id="topic3">
+
+          <a class="resource-btn"
+             href="class-viii-mathematics-lesson-3.html">
+            📘 ପାଠ୍ୟପୁସ୍ତକ
+          </a>
+
+          <a class="resource-btn"
+             href="class-viii-mathematics-lesson-3-notes.html">
+            📝 ଶିକ୍ଷକଙ୍କ ନୋଟ୍
+          </a>
+
+          <a class="resource-btn"
+             href="class-viii-mathematics-lesson-3-practice.html">
+            ❓ ଅଭ୍ୟାସ ପ୍ରଶ୍ନ ଓ ଉତ୍ତର
+          </a>
+
+        </div>
+      </div>
+
+      <!-- Topic 4 -->
+      <div class="lesson-card">
+        <div class="lesson-number">ପାଠ ୪</div>
+        <div class="lesson-icon">📐</div>
+
+        <h3>ଚତୁର୍ଭୁଜ</h3>
+
+        <p>
+          ଚତୁର୍ଭୁଜର ପ୍ରକାର, ଗୁଣ ଓ ଚିତ୍ର।
+        </p>
+
+        <button class="lesson-btn" onclick="toggleResources('topic4', this)">
+          📖 ଅଧ୍ୟୟନ ସାମଗ୍ରୀ
+        </button>
+
+        <div class="resource-buttons" id="topic4">
+
+          <a class="resource-btn"
+             href="class-viii-mathematics-lesson-4.html">
+            📘 ପାଠ୍ୟପୁସ୍ତକ
+          </a>
+
+          <a class="resource-btn"
+             href="class-viii-mathematics-lesson-4-notes.html">
+            📝 ଶିକ୍ଷକଙ୍କ ନୋଟ୍
+          </a>
+
+          <a class="resource-btn"
+             href="class-viii-mathematics-lesson-4-practice.html">
+            ❓ ଅଭ୍ୟାସ ପ୍ରଶ୍ନ ଓ ଉତ୍ତର
+          </a>
+
+        </div>
+      </div>
+
+      <!-- Topic 5 -->
+      <div class="lesson-card">
+        <div class="lesson-number">ପାଠ ୫</div>
+        <div class="lesson-icon">🎲</div>
+
+        <h3>ସଂଖ୍ୟା ଖେଳ</h3>
+
+        <p>
+          ସଂଖ୍ୟା ଆଧାରିତ ମଜାଦାର ଗଣିତୀୟ ସମସ୍ୟା।
+        </p>
+
+        <button class="lesson-btn" onclick="toggleResources('topic5', this)">
+          📖 ଅଧ୍ୟୟନ ସାମଗ୍ରୀ
+        </button>
+
+        <div class="resource-buttons" id="topic5">
+
+          <a class="resource-btn"
+             href="class-viii-mathematics-lesson-5.html">
+            📘 ପାଠ୍ୟପୁସ୍ତକ
+          </a>
+
+          <a class="resource-btn"
+             href="class-viii-mathematics-lesson-5-notes.html">
+            📝 ଶିକ୍ଷକଙ୍କ ନୋଟ୍
+          </a>
+
+          <a class="resource-btn"
+             href="class-viii-mathematics-lesson-5-practice.html">
+            ❓ ଅଭ୍ୟାସ ପ୍ରଶ୍ନ ଓ ଉତ୍ତର
+          </a>
+
+        </div>
+      </div>
+
     </div>
+  </main>
 
-    <div class="lesson-card">
-      <div class="lesson-number">୩</div>
-      <div class="lesson-icon">🧮</div>
-      <h3>ସଂଖ୍ୟାର ଲୀଳା</h3>
-      <p>ସଂଖ୍ୟା ସମ୍ବନ୍ଧୀୟ ଧାରଣା ଓ ଗଣିତୀୟ କ୍ରିୟା</p>
-      <a class="lesson-btn" href="#">
-        📖 ଅଧ୍ୟୟନ ସାମଗ୍ରୀ ›
-      </a>
-    </div>
+  <footer>
+    © 2026 Karua Gadadhar Kar High School, Beldandia
+  </footer>
 
-    <div class="lesson-card">
-      <div class="lesson-number">୪</div>
-      <div class="lesson-icon">📐</div>
-      <h3>ଚତୁର୍ଭୁଜ</h3>
-      <p>ଚତୁର୍ଭୁଜର ପ୍ରକାର, ଗୁଣ ଓ ଚିତ୍ର</p>
-      <a class="lesson-btn" href="#">
-        📖 ଅଧ୍ୟୟନ ସାମଗ୍ରୀ ›
-      </a>
-    </div>
+  <script>
+    function toggleResources(topicId, button) {
+      const box = document.getElementById(topicId);
 
-    <div class="lesson-card">
-      <div class="lesson-number">୫</div>
-      <div class="lesson-icon">🎲</div>
-      <h3>ସଂଖ୍ୟା ଖେଳ</h3>
-      <p>ସଂଖ୍ୟା ଆଧାରିତ ମଜାଦାର ଗଣିତୀୟ ସମସ୍ୟା</p>
-      <a class="lesson-btn" href="#">
-        📖 ଅଧ୍ୟୟନ ସାମଗ୍ରୀ ›
-      </a>
-    </div>
+      box.classList.toggle("show");
 
-    <div class="lesson-card">
-      <div class="lesson-number">୬</div>
-      <div class="lesson-icon">📊</div>
-      <h3>ବାଣିଜ୍ୟ ବନ୍ଧୁ</h3>
-      <p>ଦୈନନ୍ଦିନ ଜୀବନରେ ଗଣିତ ଓ ବାଣିଜ୍ୟିକ ହିସାବ</p>
-      <a class="lesson-btn" href="#">
-        📖 ଅଧ୍ୟୟନ ସାମଗ୍ରୀ ›
-      </a>
-    </div>
-
-    <div class="lesson-card">
-      <div class="lesson-number">୭</div>
-      <div class="lesson-icon">⚖️</div>
-      <h3>ସମାନୁପାତିକ ସୂତ୍ର — ୧</h3>
-      <p>ଅନୁପାତ, ସମାନୁପାତ ଓ ସମ୍ବନ୍ଧିତ ସମସ୍ୟା</p>
-      <a class="lesson-btn" href="#">
-        📖 ଅଧ୍ୟୟନ ସାମଗ୍ରୀ ›
-      </a>
-    </div>
-
-  </div>
-
-  <div class="note">
-    💡 ଟିପ୍ପଣୀ: ପ୍ରତ୍ୟେକ ପାଠର “ଅଧ୍ୟୟନ ସାମଗ୍ରୀ” ବଟନ୍‌ରେ ପରେ
-    Study Material, Questions & Answers ଏବଂ Practice Questions ଲିଙ୍କ୍
-    ଯୋଡ଼ାଯିବ।
-  </div>
-
-</main>
-
-<footer class="footer">
-  © 2026 Karua Gadadhar Kar High School, Beldandia
-</footer>
+      if (box.classList.contains("show")) {
+        button.innerHTML = "📖 ଅଧ୍ୟୟନ ସାମଗ୍ରୀ ▲";
+      } else {
+        button.innerHTML = "📖 ଅଧ୍ୟୟନ ସାମଗ୍ରୀ ▼";
+      }
+    }
+  </script>
 
 </body>
 </html>
