@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Drill Class | KGK High School Beldandia</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #eef8ff, #ffffff, #fff7e6);
+    color: #12344d;
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+}
+
+.page-header {
+    background: linear-gradient(135deg, #064b83, #0789bd, #00a6a6);
+    color: white;
+    text-align: center;
+    padding: 35px 18px;
+    border-radius: 0 0 35px 35px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.18);
+}
+
+.page-header .icon {
+    font-size: 58px;
+    margin-bottom: 8px;
+}
+
+.page-header h1 {
+    font-size: clamp(30px, 6vw, 52px);
+    letter-spacing: 1px;
+}
+
+.page-header h2 {
+    font-size: clamp(16px, 3vw, 25px);
+    margin-top: 8px;
+    font-weight: 500;
+}
+
+.page-header p {
+    margin-top: 12px;
+    font-size: 17px;
+}
+
+.badges {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.badges span {
+    background: white;
+    color: #075b91;
+    padding: 8px 16px;
+    border-radius: 30px;
+    font-weight: bold;
+}
+
+.container {
+    width: min(1150px, 94%);
+    margin: auto;
+}
+
+.section {
+    margin: 28px 0;
+    padding: 28px;
+    background: rgba(255,255,255,0.96);
+    border-radius: 28px;
+    box-shadow: 0 5px 22px rgba(0,0,0,0.09);
+    border-top: 7px solid #0789bd;
+}
+
+.section-title {
+    text-align: center;
+    color: #075b91;
+    font-size: clamp(24px, 4vw, 35px);
+    margin-bottom: 18px;
+}
+
+.introduction {
+    text-align: center;
+    font-size: 18px;
+}
+
+.introduction .odia {
+    margin-top: 14px;
+    color: #555;
+}
+
+/* VIDEO */
+
+.video-section {
+    border-top-color: #f59e0b;
+}
+
+.video-box {
+    background: #092f49;
+    border-radius: 22px;
+    padding: 14px;
+    max-width: 900px;
+    margin: auto;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+}
+
+.video-box video {
+    display: block;
+    width: 100%;
+    max-height: 520px;
+    border-radius: 15px;
+    background: #00131f;
+}
+
+.video-note {
+    color: white;
+    text-align: center;
+    margin-top: 12px;
+    font-size: 15px;
+}
+
+.video-placeholder {
+    min-height: 230px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+    color: white;
+    text-align: center;
+    background: linear-gradient(135deg, #075b91, #00a6a6);
+    border-radius: 15px;
+    padding: 25px;
+}
+
+.video-placeholder .play {
+    font-size: 65px;
+}
+
+/* PHOTO GALLERY */
+
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+}
+
+.photo-card {
+    background: #f4fbff;
+    border-radius: 20px;
+    padding: 12px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.photo-card img {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+.photo-card h3 {
+    color: #075b91;
+    margin-top: 10px;
+}
+
+/* CLASS CARDS */
+
+.class-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.class-card {
+    text-align: center;
+    padding: 25px 15px;
+    border-radius: 22px;
+    color: white;
+    background: linear-gradient(135deg, #075b91, #0789bd);
+    box-shadow: 0 7px 16px rgba(0,0,0,0.15);
+    transition: transform 0.2s;
+}
+
+.class-card:nth-child(2) {
+    background: linear-gradient(135deg, #008577, #00bfa5);
+}
+
+.class-card:nth-child(3) {
+    background: linear-gradient(135deg, #d97706, #f59e0b);
+}
+
+.class-card:hover {
+    transform: translateY(-5px);
+}
+
+.class-card .number {
+    font-size: 42px;
+    font-weight: bold;
+}
+
+.class-card h3 {
+    font-size: 25px;
+    margin: 8px 0;
+}
+
+.class-card p {
+    font-size: 15px;
+}
+
+/* ACTIVITIES */
+
+.activity-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+}
+
+.activity-card {
+    padding: 20px 12px;
+    text-align: center;
+    background: #f1f9ff;
+    border: 2px solid #d8edf8;
+    border-radius: 18px;
+}
+
+.activity-card .emoji {
+    font-size: 42px;
+}
+
+.activity-card h3 {
+    color: #075b91;
+    margin-top: 8px;
+    font-size: 18px;
+}
+
+/* BENEFITS */
+
+.benefit-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+}
+
+.benefit-card {
+    text-align: center;
+    padding: 20px 12px;
+    border-radius: 18px;
+    background: linear-gradient(135deg, #fff7df, #fff);
+    border: 2px solid #f5d58b;
+}
+
+.benefit-card .emoji {
+    font-size: 40px;
+}
+
+/* ROUTINE TABLE */
+
+.table-wrapper {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 450px;
+}
+
+th {
+    background: #075b91;
+    color: white;
+}
+
+th, td {
+    padding: 14px;
+    border: 1px solid #d6e5ee;
+    text-align: center;
+}
+
+tr:nth-child(even) {
+    background: #f1f8fc;
+}
+
+/* CERTIFICATE */
+
+.certificate-box {
+    text-align: center;
+}
+
+.certificate-box img {
+    width: 100%;
+    max-width: 850px;
+    border-radius: 18px;
+    border: 6px solid #f1c453;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+/* SAFETY */
+
+.safety-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    list-style: none;
+}
+
+.safety-list li {
+    background: #fff5f5;
+    border-left: 5px solid #e63946;
+    padding: 12px 15px;
+    border-radius: 10px;
+}
+
+/* BUTTONS */
+
+.navigation {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin: 35px 0;
+}
+
+.nav-button {
+    display: inline-block;
+    background: linear-gradient(135deg, #075b91, #0789bd);
+    color: white;
+    padding: 13px 24px;
+    border-radius: 30px;
+    font-weight: bold;
+    box-shadow: 0 5px 12px rgba(0,0,0,0.15);
+}
+
+.nav-button.home {
+    background: linear-gradient(135deg, #008577, #00bfa5);
+}
+
+footer {
+    text-align: center;
+    background: #092f49;
+    color: white;
+    padding: 28px 15px;
+    border-radius: 30px 30px 0 0;
+}
+
+footer p {
+    margin: 5px 0;
+}
+
+/* MOBILE */
+
+@media (max-width: 800px) {
+    .section {
+        padding: 20px 15px;
+    }
+
+    .class-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .activity-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .benefit-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .photo-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 500px) {
+    .page-header {
+        padding: 28px 12px;
+    }
+
+    .section {
+        border-radius: 20px;
+    }
+
+    .safety-list {
+        grid-template-columns: 1fr;
+    }
+
+    .activity-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .benefit-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .video-placeholder {
+        min-height: 190px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header class="page-header">
+    <div class="icon">🏃</div>
+
+    <h1>DRILL CLASS</h1>
+
+    <h2>Karua Gadadhar Kar High School, Beldandia</h2>
+
+    <p>Discipline • Fitness • Teamwork • Confidence</p>
+
+    <div class="badges">
+        <span>Class VIII</span>
+        <span>Class IX</span>
+        <span>Class X</span>
+    </div>
+</header>
+
+<main class="container">
+
+    <!-- INTRODUCTION -->
+
+    <section class="section">
+        <h2 class="section-title">🏃 Welcome to Drill Class</h2>
+
+        <div class="introduction">
+            <p>
+                Drill Class helps students develop physical fitness,
+                discipline, confidence, teamwork and leadership.
+            </p>
+
+            <p class="odia">
+                ଡ୍ରିଲ୍ ଶ୍ରେଣୀ ଛାତ୍ରଛାତ୍ରୀମାନଙ୍କ ଶାରୀରିକ ସୁସ୍ଥତା,
+                ଶୃଙ୍ଖଳା, ଆତ୍ମବିଶ୍ୱାସ, ଏକତା ଓ ନେତୃତ୍ୱ ଗୁଣ ବିକାଶ କରେ।
+            </p>
+        </div>
+    </section>
+
+    <!-- VIDEO BOX -->
+
+    <section class="section video-section">
+        <h2 class="section-title">🎥 Drill Training Video</h2>
+
+        <div class="video-box">
+
+            <!--
+            When you upload your actual video, replace the video box below
+            with the following code:
+
+            <video controls poster="images/drill-video-poster.jpg">
+                <source src="videos/drill-training.mp4" type="video/mp4">
+                Your browser does not support video playback.
+            </video>
+            -->
+
+            <div class="video-placeholder">
+                <div class="play">▶️</div>
+
+                <h2>Drill Training Video</h2>
+
+                <p>
+                    School drill training video will be displayed here.
+                </p>
+
+                <p>
+                    Upload your MP4 video into the videos folder.
+                </p>
+            </div>
+
+            <p class="video-note">
+                🎬 Watch and practise under the guidance of your teacher.
+            </p>
+        </div>
+    </section>
+
+    <!-- SCHOOL PHOTO GALLERY -->
+
+    <section class="section">
+        <h2 class="section-title">📸 Drill Class at Our School</h2>
+
+        <div class="photo-grid">
+
+            <div class="photo-card">
+                <img src="images/drill-class-photo-1.jpg"
+                     alt="Students practising physical drill">
+
+                <h3>Physical Training</h3>
+
+                <p>
+                    Students practising physical exercises and coordination.
+                </p>
+            </div>
+
+            <div class="photo-card">
+                <img src="images/drill-class-photo-2.jpg"
+                     alt="Students practising marching">
+
+                <h3>Marching Practice</h3>
+
+                <p>
+                    Students learning discipline and group movement.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CLASS-WISE SECTION -->
+
+    <section class="section">
+        <h2 class="section-title">🎓 Class-wise Drill Learning</h2>
+
+        <div class="class-grid">
+
+            <div class="class-card">
+                <div class="number">VIII</div>
+                <h3>Class VIII</h3>
+                <p>
+                    Warm-up, stretching, simple exercises and basic drill.
+                </p>
+            </div>
+
+            <div class="class-card">
+                <div class="number">IX</div>
+                <h3>Class IX</h3>
+                <p>
+                    Marching, coordination, group activities and fitness.
+                </p>
+            </div>
+
+            <div class="class-card">
+                <div class="number">X</div>
+                <h3>Class X</h3>
+                <p>
+                    Advanced drill, leadership, discipline and teamwork.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ACTIVITIES -->
+
+    <section class="section">
+        <h2 class="section-title">🏅 Main Drill Activities</h2>
+
+        <div class="activity-grid">
+
+            <div class="activity-card">
+                <div class="emoji">🧍</div>
+                <h3>Attention Position</h3>
+                <p>Stand straight and remain alert.</p>
+            </div>
+
+            <div class="activity-card">
+                <div class="emoji">🫡</div>
+                <h3>Stand at Ease</h3>
+                <p>Learn correct relaxed standing.</p>
+            </div>
+
+            <div class="activity-card">
+                <div class="emoji">🚶</div>
+                <h3>Marching</h3>
+                <p>Practise rhythm and coordination.</p>
+            </div>
+
+            <div class="activity-card">
+                <div class="emoji">↔️</div>
+                <h3>Left and Right Turn</h3>
+                <p>Learn controlled body movement.</p>
+            </div>
+
+            <div class="activity-card">
+                <div class="emoji">🔄</div>
+                <h3>About Turn</h3>
+                <p>Practise turning with discipline.</p>
+            </div>
+
+            <div class="activity-card">
+                <div class="emoji">🏃</div>
+                <h3>Running</h3>
+                <p>Improve stamina and fitness.</p>
+            </div>
+
+            <div class="activity-card">
+                <div class="emoji">🤸</div>
+                <h3>Stretching</h3>
+                <p>Prepare the body for exercise.</p>
+            </div>
+
+            <div class="activity-card">
+                <div class="emoji">🤝</div>
+                <h3>Teamwork</h3>
+                <p>Learn unity and cooperation.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- BENEFITS -->
+
+    <section class="section">
+        <h2 class="section-title">💪 Benefits of Drill Class</h2>
+
+        <div class="benefit-grid">
+
+            <div class="benefit-card">
+                <div class="emoji">❤️</div>
+                <h3>Physical Fitness</h3>
+                <p>Build strength and stamina.</p>
+            </div>
+
+            <div class="benefit-card">
+                <div class="emoji">🤝</div>
+                <h3>Teamwork</h3>
+                <p>Learn cooperation and unity.</p>
+            </div>
+
+            <div class="benefit-card">
+                <div class="emoji">🛡️</div>
+                <h3>Discipline</h3>
+                <p>Develop good daily habits.</p>
+            </div>
+
+            <div class="benefit-card">
+                <div class="emoji">🏆</div>
+                <h3>Confidence</h3>
+                <p>Improve courage and leadership.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- DAILY ROUTINE -->
+
+    <section class="section">
+        <h2 class="section-title">⏱️ Daily Drill Routine</h2>
+
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Activity</th>
+                        <th>Suggested Time</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>Warm-up</td>
+                        <td>5 minutes</td>
+                    </tr>
+
+                    <tr>
+                        <td>Stretching</td>
+                        <td>5 minutes</td>
+                    </tr>
+
+                    <tr>
+                        <td>Basic Drill</td>
+                        <td>10 minutes</td>
+                    </tr>
+
+                    <tr>
+                        <td>Marching Practice</td>
+                        <td>10 minutes</td>
+                    </tr>
+
+                    <tr>
+                        <td>Cool-down</td>
+                        <td>5 minutes</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- SCHOOL ACHIEVEMENT -->
+
+    <section class="section certificate-box">
+        <h2 class="section-title">🏅 School Drill Achievement</h2>
+
+        <!-- Replace this filename when you upload your certificate -->
+        <img src="images/drill-class-certificate.jpg"
+             alt="School Drill Class Certificate">
+
+        <p style="margin-top: 15px;">
+            Our school achievements, participation certificates and
+            drill activity photographs can be displayed here.
+        </p>
+    </section>
+
+    <!-- SAFETY -->
+
+    <section class="section">
+        <h2 class="section-title">⚠️ Drill Safety Rules</h2>
+
+        <ul class="safety-list">
+            <li>Practise under the teacher’s supervision.</li>
+            <li>Warm up before physical activity.</li>
+            <li>Wear comfortable sports clothes.</li>
+            <li>Drink water when needed.</li>
+            <li>Do not force any movement.</li>
+            <li>Stop if you feel pain or dizziness.</li>
+        </ul>
+    </section>
+
+    <!-- NAVIGATION -->
+
+    <div class="navigation">
+        <a class="nav-button" href="learning.html">
+            ⬅ Back to Digital Learning
+        </a>
+
+        <a class="nav-button home" href="index.html">
+            🏠 Back to Home
+        </a>
+    </div>
+
+</main>
+
+<footer>
+    <p><strong>Karua Gadadhar Kar High School, Beldandia</strong></p>
+    <p>Classes VIII • IX • X</p>
+    <p>Discipline • Fitness • Teamwork • Confidence</p>
+</footer>
+
+</body>
+</html>
+
