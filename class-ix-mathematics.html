@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="or">
+<head>
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Class IX Mathematics | KGKHS Beldandia</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, "Noto Sans Oriya", sans-serif;
+      background: linear-gradient(135deg, #eef7ff, #fff8ef);
+      color: #173b78;
+    }
+
+    header {
+      background: linear-gradient(135deg, #0645ad, #087cf0);
+      color: white;
+      text-align: center;
+      padding: 28px 15px;
+      border-bottom-left-radius: 35px;
+      border-bottom-right-radius: 35px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.18);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 28px;
+    }
+
+    header p {
+      margin: 10px 0 0;
+      font-size: 17px;
+    }
+
+    main {
+      width: 94%;
+      max-width: 1100px;
+      margin: 25px auto;
+    }
+
+    .back-button {
+      display: inline-block;
+      background: #173b78;
+      color: white;
+      text-decoration: none;
+      padding: 12px 22px;
+      border-radius: 30px;
+      font-weight: bold;
+      margin-bottom: 25px;
+    }
+
+    .part-title {
+      background: linear-gradient(135deg, #ff7b00, #ffb000);
+      color: white;
+      text-align: center;
+      padding: 18px 12px;
+      border-radius: 25px;
+      margin: 30px 0 20px;
+      font-size: 25px;
+      box-shadow: 0 5px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .lesson-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 22px;
+    }
+
+    .lesson-card {
+      background: white;
+      border-radius: 25px;
+      padding: 22px;
+      border-top: 8px solid #087cf0;
+      box-shadow: 0 7px 18px rgba(0, 0, 0, 0.12);
+    }
+
+    .lesson-card h3 {
+      margin: 0 0 15px;
+      color: #173b78;
+      font-size: 22px;
+      line-height: 1.6;
+    }
+
+    .lesson-card p {
+      color: #333;
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    .lesson-btn {
+      width: 100%;
+      border: none;
+      background: linear-gradient(135deg, #0066ff, #1454c4);
+      color: white;
+      padding: 16px 10px;
+      border-radius: 35px;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .lesson-btn:hover {
+      background: linear-gradient(135deg, #1454c4, #003b99);
+    }
+
+    .resource-buttons {
+      display: none;
+      margin-top: 15px;
+      gap: 12px;
+    }
+
+    .resource-buttons.show {
+      display: grid;
+    }
+
+    .resource-btn {
+      display: block;
+      text-decoration: none;
+      text-align: center;
+      background: #edf5ff;
+      color: #073b9b;
+      border: 2px solid #d2e5ff;
+      padding: 15px 10px;
+      border-radius: 18px;
+      font-size: 16px;
+      font-weight: bold;
+      line-height: 1.6;
+    }
+
+    .resource-btn:hover {
+      background: #d7eaff;
+      border-color: #087cf0;
+    }
+
+    footer {
+      margin-top: 35px;
+      background: #173b78;
+      color: white;
+      text-align: center;
+      padding: 22px 12px;
+      line-height: 1.7;
+    }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 23px;
+      }
+
+      .part-title {
+        font-size: 21px;
+      }
+
+      .lesson-card h3 {
+        font-size: 20px;
+      }
+
+      .lesson-btn,
+      .resource-btn {
+        font-size: 15px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>📐 ନବମ ଶ୍ରେଣୀ ଗଣିତ</h1>
+    <p>Class IX Mathematics</p>
+    <p>Karua Gadadhar Kar High School, Beldandia</p>
+  </header>
+
+  <main>
+
+    <a class="back-button" href="learning.html">
+      ⬅️ ଡିଜିଟାଲ୍ ଲର୍ଣ୍ଣିଂକୁ ଫେରନ୍ତୁ
+    </a>
+
+    <!-- ALGEBRA PART -->
+
+    <div class="part-title">
+      🔢 ବୀଜଗଣିତ — Algebra Part
+    </div>
+
+    <div class="lesson-grid">
+
+      <!-- ALGEBRA TOPIC 1 -->
+
+      <div class="lesson-card">
+        <h3>📘 ସେଟ୍, ପ୍ରକ୍ରିୟା ଏବଂ ସେଟର ପ୍ରୟୋଗ</h3>
+
+        <button class="lesson-btn" onclick="toggleResources('algebra1', this)">
+          📖 ଅଧ୍ୟୟନ ସାମଗ୍ରୀ ▼
+        </button>
+
+        <div id="algebra1" class="resource-buttons">
+          <a class="resource-btn" href="class-ix-mathematics-algebra-lesson-1.html">
+            📘 ପାଠ୍ୟପୁସ୍ତକ
+          </a>
+
+          <a class="resource-btn" href="class-ix-mathematics-algebra-lesson-1-notes.html">
+            📝 ଶିକ୍ଷକଙ୍କ ନୋଟ୍
+          </a>
+
+          <a class="resource-btn" href="class-ix-mathematics-algebra-lesson-1-practice.html">
+            ❓ ଅଭ୍ୟାସ ପ୍ରଶ୍ନ ଓ ଉତ୍ତର
+          </a>
+
+          <a class="resource-btn" href="class-ix-mathematics-algebra-lesson-1-video.html">
+            🎥 ଭିଡିଓ
+          </a>
+        </div>
+      </div>
+
+      <!-- ALGEBRA TOPIC 2 -->
+
+      <div class="lesson-card">
+        <h3>📘 ବାସ୍ତବ ସଂଖ୍ୟା</h3>
+
+        <button class="lesson-btn" onclick="toggleResources('algebra2', this)">
+          📖 ଅଧ୍ୟୟନ ସାମଗ୍ରୀ ▼
+        </button>
+
+        <div id="algebra2" class="resource-buttons">
+          <a class="resource-btn" href="class-ix-mathematics-algebra-lesson-2.html">
+            📘 ପାଠ୍ୟପୁସ୍ତକ
+          </a>
+
+          <a class="resource-btn" href="class-ix-mathematics-algebra-lesson-2-notes.html">
+            📝 ଶିକ୍ଷକଙ୍କ ନୋଟ୍
+          </a>
+
+          <a class="resource-btn" href="class-ix-mathematics-algebra-lesson-2-practice.html">
+            ❓ ଅଭ୍ୟାସ ପ୍ରଶ୍ନ ଓ ଉତ୍ତର
+          </a>
+
+          <a class="resource-btn" href="class-ix-mathematics-algebra-lesson-2-video.html">
+            🎥 ଭିଡିଓ
+          </a>
+        </div>
+      </div>
+
+      <!-- ALGEBRA TOPIC 3 -->
+
+      <div class="lesson-card">
+        <h3>📘 ବୀଜଗାଣିତିକ ପରିପ୍ରକାଶ ଓ ଅଭେଦ</h3>
+
+        <button class="lesson-btn" onclick="toggleResources('algebra3', this)">
+          📖 ଅଧ୍ୟୟନ ସାମଗ୍ରୀ ▼
+        </button>
+
+        <div id="algebra3" class="resource-buttons">
+          <a class="resource-btn" href="class-ix-mathematics-algebra-lesson-3.html">
+            📘 ପାଠ୍ୟପୁସ୍ତକ
+          </a>
+
+          <a class="resource-btn" href="class-ix-mathematics-algebra-lesson-3-notes.html">
+            📝 ଶିକ୍ଷକଙ୍କ ନୋଟ୍
+          </a>
+
+          <a class="resource-btn" href="class-ix-mathematics-algebra-lesson-3-practice.html">
+            ❓ ଅଭ୍ୟାସ ପ୍ରଶ୍ନ ଓ ଉତ୍ତର
+          </a>
+
+          <a class="resource-btn" href="class-ix-mathematics-algebra-lesson-3-video.html">
+            🎥 ଭିଡିଓ
+          </a>
+        </div>
+      </div>
+
+      <!-- ALGEBRA TOPIC 4 -->
+
+      <div class="lesson-card">
+        <h3>📘 ବୀଜଗାଣିତିକ ସମୀକରଣ</h3>
+
+        <button class="lesson-btn" onclick="toggleResources('algebra4', this)">
+          📖 ଅଧ୍ୟୟନ ସାମଗ୍ରୀ ▼
+        </button>
+
+        <div id="algebra4" class="resource-buttons">
+          <a class="resource-btn" href="class-ix-mathematics-algebra-lesson-4.html">
+            📘 ପାଠ୍ୟପୁସ୍ତକ
+          </a>
+
+          <a class="resource-btn" href="class-ix-mathematics-algebra-lesson-4-notes.html">
+            📝 ଶିକ୍ଷକଙ୍କ ନୋଟ୍
+          </a>
+
+          <a class="resource-btn" href="class-ix-mathematics-algebra-lesson-4-practice.html">
+            ❓ ଅଭ୍ୟାସ ପ୍ରଶ୍ନ ଓ ଉତ୍ତର
+          </a>
+
+          <a class="resource-btn" href="class-ix-mathematics-algebra-lesson-4-video.html">
+            🎥 ଭିଡିଓ
+          </a>
+        </div>
+      </div>
+
+      <!-- ALGEBRA TOPIC 5 -->
+
+      <div class="lesson-card">
+        <h3>📘 ଘାତାଙ୍କ ଜ୍ଞାନିତି</h3>
+
+        <button class="lesson-btn" onclick="toggleResources('algebra5', this)">
+          📖 ଅଧ୍ୟୟନ ସାମଗ୍ରୀ ▼
+        </button>
+
+        <div id="algebra5" class="resource-buttons">
+          <a class="resource-btn" href="class-ix-mathematics-algebra-lesson-5.html">
+            📘 ପାଠ୍ୟପୁସ୍ତକ
+          </a>
+
+          <a class="resource-btn" href="class-ix-mathematics-algebra-lesson-5-notes.html">
+            📝 ଶିକ୍ଷକଙ୍କ ନୋଟ୍
+          </a>
+
+          <a class="resource-btn" href="class-ix-mathematics-algebra-lesson-5-practice.html">
+            ❓ ଅଭ୍ୟାସ ପ୍ରଶ୍ନ ଓ ଉତ୍ତର
+          </a>
+
+          <a class="resource-btn" href="class-ix-mathematics-algebra-lesson-5-video.html">
+            🎥 ଭିଡିଓ
+          </a>
+        </div>
+      </div>
+
+      <!-- ALGEBRA TOPIC 6 -->
+
+      <div class="lesson-card">
+        <h3>📘 ଅନୁପାତ ଓ ସମାନୁପାତ</h3>
+
+        <button class="lesson-btn" onclick="toggleResources('algebra6', this)">
+          📖 ଅଧ୍ୟୟନ ସାମଗ୍ରୀ ▼
+        </button>
+
+        <div id="algebra6" class="resource-buttons">
+          <a class="resource-btn" href="class-ix-mathematics-algebra-lesson-6.html">
+            📘 ପାଠ୍ୟପୁସ୍ତକ
+          </a>
+
+          <a class="resource-btn" href="class-ix-mathematics-algebra-lesson-6-notes.html">
+            📝 ଶିକ୍ଷକଙ୍କ ନୋଟ୍
+          </a>
+
+          <a class="resource-btn" href="class-ix-mathematics-algebra-lesson-6-practice.html">
+            ❓ ଅଭ୍ୟାସ ପ୍ରଶ୍ନ ଓ ଉତ୍ତର
+          </a>
+
+          <a class="resource-btn" href="class-ix-mathematics-algebra-lesson-6-video.html">
+            🎥 ଭିଡିଓ
+          </a>
+        </div>
+      </div>
+
+      <!-- ALGEBRA TOPIC 7 -->
+
+      <div class="lesson-card">
+        <h3>📘 ପରିବର୍ତ୍ତନଶୀଳ</h3>
+
+        <button class="lesson-btn" onclick="toggleResources('algebra7', this)">
+          📖 ଅଧ୍ୟୟନ ସାମଗ୍ରୀ ▼
+        </button>
+
+        <div id="algebra7" class="resource-buttons">
+          <a class="resource-btn" href="class-ix-mathematics-algebra-lesson-7.html">
+            📘 ପାଠ୍ୟପୁସ୍ତକ
+          </a>
+
+          <a class="resource-btn" href="class-ix-mathematics-algebra-lesson-7-notes.html">
+            📝 ଶିକ୍ଷକଙ୍କ ନୋଟ୍
+          </a>
+
+          <a class="resource-btn" href="class-ix-mathematics-algebra-lesson-7-practice.html">
+            ❓ ଅଭ୍ୟାସ ପ୍ରଶ୍ନ ଓ ଉତ୍ତର
+          </a>
+
+          <a class="resource-btn" href="class-ix-mathematics-algebra-lesson-7-video.html">
+            🎥 ଭିଡିଓ
+          </a>
+        </div>
+      </div>
+
+      <!-- ALGEBRA TOPIC 8 -->
+
+      <div class="lesson-card">
+        <h3>📘 ସମାନତା</h3>
+
+        <button class="lesson-btn" onclick="toggleResources('algebra8', this)">
+          📖 ଅଧ୍ୟୟନ ସାମଗ୍ରୀ ▼
+        </button>
+
+        <div id="algebra8" class="resource-buttons">
+          <a class="resource-btn" href="class-ix-mathematics-algebra-lesson-8.html">
+            📘 ପାଠ୍ୟପୁସ୍ତକ
+          </a>
+
+          <a class="resource-btn" href="class-ix-mathematics-algebra-lesson-8-notes.html">
+            📝 ଶିକ୍ଷକଙ୍କ ନୋଟ୍
+          </a>
+
+          <a class="resource-btn" href="class-ix-mathematics-algebra-lesson-8-practice.html">
+            ❓ ଅଭ୍ୟାସ ପ୍ରଶ୍ନ ଓ ଉତ୍ତର
+          </a>
+
+          <a class="resource-btn" href="class-ix-mathematics-algebra-lesson-8-video.html">
+            🎥 ଭିଡିଓ
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- GEOMETRY PART -->
+
+    <div class="part-title">
+      📐 ଜ୍ୟାମିତି — Geometry Part
+    </div>
+
+    <div class="lesson-grid">
+
+      <!-- GEOMETRY TOPIC 1 -->
+
+      <div class="lesson-card">
+        <h3>📘 ରେଖା ଓ କୋଣ</h3>
+
+        <button class="lesson-btn" onclick="toggleResources('geometry1', this)">
+          📖 ଅଧ୍ୟୟନ ସାମଗ୍ରୀ ▼
+        </button>
+
+        <div id="geometry1" class="resource-buttons">
+          <a class="resource-btn" href="class-ix-mathematics-geometry-lesson-1.html">
+            📘 ପାଠ୍ୟପୁସ୍ତକ
+          </a>
+
+          <a class="resource-btn" href="class-ix-mathematics-geometry-lesson-1-notes.html">
+            📝 ଶିକ୍ଷକଙ୍କ ନୋଟ୍
+          </a>
+
+          <a class="resource-btn" href="class-ix-mathematics-geometry-lesson-1-practice.html">
+            ❓ ଅଭ୍ୟାସ ପ୍ରଶ୍ନ ଓ ଉତ୍ତର
+          </a>
+
+          <a class="resource-btn" href="class-ix-mathematics-geometry-lesson-1-video.html">
+            🎥 ଭିଡିଓ
+          </a>
+        </div>
+      </div>
+
+      <!-- GEOMETRY TOPIC 2 -->
+
+      <div class="lesson-card">
+        <h3>📘 ତ୍ରିଭୁଜମାନଙ୍କ ସର୍ବସମତା</h3>
+
+        <button class="lesson-btn" onclick="toggleResources('geometry2', this)">
+          📖 ଅଧ୍ୟୟନ ସାମଗ୍ରୀ ▼
+        </button>
+
+        <div id="geometry2" class="resource-buttons">
+          <a class="resource-btn" href="class-ix-mathematics-geometry-lesson-2.html">
+            📘 ପାଠ୍ୟପୁସ୍ତକ
+          </a>
+
+          <a class="resource-btn" href="class-ix-mathematics-geometry-lesson-2-notes.html">
+            📝 ଶିକ୍ଷକଙ୍କ ନୋଟ୍
+          </a>
+
+          <a class="resource-btn" href="class-ix-mathematics-geometry-lesson-2-practice.html">
+            ❓ ଅଭ୍ୟାସ ପ୍ରଶ୍ନ ଓ ଉତ୍ତର
+          </a>
+
+          <a class="resource-btn" href="class-ix-mathematics-geometry-lesson-2-video.html">
+            🎥 ଭିଡିଓ
+          </a>
+        </div>
+      </div>
+
+      <!-- GEOMETRY TOPIC 3 -->
+
+      <div class="lesson-card">
+        <h3>📘 ଚତୁର୍ଭୁଜ</h3>
+
+        <button class="lesson-btn" onclick="toggleResources('geometry3', this)">
+          📖 ଅଧ୍ୟୟନ ସାମଗ୍ରୀ ▼
+        </button>
+
+        <div id="geometry3" class="resource-buttons">
+          <a class="resource-btn" href="class-ix-mathematics-geometry-lesson-3.html">
+            📘 ପାଠ୍ୟପୁସ୍ତକ
+          </a>
+
+          <a class="resource-btn" href="class-ix-mathematics-geometry-lesson-3-notes.html">
+            📝 ଶିକ୍ଷକଙ୍କ ନୋଟ୍
+          </a>
+
+          <a class="resource-btn" href="class-ix-mathematics-geometry-lesson-3-practice.html">
+            ❓ ଅଭ୍ୟାସ ପ୍ରଶ୍ନ ଓ ଉତ୍ତର
+          </a>
+
+          <a class="resource-btn" href="class-ix-mathematics-geometry-lesson-3-video.html">
+            🎥 ଭିଡିଓ
+          </a>
+        </div>
+      </div>
+
+      <!-- GEOMETRY TOPIC 4 -->
+
+      <div class="lesson-card">
+        <h3>📘 କ୍ଷେତ୍ରଫଳ</h3>
+
+        <button class="lesson-btn" onclick="toggleResources('geometry4', this)">
+          📖 ଅଧ୍ୟୟନ ସାମଗ୍ରୀ ▼
+        </button>
+
+        <div id="geometry4" class="resource-buttons">
+          <a class="resource-btn" href="class-ix-mathematics-geometry-lesson-4.html">
+            📘 ପାଠ୍ୟପୁସ୍ତକ
+          </a>
+
+          <a class="resource-btn" href="class-ix-mathematics-geometry-lesson-4-notes.html">
+            📝 ଶିକ୍ଷକଙ୍କ ନୋଟ୍
+          </a>
+
+          <a class="resource-btn" href="class-ix-mathematics-geometry-lesson-4-practice.html">
+            ❓ ଅଭ୍ୟାସ ପ୍ରଶ୍ନ ଓ ଉତ୍ତର
+          </a>
+
+          <a class="resource-btn" href="class-ix-mathematics-geometry-lesson-4-video.html">
+            🎥 ଭିଡିଓ
+          </a>
+        </div>
+      </div>
+
+      <!-- GEOMETRY TOPIC 5 -->
+
+      <div class="lesson-card">
+        <h3>📘 ପରିମିତି</h3>
+
+        <button class="lesson-btn" onclick="toggleResources('geometry5', this)">
+          📖 ଅଧ୍ୟୟନ ସାମଗ୍ରୀ ▼
+        </button>
+
+        <div id="geometry5" class="resource-buttons">
+          <a class="resource-btn" href="class-ix-mathematics-geometry-lesson-5.html">
+            📘 ପାଠ୍ୟପୁସ୍ତକ
+          </a>
+
+          <a class="resource-btn" href="class-ix-mathematics-geometry-lesson-5-notes.html">
+            📝 ଶିକ୍ଷକଙ୍କ ନୋଟ୍
+          </a>
+
+          <a class="resource-btn" href="class-ix-mathematics-geometry-lesson-5-practice.html">
+            ❓ ଅଭ୍ୟାସ ପ୍ରଶ୍ନ ଓ ଉତ୍ତର
+          </a>
+
+          <a class="resource-btn" href="class-ix-mathematics-geometry-lesson-5-video.html">
+            🎥 ଭିଡିଓ
+          </a>
+        </div>
+      </div>
+
+      <!-- GEOMETRY TOPIC 6 -->
+
+      <div class="lesson-card">
+        <h3>📘 ଅଙ୍କନ</h3>
+
+        <button class="lesson-btn" onclick="toggleResources('geometry6', this)">
+          📖 ଅଧ୍ୟୟନ ସାମଗ୍ରୀ ▼
+        </button>
+
+        <div id="geometry6" class="resource-buttons">
+          <a class="resource-btn" href="class-ix-mathematics-geometry-lesson-6.html">
+            📘 ପାଠ୍ୟପୁସ୍ତକ
+          </a>
+
+          <a class="resource-btn" href="class-ix-mathematics-geometry-lesson-6-notes.html">
+            📝 ଶିକ୍ଷକଙ୍କ ନୋଟ୍
+          </a>
+
+          <a class="resource-btn" href="class-ix-mathematics-geometry-lesson-6-practice.html">
+            ❓ ଅଭ୍ୟାସ ପ୍ରଶ୍ନ ଓ ଉତ୍ତର
+          </a>
+
+          <a class="resource-btn" href="class-ix-mathematics-geometry-lesson-6-video.html">
+            🎥 ଭିଡିଓ
+          </a>
+        </div>
+      </div>
+
+      <!-- GEOMETRY TOPIC 7 -->
+
+      <div class="lesson-card">
+        <h3>📘 ତ୍ରିକୋଣମିତି</h3>
+
+        <button class="lesson-btn" onclick="toggleResources('geometry7', this)">
+          📖 ଅଧ୍ୟୟନ ସାମଗ୍ରୀ ▼
+        </button>
+
+        <div id="geometry7" class="resource-buttons">
+          <a class="resource-btn" href="class-ix-mathematics-geometry-lesson-7.html">
+            📘 ପାଠ୍ୟପୁସ୍ତକ
+          </a>
+
+          <a class="resource-btn" href="class-ix-mathematics-geometry-lesson-7-notes.html">
+            📝 ଶିକ୍ଷକଙ୍କ ନୋଟ୍
+          </a>
+
+          <a class="resource-btn" href="class-ix-mathematics-geometry-lesson-7-practice.html">
+            ❓ ଅଭ୍ୟାସ ପ୍ରଶ୍ନ ଓ ଉତ୍ତର
+          </a>
+
+          <a class="resource-btn" href="class-ix-mathematics-geometry-lesson-7-video.html">
+            🎥 ଭିଡିଓ
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <footer>
+    © 2026 Karua Gadadhar Kar High School, Beldandia
+  </footer>
+
+  <script>
+    function toggleResources(topicId, button) {
+      const box = document.getElementById(topicId);
+
+      box.classList.toggle("show");
+
+      if (box.classList.contains("show")) {
+        button.innerHTML = "📖 ଅଧ୍ୟୟନ ସାମଗ୍ରୀ ▲";
+      } else {
+        button.innerHTML = "📖 ଅଧ୍ୟୟନ ସାମଗ୍ରୀ ▼";
+      }
+    }
+  </script>
+
+</body>
+</html>
