@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="or">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ଶ୍ରେଣୀ ୮ : ଗଣିତ | KGKHS Beldandia</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  font-family:"Noto Sans Odia","Kalinga","Nirmala UI",Arial,sans-serif;
+  background:linear-gradient(135deg,#e0f7fa,#fff3e0,#f3e5f5);
+  color:#222;
+  line-height:1.7;
+}
+
+a{
+  text-decoration:none;
+}
+
+.topbar{
+  background:linear-gradient(90deg,#073b91,#0077b6,#00a896);
+  color:white;
+  padding:15px 20px;
+  text-align:center;
+  font-weight:bold;
+  font-size:15px;
+}
+
+.back-btn{
+  display:inline-block;
+  margin-top:12px;
+  background:#ffd21f;
+  color:#111;
+  padding:9px 20px;
+  border-radius:30px;
+  font-weight:bold;
+  box-shadow:0 4px 10px #0003;
+}
+
+.hero{
+  text-align:center;
+  padding:35px 18px;
+  background:linear-gradient(135deg,#fffde7,#e3f2fd,#fce4ec);
+  border-bottom:6px solid #087fca;
+}
+
+.hero h1{
+  color:#075985;
+  font-size:clamp(28px,6vw,45px);
+  margin-bottom:10px;
+}
+
+.hero p{
+  color:#555;
+  font-size:18px;
+  font-weight:bold;
+}
+
+.container{
+  max-width:1150px;
+  margin:auto;
+  padding:25px 15px 45px;
+}
+
+.subject-heading{
+  text-align:center;
+  background:linear-gradient(90deg,#9c27b0,#e91e63);
+  color:white;
+  padding:15px;
+  border-radius:25px;
+  margin-bottom:22px;
+  box-shadow:0 6px 15px #0002;
+}
+
+.subject-heading h2{
+  font-size:28px;
+}
+
+.quote{
+  background:white;
+  color:#444;
+  padding:12px 18px;
+  border-radius:30px;
+  text-align:center;
+  margin:0 auto 28px;
+  max-width:650px;
+  box-shadow:0 4px 12px #0002;
+  font-weight:bold;
+}
+
+.category-title{
+  display:inline-block;
+  color:white;
+  padding:9px 25px;
+  border-radius:25px;
+  margin:22px 0 18px;
+  background:linear-gradient(90deg,#ff6f00,#ff9800);
+  font-size:22px;
+}
+
+.lesson-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(245px,1fr));
+  gap:20px;
+}
+
+.lesson-card{
+  border-radius:25px;
+  padding:22px 18px;
+  min-height:245px;
+  text-align:center;
+  border:3px solid white;
+  box-shadow:0 8px 18px #0002;
+  transition:transform .25s,box-shadow .25s;
+}
+
+.lesson-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 14px 25px #0003;
+}
+
+.lesson-card:nth-child(6n+1){
+  background:linear-gradient(145deg,#ffe0e6,#fff5f7);
+}
+
+.lesson-card:nth-child(6n+2){
+  background:linear-gradient(145deg,#dff3ff,#f5fbff);
+}
+
+.lesson-card:nth-child(6n+3){
+  background:linear-gradient(145deg,#fff0c2,#fffaf0);
+}
+
+.lesson-card:nth-child(6n+4){
+  background:linear-gradient(145deg,#e3f8e8,#f7fff9);
+}
+
+.lesson-card:nth-child(6n+5){
+  background:linear-gradient(145deg,#eee1ff,#fbf7ff);
+}
+
+.lesson-card:nth-child(6n+6){
+  background:linear-gradient(145deg,#d9f7f4,#f5fffe);
+}
+
+.lesson-number{
+  width:48px;
+  height:48px;
+  line-height:48px;
+  margin:0 auto 10px;
+  background:white;
+  color:#ad1457;
+  border-radius:50%;
+  font-size:23px;
+  font-weight:bold;
+  box-shadow:0 4px 10px #0002;
+}
+
+.lesson-icon{
+  font-size:42px;
+  margin-bottom:5px;
+}
+
+.lesson-card h3{
+  color:#8e174f;
+  font-size:22px;
+  margin:8px 0;
+}
+
+.lesson-card p{
+  color:#444;
+  font-size:15px;
+  min-height:45px;
+}
+
+.lesson-btn{
+  display:inline-block;
+  margin-top:18px;
+  padding:9px 18px;
+  border-radius:25px;
+  background:linear-gradient(90deg,#087fca,#0066d6);
+  color:white;
+  font-weight:bold;
+  font-size:14px;
+  box-shadow:0 4px 8px #0002;
+}
+
+.lesson-btn:hover{
+  background:linear-gradient(90deg,#e91e63,#9c27b0);
+}
+
+.note{
+  margin-top:30px;
+  padding:18px;
+  border-left:6px solid #ff9800;
+  border-radius:15px;
+  background:#fff8e1;
+  color:#5d4037;
+  font-weight:bold;
+}
+
+.footer{
+  text-align:center;
+  padding:22px;
+  background:linear-gradient(90deg,#073b91,#0077b6);
+  color:white;
+  font-size:14px;
+}
+
+@media(max-width:500px){
+  .container{
+    padding:18px 10px 35px;
+  }
+
+  .lesson-grid{
+    grid-template-columns:1fr;
+  }
+
+  .hero{
+    padding:28px 12px;
+  }
+
+  .subject-heading h2{
+    font-size:23px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header class="topbar">
+  🏠 Home › Digital Learning › Class VIII › Mathematics
+
+  <br>
+
+  <a class="back-btn" href="digital-learning.html">
+    ← Back to Digital Learning
+  </a>
+</header>
+
+<section class="hero">
+  <h1>ଶ୍ରେଣୀ ୮ : ଗଣିତ</h1>
+  <p>ଜ୍ଞାନ, ତର୍କ ଓ ସଫଳତାର ପଥରେ</p>
+  <p>“ଗଣିତ ହେଉଛି ଚିନ୍ତାଧାରାର ସୁନ୍ଦର ଭାଷା”</p>
+</section>
+
+<main class="container">
+
+  <div class="subject-heading">
+    <h2>📘 ଗଣିତ — ଶ୍ରେଣୀ ୮</h2>
+  </div>
+
+  <div class="quote">
+    ଅଧ୍ୟୟନ ସାମଗ୍ରୀ • ପ୍ରଶ୍ନ ଓ ଉତ୍ତର • ଅଭ୍ୟାସ ପ୍ରଶ୍ନ
+  </div>
+
+  <h2 class="category-title">📚 ପାଠ୍ୟ ବିଭାଗ</h2>
+
+  <div class="lesson-grid">
+
+    <div class="lesson-card">
+      <div class="lesson-number">୧</div>
+      <div class="lesson-icon">🔢</div>
+      <h3>ବର୍ଗ ଓ ଘନ</h3>
+      <p>ବର୍ଗ, ବର୍ଗମୂଳ, ଘନ ଓ ଘନମୂଳର ଧାରଣା</p>
+      <a class="lesson-btn" href="#">
+        📖 ଅଧ୍ୟୟନ ସାମଗ୍ରୀ ›
+      </a>
+    </div>
+
+    <div class="lesson-card">
+      <div class="lesson-number">୨</div>
+      <div class="lesson-icon">⚡</div>
+      <h3>ଘାତର ଖେଳ</h3>
+      <p>ଘାତ, ଘାତାଙ୍କ ଓ ଘାତର ନିୟମ</p>
+      <a class="lesson-btn" href="#">
+        📖 ଅଧ୍ୟୟନ ସାମଗ୍ରୀ ›
+      </a>
+    </div>
+
+    <div class="lesson-card">
+      <div class="lesson-number">୩</div>
+      <div class="lesson-icon">🧮</div>
+      <h3>ସଂଖ୍ୟାର ଲୀଳା</h3>
+      <p>ସଂଖ୍ୟା ସମ୍ବନ୍ଧୀୟ ଧାରଣା ଓ ଗଣିତୀୟ କ୍ରିୟା</p>
+      <a class="lesson-btn" href="#">
+        📖 ଅଧ୍ୟୟନ ସାମଗ୍ରୀ ›
+      </a>
+    </div>
+
+    <div class="lesson-card">
+      <div class="lesson-number">୪</div>
+      <div class="lesson-icon">📐</div>
+      <h3>ଚତୁର୍ଭୁଜ</h3>
+      <p>ଚତୁର୍ଭୁଜର ପ୍ରକାର, ଗୁଣ ଓ ଚିତ୍ର</p>
+      <a class="lesson-btn" href="#">
+        📖 ଅଧ୍ୟୟନ ସାମଗ୍ରୀ ›
+      </a>
+    </div>
+
+    <div class="lesson-card">
+      <div class="lesson-number">୫</div>
+      <div class="lesson-icon">🎲</div>
+      <h3>ସଂଖ୍ୟା ଖେଳ</h3>
+      <p>ସଂଖ୍ୟା ଆଧାରିତ ମଜାଦାର ଗଣିତୀୟ ସମସ୍ୟା</p>
+      <a class="lesson-btn" href="#">
+        📖 ଅଧ୍ୟୟନ ସାମଗ୍ରୀ ›
+      </a>
+    </div>
+
+    <div class="lesson-card">
+      <div class="lesson-number">୬</div>
+      <div class="lesson-icon">📊</div>
+      <h3>ବାଣିଜ୍ୟ ବନ୍ଧୁ</h3>
+      <p>ଦୈନନ୍ଦିନ ଜୀବନରେ ଗଣିତ ଓ ବାଣିଜ୍ୟିକ ହିସାବ</p>
+      <a class="lesson-btn" href="#">
+        📖 ଅଧ୍ୟୟନ ସାମଗ୍ରୀ ›
+      </a>
+    </div>
+
+    <div class="lesson-card">
+      <div class="lesson-number">୭</div>
+      <div class="lesson-icon">⚖️</div>
+      <h3>ସମାନୁପାତିକ ସୂତ୍ର — ୧</h3>
+      <p>ଅନୁପାତ, ସମାନୁପାତ ଓ ସମ୍ବନ୍ଧିତ ସମସ୍ୟା</p>
+      <a class="lesson-btn" href="#">
+        📖 ଅଧ୍ୟୟନ ସାମଗ୍ରୀ ›
+      </a>
+    </div>
+
+  </div>
+
+  <div class="note">
+    💡 ଟିପ୍ପଣୀ: ପ୍ରତ୍ୟେକ ପାଠର “ଅଧ୍ୟୟନ ସାମଗ୍ରୀ” ବଟନ୍‌ରେ ପରେ
+    Study Material, Questions & Answers ଏବଂ Practice Questions ଲିଙ୍କ୍
+    ଯୋଡ଼ାଯିବ।
+  </div>
+
+</main>
+
+<footer class="footer">
+  © 2026 Karua Gadadhar Kar High School, Beldandia
+</footer>
+
+</body>
+</html>
