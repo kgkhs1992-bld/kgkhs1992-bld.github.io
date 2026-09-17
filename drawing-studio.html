@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+  <title>School Drawing Studio</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #fff7ed, #eff6ff, #fdf2f8);
+      color: #172554;
+      line-height: 1.6;
+    }
+
+    .drawing-header {
+      text-align: center;
+      padding: 45px 18px 35px;
+      background: linear-gradient(135deg, #7c3aed, #db2777, #f97316);
+      color: white;
+      border-bottom: 6px solid #facc15;
+    }
+
+    .drawing-header h1 {
+      font-size: 34px;
+      margin-bottom: 10px;
+    }
+
+    .drawing-header p {
+      font-size: 17px;
+      font-weight: bold;
+    }
+
+    .drawing-container {
+      width: 92%;
+      max-width: 1150px;
+      margin: 35px auto;
+    }
+
+    .welcome-box {
+      text-align: center;
+      background: white;
+      padding: 25px;
+      border-radius: 22px;
+      box-shadow: 0 8px 22px rgba(0,0,0,0.12);
+      margin-bottom: 30px;
+    }
+
+    .welcome-box h2 {
+      color: #7c3aed;
+      margin-bottom: 10px;
+      font-size: 25px;
+    }
+
+    .welcome-box p {
+      color: #475569;
+      font-size: 16px;
+    }
+
+    .drawing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .drawing-card {
+      min-height: 210px;
+      padding: 25px 20px;
+      border-radius: 24px;
+      text-align: center;
+      color: #172554;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.12);
+      transition: 0.3s;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .drawing-card:hover {
+      transform: translateY(-7px);
+      box-shadow: 0 14px 25px rgba(0,0,0,0.18);
+    }
+
+    .drawing-card .card-icon {
+      font-size: 48px;
+      margin-bottom: 12px;
+    }
+
+    .drawing-card h3 {
+      font-size: 21px;
+      margin-bottom: 8px;
+    }
+
+    .drawing-card p {
+      font-size: 14px;
+      color: #334155;
+    }
+
+    .card-one {
+      background: linear-gradient(135deg, #fbcfe8, #f9a8d4);
+    }
+
+    .card-two {
+      background: linear-gradient(135deg, #bfdbfe, #93c5fd);
+    }
+
+    .card-three {
+      background: linear-gradient(135deg, #bbf7d0, #86efac);
+    }
+
+    .card-four {
+      background: linear-gradient(135deg, #fef3c7, #fde68a);
+    }
+
+    .card-five {
+      background: linear-gradient(135deg, #ddd6fe, #c4b5fd);
+    }
+
+    .card-six {
+      background: linear-gradient(135deg, #fed7aa, #fdba74);
+    }
+
+    .card-seven {
+      background: linear-gradient(135deg, #a5f3fc, #67e8f9);
+    }
+
+    .card-eight {
+      background: linear-gradient(135deg, #fecaca, #fca5a5);
+    }
+
+    .card-nine {
+      background: linear-gradient(135deg, #d9f99d, #bef264);
+    }
+
+    .drawing-note {
+      margin-top: 35px;
+      padding: 25px;
+      background: white;
+      border-left: 7px solid #db2777;
+      border-radius: 18px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.10);
+    }
+
+    .drawing-note h2 {
+      color: #db2777;
+      margin-bottom: 10px;
+    }
+
+    .drawing-note ul {
+      padding-left: 22px;
+      color: #475569;
+    }
+
+    .back-button-area {
+      text-align: center;
+      margin: 35px 0;
+    }
+
+    .back-button {
+      display: inline-block;
+      padding: 13px 25px;
+      background: linear-gradient(135deg, #2563eb, #7c3aed);
+      color: white;
+      text-decoration: none;
+      border-radius: 30px;
+      font-weight: bold;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.18);
+      transition: 0.3s;
+    }
+
+    .back-button:hover {
+      transform: translateY(-3px);
+      background: linear-gradient(135deg, #db2777, #f97316);
+    }
+
+    .drawing-footer {
+      text-align: center;
+      padding: 28px 15px;
+      background: #172554;
+      color: white;
+      border-top: 5px solid #facc15;
+    }
+
+    .drawing-footer h3 {
+      color: #facc15;
+      margin-bottom: 8px;
+    }
+
+    .drawing-footer p {
+      font-size: 14px;
+    }
+
+    @media (max-width: 850px) {
+      .drawing-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .drawing-header h1 {
+        font-size: 28px;
+      }
+    }
+
+    @media (max-width: 550px) {
+      .drawing-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .drawing-header h1 {
+        font-size: 25px;
+      }
+
+      .welcome-box h2 {
+        font-size: 22px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER START -->
+  <header class="drawing-header">
+    <h1>🎨 SCHOOL DRAWING STUDIO</h1>
+    <p>Classes VIII • IX • X</p>
+    <p>See • Learn • Practise • Create</p>
+  </header>
+  <!-- HEADER END -->
+
+
+  <!-- MAIN CONTENT START -->
+  <main class="drawing-container">
+
+    <section class="welcome-box">
+      <h2>Welcome to Our Drawing Studio</h2>
+
+      <p>
+        This creative space is for students of Classes VIII, IX and X.
+        Learn drawing skills, practise colours, create beautiful artwork
+        and share your creativity.
+      </p>
+    </section>
+
+
+    <section class="drawing-grid">
+
+      <div class="drawing-card card-one">
+        <div class="card-icon">🖍️</div>
+        <h3>Drawing Ideas</h3>
+        <p>
+          Explore creative drawing ideas and new things to draw.
+        </p>
+      </div>
+
+
+      <div class="drawing-card card-two">
+        <div class="card-icon">✏️</div>
+        <h3>Drawing Materials</h3>
+        <p>
+          Learn about pencils, erasers, rulers, colours and drawing books.
+        </p>
+      </div>
+
+
+      <div class="drawing-card card-three">
+        <div class="card-icon">📐</div>
+        <h3>Basic Drawing Practice</h3>
+        <p>
+          Practise lines, shapes, patterns, outlines and simple sketches.
+        </p>
+      </div>
+
+
+      <div class="drawing-card card-four">
+        <div class="card-icon">🌈</div>
+        <h3>Colour Practice</h3>
+        <p>
+          Learn colour combinations, shading, light and dark colours.
+        </p>
+      </div>
+
+
+      <div class="drawing-card card-five">
+        <div class="card-icon">🌳</div>
+        <h3>Nature and Landscape</h3>
+        <p>
+          Practise flowers, trees, mountains, rivers and village scenes.
+        </p>
+      </div>
+
+
+      <div class="drawing-card card-six">
+        <div class="card-icon">🐦</div>
+        <h3>Birds and Animals</h3>
+        <p>
+          Learn simple methods to draw birds, animals and living things.
+        </p>
+      </div>
+
+
+      <div class="drawing-card card-seven">
+        <div class="card-icon">👤</div>
+        <h3>Human Figures</h3>
+        <p>
+          Practise faces, body shapes, simple human figures and expressions.
+        </p>
+      </div>
+
+
+      <div class="drawing-card card-eight">
+        <div class="card-icon">🖼️</div>
+        <h3>Student Artwork Gallery</h3>
+        <p>
+          Display and share beautiful drawings made by our students.
+        </p>
+      </div>
+
+
+      <div class="drawing-card card-nine">
+        <div class="card-icon">🏆</div>
+        <h3>Drawing Competition</h3>
+        <p>
+          Share information about drawing competitions and school exhibitions.
+        </p>
+      </div>
+
+    </section>
+
+
+    <section class="drawing-note">
+      <h2>🌟 Our Creative Message</h2>
+
+      <ul>
+        <li>Every student can become an artist.</li>
+        <li>Practise drawing regularly.</li>
+        <li>Use colours creatively.</li>
+        <li>Respect every student’s artwork.</li>
+        <li>Learn, create and share your ideas.</li>
+      </ul>
+    </section>
+
+
+    <div class="back-button-area">
+      <a class="back-button" href="learning.html">
+        ← Back to Digital Learning
+      </a>
+    </div>
+
+  </main>
+  <!-- MAIN CONTENT END -->
+
+
+  <!-- FOOTER START -->
+  <footer class="drawing-footer">
+    <h3>Karua Gadadhar Kar High School, Beldandia</h3>
+
+    <p>
+      School Drawing Studio • Classes VIII, IX and X
+    </p>
+
+    <p>
+      © <span id="drawing-year"></span>
+      All Rights Reserved.
+    </p>
+  </footer>
+  <!-- FOOTER END -->
+
+
+  <script>
+    document.getElementById("drawing-year").textContent =
+      new Date().getFullYear();
+  </script>
+
+</body>
+</html>
