@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Yoga and Wellness | KGKHS Beldandia</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #e8f5e9, #e3f2fd);
+      color: #263238;
+    }
+
+    header {
+      background: linear-gradient(135deg, #2e7d32, #0288d1);
+      color: white;
+      text-align: center;
+      padding: 32px 15px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 32px;
+    }
+
+    header p {
+      margin-top: 10px;
+      font-size: 18px;
+    }
+
+    .container {
+      width: 92%;
+      max-width: 1100px;
+      margin: 25px auto;
+    }
+
+    .intro,
+    .card,
+    .routine,
+    .safety,
+    .activity {
+      background: white;
+      border-radius: 16px;
+      padding: 22px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.10);
+    }
+
+    .intro {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .intro h2 {
+      color: #2e7d32;
+      margin-top: 0;
+    }
+
+    .yoga-banner {
+      width: 100%;
+      max-height: 280px;
+      object-fit: cover;
+      border-radius: 16px;
+      margin-bottom: 25px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      border-top: 6px solid #43a047;
+    }
+
+    .card h3 {
+      color: #1b5e20;
+      margin-top: 0;
+    }
+
+    .card h4 {
+      color: #0277bd;
+    }
+
+    .card ul,
+    .safety ul {
+      padding-left: 20px;
+      line-height: 1.7;
+    }
+
+    .pose-symbol {
+      background: #e8f5e9;
+      border-radius: 12px;
+      padding: 18px;
+      text-align: center;
+      font-size: 38px;
+      margin-bottom: 12px;
+    }
+
+    .routine {
+      margin-top: 25px;
+      border-left: 6px solid #0288d1;
+    }
+
+    .routine h2 {
+      color: #0277bd;
+      margin-top: 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+    }
+
+    th,
+    td {
+      border: 1px solid #b0bec5;
+      padding: 10px;
+      text-align: left;
+    }
+
+    th {
+      background: #e3f2fd;
+      color: #01579b;
+    }
+
+    .safety {
+      margin-top: 25px;
+      background: #fff8e1;
+      border-left: 6px solid #f9a825;
+    }
+
+    .safety h2 {
+      color: #e65100;
+      margin-top: 0;
+    }
+
+    .activity {
+      margin-top: 25px;
+      background: #f3e5f5;
+      border-left: 6px solid #8e24aa;
+    }
+
+    .activity h2 {
+      color: #6a1b9a;
+      margin-top: 0;
+    }
+
+    .back-button {
+      display: inline-block;
+      margin-top: 25px;
+      padding: 12px 22px;
+      background: #2e7d32;
+      color: white;
+      text-decoration: none;
+      border-radius: 25px;
+      font-weight: bold;
+    }
+
+    footer {
+      margin-top: 35px;
+      background: #1b5e20;
+      color: white;
+      text-align: center;
+      padding: 18px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>Yoga and Wellness</h1>
+    <p>ଯୋଗ ଓ ସୁସ୍ଥତା</p>
+  </header>
+
+  <main class="container">
+
+    <img
+      class="yoga-banner"
+      src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=1200&q=80"
+      alt="Students practising yoga"
+    >
+
+    <section class="intro">
+      <h2>Yoga for a Healthy Body and Peaceful Mind</h2>
+
+      <p>
+        Yoga is a practice that combines body movements, breathing,
+        concentration and relaxation.
+      </p>
+
+      <p>
+        ଯୋଗ ହେଉଛି ଶରୀରର ଚଳନ, ଶ୍ୱାସ ଅଭ୍ୟାସ,
+        ଏକାଗ୍ରତା ଓ ବିଶ୍ରାମର ଏକ ସୁନ୍ଦର ଅଭ୍ୟାସ।
+      </p>
+
+      <p>
+        Regular yoga practice may help improve flexibility, balance,
+        concentration and relaxation.
+      </p>
+
+      <p>
+        ନିୟମିତ ଯୋଗ ଅଭ୍ୟାସ ଶରୀରର ନମନୀୟତା,
+        ସନ୍ତୁଳନ, ଏକାଗ୍ରତା ଓ ମନର ଶାନ୍ତି ବଢ଼ାଇବାରେ
+        ସାହାଯ୍ୟ କରିପାରେ।
+      </p>
+    </section>
+
+    <section class="grid">
+
+      <article class="card">
+        <div class="pose-symbol">🌬️</div>
+
+        <h3>1. Deep Breathing</h3>
+        <h4>ଗଭୀର ଶ୍ୱାସ ଅଭ୍ୟାସ</h4>
+
+        <ul>
+          <li>Sit comfortably.</li>
+          <li>Keep your back straight.</li>
+          <li>Breathe in slowly through the nose.</li>
+          <li>Breathe out gently.</li>
+          <li>Repeat without force.</li>
+        </ul>
+
+        <p>
+          ସୁବିଧାରେ ବସି ନାକ ଦ୍ୱାରା ଧୀରେ ଶ୍ୱାସ ନିଅନ୍ତୁ
+          ଓ ଧୀରେ ଶ୍ୱାସ ଛାଡ଼ନ୍ତୁ।
+        </p>
+      </article>
+
+      <article class="card">
+        <div class="pose-symbol">🌴</div>
+
+        <h3>2. Tadasana</h3>
+        <h4>ତାଡ଼ାସନ</h4>
+
+        <ul>
+          <li>Stand straight with feet together.</li>
+          <li>Raise both arms slowly.</li>
+          <li>Stretch the body upward.</li>
+          <li>Breathe normally.</li>
+          <li>Return slowly to the starting position.</li>
+        </ul>
+
+        <p>
+          ସିଧା ଛିଡ଼ା ହୋଇ ଦୁଇ ହାତ ଉପରକୁ ଉଠାଇ
+          ଶରୀରକୁ ଉପର ଦିଗକୁ ଟାଣନ୍ତୁ।
+        </p>
+      </article>
+
+      <article class="card">
+        <div class="pose-symbol">🌳</div>
+
+        <h3>3. Vrikshasana</h3>
+        <h4>ବୃକ୍ଷାସନ</h4>
+
+        <ul>
+          <li>Stand straight.</li>
+          <li>Balance on one leg.</li>
+          <li>Place the other foot carefully.</li>
+          <li>Join the palms near the chest.</li>
+          <li>Change sides slowly.</li>
+        </ul>
+
+        <p>
+          ଗୋଟିଏ ଗୋଡ଼ରେ ସନ୍ତୁଳନ ରଖି ଅନ୍ୟ ଗୋଡ଼କୁ
+          ସାବଧାନରେ ରଖନ୍ତୁ। ଦୁଇ ପାର୍ଶ୍ୱରେ ଅଭ୍ୟାସ କରନ୍ତୁ।
+        </p>
+      </article>
+
+      <article class="card">
+        <div class="pose-symbol">🧘</div>
+
+        <h3>4. Padmasana</h3>
+        <h4>ପଦ୍ମାସନ</h4>
+
+        <ul>
+          <li>Sit on the floor comfortably.</li>
+          <li>Keep the back straight.</li>
+          <li>Place the legs comfortably.</li>
+          <li>Rest the hands on the knees.</li>
+          <li>Focus on calm breathing.</li>
+        </ul>
+
+        <p>
+          ଭୂମିରେ ସୁବିଧାରେ ବସି ପିଠି ସିଧା ରଖନ୍ତୁ।
+          ହାତକୁ ଆଣ୍ଠୁ ଉପରେ ରଖି ଶ୍ୱାସ ଉପରେ ଧ୍ୟାନ ଦିଅନ୍ତୁ।
+        </p>
+      </article>
+
+      <article class="card">
+        <div class="pose-symbol">🪷</div>
+
+        <h3>5. Vajrasana</h3>
+        <h4>ବଜ୍ରାସନ</h4>
+
+        <ul>
+          <li>Kneel gently on a clean mat.</li>
+          <li>Sit comfortably on the heels.</li>
+          <li>Keep the back straight.</li>
+          <li>Place hands on the thighs.</li>
+          <li>Breathe calmly.</li>
+        </ul>
+
+        <p>
+          ସଫା ମାଟ୍‌ ଉପରେ ଆଣ୍ଠୁ ମାଡ଼ି ସୁବିଧାରେ ବସନ୍ତୁ।
+          ପିଠି ସିଧା ରଖି ଶାନ୍ତ ଭାବରେ ଶ୍ୱାସ ନିଅନ୍ତୁ।
+        </p>
+      </article>
+
+      <article class="card">
+        <div class="pose-symbol">🐍</div>
+
+        <h3>6. Bhujangasana</h3>
+        <h4>ଭୁଜଙ୍ଗାସନ</h4>
+
+        <ul>
+          <li>Lie on the stomach.</li>
+          <li>Place the palms near the shoulders.</li>
+          <li>Raise the chest gently.</li>
+          <li>Keep the movement comfortable.</li>
+          <li>Return slowly.</li>
+        </ul>
+
+        <p>
+          ପେଟ ତଳକୁ କରି ଶୋଇ ହାତକୁ କାନ୍ଧ ପାଖରେ ରଖନ୍ତୁ।
+          ଛାତିକୁ ଧୀରେ ଉଠାଇ ପୁଣି ତଳକୁ ଆସନ୍ତୁ।
+        </p>
+      </article>
+
+      <article class="card">
+        <div class="pose-symbol">🌙</div>
+
+        <h3>7. Shavasana</h3>
+        <h4>ଶବାସନ</h4>
+
+        <ul>
+          <li>Lie comfortably on your back.</li>
+          <li>Keep arms and legs relaxed.</li>
+          <li>Close the eyes gently.</li>
+          <li>Breathe slowly.</li>
+          <li>Relax the whole body.</li>
+        </ul>
+
+        <p>
+          ପିଠି ଉପରେ ଶୋଇ ହାତ, ଗୋଡ଼ ଓ ସମଗ୍ର ଶରୀରକୁ
+          ଶିଥିଳ କରନ୍ତୁ।
+        </p>
+      </article>
+
+      <article class="card">
+        <div class="pose-symbol">🕉️</div>
+
+        <h3>8. Meditation</h3>
+        <h4>ଧ୍ୟାନ</h4>
+
+        <ul>
+          <li>Sit in a comfortable position.</li>
+          <li>Keep the body relaxed.</li>
+          <li>Close the eyes if comfortable.</li>
+          <li>Focus on natural breathing.</li>
+          <li>Practise quietly for a few minutes.</li>
+        </ul>
+
+        <p>
+          ସୁବିଧାରେ ବସି ଆଖି ବନ୍ଦ କରନ୍ତୁ।
+          ସ୍ୱାଭାବିକ ଶ୍ୱାସ ଉପରେ ଧ୍ୟାନ ଦେଇ କିଛି ସମୟ
+          ଶାନ୍ତ ଭାବରେ ରୁହନ୍ତୁ।
+        </p>
+      </article>
+
+    </section>
+
+    <section class="routine">
+      <h2>Daily Yoga Routine | ଦୈନିକ ଯୋଗ ଅଭ୍ୟାସ</h2>
+
+      <table>
+        <tr>
+          <th>Activity</th>
+          <th>Time</th>
+        </tr>
+
+        <tr>
+          <td>Quiet sitting / ଶାନ୍ତ ଭାବରେ ବସିବା</td>
+          <td>2 minutes</td>
+        </tr>
+
+        <tr>
+          <td>Deep breathing / ଗଭୀର ଶ୍ୱାସ</td>
+          <td>3 minutes</td>
+        </tr>
+
+        <tr>
+          <td>Tadasana / ତାଡ଼ାସନ</td>
+          <td>2 minutes</td>
+        </tr>
+
+        <tr>
+          <td>Simple yoga poses / ସରଳ ଯୋଗାସନ</td>
+          <td>5 minutes</td>
+        </tr>
+
+        <tr>
+          <td>Meditation / ଧ୍ୟାନ</td>
+          <td>3 minutes</td>
+        </tr>
+
+        <tr>
+          <td>Shavasana / ଶବାସନ</td>
+          <td>2 minutes</td>
+        </tr>
+      </table>
+    </section>
+
+    <section class="safety">
+      <h2>Yoga Safety Rules | ଯୋଗର ସୁରକ୍ଷା ନିୟମ</h2>
+
+      <ul>
+        <li>Practise under teacher or adult supervision.</li>
+        <li>Do not force the body into any position.</li>
+        <li>Breathe normally and comfortably.</li>
+        <li>Practise on a clean, level surface.</li>
+        <li>Stop if you feel pain, dizziness or discomfort.</li>
+        <li>Ask a qualified adult before practising if you have an injury or health concern.</li>
+      </ul>
+
+      <p>
+        ଶିକ୍ଷକ କିମ୍ବା ବଡ଼ମାନଙ୍କ ନିରୀକ୍ଷଣରେ ଯୋଗ ଅଭ୍ୟାସ କରନ୍ତୁ।
+        ଶରୀରକୁ ଜୋର କରନ୍ତୁ ନାହିଁ। ଅସୁବିଧା ହେଲେ ତୁରନ୍ତ ବନ୍ଦ କରନ୍ତୁ।
+      </p>
+    </section>
+
+    <section class="activity">
+      <h2>Student Practice Activity | ଛାତ୍ରଛାତ୍ରୀଙ୍କ ଅଭ୍ୟାସ କାର୍ଯ୍ୟ</h2>
+
+      <p>
+        Practise any three simple yoga activities and write the date,
+        activity name and practice time in your notebook.
+      </p>
+
+      <p>
+        ଯେକୌଣସି ତିନୋଟି ସରଳ ଯୋଗ ଅଭ୍ୟାସ କରି
+        ତାରିଖ, ଅଭ୍ୟାସର ନାମ ଓ ସମୟ ଖାତାରେ ଲେଖନ୍ତୁ।
+      </p>
+    </section>
+
+    <a class="back-button" href="learning.html">
+      ← Back to Learning Section
+    </a>
+
+  </main>
+
+  <footer>
+    © 2026 Karua Gadadhar Kar High School, Beldandia
+  </footer>
+
+</body>
+</html>
