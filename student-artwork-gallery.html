@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Student Artwork Gallery | KGKHS Beldandia</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #fff8e1, #e3f2fd);
+      color: #263238;
+    }
+
+    header {
+      background: linear-gradient(135deg, #1565c0, #42a5f5);
+      color: white;
+      text-align: center;
+      padding: 30px 15px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 30px;
+    }
+
+    header p {
+      margin-top: 8px;
+      font-size: 17px;
+    }
+
+    .container {
+      width: 92%;
+      max-width: 1100px;
+      margin: 25px auto;
+    }
+
+    .intro,
+    .gallery-card,
+    .message {
+      background: white;
+      border-radius: 16px;
+      padding: 22px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.10);
+    }
+
+    .intro {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .intro h2 {
+      color: #1565c0;
+      margin-top: 0;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 20px;
+    }
+
+    .gallery-card {
+      text-align: center;
+      border-top: 6px solid #1976d2;
+    }
+
+    .gallery-card h3 {
+      color: #0d47a1;
+      margin-top: 0;
+    }
+
+    .art-space {
+      min-height: 150px;
+      border: 2px dashed #90caf9;
+      border-radius: 12px;
+      background: #e3f2fd;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 15px;
+      color: #1565c0;
+      font-weight: bold;
+    }
+
+    .gallery-card p {
+      line-height: 1.6;
+    }
+
+    .message {
+      margin-top: 25px;
+      background: #fff3e0;
+      border-left: 6px solid #fb8c00;
+    }
+
+    .message h2 {
+      color: #e65100;
+      margin-top: 0;
+    }
+
+    .back-button {
+      display: inline-block;
+      margin-top: 25px;
+      padding: 12px 22px;
+      background: #1565c0;
+      color: white;
+      text-decoration: none;
+      border-radius: 25px;
+      font-weight: bold;
+    }
+
+    footer {
+      margin-top: 35px;
+      background: #0d47a1;
+      color: white;
+      text-align: center;
+      padding: 18px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>Student Artwork Gallery</h1>
+    <p>ଛାତ୍ରଛାତ୍ରୀମାନଙ୍କର ଚିତ୍ର ପ୍ରଦର୍ଶନୀ</p>
+  </header>
+
+  <main class="container">
+
+    <section class="intro">
+      <h2>Our Young Artists</h2>
+
+      <p>
+        This gallery is a place to display the creative drawings and artwork
+        prepared by our talented students.
+      </p>
+
+      <p>
+        ଏହି ଗ୍ୟାଲେରୀରେ ଆମ ବିଦ୍ୟାଳୟର ପ୍ରତିଭାଶାଳୀ
+        ଛାତ୍ରଛାତ୍ରୀମାନଙ୍କର ସୁନ୍ଦର ଚିତ୍ର ଓ କଳାକୃତି
+        ପ୍ରଦର୍ଶିତ କରାଯିବ।
+      </p>
+    </section>
+
+    <section class="gallery-grid">
+
+      <article class="gallery-card">
+        <h3>Nature Drawings</h3>
+        <div class="art-space">
+          Student Nature Artwork
+        </div>
+        <p>
+          Drawings of trees, flowers, mountains, rivers and beautiful scenery.
+        </p>
+      </article>
+
+      <article class="gallery-card">
+        <h3>Birds and Animals</h3>
+        <div class="art-space">
+          Student Birds and Animals Artwork
+        </div>
+        <p>
+          Creative drawings of birds, animals, butterflies and fish.
+        </p>
+      </article>
+
+      <article class="gallery-card">
+        <h3>Human Figures</h3>
+        <div class="art-space">
+          Student Human Figure Artwork
+        </div>
+        <p>
+          Drawings of people, faces, families and daily activities.
+        </p>
+      </article>
+
+      <article class="gallery-card">
+        <h3>Colourful Paintings</h3>
+        <div class="art-space">
+          Student Colour Painting
+        </div>
+        <p>
+          Colourful paintings created using crayons, pencils and paints.
+        </p>
+      </article>
+
+      <article class="gallery-card">
+        <h3>Festival Drawings</h3>
+        <div class="art-space">
+          Student Festival Artwork
+        </div>
+        <p>
+          Drawings based on festivals, celebrations and cultural activities.
+        </p>
+      </article>
+
+      <article class="gallery-card">
+        <h3>Best Student Artwork</h3>
+        <div class="art-space">
+          Best Artwork Will Be Displayed Here
+        </div>
+        <p>
+          Selected artwork of students will be added to this section.
+        </p>
+      </article>
+
+    </section>
+
+    <section class="message">
+      <h2>Message to Students | ଛାତ୍ରଛାତ୍ରୀଙ୍କ ପାଇଁ ବାର୍ତ୍ତା</h2>
+
+      <p>
+        Keep drawing, keep practising and let your imagination grow.
+        Every drawing is a new step towards creativity.
+      </p>
+
+      <p>
+        ଚିତ୍ର ଆଙ୍କୁଥାନ୍ତୁ, ଅଭ୍ୟାସ କରୁଥାନ୍ତୁ ଏବଂ
+        ନିଜ କଳ୍ପନାଶକ୍ତିକୁ ବିକଶିତ କରନ୍ତୁ।
+        ପ୍ରତ୍ୟେକ ଚିତ୍ର ସୃଜନଶୀଳତା ଦିଗରେ ଏକ ନୂଆ ପଦକ୍ଷେପ।
+      </p>
+    </section>
+
+    <a class="back-button" href="drawing-studio.html">
+      ← Back to Drawing Studio
+    </a>
+
+  </main>
+
+  <footer>
+    © 2026 Karua Gadadhar Kar High School, Beldandia
+  </footer>
+
+</body>
+</html>
