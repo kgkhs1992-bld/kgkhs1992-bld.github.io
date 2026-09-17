@@ -1,277 +1,250 @@
 <!DOCTYPE html>
-<html lang="or">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Class X Mathematics | KGKHS Beldandia</title>
+<title>Class X Mathematics | KGKHS Beldandia</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+<style>
+* {
+  box-sizing: border-box;
+}
 
-    body {
-      margin: 0;
-      font-family: Arial, "Noto Sans Oriya", sans-serif;
-      background: linear-gradient(135deg, #eef7ff, #fff8ef);
-      color: #173b78;
-    }
+body {
+  margin: 0;
+  font-family: Arial, "Noto Sans Odia", sans-serif;
+  background: linear-gradient(135deg, #eef7ff, #fff8ef);
+  color: #173b78;
+}
 
-    .page {
-      padding: 25px 15px 40px;
-      max-width: 1200px;
-      margin: auto;
-    }
+.page {
+  max-width: 1100px;
+  margin: auto;
+  padding: 25px 15px 40px;
+}
 
-    .header {
-      text-align: center;
-      margin-bottom: 30px;
-    }
+.header {
+  text-align: center;
+  margin-bottom: 25px;
+}
 
-    .header h1 {
-      color: #123c69;
-      font-size: 32px;
-      margin-bottom: 10px;
-    }
+.header h1 {
+  color: #123c69;
+  font-size: 32px;
+  margin-bottom: 8px;
+}
 
-    .header p {
-      color: #555;
-      font-size: 17px;
-    }
+.header p {
+  color: #555;
+  font-size: 17px;
+}
 
-    .part-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 22px;
-      max-width: 1100px;
-      margin: auto;
-    }
+.topic-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
 
-    .part-box {
-      border-radius: 18px;
-      padding: 25px 18px;
-      text-align: center;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
-      border: 3px solid white;
-    }
+.topic-box {
+  background: white;
+  border-radius: 18px;
+  padding: 20px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.12);
+  border: 3px solid #d9e7f5;
+}
 
-    .part-box h2 {
-      margin-top: 0;
-      margin-bottom: 22px;
-      font-size: 25px;
-    }
+.topic-box h2 {
+  text-align: center;
+  font-size: 23px;
+  margin-top: 0;
+  margin-bottom: 18px;
+  color: #174f91;
+}
 
-    .part-box a {
-      display: block;
-      text-decoration: none;
-      margin: 12px 0;
-      padding: 13px 10px;
-      border-radius: 10px;
-      background: white;
-      color: #173b78;
-      font-weight: bold;
-      font-size: 17px;
-      transition: 0.3s;
-    }
+.resource {
+  display: block;
+  width: 100%;
+  margin: 10px 0;
+  padding: 13px 10px;
+  border-radius: 10px;
+  text-align: center;
+  text-decoration: none;
+  font-weight: bold;
+  background: #f1f7ff;
+  color: #173b78;
+  border: 1px solid #b9d3ef;
+}
 
-    .part-box a:hover {
-      transform: scale(1.03);
-      background: #173b78;
-      color: white;
-    }
+.resource:hover {
+  background: #173b78;
+  color: white;
+}
 
-    /* Four different colours */
+.algebra {
+  border-color: #e7a1b7;
+}
 
-    .algebra {
-      background: #ffe0e6;
-      border-color: #e75480;
-    }
+.algebra h2 {
+  color: #b32655;
+}
 
-    .algebra h2 {
-      color: #c2185b;
-    }
+.geometry {
+  border-color: #91c8ef;
+}
 
-    .geometry {
-      background: #dff3ff;
-      border-color: #2196f3;
-    }
+.geometry h2 {
+  color: #1769aa;
+}
 
-    .geometry h2 {
-      color: #1565c0;
-    }
+.back-home {
+  display: block;
+  width: fit-content;
+  margin: 35px auto 0;
+  padding: 13px 25px;
+  background: #198754;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: bold;
+}
 
-    .mensuration {
-      background: #e2f7df;
-      border-color: #43a047;
-    }
+@media (max-width: 600px) {
+  .header h1 {
+    font-size: 27px;
+  }
 
-    .mensuration h2 {
-      color: #2e7d32;
-    }
-
-    .statistics {
-      background: #fff0d6;
-      border-color: #fb8c00;
-    }
-
-    .statistics h2 {
-      color: #e65100;
-    }
-
-    .back-home {
-      display: block;
-      width: fit-content;
-      margin: 35px auto 0;
-      padding: 13px 25px;
-      background: #198754;
-      color: white;
-      text-decoration: none;
-      border-radius: 8px;
-      font-weight: bold;
-    }
-
-    .back-home:hover {
-      background: #126b42;
-    }
-
-    @media (max-width: 600px) {
-      .header h1 {
-        font-size: 27px;
-      }
-
-      .part-box h2 {
-        font-size: 23px;
-      }
-
-      .part-box a {
-        font-size: 16px;
-      }
-    }
-  </style>
+  .topic-box h2 {
+    font-size: 21px;
+  }
+}
+</style>
 </head>
 
 <body>
 
-  <section class="page">
+<section class="page">
 
-    <div class="header">
-      <h1>📐 Class X Mathematics</h1>
-      <p>Lessons, notes and practice materials for Class X students</p>
-    </div>
+<div class="header">
+  <h1>📐 Class X Mathematics</h1>
+  <p>Lessons, notes and practice materials for Class X students</p>
+</div>
 
-    <div class="part-grid">
+<div class="topic-grid">
 
-      <!-- ALGEBRA -->
+<!-- ALGEBRA TOPICS -->
 
-      <div class="part-box algebra">
-        <h2>🔢 Algebra</h2>
+<div class="topic-box algebra">
+  <h2>Algebra — Topic 1</h2>
+  <a class="resource" href="#">📘 Textbook</a>
+  <a class="resource" href="#">📝 Teacher’s Notes</a>
+  <a class="resource" href="#">❓ Practice Questions and Answers</a>
+  <a class="resource" href="#">🎥 Video</a>
+</div>
 
-        <a href="class-x-mathematics-algebra-lesson-1.html">
-          📖 ପ୍ରଥମ ଅଧ୍ୟାୟ
-        </a>
+<div class="topic-box algebra">
+  <h2>Algebra — Topic 2</h2>
+  <a class="resource" href="#">📘 Textbook</a>
+  <a class="resource" href="#">📝 Teacher’s Notes</a>
+  <a class="resource" href="#">❓ Practice Questions and Answers</a>
+  <a class="resource" href="#">🎥 Video</a>
+</div>
 
-        <a href="class-x-mathematics-algebra-lesson-2.html">
-          📖 ଦ୍ୱିତୀୟ ଅଧ୍ୟାୟ
-        </a>
+<div class="topic-box algebra">
+  <h2>Algebra — Topic 3</h2>
+  <a class="resource" href="#">📘 Textbook</a>
+  <a class="resource" href="#">📝 Teacher’s Notes</a>
+  <a class="resource" href="#">❓ Practice Questions and Answers</a>
+  <a class="resource" href="#">🎥 Video</a>
+</div>
 
-        <a href="class-x-mathematics-algebra-lesson-3.html">
-          📖 ତୃତୀୟ ଅଧ୍ୟାୟ
-        </a>
+<div class="topic-box algebra">
+  <h2>Algebra — Topic 4</h2>
+  <a class="resource" href="#">📘 Textbook</a>
+  <a class="resource" href="#">📝 Teacher’s Notes</a>
+  <a class="resource" href="#">❓ Practice Questions and Answers</a>
+  <a class="resource" href="#">🎥 Video</a>
+</div>
 
-        <a href="class-x-mathematics-algebra-lesson-4.html">
-          📖 ଚତୁର୍ଥ ଅଧ୍ୟାୟ
-        </a>
+<div class="topic-box algebra">
+  <h2>Algebra — Topic 5</h2>
+  <a class="resource" href="#">📘 Textbook</a>
+  <a class="resource" href="#">📝 Teacher’s Notes</a>
+  <a class="resource" href="#">❓ Practice Questions and Answers</a>
+  <a class="resource" href="#">🎥 Video</a>
+</div>
 
-        <a href="class-x-mathematics-algebra-lesson-5.html">
-          📖 ପଞ୍ଚମ ଅଧ୍ୟାୟ
-        </a>
+<div class="topic-box algebra">
+  <h2>Algebra — Topic 6</h2>
+  <a class="resource" href="#">📘 Textbook</a>
+  <a class="resource" href="#">📝 Teacher’s Notes</a>
+  <a class="resource" href="#">❓ Practice Questions and Answers</a>
+  <a class="resource" href="#">🎥 Video</a>
+</div>
 
-        <a href="class-x-mathematics-algebra-lesson-6.html">
-          📖 ଷଷ୍ଠ ଅଧ୍ୟାୟ
-        </a>
-      </div>
+<div class="topic-box algebra">
+  <h2>Algebra — Topic 7</h2>
+  <a class="resource" href="#">📘 Textbook</a>
+  <a class="resource" href="#">📝 Teacher’s Notes</a>
+  <a class="resource" href="#">❓ Practice Questions and Answers</a>
+  <a class="resource" href="#">🎥 Video</a>
+</div>
 
+<!-- GEOMETRY TOPICS -->
 
-      <!-- GEOMETRY -->
+<div class="topic-box geometry">
+  <h2>Geometry — Topic 1</h2>
+  <a class="resource" href="#">📘 Textbook</a>
+  <a class="resource" href="#">📝 Teacher’s Notes</a>
+  <a class="resource" href="#">❓ Practice Questions and Answers</a>
+  <a class="resource" href="#">🎥 Video</a>
+</div>
 
-      <div class="part-box geometry">
-        <h2>📐 Geometry</h2>
+<div class="topic-box geometry">
+  <h2>Geometry — Topic 2</h2>
+  <a class="resource" href="#">📘 Textbook</a>
+  <a class="resource" href="#">📝 Teacher’s Notes</a>
+  <a class="resource" href="#">❓ Practice Questions and Answers</a>
+  <a class="resource" href="#">🎥 Video</a>
+</div>
 
-        <a href="class-x-mathematics-geometry-lesson-1.html">
-          📖 ପ୍ରଥମ ଅଧ୍ୟାୟ
-        </a>
+<div class="topic-box geometry">
+  <h2>Geometry — Topic 3</h2>
+  <a class="resource" href="#">📘 Textbook</a>
+  <a class="resource" href="#">📝 Teacher’s Notes</a>
+  <a class="resource" href="#">❓ Practice Questions and Answers</a>
+  <a class="resource" href="#">🎥 Video</a>
+</div>
 
-        <a href="class-x-mathematics-geometry-lesson-2.html">
-          📖 ଦ୍ୱିତୀୟ ଅଧ୍ୟାୟ
-        </a>
+<div class="topic-box geometry">
+  <h2>Geometry — Topic 4</h2>
+  <a class="resource" href="#">📘 Textbook</a>
+  <a class="resource" href="#">📝 Teacher’s Notes</a>
+  <a class="resource" href="#">❓ Practice Questions and Answers</a>
+  <a class="resource" href="#">🎥 Video</a>
+</div>
 
-        <a href="class-x-mathematics-geometry-lesson-3.html">
-          📖 ତୃତୀୟ ଅଧ୍ୟାୟ
-        </a>
+<div class="topic-box geometry">
+  <h2>Geometry — Topic 5</h2>
+  <a class="resource" href="#">📘 Textbook</a>
+  <a class="resource" href="#">📝 Teacher’s Notes</a>
+  <a class="resource" href="#">❓ Practice Questions and Answers</a>
+  <a class="resource" href="#">🎥 Video</a>
+</div>
 
-        <a href="class-x-mathematics-geometry-lesson-4.html">
-          📖 ଚତୁର୍ଥ ଅଧ୍ୟାୟ
-        </a>
+<div class="topic-box geometry">
+  <h2>Geometry — Topic 6</h2>
+  <a class="resource" href="#">📘 Textbook</a>
+  <a class="resource" href="#">📝 Teacher’s Notes</a>
+  <a class="resource" href="#">❓ Practice Questions and Answers</a>
+  <a class="resource" href="#">🎥 Video</a>
+</div>
 
-        <a href="class-x-mathematics-geometry-lesson-5.html">
-          📖 ପଞ୍ଚମ ଅଧ୍ୟାୟ
-        </a>
+</div>
 
-        <a href="class-x-mathematics-geometry-lesson-6.html">
-          📖 ଷଷ୍ଠ ଅଧ୍ୟାୟ
-        </a>
-      </div>
+<a class="back-home" href="learning.html">⬅ Back to Learning</a>
 
-
-      <!-- MENSURATION -->
-
-      <div class="part-box mensuration">
-        <h2>📏 Mensuration</h2>
-
-        <a href="class-x-mathematics-mensuration-lesson-1.html">
-          📖 ପ୍ରଥମ ଅଧ୍ୟାୟ
-        </a>
-
-        <a href="class-x-mathematics-mensuration-lesson-2.html">
-          📖 ଦ୍ୱିତୀୟ ଅଧ୍ୟାୟ
-        </a>
-
-        <a href="class-x-mathematics-mensuration-lesson-3.html">
-          📖 ତୃତୀୟ ଅଧ୍ୟାୟ
-        </a>
-
-        <a href="class-x-mathematics-mensuration-lesson-4.html">
-          📖 ଚତୁର୍ଥ ଅଧ୍ୟାୟ
-        </a>
-      </div>
-
-
-      <!-- STATISTICS -->
-
-      <div class="part-box statistics">
-        <h2>📊 Statistics</h2>
-
-        <a href="class-x-mathematics-statistics-lesson-1.html">
-          📖 ପ୍ରଥମ ଅଧ୍ୟାୟ
-        </a>
-
-        <a href="class-x-mathematics-statistics-lesson-2.html">
-          📖 ଦ୍ୱିତୀୟ ଅଧ୍ୟାୟ
-        </a>
-
-        <a href="class-x-mathematics-statistics-lesson-3.html">
-          📖 ତୃତୀୟ ଅଧ୍ୟାୟ
-        </a>
-      </div>
-
-    </div>
-
-    <a class="back-home" href="learning.html">
-      ← Back to Learning
-    </a>
-
-  </section>
+</section>
 
 </body>
 </html>
