@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Class VIII English – Topic 2 Study Material</title>
+  <title>A Concrete Example – Study Material</title>
 
   <style>
     * {
@@ -14,139 +14,191 @@
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #e3f2fd, #fff8e1);
+      background: linear-gradient(135deg, #e0f2fe, #fff7ed);
       color: #222;
+      line-height: 1.8;
     }
 
     .container {
       width: 94%;
-      max-width: 900px;
+      max-width: 1000px;
       margin: 20px auto;
     }
 
     .header {
-      background: linear-gradient(135deg, #075985, #0e7490);
+      background: linear-gradient(135deg, #064e3b, #075985);
       color: white;
       text-align: center;
-      padding: 28px 15px;
-      border-radius: 18px;
-      box-shadow: 0 5px 15px #0003;
+      padding: 30px 18px;
+      border-radius: 0 0 35px 35px;
+      box-shadow: 0 6px 18px #0003;
     }
 
     .header h1 {
       margin: 0;
-      font-size: 30px;
+      font-size: 32px;
       font-weight: bold;
     }
 
     .header h2 {
-      margin: 10px 0 0;
-      font-size: 22px;
+      margin: 8px 0;
+      font-size: 25px;
     }
 
     .header p {
-      margin: 10px 0 0;
-      font-size: 17px;
+      margin: 0;
+      font-size: 18px;
+    }
+
+    .top-menu {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin: 20px 0;
+    }
+
+    .top-menu a {
+      text-decoration: none;
+      color: white;
+      background: #0f766e;
+      padding: 10px 18px;
+      border-radius: 25px;
+      font-weight: bold;
     }
 
     .card {
       background: white;
-      margin-top: 18px;
-      padding: 22px;
-      border-radius: 16px;
-      box-shadow: 0 4px 12px #0002;
-      border-left: 6px solid #0284c7;
+      margin: 22px 0;
+      padding: 25px;
+      border-radius: 22px;
+      box-shadow: 0 5px 16px #0002;
+      border-left: 7px solid #0284c7;
     }
 
     .card h2 {
       color: #075985;
+      font-size: 27px;
       margin-top: 0;
-      font-size: 24px;
+      line-height: 1.4;
     }
 
     .card h3 {
       color: #b45309;
-      font-size: 21px;
+      font-size: 23px;
+      margin-top: 25px;
+    }
+
+    .card h4 {
+      color: #047857;
+      font-size: 20px;
     }
 
     .info {
-      background: #f0f9ff;
-      padding: 15px;
-      border-radius: 10px;
-      line-height: 1.8;
-      font-size: 18px;
+      background: #eff6ff;
+      padding: 18px;
+      border-radius: 14px;
+      font-size: 19px;
     }
 
-    .note {
+    .original {
+      background: #f8fafc;
+      border-left: 6px solid #64748b;
+      padding: 18px;
+      border-radius: 12px;
+      font-family: Georgia, serif;
+      font-size: 19px;
+      white-space: pre-line;
+    }
+
+    .pronunciation {
       background: #fff7ed;
-      border-left: 5px solid #f97316;
-      padding: 15px;
-      border-radius: 10px;
-      font-size: 17px;
-      line-height: 1.7;
-    }
-
-    .button-box {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 15px;
-      margin-top: 20px;
-    }
-
-    .btn {
-      display: block;
-      text-align: center;
-      text-decoration: none;
-      color: white;
-      background: linear-gradient(135deg, #2563eb, #1d4ed8);
-      padding: 16px 10px;
+      border-left: 6px solid #f97316;
+      padding: 18px;
       border-radius: 12px;
       font-size: 18px;
-      font-weight: bold;
-      box-shadow: 0 4px 8px #0002;
     }
 
-    .btn:hover {
-      background: linear-gradient(135deg, #1e40af, #1e3a8a);
+    .meaning {
+      background: #f0fdf4;
+      border-left: 6px solid #16a34a;
+      padding: 18px;
+      border-radius: 12px;
+      font-size: 18px;
     }
 
-    .btn.green {
-      background: linear-gradient(135deg, #15803d, #166534);
+    .simple {
+      background: #fefce8;
+      border-left: 6px solid #ca8a04;
+      padding: 18px;
+      border-radius: 12px;
+      font-size: 18px;
     }
 
-    .btn.orange {
-      background: linear-gradient(135deg, #ea580c, #c2410c);
+    .word {
+      background: #f5f3ff;
+      border-left: 6px solid #7c3aed;
+      padding: 18px;
+      border-radius: 12px;
+      font-size: 18px;
+    }
+
+    .summary {
+      background: #ecfeff;
+      border-left: 6px solid #0891b2;
+      padding: 20px;
+      border-radius: 12px;
+      font-size: 19px;
     }
 
     .footer {
       text-align: center;
-      margin: 25px 0;
-      padding: 18px;
+      background: #064e3b;
+      color: white;
+      padding: 22px;
+      border-radius: 20px;
+      margin-top: 30px;
+      font-size: 17px;
+    }
+
+    .back {
+      display: inline-block;
       background: #075985;
       color: white;
-      border-radius: 14px;
-      font-size: 16px;
+      text-decoration: none;
+      padding: 12px 22px;
+      border-radius: 25px;
+      font-weight: bold;
+      margin-top: 10px;
     }
 
     @media (max-width: 600px) {
       .header h1 {
-        font-size: 24px;
+        font-size: 25px;
       }
 
       .header h2 {
-        font-size: 19px;
-      }
-
-      .card h2 {
         font-size: 21px;
       }
 
-      .card h3 {
-        font-size: 19px;
+      .card {
+        padding: 18px;
       }
 
-      .info,
-      .note {
+      .card h2 {
+        font-size: 23px;
+      }
+
+      .card h3 {
+        font-size: 21px;
+      }
+
+      .original,
+      .pronunciation,
+      .meaning,
+      .simple,
+      .word,
+      .summary {
         font-size: 16px;
       }
     }
@@ -157,92 +209,352 @@
 
   <div class="container">
 
-    <div class="header">
-      <h1>CLASS VIII – ENGLISH</h1>
-      <h2>Topic 2: A Concrete Example</h2>
+    <header class="header">
+      <h1>Wit and Wisdom: A Concrete Example</h1>
+      <h2>Class VIII – Jasmine English</h2>
       <p>Study Material</p>
-    </div>
+    </header>
 
-    <div class="card">
+    <nav class="top-menu">
+      <a href="class-viii-english-02-a-concrete-example.html">
+        ⬅ Back to Topic 2
+      </a>
+
+      <a href="8th_English_Topic%202.pdf" target="_blank">
+        📘 Textbook PDF
+      </a>
+
+      <a href="class-viii-english-02-a-concrete-example-practice-sheet.html">
+        ❓ Book Q&A
+      </a>
+    </nav>
+
+    <section class="card">
       <h2>📘 Lesson Information</h2>
 
       <div class="info">
         <b>Subject:</b> English<br>
         <b>Class:</b> VIII<br>
-        <b>Topic:</b> A Concrete Example<br>
+        <b>Book:</b> Jasmine<br>
+        <b>Chapter:</b> 2. Wit and Wisdom: A Concrete Example<br>
         <b>Poet:</b> Reginald Arkell
       </div>
-    </div>
+    </section>
 
-    <div class="card">
-      <h2>🎯 Learning Objectives</h2>
+    <section class="card">
+      <h2>🖋️ Biography Details</h2>
 
-      <div class="note">
-        After studying this topic, students should read the lesson carefully,
-        understand the poem, learn the important words, and practise the
-        textbook questions and answers.
+      <div class="summary">
+        👤 <b>Reginald Arkell (1881–1959)</b> was a well-known British
+        scriptwriter, comic novelist, and poet.
+        <br><br>
+
+        📚 He is best remembered for his humorous and light-hearted
+        observations of everyday life, especially his writings on nature,
+        gardening, and village life.
+        <br><br>
+
+        🎭 His writing style is simple, witty, and highly entertaining,
+        which makes his poems very easy to read and enjoy for students.
+        <br><br>
+
+        🌿 His most famous works include the
+        <b>Green Fingers</b> series of garden poetry, which perfectly captures
+        the funny side of gardening, just like the poem we are reading.
       </div>
-    </div>
+    </section>
 
-    <div class="card">
-      <h2>📖 How to Study This Topic</h2>
+    <section class="card">
+      <h2>📖 1. Stanza-wise Explanation</h2>
 
-      <h3>Step 1 – Read the Textbook</h3>
-      Read the complete lesson from the textbook PDF carefully.
+      <h3>🌿 Stanza 1</h3>
 
-      <h3>Step 2 – Read the Poem</h3>
-      Read the poem “A Concrete Example” slowly and clearly.
+      <h4>Original Paragraph</h4>
 
-      <h3>Step 3 – Learn New Words</h3>
-      Write difficult words from the lesson in your notebook and learn their
-      meanings.
+      <div class="original">My next-door neighbour, Mrs. Jones,
 
-      <h3>Step 4 – Practise the Questions</h3>
-      Read and write the textbook questions and answers.
+has got a garden full of stones:
 
-      <h3>Step 5 – Revise</h3>
-      Revise the poem, meanings, questions and answers before the examination.
-    </div>
+A crazy path, a lily pond,
 
-    <div class="card">
-      <h2>🔗 Important Study Links</h2>
+a rockery and, just beyond
 
-      <div class="button-box">
+A sundial with a strange device,
 
-        <a class="btn" href="8th_English_Topic%202.pdf"
-           target="_blank" rel="noopener">
+which Mrs. Jones thinks rather nice.</div>
+
+      <h4>English Pronunciation in Odia</h4>
+
+      <div class="pronunciation">
+        ମାଇ ନେକ୍ସଟ୍-ଡୋର୍ ନେଇବର୍, ମିସେସ୍. ଜୋନ୍ସ,<br>
+        ହାଜ୍ ଗଟ୍ ଏ ଗାର୍ଡେନ୍ ଫୁଲ୍ ଅଫ୍ ଷ୍ଟୋନ୍ସ:<br>
+        ଏ କ୍ରେଜି ପାଥ୍, ଏ ଲିଲି ପଣ୍ଡ୍,<br>
+        ଏ ରକେରୀ ଆଣ୍ଡ୍, ଜଷ୍ଟ ବିୟଣ୍ଡ<br>
+        ଏ ସନ୍‌ଡାଏଲ୍ ୱିଥ୍ ଏ ଷ୍ଟ୍ରେଞ୍ଜ୍ ଡିଭାଇସ୍,<br>
+        ହ୍ୱିଚ୍ ମିସେସ୍. ଜୋନ୍ସ ଥିଙ୍କସ୍ ରାଦର୍ ନାଇସ୍।
+      </div>
+
+      <h4>English → Odia Meaning</h4>
+
+      <div class="word">
+        🔹 Full → ସମ୍ପୂର୍ଣ୍ଣ (Sampurna)<br>
+        🔹 Pond → ପୋଖରୀ (Pokhari)<br>
+        🔹 Garden → ବଗିଚା (Bagicha)<br>
+        🔹 Stones → ପଥର (Pathara)<br>
+        🔹 Beyond → ଆଗକୁ / ସାମ୍ନାରେ (Agaku / Samnare)<br>
+        🔹 Neighbour → ପଡ଼ୋଶୀ (Padosi)<br>
+        🔹 Crazy path → ଅଙ୍କାବଙ୍କା ରାସ୍ତା (Ankabanka rasta)<br>
+        🔹 Rockery → ପଥର ସଜା (Pathara saja)<br>
+        🔹 Sundial → ସୂର୍ଯ୍ୟଘଡ଼ି (Surjyaghadi)<br>
+        🔹 Strange device → ଅଦ୍ଭୁତ ଯନ୍ତ୍ର (Adbhuta jantra)
+      </div>
+
+      <h4>Odia Meaning</h4>
+
+      <div class="meaning">
+        ମୋର ପଡ଼ୋଶୀ ଶ୍ରୀମତୀ ଜୋନ୍ସଙ୍କର ଗୋଟିଏ ବଗିଚା ଅଛି
+        ଯାହା ସମ୍ପୂର୍ଣ୍ଣ ପଥରରେ ଭର୍ତ୍ତି । ସେଠାରେ ଏକ
+        ଅଙ୍କାବଙ୍କା ରାସ୍ତା, ଗୋଟିଏ ପଦ୍ମ ପୋଖରୀ, ଏକ ପଥରର
+        ସାଜସଜ୍ଜା ଏବଂ ତା' ସାମ୍ନାରେ ଏକ ଅଦ୍ଭୁତ ଯନ୍ତ୍ର
+        ଥିବା ସୂର୍ଯ୍ୟଘଡ଼ି ଅଛି ଯାହାକୁ ଶ୍ରୀମତୀ ଜୋନ୍ସ
+        ବହୁତ ପସନ୍ଦ କରନ୍ତି ।
+      </div>
+
+      <h4>English Meaning – Simple Explanation</h4>
+
+      <div class="simple">
+        The poet introduces his neighbor, Mrs. Jones. She has a very unique
+        garden that is completely filled with stones instead of soft grass
+        and big plants. It features a winding path, a pond for lilies,
+        a rock decoration, and a strange-looking sundial that she really loves.
+      </div>
+
+      <h3>🌿 Stanza 2</h3>
+
+      <h4>Original Paragraph</h4>
+
+      <div class="original">My next-door neighbour, Mrs. Jones,
+
+puts little plants between the stones
+
+They are so delicate and small,
+
+they don't mean anything at all.
+
+I can't think how she gets them in,
+
+unless she plants them with a pin.</div>
+
+      <h4>English Pronunciation in Odia</h4>
+
+      <div class="pronunciation">
+        ମାଇ ନେକ୍ସଟ୍-ଡୋର୍ ନେଇବର୍, ମିସେସ୍. ଜୋନ୍ସ,<br>
+        ପୁଟସ୍ ଲିଟିଲ୍ ପ୍ଲାଣ୍ଟସ୍ ବିଟୁଇନ୍ ଦି ଷ୍ଟୋନ୍ସ<br>
+        ଦେ ଆର୍ ସୋ ଡେଲିକେଟ୍ ଆଣ୍ଡ ସ୍ମଲ୍,<br>
+        ଦେ ଡୋଣ୍ଟ ମିନ୍ ଏନିଥିଙ୍ଗ୍ ଆଟ୍ ଅଲ୍।<br>
+        ଆଇ କାଣ୍ଟ ଥିଙ୍କ୍ ହାଓ ସି ଗେଟସ୍ ଦେମ୍ ଇନ୍,<br>
+        ଅନଲେସ୍ ସି ପ୍ଲାଣ୍ଟସ୍ ଦେମ୍ ୱିଥ୍ ଏ ପିନ୍।
+      </div>
+
+      <h4>English → Odia Meaning</h4>
+
+      <div class="word">
+        🔹 Pin → ପିନ୍ / କଣ୍ଟା (Pin / Kanta)<br>
+        🔹 Small → ଛୋଟ (Chhota)<br>
+        🔹 Plants → ଗଛ (Gacha)<br>
+        🔹 Between → ମଝିରେ (Majhire)<br>
+        🔹 Delicate → କୋମଳ ବା ନାଜୁକ (Komala / Najuka)<br>
+        🔹 Unless → ଯଦି ନୁହେଁ (Jadi nuhen)
+      </div>
+
+      <h4>Odia Meaning</h4>
+
+      <div class="meaning">
+        ମୋର ପଡ଼ୋଶୀ ଶ୍ରୀମତୀ ଜୋନ୍ସ ପଥର ମଝିରେ ଛୋଟ ଛୋଟ
+        ଗଛ ଲଗାନ୍ତି । ସେଗୁଡିକ ଏତେ କୋମଳ ଏବଂ ଛୋଟ ଯେ,
+        ସେଗୁଡିକର କୌଣସି ଅସ୍ତିତ୍ୱ ଥିବା ପରି ଲାଗେ ନାହିଁ ।
+        କବି ଭାବି ପାରନ୍ତି ନାହିଁ ଯେ ସେ ଏତେ ଛୋଟ ଗଛକୁ
+        ମାଟି ଭିତରେ କିପରି ଲଗାନ୍ତି, ବୋଧହୁଏ ସେ ଏକ
+        ଛୋଟ ପିନ୍ ବ୍ୟବହାର କରନ୍ତି ।
+      </div>
+
+      <h4>English Meaning – Simple Explanation</h4>
+
+      <div class="simple">
+        Mrs. Jones carefully places incredibly tiny plants in the small gaps
+        between her garden stones. These plants are so fragile and invisibly
+        small that the poet jokingly wonders how she even manages to get them
+        into the ground. He guesses she might have to use a tiny pin to plant them.
+      </div>
+
+      <h3>🌿 Stanza 3</h3>
+
+      <h4>Original Paragraph</h4>
+
+      <div class="original">My next-door neighbour, Mrs. Jones,
+
+once asked me round to see her stones.
+
+We stood and talked about a flower
+
+for quite a quarter of an hour.
+
+"Where is this lovely thing?" I cried.
+
+"You're standing on it," she replied.</div>
+
+      <h4>English Pronunciation in Odia</h4>
+
+      <div class="pronunciation">
+        ମାଇ ନେକ୍ସଟ୍-ଡୋର୍ ନେଇବର୍, ମିସେସ୍. ଜୋନ୍ସ,<br>
+        ୱାନ୍ସ ଆସ୍କଡ୍ ମି ରାଉଣ୍ଡ ଟୁ ସି ହର୍ ଷ୍ଟୋନ୍ସ।<br>
+        ଉଇ ଷ୍ଟୁଡ୍ ଆଣ୍ଡ ଟକ୍‌ଡ୍ ଆବାଉଟ୍ ଏ ଫ୍ଲାୱାର୍<br>
+        ଫର୍ କ୍ୱାଇଟ୍ ଏ କ୍ୱାର୍ଟର୍ ଅଫ୍ ଆନ୍ ଆୱାର୍।<br>
+        “ହ୍ୱେୟାର ଇଜ୍ ଦିସ୍ ଲଭଲି ଥିଙ୍ଗ୍?” ଆଇ କ୍ରାଏଡ୍।<br>
+        “ୟୁ ଆର୍ ଷ୍ଟାଣ୍ଡିଙ୍ଗ୍ ଅନ୍ ଇଟ୍,” ସି ରିପ୍ଲାଏଡ୍।
+      </div>
+
+      <h4>English → Odia Meaning</h4>
+
+      <div class="word">
+        🔹 Stood → ଠିଆ ହେଲେ (Thia hele)<br>
+        🔹 Flower → ଫୁଲ (Phula)<br>
+        🔹 Talked → କଥା ହେଲେ (Katha hele)<br>
+        🔹 Lovely → ସୁନ୍ଦର (Sundara)<br>
+        🔹 Cried → ଚିତ୍କାର କଲେ / ଆଶ୍ଚର୍ଯ୍ୟରେ ପଚାରିଲେ<br>
+        🔹 Replied → ଉତ୍ତର ଦେଲେ (Uttara dele)<br>
+        🔹 Quarter of an hour → ପନ୍ଦର ମିନିଟ୍ (Pandara minit)
+      </div>
+
+      <h4>Odia Meaning</h4>
+
+      <div class="meaning">
+        ଦିନେ ମୋର ପଡ଼ୋଶୀ ଶ୍ରୀମତୀ ଜୋନ୍ସ ମୋତେ ତାଙ୍କ
+        ପଥର ବଗିଚା ଦେଖିବାକୁ ଡାକିଲେ । ଆମେ ପ୍ରାୟ ପନ୍ଦର
+        ମିନିଟ୍ ଧରି ଗୋଟିଏ ଫୁଲ ବିଷୟରେ କଥା ହେଲୁ ।
+        ମୁଁ ଆଶ୍ଚର୍ଯ୍ୟ ହୋଇ ପଚାରିଲି, “ସେହି ସୁନ୍ଦର ଜିନିଷଟି
+        କେଉଁଠି ଅଛି?” ସେ ଉତ୍ତର ଦେଲେ, “ତୁମେ ତାହା
+        ଉପରେ ଠିଆ ହୋଇଛ।”
+      </div>
+
+      <h4>English Meaning – Simple Explanation</h4>
+
+      <div class="simple">
+        One day, Mrs. Jones invited the poet over to admire her stone garden.
+        They stood there talking about a specific, beautiful flower for a whole
+        fifteen minutes. When the poet finally became excited and asked where
+        this wonderful flower was, Mrs. Jones bluntly told him that he was
+        accidentally stepping right on it.
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>📖 2. Summary – English Only</h2>
+
+      <div class="summary">
+        The poem <b>“A Concrete Example”</b> by Reginald Arkell describes
+        Mrs. Jones, the speaker's next-door neighbor, who has a highly unusual
+        garden. Instead of lush greenery, her garden is entirely filled with
+        stones, featuring a crazy path, a lily pond, a rockery, and a peculiar
+        sundial that she finds rather nice.
+        <br><br>
+
+        Among these stones, Mrs. Jones plants extremely delicate and tiny
+        plants. These plants are so microscopic that the speaker playfully
+        wonders how she manages to get them into the ground, joking that she
+        must plant them using a pin.
+        <br><br>
+
+        The humor peaks when Mrs. Jones invites the speaker to admire her
+        garden. They spend a quarter of an hour discussing a beautiful flower,
+        but when the speaker excitedly asks to see it, Mrs. Jones bluntly
+        reveals that the speaker is already standing on it.
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>📖 3. Summary – Odia</h2>
+
+      <div class="meaning">
+        କବି ରେଜିନାଲ୍ଡ ଆର୍କେଲଙ୍କ ରଚିତ
+        “ଏ କଂକ୍ରିଟ୍ ଏକ୍ସାମ୍ପଲ୍” କବିତାଟି ଶ୍ରୀମତୀ ଜୋନ୍ସ
+        ନାମକ ଜଣେ ପଡ଼ୋଶୀଙ୍କ ବିଷୟରେ ଅଟେ, ଯାହାଙ୍କର
+        ଏକ ଅସାଧାରଣ ବଗିଚା ଅଛି । ସାଧାରଣ ସବୁଜ ଗଛଲତା
+        ବଦଳରେ ତାଙ୍କ ବଗିଚାଟି ସମ୍ପୂର୍ଣ୍ଣ ରୂପେ ପଥରରେ
+        ଭର୍ତ୍ତି । ସେଥିରେ ଏକ ଅଙ୍କାବଙ୍କା ରାସ୍ତା, ପଦ୍ମ
+        ପୋଖରୀ, ପଥରର ସାଜସଜ୍ଜା ଏବଂ ଏକ ଅଦ୍ଭୁତ
+        ସୂର୍ଯ୍ୟଘଡ଼ି ରହିଛି ଯାହାକୁ ସେ ବହୁତ ପସନ୍ଦ କରନ୍ତି ।
+        <br><br>
+
+        ଏହି ପଥରଗୁଡ଼ିକ ମଝିରେ ଶ୍ରୀମତୀ ଜୋନ୍ସ ବହୁତ ଛୋଟ
+        ଏବଂ କୋମଳ ଗଛ ଲଗାନ୍ତି । ଏହି ଗଛଗୁଡ଼ିକ ଏତେ
+        ଛୋଟ ଯେ କବି ମଜାରେ କୁହନ୍ତି ବୋଧହୁଏ ସେଗୁଡ଼ିକୁ
+        ଲଗାଇବା ପାଇଁ ସେ ଏକ ଛୋଟ ପିନ୍ ବ୍ୟବହାର କରୁଥିବେ ।
+        <br><br>
+
+        କବିତାର ଶେଷ ଭାଗରେ ଏକ ମଜାଦାର ଘଟଣା ଘଟେ ଯେତେବେଳେ
+        ଶ୍ରୀମତୀ ଜୋନ୍ସ କବିଙ୍କୁ ନିଜ ବଗିଚା ଦେଖାଇବାକୁ ଡାକନ୍ତି ।
+        ସେମାନେ ପନ୍ଦର ମିନିଟ୍ ଧରି ଏକ ସୁନ୍ଦର ଫୁଲ ବିଷୟରେ
+        କଥା ହୁଅନ୍ତି, କିନ୍ତୁ କବି ସେହି ଫୁଲଟିକୁ ନ ଦେଖିପାରି
+        ପଚାରନ୍ତି ତାହା କେଉଁଠି ଅଛି । ସେତେବେଳେ ଶ୍ରୀମତୀ
+        ଜୋନ୍ସ ଉତ୍ତର ଦିଅନ୍ତି ଯେ କବି ନିଜେ ଅଜାଣତରେ
+        ସେହି ଫୁଲଟି ଉପରେ ଠିଆ ହୋଇଛନ୍ତି!
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>💡 4 & 5. Suggestions for Students</h2>
+
+      <div class="simple">
+        📘 To fully enjoy this poem, practice reading it aloud to understand
+        the musical rhythm and the rhyming words at the end of each line,
+        like “Jones” and “stones”.
+        <br><br>
+
+        🗣️ Pair up with a classmate and act out the funny conversation at the
+        end of the poem to clearly express the surprise.
+        <br><br>
+
+        ✍️ Focus on learning the correct spellings and meanings of new English
+        words such as “delicate”, “sundial”, and “rockery” to improve your
+        vocabulary.
+        <br><br>
+
+        🌳 Try to imagine what a garden made entirely of stones looks like
+        and compare it to the green parks or gardens you see in your own
+        neighborhood.
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>🔗 Important Links</h2>
+
+      <p>
+        <a class="back" href="8th_English_Topic%202.pdf" target="_blank">
           📘 Open Textbook PDF
         </a>
+      </p>
 
-        <a class="btn green"
+      <p>
+        <a class="back"
            href="class-viii-english-02-a-concrete-example-practice-sheet.html">
-          ✍️ Questions & Answers
+          ❓ Open Book Questions & Answers
         </a>
+      </p>
 
-        <a class="btn orange"
+      <p>
+        <a class="back"
            href="class-viii-english-02-a-concrete-example.html">
           ⬅ Back to Topic 2
         </a>
+      </p>
+    </section>
 
-      </div>
-    </div>
-
-    <div class="card">
-      <h2>📝 Student Practice</h2>
-
-      <div class="note">
-        1. Read the lesson two times.<br>
-        2. Read the poem aloud.<br>
-        3. Write difficult words and meanings.<br>
-        4. Practise all textbook questions.<br>
-        5. Revise the lesson regularly.
-      </div>
-    </div>
-
-    <div class="footer">
+    <footer class="footer">
       Karua Gadadhar Kar High School, Beldandia<br>
-      Digital Learning Section
-    </div>
+      Digital Learning Section<br>
+      Class VIII – Jasmine English
+    </footer>
 
   </div>
 
