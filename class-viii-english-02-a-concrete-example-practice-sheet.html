@@ -106,35 +106,6 @@ h2{font-size:20px;line-height:1.4;margin:9px 0 17px}
 <div class="note"><b>Note:</b> Open the textbook, study material, questions and practice resources from the boxes above.</div>
 <a class="back" href="class-viii-english-jasmine.html">← Back to Class VIII English</a>
 </div>
-  <script>
-function openQuestions() {
-  const box = document.getElementById("qaContent");
-
-  if (box.style.display === "block") {
-    box.style.display = "none";
-    return;
-  }
-
-  box.style.display = "block";
-  box.innerHTML = "<p style='text-align:center;font-weight:bold;'>Loading Questions & Answers...</p>";
-
-  fetch("class-viii-english-chapter-02-questions-answers.html")
-    .then(response => response.text())
-    .then(html => {
-      const parser = new DOMParser();
-      const doc = parser.parseFromString(html, "text/html");
-      const content = doc.querySelector(".container");
-
-      if (content) {
-        box.innerHTML = content.innerHTML;
-      } else {
-        box.innerHTML = "<p>Questions & Answers could not be loaded.</p>";
-      }
-    })
-    .catch(() => {
-      box.innerHTML = "<p>Questions & Answers could not be loaded.</p>";
-    });
-}
-  </script>
+  
 </body>
 </html>
