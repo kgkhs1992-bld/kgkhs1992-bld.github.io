@@ -39,12 +39,13 @@ h2{font-size:20px;line-height:1.4;margin:9px 0 17px}
 <a class="card study" href="class-viii-english-topic-02-study-material.html">
 <div class="chapter">📚 STUDY MATERIAL</div><h2>Study Material</h2>
 <span class="open">Open Study Material</span></a>
-<a class="card qa"
-href="class-viii-english-chapter-02-questions-answers.html">
-<div class="chapter">❓ QUESTIONS &amp; ANSWERS</div>
-<h2>Practice Questions and Answers</h2>
-<span class="open">Open Questions</span>
-</a>
+<div class="card qa" id="qaBox" onclick="openQuestions()">
+  <div class="chapter">❓ QUESTIONS &amp; ANSWERS</div>
+  <h2>Practice Questions and Answers</h2>
+  <span class="open">Open Questions</span>
+
+  <div id="qaContent" style="display:none;margin-top:20px;"></div>
+</div>
 
 <a class="card video" href="#">
 <div class="chapter">🎬 VIDEO</div><h2>Learning Videos</h2>
@@ -56,5 +57,35 @@ href="class-viii-english-chapter-02-questions-answers.html">
 <div class="note"><b>Note:</b> Open the textbook, study material, questions and practice resources from the boxes above.</div>
 <a class="back" href="class-viii-english-jasmine.html">← Back to Class VIII English</a>
 </div>
+  <script>
+function openQuestions() {
+  const box = document.getElementById("qaContent");
+
+  if (box.style.display === "block") {
+    box.style.display = "none";
+    return;
+  }
+
+  box.style.display = "block";
+  box.innerHTML = "<p style='text-align:center;font-weight:bold;'>Loading Questions & Answers...</p>";
+
+  fetch("class-viii-english-chapter-02-questions-answers.html")
+    .then(response => response.text())
+    .then(html => {
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(html, "text/html");
+      const content = doc.querySelector(".container");
+
+      if (content) {
+        box.innerHTML = content.innerHTML;
+      } else {
+        box.innerHTML = "<p>Questions & Answers could not be loaded.</p>";
+      }
+    })
+    .catch(() => {
+      box.innerHTML = "<p>Questions & Answers could not be loaded.</p>";
+    });
+}
+  </script>
 </body>
 </html>
