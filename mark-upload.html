@@ -108,17 +108,61 @@ async function login(){
 }
 
 async function loadRosterAndMarks(){
-  clear(appMsg);const table="class_"+classSelect.value.toLowerCase()+"_results";
-  const {data,error}=await supabaseClient.from(table).select("roll_no,student_name").order("roll_no",{ascending:true}).limit(1000);
-  if(error){show(appMsg,"Unable to load student list: "+error.message,"err");return}
-  if(!(data||[]).length){show(appMsg,"No student list is available yet for this class. Publish/import one existing result set first.","err");return}
-  const seen=new Set();roster=[];(data||[]).forEach(r=>{const roll=Number(r.roll_no);if(!seen.has(roll)&&r.student_name){seen.add(roll);roster.push({roll,name:String(r.student_name).trim()})}});
+  clear(appMsg);
+  const table="class_"+classSelect.value.toLowerCase()+"_results";
   const a=classSelect.value==="VIII"?examSelect.value:pat().label;
-  const full=await supabaseClient.from(table).select("*").eq("assessment",a).order("id",{ascending:false}).limit(1000);
-  if(full.error){show(appMsg,"Unable to load existing marks: "+full.error.message,"err");return}
-  existingRows=new Map();(full.data||[]).forEach(r=>{if(!existingRows.has(Number(r.roll_no)))existingRows.set(Number(r.roll_no),r)});
-  fullMarks.value=pat().max;render();loadBtn.disabled=saveBtn.disabled=publishBtn.disabled=clearBtn.disabled=false;
-  show(appMsg,`✅ Database returned ${data.length} rows. After deduplication: ${roster.length} students. Existing published records: ${existingRows.size}.`,"ok");
+
+  const full=await supabaseClient.from(table)
+    .select("*")
+    .eq("assessment",a)
+    .order("roll_no",{ascending:true})
+    .limit(1000);
+
+  if(full.error){
+    show(appMsg,"Unable to load existing marks: "+full.error.message,"err");
+    return;
+  }
+
+  if(!(full.data||[]).length){
+    show(appMsg,"No student records are available for this assessment.","err");
+    return;
+  }
+
+  const tcRolls=classSelect.value==="X"
+    ? new Set([107,108,109,110,111])
+    : classSelect.value==="IX"
+    ? new Set([18,21,29,30,55,56,85,89,91,92,97,112,118,127,131,140,155,161,167])
+    : new Set();
+
+  const seen=new Set();
+  roster=[];
+
+  (full.data||[]).forEach(r=>{
+    const roll=Number(r.roll_no);
+    if(!tcRolls.has(roll)&&!seen.has(roll)&&r.student_name){
+      seen.add(roll);
+      roster.push({
+        roll,
+        name:String(r.student_name).trim()
+      });
+    }
+  });
+
+  existingRows=new Map();
+  (full.data||[]).forEach(r=>{
+    if(!existingRows.has(Number(r.roll_no)))
+      existingRows.set(Number(r.roll_no),r);
+  });
+
+  fullMarks.value=pat().max;
+  render();
+  loadBtn.disabled=saveBtn.disabled=publishBtn.disabled=clearBtn.disabled=false;
+
+  show(appMsg,
+    `✅ Loaded ${roster.length} active students. Existing published records for this assessment: ${existingRows.size}.`,
+    "ok"
+  );
+}
 }
 
 function render(){
