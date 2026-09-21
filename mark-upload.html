@@ -118,7 +118,7 @@ async function loadRosterAndMarks(){
   if(full.error){show(appMsg,"Unable to load existing marks: "+full.error.message,"err");return}
   existingRows=new Map();(full.data||[]).forEach(r=>{if(!existingRows.has(Number(r.roll_no)))existingRows.set(Number(r.roll_no),r)});
   fullMarks.value=pat().max;render();loadBtn.disabled=saveBtn.disabled=publishBtn.disabled=clearBtn.disabled=false;
-  show(appMsg,`✅ Loaded ${roster.length} students. Existing published records for this assessment: ${existingRows.size}.`,"ok");
+  show(appMsg,`✅ Database returned ${data.length} rows. After deduplication: ${roster.length} students. Existing published records: ${existingRows.size}.`,"ok");
 }
 
 function render(){
