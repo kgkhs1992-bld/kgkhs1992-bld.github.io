@@ -72,8 +72,21 @@ body {
   text-decoration: none;
   font-weight: bold;
   background: #f1f7ff;
-  color: #173b78;
+  color: #173b78 !important;
   border: 1px solid #b9d3ef;
+}
+
+.resource:link,
+.resource:visited,
+.resource:hover,
+.resource:active {
+  color: #173b78 !important;
+  text-decoration: none;
+}
+
+.resource:hover {
+  background: #173b78;
+  color: white !important;
 }
 
 .resource:hover {
@@ -118,9 +131,7 @@ body {
     font-size: 21px;
   }
 }
-  .resource:visited {
-  color: #174a7e !important;
-  }
+  
 </style>
 </head>
 
