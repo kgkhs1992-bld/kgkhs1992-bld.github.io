@@ -23,18 +23,18 @@ header{
   background:linear-gradient(135deg,#0b4f8a,#1479bd);
   color:white;
   text-align:center;
-  padding:28px 15px;
+  padding:30px 15px;
 }
 
 header h1{
   margin:0;
-  font-size:clamp(26px,6vw,42px);
+  font-size:clamp(27px,7vw,44px);
   font-weight:800;
 }
 
 header p{
-  margin:8px 0 0;
-  font-size:18px;
+  margin:10px 0 0;
+  font-size:19px;
 }
 
 .container{
@@ -46,97 +46,127 @@ header p{
 .intro,
 .mcq{
   background:white;
-  border-radius:20px;
-  padding:22px;
-  margin:18px 0;
-  box-shadow:0 8px 24px rgba(0,0,0,.09);
+  border-radius:22px;
+  padding:24px;
+  margin:20px 0;
+  box-shadow:0 8px 25px rgba(0,0,0,.10);
 }
 
 .intro{
-  border-left:7px solid #8e44ad;
+  border-left:8px solid #8e44ad;
 }
 
 .mcq{
-  border-top:6px solid #8e44ad;
+  border-top:7px solid #8e44ad;
 }
 
 h2{
   color:#0b4f8a;
   margin-top:0;
+  font-size:28px;
 }
 
 .question{
   background:#faf7ff;
-  border-left:5px solid #8e44ad;
-  border-radius:14px;
-  padding:18px;
-  margin:20px 0;
+  border-left:6px solid #8e44ad;
+  border-radius:16px;
+  padding:20px;
+  margin:22px 0;
 }
 
 .question h3{
   color:#174f91;
   margin-top:0;
+  font-size:22px;
+}
+
+.question-text{
+  font-size:19px;
 }
 
 .options{
-  margin-top:12px;
+  margin-top:15px;
 }
 
 .option{
   background:#f5f9ff;
   border:1px solid #c9dff2;
-  border-radius:10px;
-  padding:10px 13px;
-  margin:8px 0;
+  border-radius:12px;
+  padding:12px 15px;
+  margin:9px 0;
+  font-size:18px;
 }
 
 details{
-  margin-top:14px;
+  margin-top:15px;
 }
 
 summary{
   cursor:pointer;
   background:#eef7ff;
   border:1px solid #b9d3ef;
-  border-radius:9px;
-  padding:9px 13px;
+  border-radius:10px;
+  padding:11px 15px;
   color:#174f91;
   font-weight:bold;
+  font-size:17px;
 }
 
 .answer{
   background:#eaf8ef;
   border:2px solid #55a66d;
-  border-radius:12px;
-  padding:13px;
+  border-radius:13px;
+  padding:14px;
   margin-top:10px;
   font-weight:bold;
+  font-size:18px;
 }
 
-.score-box{
+.tip{
   background:#fff8df;
   border:2px solid #f0c44c;
-  border-radius:14px;
+  border-radius:15px;
   padding:16px;
   margin-top:20px;
+  font-size:18px;
 }
 
 .back{
   display:block;
   width:max-content;
-  margin:30px auto;
-  padding:13px 22px;
+  margin:35px auto;
+  padding:14px 25px;
   background:#198754;
   color:white;
   text-decoration:none;
-  border-radius:10px;
+  border-radius:11px;
   font-weight:bold;
+  font-size:17px;
 }
 
 footer{
   text-align:center;
-  padding:25px;
+  padding:28px;
   color:#526070;
+}
+
+@media(max-width:600px){
+  .intro,
+  .mcq{
+    padding:19px;
+  }
+
+  h2{
+    font-size:25px;
+  }
+
+  .question-text{
+    font-size:18px;
+  }
+
+  .option{
+    font-size:17px;
+  }
 }
 </style>
 </head>
@@ -160,8 +190,8 @@ Choose the correct answer for each question and then tap
 <strong>Show Answer</strong> to check yourself.
 </p>
 
-<div class="score-box">
-<strong>💡 Practice Tip:</strong>
+<div class="tip">
+<strong>💡 Practice Tip:</strong><br>
 Try to solve each question before opening the answer.
 </div>
 
@@ -173,9 +203,442 @@ Try to solve each question before opening the answer.
 <h2>🎯 Multiple Choice Questions</h2>
 
 
+<!-- QUESTION 1 -->
+
 <div class="question">
+
 <h3>Question 1</h3>
 
-<p>
+<p class="question-text">
 The pair of equations
 <strong>x + y = 7</strong> and
+<strong>x − y = 1</strong> has the solution:
+</p>
+
+<div class="options">
+<div class="option">A. x = 3, y = 4</div>
+<div class="option">B. x = 4, y = 3</div>
+<div class="option">C. x = 5, y = 2</div>
+<div class="option">D. x = 2, y = 5</div>
+</div>
+
+<details>
+<summary>✅ Show Answer</summary>
+<div class="answer">
+Correct Answer: B. x = 4, y = 3
+</div>
+</details>
+
+</div>
+
+
+<!-- QUESTION 2 -->
+
+<div class="question">
+
+<h3>Question 2</h3>
+
+<p class="question-text">
+Which method involves expressing one variable in terms of the other?
+</p>
+
+<div class="options">
+<div class="option">A. Substitution Method</div>
+<div class="option">B. Graphical Method</div>
+<div class="option">C. Cross-Multiplication Method</div>
+<div class="option">D. Cramer's Rule</div>
+</div>
+
+<details>
+<summary>✅ Show Answer</summary>
+<div class="answer">
+Correct Answer: A. Substitution Method
+</div>
+</details>
+
+</div>
+
+
+<!-- QUESTION 3 -->
+
+<div class="question">
+
+<h3>Question 3</h3>
+
+<p class="question-text">
+For the equations
+<strong>2x + 3y = 13</strong> and
+<strong>4x − 3y = 5</strong>,
+the value of x is:
+</p>
+
+<div class="options">
+<div class="option">A. 2</div>
+<div class="option">B. 3</div>
+<div class="option">C. 4</div>
+<div class="option">D. 5</div>
+</div>
+
+<details>
+<summary>✅ Show Answer</summary>
+<div class="answer">
+Correct Answer: B. x = 3
+</div>
+</details>
+
+</div>
+
+
+<!-- QUESTION 4 -->
+
+<div class="question">
+
+<h3>Question 4</h3>
+
+<p class="question-text">
+If two straight lines intersect at exactly one point, the pair of
+linear equations has:
+</p>
+
+<div class="options">
+<div class="option">A. No solution</div>
+<div class="option">B. Exactly one solution</div>
+<div class="option">C. Infinitely many solutions</div>
+<div class="option">D. No variables</div>
+</div>
+
+<details>
+<summary>✅ Show Answer</summary>
+<div class="answer">
+Correct Answer: B. Exactly one solution
+</div>
+</details>
+
+</div>
+
+
+<!-- QUESTION 5 -->
+
+<div class="question">
+
+<h3>Question 5</h3>
+
+<p class="question-text">
+If two equations represent the same straight line, the pair has:
+</p>
+
+<div class="options">
+<div class="option">A. No solution</div>
+<div class="option">B. One solution</div>
+<div class="option">C. Infinitely many solutions</div>
+<div class="option">D. Two solutions only</div>
+</div>
+
+<details>
+<summary>✅ Show Answer</summary>
+<div class="answer">
+Correct Answer: C. Infinitely many solutions
+</div>
+</details>
+
+</div>
+
+
+<!-- QUESTION 6 -->
+
+<div class="question">
+
+<h3>Question 6</h3>
+
+<p class="question-text">
+The equations
+<strong>2x + 4y = 8</strong> and
+<strong>x + 2y = 4</strong> represent:
+</p>
+
+<div class="options">
+<div class="option">A. Two parallel lines</div>
+<div class="option">B. The same line</div>
+<div class="option">C. Two intersecting lines</div>
+<div class="option">D. Perpendicular lines</div>
+</div>
+
+<details>
+<summary>✅ Show Answer</summary>
+<div class="answer">
+Correct Answer: B. The same line
+</div>
+</details>
+
+</div>
+
+
+<!-- QUESTION 7 -->
+
+<div class="question">
+
+<h3>Question 7</h3>
+
+<p class="question-text">
+When two straight lines are parallel, the corresponding pair of
+linear equations has:
+</p>
+
+<div class="options">
+<div class="option">A. One solution</div>
+<div class="option">B. Two solutions</div>
+<div class="option">C. No solution</div>
+<div class="option">D. Infinitely many solutions</div>
+</div>
+
+<details>
+<summary>✅ Show Answer</summary>
+<div class="answer">
+Correct Answer: C. No solution
+</div>
+</details>
+
+</div>
+
+
+<!-- QUESTION 8 -->
+
+<div class="question">
+
+<h3>Question 8</h3>
+
+<p class="question-text">
+Which method eliminates one variable by adding or subtracting
+suitable multiples of the equations?
+</p>
+
+<div class="options">
+<div class="option">A. Substitution Method</div>
+<div class="option">B. Elimination Method</div>
+<div class="option">C. Graphical Method</div>
+<div class="option">D. Factorisation Method</div>
+</div>
+
+<details>
+<summary>✅ Show Answer</summary>
+<div class="answer">
+Correct Answer: B. Elimination Method
+</div>
+</details>
+
+</div>
+
+
+<!-- QUESTION 9 -->
+
+<div class="question">
+
+<h3>Question 9</h3>
+
+<p class="question-text">
+The graphical solution of two linear equations is represented by:
+</p>
+
+<div class="options">
+<div class="option">A. The point where the two lines intersect</div>
+<div class="option">B. The midpoint of the lines</div>
+<div class="option">C. The slope only</div>
+<div class="option">D. The y-axis only</div>
+</div>
+
+<details>
+<summary>✅ Show Answer</summary>
+<div class="answer">
+Correct Answer: A. The point where the two lines intersect
+</div>
+</details>
+
+</div>
+
+
+<!-- QUESTION 10 -->
+
+<div class="question">
+
+<h3>Question 10</h3>
+
+<p class="question-text">
+For a pair of equations with infinitely many solutions, the two
+equations represent:
+</p>
+
+<div class="options">
+<div class="option">A. Parallel lines</div>
+<div class="option">B. The same line</div>
+<div class="option">C. Perpendicular lines</div>
+<div class="option">D. Two separate curves</div>
+</div>
+
+<details>
+<summary>✅ Show Answer</summary>
+<div class="answer">
+Correct Answer: B. The same line
+</div>
+</details>
+
+</div>
+
+
+<!-- QUESTION 11 -->
+
+<div class="question">
+
+<h3>Question 11</h3>
+
+<p class="question-text">
+For the equations
+<strong>3x + 2y = 16</strong> and
+<strong>3x − 2y = 8</strong>,
+the value of x is:
+</p>
+
+<div class="options">
+<div class="option">A. 2</div>
+<div class="option">B. 3</div>
+<div class="option">C. 4</div>
+<div class="option">D. 5</div>
+</div>
+
+<details>
+<summary>✅ Show Answer</summary>
+<div class="answer">
+Correct Answer: C. x = 4
+</div>
+</details>
+
+</div>
+
+
+<!-- QUESTION 12 -->
+
+<div class="question">
+
+<h3>Question 12</h3>
+
+<p class="question-text">
+Cramer's Rule is used to solve a pair of:
+</p>
+
+<div class="options">
+<div class="option">A. Linear simultaneous equations</div>
+<div class="option">B. Quadratic equations only</div>
+<div class="option">C. Cubic equations only</div>
+<div class="option">D. Trigonometric equations only</div>
+</div>
+
+<details>
+<summary>✅ Show Answer</summary>
+<div class="answer">
+Correct Answer: A. Linear simultaneous equations
+</div>
+</details>
+
+</div>
+
+
+<!-- QUESTION 13 -->
+
+<div class="question">
+
+<h3>Question 13</h3>
+
+<p class="question-text">
+If the two lines of a pair of linear equations do not meet,
+then the pair has:
+</p>
+
+<div class="options">
+<div class="option">A. One solution</div>
+<div class="option">B. No solution</div>
+<div class="option">C. Infinitely many solutions</div>
+<div class="option">D. Three solutions</div>
+</div>
+
+<details>
+<summary>✅ Show Answer</summary>
+<div class="answer">
+Correct Answer: B. No solution
+</div>
+</details>
+
+</div>
+
+
+<!-- QUESTION 14 -->
+
+<div class="question">
+
+<h3>Question 14</h3>
+
+<p class="question-text">
+The equations
+<strong>x + y = 5</strong> and
+<strong>x − y = 1</strong> have the solution:
+</p>
+
+<div class="options">
+<div class="option">A. x = 2, y = 3</div>
+<div class="option">B. x = 3, y = 2</div>
+<div class="option">C. x = 4, y = 1</div>
+<div class="option">D. x = 1, y = 4</div>
+</div>
+
+<details>
+<summary>✅ Show Answer</summary>
+<div class="answer">
+Correct Answer: B. x = 3, y = 2
+</div>
+</details>
+
+</div>
+
+
+<!-- QUESTION 15 -->
+
+<div class="question">
+
+<h3>Question 15</h3>
+
+<p class="question-text">
+Which of the following is an important step after obtaining the
+values of x and y?
+</p>
+
+<div class="options">
+<div class="option">A. Ignore the original equations</div>
+<div class="option">B. Verify the values in the original equations</div>
+<div class="option">C. Change the equations</div>
+<div class="option">D. Remove one variable</div>
+</div>
+
+<details>
+<summary>✅ Show Answer</summary>
+<div class="answer">
+Correct Answer: B. Verify the values in the original equations
+</div>
+</details>
+
+</div>
+
+
+</section>
+
+
+<a class="back"
+   href="class-x-mathematics.html">
+  ⬅️ Back to Class X Mathematics
+</a>
+
+</main>
+
+<footer>
+Class X Mathematics — KGKHS Beldandia
+</footer>
+
+</body>
+</html>
