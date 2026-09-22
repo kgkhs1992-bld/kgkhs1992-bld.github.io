@@ -192,28 +192,323 @@ function render(){
   }));
   tableCard.classList.remove("hidden");document.getElementById("tableTitle").innerHTML="<h2>"+esc(p.label)+" — Class "+classSelect.value+"</h2><p class='small'>Enter marks in the sheet. Save Draft before submitting when needed.</p>";
 }
-function current(){const d=draft();marksTable.querySelectorAll("tbody tr").forEach(tr=>{const r=Number(tr.dataset.roll),o={};tr.querySelectorAll(".mark").forEach(i=>{if(i.value!=="")o[i.dataset.field]=Number(i.value)});d[r]=o});return d}
+function current(){
+  const d=draft();
+
+  marksTable.querySelectorAll("tbody tr").forEach(tr=>{
+    const r=Number(tr.dataset.roll);
+    const existing=d[r]||{};
+
+    tr.querySelectorAll(".mark").forEach(i=>{
+      if(i.value!==""){
+        existing[i.dataset.field]=Number(i.value);
+      }else{
+        delete existing[i.dataset.field];
+      }
+    });
+
+    if(Object.keys(existing).length){
+      d[r]=existing;
+    }else{
+      delete d[r];
+    }
+  });
+
+  return d;
+} 
 function save(){localStorage.setItem(key(),JSON.stringify(current()));show(appMsg,"✅ Draft saved on this device. Nothing has been published.","ok");render()}
 function clearDraft(){localStorage.removeItem(key());render();show(appMsg,"Draft cleared from this browser.","info")}
 function validate(){const d=current(),mx=half()?50:pat().per,errors=[],count=Object.values(d).filter(o=>Object.keys(o).length).length;Object.entries(d).forEach(([r,o])=>Object.values(o).forEach(v=>{if(!Number.isFinite(v)||v<0||v>mx)errors.push("Roll "+r+" has an invalid mark")}));if(!count)errors.push("No marks entered.");return{d,errors,count}}
 
 async function publish(){
-  const v=validate();if(v.errors.length){show(appMsg,"❌ "+v.errors.slice(0,5).join(" | "),"err");return}
-  const cls=classSelect.value,table="class_"+cls.toLowerCase()+"_results",assessment=cls==="VIII"?examSelect.value:pat().label,ro=new Map(roster.map(r=>[r.roll,r])),p=pat();publishBtn.disabled=true;show(appMsg,"Publishing marks… please wait.","info");let ok=0,fail=0;
-  for(const [rs,o] of Object.entries(v.d)){
-    const roll=Number(rs),st=ro.get(roll);if(!st||!Object.keys(o).length)continue;const pay={roll_no:roll,pin:("471CA"+String(roll).padStart(2,"0")).toUpperCase(),student_name:st.name,assessment};
-    if(p.half){let total=0,has=false;[["mil_odia","mil_odia_sub","mil_odia_obj"],["english","english_sub","english_obj"],["hindi_sanskrit","hindi_sanskrit_sub","hindi_sanskrit_obj"],["mathematics","mathematics_sub","mathematics_obj"],["science","science_sub","science_obj"],["social_science","social_science_sub","social_science_obj"]].forEach(([t,su,ob])=>{const s=o[su]??null,obv=o[ob]??null;pay[su]=s;pay[ob]=obv;if(s!==null||obv!==null){pay[t]=(s||0)+(obv||0);total+=pay[t];has=true}});if(!has)continue;pay.total=total;pay.full_marks=600}
-    else{let total=0,has=false;p.fields.forEach(([f])=>{const val=o[f];pay[f]=val===undefined?null:val;if(val!==undefined){total+=Number(val);has=true}});if(!has)continue;pay.total=total;pay.full_marks=p.max}
-    const found=await supabaseClient.from(table).select("id").eq("roll_no",roll).eq("pin",pay.pin).eq("assessment",assessment).order("id",{ascending:false}).limit(1);
-    if(found.error){fail++;continue}
-    if(found.data?.length){const up=await supabaseClient.from(table).update(pay).eq("id",found.data[0].id);if(up.error){const ins=await supabaseClient.from(table).insert(pay);ins.error?fail++:ok++}else ok++}
-    else{const ins=await supabaseClient.from(table).insert(pay);ins.error?fail++:ok++}
-  }
-  publishBtn.disabled=false;
-  if(fail)show(appMsg,`⚠️ Published ${ok} records; ${fail} failed. Check Supabase permissions.`,"err");
-  else{localStorage.removeItem(key());show(appMsg,`✅ Successfully published ${ok} records for Class ${cls} — ${p.label}.`,"ok");await loadRosterAndMarks()}
-}
 
+  const v=validate();
+
+  if(v.errors.length){
+    show(
+      appMsg,
+      "❌ "+v.errors.slice(0,5).join(" | "),
+      "err"
+    );
+    return;
+  }
+
+  const cls=classSelect.value;
+  const table="class_"+cls.toLowerCase()+"_results";
+  const assessment=
+    cls==="VIII"
+      ? examSelect.value
+      : pat().label;
+
+  const ro=new Map(
+    roster.map(r=>[r.roll,r])
+  );
+
+  const p=pat();
+
+  publishBtn.disabled=true;
+
+  show(
+    appMsg,
+    "Publishing marks… please wait.",
+    "info"
+  );
+
+  let ok=0;
+  let fail=0;
+  const failedRolls=[];
+
+  for(const [rs,o] of Object.entries(v.d)){
+
+    const roll=Number(rs);
+    const st=ro.get(roll);
+
+    if(!st || !Object.keys(o).length){
+      continue;
+    }
+
+    const pay={
+      roll_no:roll,
+      pin:(
+        "471CA"+
+        String(roll).padStart(2,"0")
+      ).toUpperCase(),
+      student_name:st.name,
+      assessment:assessment
+    };
+
+    if(p.half){
+
+      let total=0;
+      let has=false;
+
+      [
+        ["mil_odia","mil_odia_sub","mil_odia_obj"],
+        ["english","english_sub","english_obj"],
+        ["hindi_sanskrit","hindi_sanskrit_sub","hindi_sanskrit_obj"],
+        ["mathematics","mathematics_sub","mathematics_obj"],
+        ["science","science_sub","science_obj"],
+        ["social_science","social_science_sub","social_science_obj"]
+      ].forEach(([t,su,ob])=>{
+
+        const sv=o[su] ?? null;
+        const ov=o[ob] ?? null;
+
+        pay[su]=sv;
+        pay[ob]=ov;
+
+        if(sv!==null || ov!==null){
+
+          pay[t]=
+            (sv || 0)+
+            (ov || 0);
+
+          total+=pay[t];
+
+          has=true;
+        }
+
+      });
+
+      if(!has){
+        continue;
+      }
+
+      pay.total=total;
+      pay.full_marks=600;
+
+    }else{
+
+      let total=0;
+      let has=false;
+
+      p.fields.forEach(([f])=>{
+
+        const val=o[f];
+
+        if(val!==undefined){
+
+          pay[f]=val;
+
+          total+=Number(val);
+
+          has=true;
+        }
+
+      });
+
+      if(!has){
+        continue;
+      }
+
+      pay.total=total;
+      pay.full_marks=p.max;
+    }
+
+    try{
+
+      const found=
+        await supabaseClient
+          .from(table)
+          .select("id")
+          .eq("roll_no",roll)
+          .eq("pin",pay.pin)
+          .eq("assessment",assessment)
+          .order("id",{ascending:false})
+          .limit(1);
+
+      if(found.error){
+        throw found.error;
+      }
+
+      if(found.data && found.data.length){
+
+        const rowId=
+          found.data[0].id;
+
+        const up=
+          await supabaseClient
+            .from(table)
+            .update(pay)
+            .eq("id",rowId)
+            .select("*");
+
+        if(up.error){
+          throw up.error;
+        }
+
+        if(
+          !up.data ||
+          up.data.length===0
+        ){
+
+          throw new Error(
+            "Database did not confirm the update."
+          );
+        }
+
+        const saved=up.data[0];
+
+        const verifyFields=
+          p.half
+          ? [
+              "mil_odia_sub",
+              "mil_odia_obj",
+              "english_sub",
+              "english_obj",
+              "hindi_sanskrit_sub",
+              "hindi_sanskrit_obj",
+              "mathematics_sub",
+              "mathematics_obj",
+              "science_sub",
+              "science_obj",
+              "social_science_sub",
+              "social_science_obj"
+            ]
+          : p.fields.map(x=>x[0]);
+
+        const verified=
+          verifyFields.some(f=>
+            saved[f]!==null &&
+            saved[f]!==undefined &&
+            saved[f]!==""
+          );
+
+        if(!verified){
+
+          throw new Error(
+            "Row returned, but marks were not saved."
+          );
+        }
+
+        ok++;
+
+      }else{
+
+        const ins=
+          await supabaseClient
+            .from(table)
+            .insert(pay)
+            .select("*");
+
+        if(ins.error){
+          throw ins.error;
+        }
+
+        if(
+          !ins.data ||
+          ins.data.length===0
+        ){
+
+          throw new Error(
+            "Database did not confirm the insert."
+          );
+        }
+
+        ok++;
+      }
+
+    }catch(e){
+
+      console.error(
+        "Save failed for Roll "+roll,
+        e
+      );
+
+      fail++;
+
+      failedRolls.push(roll);
+    }
+  }
+
+  publishBtn.disabled=false;
+
+  if(fail){
+
+    const shown=
+      failedRolls
+        .slice(0,20)
+        .join(", ");
+
+    const more=
+      failedRolls.length>20
+      ? " … +"+
+        (failedRolls.length-20)+
+        " more"
+      : "";
+
+    show(
+      appMsg,
+      "⚠️ Saved "+
+      ok+
+      " record(s). Failed "+
+      fail+
+      " record(s). Roll Nos.: "+
+      shown+
+      more,
+      "err"
+    );
+
+  }else{
+
+    localStorage.removeItem(key());
+
+    show(
+      appMsg,
+      "✅ Successfully saved and verified "+
+      ok+
+      " record(s) for Class "+
+      cls+
+      " — "+
+      p.label+
+      ".",
+      "ok"
+    );
+
+    await loadRosterAndMarks();
+  }
+
+}
 classSelect.addEventListener("change",()=>{examSelect.innerHTML='<option value="">Select Examination</option>';if(!classSelect.value){examSelect.disabled=true;fullMarks.value="";loadBtn.disabled=saveBtn.disabled=publishBtn.disabled=clearBtn.disabled=true;return}examSelect.disabled=false;Object.entries(patterns[classSelect.value]).forEach(([code,p])=>{const o=document.createElement("option");o.value=code;o.textContent=p.label;examSelect.appendChild(o)});fullMarks.value="";tableCard.classList.add("hidden");loadBtn.disabled=saveBtn.disabled=publishBtn.disabled=clearBtn.disabled=true});
 examSelect.addEventListener("change",()=>{const p=pat();if(p){fullMarks.value=p.max;loadBtn.disabled=false;saveBtn.disabled=true;publishBtn.disabled=true;clearBtn.disabled=true;tableCard.classList.add("hidden");clear(appMsg)}});loadBtn.addEventListener("click",loadRosterAndMarks);saveBtn.addEventListener("click",save);publishBtn.addEventListener("click",publish);clearBtn.addEventListener("click",clearDraft);search.addEventListener("input",render);document.getElementById("loginBtn").addEventListener("click",login);document.getElementById("logoutBtn").addEventListener("click",async()=>{await supabaseClient.auth.signOut();location.reload()});
 initConfig().catch(e=>{show(loginMsg,"⚠️ "+e.message,"err")});
