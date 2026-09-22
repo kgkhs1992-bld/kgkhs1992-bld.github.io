@@ -149,10 +149,23 @@ async function loadRosterAndMarks(){
   });
 
   existingRows=new Map();
-  (full.data||[]).forEach(r=>{
-    if(!existingRows.has(Number(r.roll_no)))
-      existingRows.set(Number(r.roll_no),r);
-  });
+
+function hasExistingMarks(r){
+  const fields=pat()?.half
+    ? ["mil_odia_sub","mil_odia_obj","english_sub","english_obj","hindi_sanskrit_sub","hindi_sanskrit_obj","mathematics_sub","mathematics_obj","science_sub","science_obj","social_science_sub","social_science_obj"]
+    : (pat()?.fields||[]).map(x=>x[0]);
+
+  return fields.some(f=>r[f]!==null && r[f]!==undefined && r[f]!=="");
+}
+
+(full.data||[]).forEach(r=>{
+  const roll=Number(r.roll_no);
+  const old=existingRows.get(roll);
+
+  if(!old || (!hasExistingMarks(old) && hasExistingMarks(r))){
+    existingRows.set(roll,r);
+  }
+});
 
   fullMarks.value=pat().max;
   render();
