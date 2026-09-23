@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="or">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 03 – Arithmetic Progression | MCQ Practice</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:"Noto Sans Oriya","Noto Sans",Arial,sans-serif;background:#f4f7fb;color:#172033;line-height:1.7}
+header{background:linear-gradient(135deg,#123b63,#176b87);color:#fff;text-align:center;padding:30px 15px}
+header h1{margin:0;font-size:clamp(24px,6vw,38px)} header p{margin:6px 0}
+main{max-width:1000px;margin:auto;padding:18px}
+.box{background:#fff;margin:18px 0;padding:22px;border-radius:16px;box-shadow:0 5px 18px rgba(0,0,0,.08);border-left:6px solid #176b87}
+.question{background:#f8fbff;border:1px solid #d7e3ee;border-radius:12px;padding:15px;margin:14px 0}
+.question h3{margin:0 0 10px;color:#123f5b;font-size:17px}
+label{display:block;background:#fff;border:1px solid #dfe7ef;border-radius:8px;padding:8px 10px;margin:7px 0;cursor:pointer}
+label:hover{background:#eef7fa}
+input{margin-right:8px}
+button,.back{display:inline-block;border:0;border-radius:10px;padding:13px 20px;margin:6px;font-weight:700;cursor:pointer;text-decoration:none}
+.submit{background:#176b87;color:#fff} .reset{background:#64748b;color:#fff} .back{background:#475569;color:#fff}
+#result{display:none;background:#fff8df;border:2px solid #e0b84d;padding:18px;border-radius:12px;margin:20px 0;font-size:19px;font-weight:700}
+.correct{background:#e9f7ed!important;border-color:#49a866!important}
+.wrong{background:#fff0f0!important;border-color:#d9534f!important}
+.answerkey{display:none;background:#f0f7fa;padding:16px;border-radius:12px;margin-top:18px}
+.answerkey span{display:inline-block;background:#fff;border:1px solid #d7e3ee;border-radius:7px;padding:5px 9px;margin:4px;font-weight:700}
+.actions{text-align:center;margin:28px 0}
+footer{text-align:center;padding:24px;color:#64748b}
+@media print{.actions,#result,.answerkey{display:none!important}body{background:#fff}.box{box-shadow:none}}
+</style>
+</head>
+<body>
+<header>
+<h1>ଅଧ୍ୟାୟ ୦୩ – ସମାନ୍ତର ପ୍ରଗତି</h1>
+<p>MCQ Practice • 50 Questions</p>
+<p>Class X Mathematics • KGKHS Beldandia</p>
+</header>
+<main>
+<section class="box">
+<h2>📝 MCQ ନିର୍ଦ୍ଦେଶ</h2>
+<p>ମୋଟ ପ୍ରଶ୍ନ: <b>50</b> • ପ୍ରତ୍ୟେକ ପ୍ରଶ୍ନ: <b>1 ମାର୍କ</b> • ମୋଟ: <b>50 ମାର୍କ</b></p>
+<p>ପ୍ରତ୍ୟେକ ପ୍ରଶ୍ନରେ ଗୋଟିଏ ସଠିକ୍ ଉତ୍ତର ବାଛନ୍ତୁ। ଶେଷରେ <b>Check Answers</b> ଦବାନ୍ତୁ।</p>
+</section>
+<form id="quiz">
+<section class="box">
+<div class="question"><h3>1. 2, 5, 8, 11, ... ର ସାଧାରଣ ଅନ୍ତର କେତେ?</h3><label><input type="radio" name="q1" value="A"> A) 2</label>
+<label><input type="radio" name="q1" value="B"> B) 3</label>
+<label><input type="radio" name="q1" value="C"> C) 4</label>
+<label><input type="radio" name="q1" value="D"> D) 5</label></div><div class="question"><h3>2. 7, 7, 7, 7, ... କେଉଁ ପ୍ରକାରର A.P.?</h3><label><input type="radio" name="q2" value="A"> A) d=1</label>
+<label><input type="radio" name="q2" value="B"> B) d=7</label>
+<label><input type="radio" name="q2" value="C"> C) d=0</label>
+<label><input type="radio" name="q2" value="D"> D) A.P. ନୁହେଁ</label></div><div class="question"><h3>3. 10, 15, 20, 25, ... ର ପ୍ରଥମ ପଦ a କେତେ?</h3><label><input type="radio" name="q3" value="A"> A) 5</label>
+<label><input type="radio" name="q3" value="B"> B) 10</label>
+<label><input type="radio" name="q3" value="C"> C) 15</label>
+<label><input type="radio" name="q3" value="D"> D) 20</label></div><div class="question"><h3>4. 20, 17, 14, 11, ... ର d କେତେ?</h3><label><input type="radio" name="q4" value="A"> A) 3</label>
+<label><input type="radio" name="q4" value="B"> B) −3</label>
+<label><input type="radio" name="q4" value="C"> C) −2</label>
+<label><input type="radio" name="q4" value="D"> D) 2</label></div><div class="question"><h3>5. A.P. ର n-ତମ ପଦର ସୂତ୍ର କେଉଁଟି?</h3><label><input type="radio" name="q5" value="A"> A) a+nd</label>
+<label><input type="radio" name="q5" value="B"> B) a+(n−1)d</label>
+<label><input type="radio" name="q5" value="C"> C) n/2(a+d)</label>
+<label><input type="radio" name="q5" value="D"> D) a+(n+1)d</label></div><div class="question"><h3>6. 3, 7, 11, 15, ... ର 10ତମ ପଦ କେତେ?</h3><label><input type="radio" name="q6" value="A"> A) 35</label>
+<label><input type="radio" name="q6" value="B"> B) 39</label>
+<label><input type="radio" name="q6" value="C"> C) 43</label>
+<label><input type="radio" name="q6" value="D"> D) 47</label></div><div class="question"><h3>7. 5, 8, 11, 14, ... ର 20ତମ ପଦ କେତେ?</h3><label><input type="radio" name="q7" value="A"> A) 59</label>
+<label><input type="radio" name="q7" value="B"> B) 60</label>
+<label><input type="radio" name="q7" value="C"> C) 62</label>
+<label><input type="radio" name="q7" value="D"> D) 65</label></div><div class="question"><h3>8. 4, 9, 14, 19, ... ର 15ତମ ପଦ କେତେ?</h3><label><input type="radio" name="q8" value="A"> A) 69</label>
+<label><input type="radio" name="q8" value="B"> B) 74</label>
+<label><input type="radio" name="q8" value="C"> C) 75</label>
+<label><input type="radio" name="q8" value="D"> D) 79</label></div><div class="question"><h3>9. −2, 2, 6, 10, ... ର 12ତମ ପଦ କେତେ?</h3><label><input type="radio" name="q9" value="A"> A) 38</label>
+<label><input type="radio" name="q9" value="B"> B) 40</label>
+<label><input type="radio" name="q9" value="C"> C) 42</label>
+<label><input type="radio" name="q9" value="D"> D) 44</label></div><div class="question"><h3>10. ଯଦି a=6, d=4, ତେବେ t₈ କେତେ?</h3><label><input type="radio" name="q10" value="A"> A) 30</label>
+<label><input type="radio" name="q10" value="B"> B) 32</label>
+<label><input type="radio" name="q10" value="C"> C) 34</label>
+<label><input type="radio" name="q10" value="D"> D) 36</label></div><div class="question"><h3>11. A.P. ର ପ୍ରଥମ n ପଦର ଯୋଗଫଳର ସୂତ୍ର କେଉଁଟି?</h3><label><input type="radio" name="q11" value="A"> A) n(a+d)</label>
+<label><input type="radio" name="q11" value="B"> B) n/2[2a+(n−1)d]</label>
+<label><input type="radio" name="q11" value="C"> C) n/2(a+d)</label>
+<label><input type="radio" name="q11" value="D"> D) a+(n−1)d</label></div><div class="question"><h3>12. Sₙ ର ଅନ୍ୟ ଏକ ସୂତ୍ର, ଯେତେବେଳେ ଶେଷ ପଦ l ଜଣାଥାଏ, କେଉଁଟି?</h3><label><input type="radio" name="q12" value="A"> A) Sₙ=n(a+l)</label>
+<label><input type="radio" name="q12" value="B"> B) Sₙ=n/2(a+l)</label>
+<label><input type="radio" name="q12" value="C"> C) Sₙ=2n(a+l)</label>
+<label><input type="radio" name="q12" value="D"> D) Sₙ=a+l</label></div><div class="question"><h3>13. 2+4+6+...+20 ରେ ପଦ ସଂଖ୍ୟା କେତେ?</h3><label><input type="radio" name="q13" value="A"> A) 8</label>
+<label><input type="radio" name="q13" value="B"> B) 9</label>
+<label><input type="radio" name="q13" value="C"> C) 10</label>
+<label><input type="radio" name="q13" value="D"> D) 11</label></div><div class="question"><h3>14. 2+4+6+...+20 ର ଯୋଗଫଳ କେତେ?</h3><label><input type="radio" name="q14" value="A"> A) 100</label>
+<label><input type="radio" name="q14" value="B"> B) 110</label>
+<label><input type="radio" name="q14" value="C"> C) 120</label>
+<label><input type="radio" name="q14" value="D"> D) 130</label></div><div class="question"><h3>15. 1+2+3+...+10 ର ଯୋଗଫଳ କେତେ?</h3><label><input type="radio" name="q15" value="A"> A) 45</label>
+<label><input type="radio" name="q15" value="B"> B) 50</label>
+<label><input type="radio" name="q15" value="C"> C) 55</label>
+<label><input type="radio" name="q15" value="D"> D) 60</label></div><div class="question"><h3>16. ପ୍ରଥମ n ପ୍ରାକୃତିକ ସଂଖ୍ୟାର ଯୋଗଫଳ କେତେ?</h3><label><input type="radio" name="q16" value="A"> A) n²</label>
+<label><input type="radio" name="q16" value="B"> B) n(n+1)/2</label>
+<label><input type="radio" name="q16" value="C"> C) n(n−1)/2</label>
+<label><input type="radio" name="q16" value="D"> D) 2n</label></div><div class="question"><h3>17. ପ୍ରଥମ n ବିଜୋଡ଼ ସଂଖ୍ୟାର ଯୋଗଫଳ କେତେ?</h3><label><input type="radio" name="q17" value="A"> A) n²</label>
+<label><input type="radio" name="q17" value="B"> B) n(n+1)</label>
+<label><input type="radio" name="q17" value="C"> C) 2n²</label>
+<label><input type="radio" name="q17" value="D"> D) n²+1</label></div><div class="question"><h3>18. ପ୍ରଥମ n ଯୁଗ୍ମ ସଂଖ୍ୟାର ଯୋଗଫଳ କେତେ?</h3><label><input type="radio" name="q18" value="A"> A) n²</label>
+<label><input type="radio" name="q18" value="B"> B) n(n+1)</label>
+<label><input type="radio" name="q18" value="C"> C) n(n−1)</label>
+<label><input type="radio" name="q18" value="D"> D) 2n²</label></div><div class="question"><h3>19. ପ୍ରଥମ n ସଂଖ୍ୟାର ବର୍ଗର ଯୋଗଫଳ କେଉଁଟି?</h3><label><input type="radio" name="q19" value="A"> A) n(n+1)/2</label>
+<label><input type="radio" name="q19" value="B"> B) n²</label>
+<label><input type="radio" name="q19" value="C"> C) n(n+1)(2n+1)/6</label>
+<label><input type="radio" name="q19" value="D"> D) [n(n+1)/2]²</label></div><div class="question"><h3>20. ପ୍ରଥମ n ସଂଖ୍ୟାର ଘନର ଯୋଗଫଳ କେଉଁଟି?</h3><label><input type="radio" name="q20" value="A"> A) n³</label>
+<label><input type="radio" name="q20" value="B"> B) n(n+1)(2n+1)/6</label>
+<label><input type="radio" name="q20" value="C"> C) [n(n+1)/2]²</label>
+<label><input type="radio" name="q20" value="D"> D) n(n+1)</label></div><div class="question"><h3>21. 12 ଓ 20 ମଧ୍ୟରେ A.M. କେତେ?</h3><label><input type="radio" name="q21" value="A"> A) 14</label>
+<label><input type="radio" name="q21" value="B"> B) 15</label>
+<label><input type="radio" name="q21" value="C"> C) 16</label>
+<label><input type="radio" name="q21" value="D"> D) 18</label></div><div class="question"><h3>22. 8 ଓ 18 ମଧ୍ୟରେ A.M. କେତେ?</h3><label><input type="radio" name="q22" value="A"> A) 12</label>
+<label><input type="radio" name="q22" value="B"> B) 13</label>
+<label><input type="radio" name="q22" value="C"> C) 14</label>
+<label><input type="radio" name="q22" value="D"> D) 15</label></div><div class="question"><h3>23. ତିନୋଟି ସଂଖ୍ୟା A.P. ରେ ଥିଲେ ମଧ୍ୟମ ପଦ ସମ୍ପର୍କରେ କେଉଁଟି ସଠିକ୍?</h3><label><input type="radio" name="q23" value="A"> A) 2×ମଧ୍ୟମ=ପ୍ରଥମ−ତୃତୀୟ</label>
+<label><input type="radio" name="q23" value="B"> B) 2×ମଧ୍ୟମ=ପ୍ରଥମ+ତୃତୀୟ</label>
+<label><input type="radio" name="q23" value="C"> C) ମଧ୍ୟମ=ପ୍ରଥମ×ତୃତୀୟ</label>
+<label><input type="radio" name="q23" value="D"> D) ମଧ୍ୟମ=ପ୍ରଥମ/ତୃତୀୟ</label></div><div class="question"><h3>24. a−d, a, a+d ରେ ସାଧାରଣ ଅନ୍ତର କେତେ?</h3><label><input type="radio" name="q24" value="A"> A) a</label>
+<label><input type="radio" name="q24" value="B"> B) d</label>
+<label><input type="radio" name="q24" value="C"> C) 2d</label>
+<label><input type="radio" name="q24" value="D"> D) a+d</label></div><div class="question"><h3>25. 3, 6, 9, 12, ... ର 25ତମ ପଦ କେତେ?</h3><label><input type="radio" name="q25" value="A"> A) 72</label>
+<label><input type="radio" name="q25" value="B"> B) 75</label>
+<label><input type="radio" name="q25" value="C"> C) 78</label>
+<label><input type="radio" name="q25" value="D"> D) 81</label></div><div class="question"><h3>26. 10, 8, 6, 4, ... ର 15ତମ ପଦ କେତେ?</h3><label><input type="radio" name="q26" value="A"> A) −16</label>
+<label><input type="radio" name="q26" value="B"> B) −18</label>
+<label><input type="radio" name="q26" value="C"> C) −20</label>
+<label><input type="radio" name="q26" value="D"> D) −22</label></div><div class="question"><h3>27. ଯଦି t₄=11 ଏବଂ t₁₀=17, ତେବେ d କେତେ?</h3><label><input type="radio" name="q27" value="A"> A) 1</label>
+<label><input type="radio" name="q27" value="B"> B) 2/3</label>
+<label><input type="radio" name="q27" value="C"> C) 1/2</label>
+<label><input type="radio" name="q27" value="D"> D) 3/2</label></div><div class="question"><h3>28. ଯଦି a=4, d=3, n=10, ତେବେ t₁₀ କେତେ?</h3><label><input type="radio" name="q28" value="A"> A) 28</label>
+<label><input type="radio" name="q28" value="B"> B) 31</label>
+<label><input type="radio" name="q28" value="C"> C) 34</label>
+<label><input type="radio" name="q28" value="D"> D) 37</label></div><div class="question"><h3>29. a=4, d=3, n=10 ପାଇଁ S₁₀ କେତେ?</h3><label><input type="radio" name="q29" value="A"> A) 155</label>
+<label><input type="radio" name="q29" value="B"> B) 165</label>
+<label><input type="radio" name="q29" value="C"> C) 175</label>
+<label><input type="radio" name="q29" value="D"> D) 185</label></div><div class="question"><h3>30. 5+10+15+...+50 ର ଯୋଗଫଳ କେତେ?</h3><label><input type="radio" name="q30" value="A"> A) 250</label>
+<label><input type="radio" name="q30" value="B"> B) 275</label>
+<label><input type="radio" name="q30" value="C"> C) 300</label>
+<label><input type="radio" name="q30" value="D"> D) 325</label></div><div class="question"><h3>31. 8+13+18+...+98 ରେ ପଦ ସଂଖ୍ୟା କେତେ?</h3><label><input type="radio" name="q31" value="A"> A) 18</label>
+<label><input type="radio" name="q31" value="B"> B) 19</label>
+<label><input type="radio" name="q31" value="C"> C) 20</label>
+<label><input type="radio" name="q31" value="D"> D) 21</label></div><div class="question"><h3>32. 8+13+18+...+98 ର ଯୋଗଫଳ କେତେ?</h3><label><input type="radio" name="q32" value="A"> A) 1000</label>
+<label><input type="radio" name="q32" value="B"> B) 1020</label>
+<label><input type="radio" name="q32" value="C"> C) 1045</label>
+<label><input type="radio" name="q32" value="D"> D) 1060</label></div><div class="question"><h3>33. 15 ଠାରୁ 85 ପର୍ଯ୍ୟନ୍ତ ସମସ୍ତ ଗଣନ ସଂଖ୍ୟାର ପଦ ସଂଖ୍ୟା କେତେ?</h3><label><input type="radio" name="q33" value="A"> A) 69</label>
+<label><input type="radio" name="q33" value="B"> B) 70</label>
+<label><input type="radio" name="q33" value="C"> C) 71</label>
+<label><input type="radio" name="q33" value="D"> D) 72</label></div><div class="question"><h3>34. 15 ଠାରୁ 85 ପର୍ଯ୍ୟନ୍ତ ସମସ୍ତ ଗଣନ ସଂଖ୍ୟାର ଯୋଗଫଳ କେତେ?</h3><label><input type="radio" name="q34" value="A"> A) 3450</label>
+<label><input type="radio" name="q34" value="B"> B) 3500</label>
+<label><input type="radio" name="q34" value="C"> C) 3550</label>
+<label><input type="radio" name="q34" value="D"> D) 3600</label></div><div class="question"><h3>35. ଯଦି A.P. ର tₙ=2n+3, ତେବେ ପ୍ରଥମ ପଦ କେତେ?</h3><label><input type="radio" name="q35" value="A"> A) 3</label>
+<label><input type="radio" name="q35" value="B"> B) 4</label>
+<label><input type="radio" name="q35" value="C"> C) 5</label>
+<label><input type="radio" name="q35" value="D"> D) 6</label></div><div class="question"><h3>36. tₙ=2n+3 ଥିଲେ d କେତେ?</h3><label><input type="radio" name="q36" value="A"> A) 1</label>
+<label><input type="radio" name="q36" value="B"> B) 2</label>
+<label><input type="radio" name="q36" value="C"> C) 3</label>
+<label><input type="radio" name="q36" value="D"> D) 4</label></div><div class="question"><h3>37. tₙ=2n+3 ଥିଲେ Sₙ କେତେ?</h3><label><input type="radio" name="q37" value="A"> A) n²+3n</label>
+<label><input type="radio" name="q37" value="B"> B) n²+4n</label>
+<label><input type="radio" name="q37" value="C"> C) 2n²+3n</label>
+<label><input type="radio" name="q37" value="D"> D) 2n²+4n</label></div><div class="question"><h3>38. ଯଦି Sₙ=Sₙ₋₁+tₙ, ତେବେ tₙ କେତେ?</h3><label><input type="radio" name="q38" value="A"> A) Sₙ+Sₙ₋₁</label>
+<label><input type="radio" name="q38" value="B"> B) Sₙ−Sₙ₋₁</label>
+<label><input type="radio" name="q38" value="C"> C) Sₙ/Sₙ₋₁</label>
+<label><input type="radio" name="q38" value="D"> D) Sₙ×Sₙ₋₁</label></div><div class="question"><h3>39. ଯଦି A.P. ର ଦୁଇଟି ପଦ tₘ ଓ tₙ, ତେବେ tₘ₊ₙ ନିର୍ଣ୍ଣୟ ପାଇଁ କେଉଁ ସୂତ୍ର ମୂଳଭିତ୍ତି?</h3><label><input type="radio" name="q39" value="A"> A) tₙ=a+(n−1)d</label>
+<label><input type="radio" name="q39" value="B"> B) Sₙ=n²</label>
+<label><input type="radio" name="q39" value="C"> C) A.M.=(a+b)/2</label>
+<label><input type="radio" name="q39" value="D"> D) Sₙ=n(a+l)</label></div><div class="question"><h3>40. A.P. ର ସମମିତ ପଦମାନଙ୍କ ପାଇଁ କେଉଁ ସମ୍ପର୍କ ସଠିକ୍?</h3><label><input type="radio" name="q40" value="A"> A) tₘ₊ₙ+tₘ₋ₙ=2tₘ</label>
+<label><input type="radio" name="q40" value="B"> B) tₘ₊ₙ−tₘ₋ₙ=2tₘ</label>
+<label><input type="radio" name="q40" value="C"> C) tₘ₊ₙ=tₘ₋ₙ</label>
+<label><input type="radio" name="q40" value="D"> D) tₘ=0</label></div><div class="question"><h3>41. ଗୋଟିଏ A.P. ର d ଧନାତ୍ମକ ହେଲେ ପଦଗୁଡ଼ିକ ସାଧାରଣତଃ କିପରି ବଦଳେ?</h3><label><input type="radio" name="q41" value="A"> A) କମେ</label>
+<label><input type="radio" name="q41" value="B"> B) ବଢ଼େ</label>
+<label><input type="radio" name="q41" value="C"> C) ସବୁବେଳେ 0</label>
+<label><input type="radio" name="q41" value="D"> D) ସମାନ ରହେ</label></div><div class="question"><h3>42. d=0 ହେଲେ A.P. ର ସମସ୍ତ ପଦ କିପରି?</h3><label><input type="radio" name="q42" value="A"> A) ବିକଳ୍ପ ହୁଏ</label>
+<label><input type="radio" name="q42" value="B"> B) ସମାନ</label>
+<label><input type="radio" name="q42" value="C"> C) ଋଣାତ୍ମକ</label>
+<label><input type="radio" name="q42" value="D"> D) ଶୂନ</label></div><div class="question"><h3>43. A.P. ର d ଋଣାତ୍ମକ ହେଲେ ପଦଗୁଡ଼ିକ କେଉଁ ଦିଗରେ ବଦଳେ?</h3><label><input type="radio" name="q43" value="A"> A) ବଢ଼େ</label>
+<label><input type="radio" name="q43" value="B"> B) କମେ</label>
+<label><input type="radio" name="q43" value="C"> C) ସମାନ</label>
+<label><input type="radio" name="q43" value="D"> D) ନିର୍ଣ୍ଣୟ ହୁଏନାହିଁ</label></div><div class="question"><h3>44. 4, 7, 10, 13, ... ର 33ତମ ପଦ କେତେ?</h3><label><input type="radio" name="q44" value="A"> A) 98</label>
+<label><input type="radio" name="q44" value="B"> B) 100</label>
+<label><input type="radio" name="q44" value="C"> C) 102</label>
+<label><input type="radio" name="q44" value="D"> D) 104</label></div><div class="question"><h3>45. 4, 7, 10, 13, ... ର ପ୍ରଥମ 40 ପଦର ଯୋଗଫଳ କେତେ?</h3><label><input type="radio" name="q45" value="A"> A) 2400</label>
+<label><input type="radio" name="q45" value="B"> B) 2450</label>
+<label><input type="radio" name="q45" value="C"> C) 2500</label>
+<label><input type="radio" name="q45" value="D"> D) 2550</label></div><div class="question"><h3>46. 27, 24, 21, ... ର d କେତେ?</h3><label><input type="radio" name="q46" value="A"> A) 3</label>
+<label><input type="radio" name="q46" value="B"> B) −3</label>
+<label><input type="radio" name="q46" value="C"> C) −2</label>
+<label><input type="radio" name="q46" value="D"> D) 2</label></div><div class="question"><h3>47. 27+24+21+... ର S₈ କେତେ?</h3><label><input type="radio" name="q47" value="A"> A) 132</label>
+<label><input type="radio" name="q47" value="B"> B) 144</label>
+<label><input type="radio" name="q47" value="C"> C) 156</label>
+<label><input type="radio" name="q47" value="D"> D) 168</label></div><div class="question"><h3>48. ସମାନ୍ତର ପ୍ରଗତିରେ 'd' କୁ କଣ କୁହାଯାଏ?</h3><label><input type="radio" name="q48" value="A"> A) ପ୍ରଥମ ପଦ</label>
+<label><input type="radio" name="q48" value="B"> B) ଶେଷ ପଦ</label>
+<label><input type="radio" name="q48" value="C"> C) ସାଧାରଣ ଅନ୍ତର</label>
+<label><input type="radio" name="q48" value="D"> D) ଯୋଗଫଳ</label></div><div class="question"><h3>49. A.P. 2, 4, 6, 8, ... ର 50ତମ ପଦ କେତେ?</h3><label><input type="radio" name="q49" value="A"> A) 98</label>
+<label><input type="radio" name="q49" value="B"> B) 100</label>
+<label><input type="radio" name="q49" value="C"> C) 102</label>
+<label><input type="radio" name="q49" value="D"> D) 104</label></div><div class="question"><h3>50. A.P. 2, 4, 6, 8, ... ର ପ୍ରଥମ 50 ପଦର ଯୋଗଫଳ କେତେ?</h3><label><input type="radio" name="q50" value="A"> A) 2500</label>
+<label><input type="radio" name="q50" value="B"> B) 2550</label>
+<label><input type="radio" name="q50" value="C"> C) 2600</label>
+<label><input type="radio" name="q50" value="D"> D) 2650</label></div>
+</section>
+<div class="actions">
+<button type="button" class="submit" onclick="checkAnswers()">✅ Check Answers</button>
+<button type="button" class="reset" onclick="location.reload()">🔄 Reset</button>
+<a class="back" href="class-x-mathematics.html">← Back to Class X Mathematics</a>
+</div>
+</form>
+<div id="result"></div>
+<section class="box">
+<h2>📖 ଉତ୍ତରମାଳା</h2>
+<p>ପ୍ରଥମେ ନିଜେ MCQ ସମାଧାନ କରନ୍ତୁ। <b>Show Answer Key</b> ଦବାଇଲେ ସମସ୍ତ ଉତ୍ତର ଦେଖିପାରିବେ।</p>
+<button type="button" class="submit" onclick="document.getElementById('key').style.display='block'">🔑 Show Answer Key</button>
+<div id="key" class="answerkey">
+<span>1. B</span><span>2. C</span><span>3. B</span><span>4. B</span><span>5. B</span><span>6. B</span><span>7. C</span><span>8. B</span><span>9. C</span><span>10. C</span><span>11. B</span><span>12. B</span><span>13. C</span><span>14. B</span><span>15. C</span><span>16. B</span><span>17. A</span><span>18. B</span><span>19. C</span><span>20. C</span><span>21. C</span><span>22. B</span><span>23. B</span><span>24. B</span><span>25. B</span><span>26. B</span><span>27. B</span><span>28. B</span><span>29. B</span><span>30. B</span><span>31. C</span><span>32. C</span><span>33. C</span><span>34. C</span><span>35. C</span><span>36. B</span><span>37. B</span><span>38. B</span><span>39. A</span><span>40. A</span><span>41. B</span><span>42. B</span><span>43. B</span><span>44. B</span><span>45. C</span><span>46. B</span><span>47. A</span><span>48. C</span><span>49. B</span><span>50. B</span>
+</div>
+</section>
+</main>
+<footer>Class X Mathematics • Chapter 03 – Arithmetic Progression • MCQ Practice • KGKHS Beldandia</footer>
+<script>
+const answers={q1:'B',
+q2:'C',
+q3:'B',
+q4:'B',
+q5:'B',
+q6:'B',
+q7:'C',
+q8:'B',
+q9:'C',
+q10:'C',
+q11:'B',
+q12:'B',
+q13:'C',
+q14:'B',
+q15:'C',
+q16:'B',
+q17:'A',
+q18:'B',
+q19:'C',
+q20:'C',
+q21:'C',
+q22:'B',
+q23:'B',
+q24:'B',
+q25:'B',
+q26:'B',
+q27:'B',
+q28:'B',
+q29:'B',
+q30:'B',
+q31:'C',
+q32:'C',
+q33:'C',
+q34:'C',
+q35:'C',
+q36:'B',
+q37:'B',
+q38:'B',
+q39:'A',
+q40:'A',
+q41:'B',
+q42:'B',
+q43:'B',
+q44:'B',
+q45:'C',
+q46:'B',
+q47:'A',
+q48:'C',
+q49:'B',
+q50:'B'};
+function checkAnswers(){
+let score=0, attempted=0;
+for(let i=1;i<=50;i++){
+ const selected=document.querySelector('input[name="q'+i+'"]:checked');
+ document.querySelectorAll('input[name="q'+i+'"]').forEach(x=>x.parentElement.classList.remove('correct','wrong'));
+ if(selected){
+   attempted++;
+   if(selected.value===answers['q'+i]){score++;selected.parentElement.classList.add('correct');}
+   else {
+     selected.parentElement.classList.add('wrong');
+     document.querySelectorAll('input[name="q'+i+'"]').forEach(x=>{if(x.value===answers['q'+i])x.parentElement.classList.add('correct')})
+   }
+ }
+}
+const result=document.getElementById('result');
+result.style.display='block';
+result.innerHTML='🎯 ଆପଣଙ୍କ ଫଳାଫଳ: <b>'+score+'/50</b><br>Attempted: '+attempted+'/50<br>Correct: '+score+' &nbsp; | &nbsp; Wrong: '+(attempted-score);
+window.scrollTo({top:result.offsetTop-20,behavior:'smooth'});
+}
+</script>
+</body>
+</html>
