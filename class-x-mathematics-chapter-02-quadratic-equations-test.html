@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Class X Mathematics | Chapter 02 Test | Quadratic Equations</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:Arial,Helvetica,sans-serif;
+    background:linear-gradient(135deg,#eef7ff,#ffffff);
+    color:#172033;
+    line-height:1.6;
+}
+
+header{
+    background:linear-gradient(135deg,#0b4f8a,#1479bd);
+    color:white;
+    text-align:center;
+    padding:28px 15px;
+}
+
+header h1{
+    margin:0;
+    font-size:clamp(25px,7vw,42px);
+    font-weight:800;
+}
+
+header p{
+    margin:10px 0 0;
+    font-size:18px;
+}
+
+.container{
+    max-width:1000px;
+    margin:auto;
+    padding:18px;
+}
+
+.intro{
+    background:white;
+    border-radius:22px;
+    padding:22px;
+    margin:20px 0;
+    box-shadow:0 5px 18px rgba(0,0,0,.12);
+    text-align:center;
+}
+
+.intro h2{
+    color:#c22662;
+    margin-top:0;
+}
+
+.info{
+    display:flex;
+    justify-content:center;
+    gap:12px;
+    flex-wrap:wrap;
+    margin-top:15px;
+}
+
+.info span{
+    background:#eaf3ff;
+    border:1px solid #b8d5f5;
+    border-radius:12px;
+    padding:8px 14px;
+    font-weight:bold;
+}
+
+.question{
+    background:white;
+    border-radius:18px;
+    padding:20px;
+    margin:20px 0;
+    box-shadow:0 4px 14px rgba(0,0,0,.10);
+    border-left:5px solid #1479bd;
+}
+
+.question h3{
+    margin-top:0;
+    color:#0b4f8a;
+}
+
+.question-text{
+    font-size:18px;
+    font-weight:600;
+}
+
+.options{
+    margin-top:15px;
+}
+
+.option{
+    display:block;
+    padding:12px 14px;
+    margin:9px 0;
+    background:#f2f7fd;
+    border:1px solid #c4dbf5;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+.option:hover{
+    background:#e3f0ff;
+}
+
+.option input{
+    margin-right:8px;
+    transform:scale(1.15);
+}
+
+.correct{
+    background:#d8f5df !important;
+    border-color:#27a64a !important;
+}
+
+.wrong{
+    background:#ffe0e0 !important;
+    border-color:#d62828 !important;
+}
+
+#result{
+    display:none;
+    background:white;
+    border-radius:22px;
+    padding:25px;
+    margin:25px 0;
+    text-align:center;
+    box-shadow:0 5px 18px rgba(0,0,0,.15);
+}
+
+#score{
+    font-size:30px;
+    font-weight:800;
+    color:#0b4f8a;
+}
+
+#message{
+    font-size:20px;
+    font-weight:bold;
+}
+
+.submit-btn{
+    display:block;
+    width:100%;
+    max-width:500px;
+    margin:30px auto;
+    padding:16px;
+    border:none;
+    border-radius:14px;
+    background:#0b4f8a;
+    color:white;
+    font-size:20px;
+    font-weight:800;
+    cursor:pointer;
+}
+
+.submit-btn:hover{
+    background:#1479bd;
+}
+
+.back{
+    display:block;
+    width:max-content;
+    margin:25px auto;
+    padding:12px 20px;
+    border-radius:12px;
+    background:#1479bd;
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+footer{
+    text-align:center;
+    background:#0b4f8a;
+    color:white;
+    padding:22px 10px;
+    margin-top:30px;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+<h1>📐 Chapter 02 – Quadratic Equations</h1>
+
+<p>🎯 Chapter Test | Class X Mathematics</p>
+
+</header>
+
+
+<div class="container">
+
+
+<div class="intro">
+
+<h2>📝 Chapter Test</h2>
+
+<p>
+Test your understanding of
+<strong>Quadratic Equations</strong>.
+</p>
+
+<div class="info">
+
+<span>📚 20 Questions</span>
+
+<span>🏆 40 Marks</span>
+
+<span>⏱️ Practice Test</span>
+
+<span>✏️ 2 Marks Each</span>
+
+</div>
+
+</div>
+
+
+<div id="quiz">
+
+
+<!-- QUESTION 1 -->
+
+<div class="question">
+
+<h3>Question 1</h3>
+
+<p class="question-text">
+Which of the following is a quadratic equation?
+</p>
+
+<div class="options">
+
+<label class="option">
+<input type="radio" name="q1" value="A">
+A. 2x + 5 = 0
+</label>
+
+<label class="option">
+<input type="radio" name="q1" value="B">
+B. x² + 3x + 2 = 0
+</label>
+
+<label class="option">
+<input type="radio" name="q1" value="C">
+C. 1/x + 2 = 0
+</label>
+
+<label class="option">
+<input type="radio" name="q1" value="D">
+D. x³ + 1 = 0
+</label>
+
+</div>
+</div>
+
+
+<!-- QUESTION 2 -->
+
+<div class="question">
+
+<h3>Question 2</h3>
+
+<p class="question-text">
+The standard form of a quadratic equation is:
+</p>
+
+<div class="options">
+
+<label class="option">
+<input type="radio" name="q2" value="A">
+A. ax + b = 0
+</label>
+
+<label class="option">
+<input type="radio" name="q2" value="B">
+B. ax² + bx + c = 0, a ≠ 0
+</label>
+
+<label class="option">
+<input type="radio" name="q2" value="C">
+C. ax³ + bx + c = 0
+</label>
+
+<label class="option">
+<input type="radio" name="q2" value="D">
+D. ax² + c = 1
+</label>
+
+</div>
+</div>
+
+
+<!-- QUESTION 3 -->
+
+<div class="question">
+
+<h3>Question 3</h3>
+
+<p class="question-text">
+The roots of x² − 5x + 6 = 0 are:
+</p>
+
+<div class="options">
+
+<label class="option">
+<input type="radio" name="q3" value="A">
+A. 1, 6
+</label>
+
+<label class="option">
+<input type="radio" name="q3" value="B">
+B. 2, 3
+</label>
+
+<label class="option">
+<input type="radio" name="q3" value="C">
+C. −2, −3
+</label>
+
+<label class="option">
+<input type="radio" name="q3" value="D">
+D. 1, 5
+</label>
+
+</div>
+</div>
+
+
+<!-- QUESTION 4 -->
+
+<div class="question">
+
+<h3>Question 4</h3>
+
+<p class="question-text">
+The discriminant of ax² + bx + c = 0 is:
+</p>
+
+<div class="options">
+
+<label class="option">
+<input type="radio" name="q4" value="A">
+A. b² + 4ac
+</label>
+
+<label class="option">
+<input type="radio" name="q4" value="B">
+B. b² − 4ac
+</label>
+
+<label class="option">
+<input type="radio" name="q4" value="C">
+C. 4ac − b²
+</label>
+
+<label class="option">
+<input type="radio" name="q4" value="D">
+D. 2b − 4ac
+</label>
+
+</div>
+</div>
+
+
+<!-- QUESTION 5 -->
+
+<div class="question">
+
+<h3>Question 5</h3>
+
+<p class="question-text">
+If the discriminant is zero, the roots are:
+</p>
+
+<div class="options">
+
+<label class="option">
+<input type="radio" name="q5" value="A">
+A. Real and unequal
+</label>
+
+<label class="option">
+<input type="radio" name="q5" value="B">
+B. Real and equal
+</label>
+
+<label class="option">
+<input type="radio" name="q5" value="C">
+C. Not real
+</label>
+
+<label class="option">
+<input type="radio" name="q5" value="D">
+D. Always negative
+</label>
+
+</div>
+</div>
+
+
+<!-- QUESTION 6 -->
+
+<div class="question">
+
+<h3>Question 6</h3>
+
+<p class="question-text">
+The roots of x² − 7x + 12 = 0 are:
+</p>
+
+<div class="options">
+
+<label class="option">
+<input type="radio" name="q6" value="A">
+A. 2 and 6
+</label>
+
+<label class="option">
+<input type="radio" name="q6" value="B">
+B. 3 and 4
+</label>
+
+<label class="option">
+<input type="radio" name="q6" value="C">
+C. −3 and −4
+</label>
+
+<label class="option">
+<input type="radio" name="q6" value="D">
+D. 1 and 12
+</label>
+
+</div>
+</div>
+
+
+<!-- QUESTION 7 -->
+
+<div class="question">
+
+<h3>Question 7</h3>
+
+<p class="question-text">
+The sum of roots of ax² + bx + c = 0 is:
+</p>
+
+<div class="options">
+
+<label class="option">
+<input type="radio" name="q7" value="A">
+A. b/a
+</label>
+
+<label class="option">
+<input type="radio" name="q7" value="B">
+B. −b/a
+</label>
+
+<label class="option">
+<input type="radio" name="q7" value="C">
+C. c/a
+</label>
+
+<label class="option">
+<input type="radio" name="q7" value="D">
+D. −c/a
+</label>
+
+</div>
+</div>
+
+
+<!-- QUESTION 8 -->
+
+<div class="question">
+
+<h3>Question 8</h3>
+
+<p class="question-text">
+The product of roots of ax² + bx + c = 0 is:
+</p>
+
+<div class="options">
+
+<label class="option">
+<input type="radio" name="q8" value="A">
+A. b/a
+</label>
+
+<label class="option">
+<input type="radio" name="q8" value="B">
+B. −b/a
+</label>
+
+<label class="option">
+<input type="radio" name="q8" value="C">
+C. c/a
+</label>
+
+<label class="option">
+<input type="radio" name="q8" value="D">
+D. −c/a
+</label>
+
+</div>
+</div>
+
+
+<!-- QUESTION 9 -->
+
+<div class="question">
+
+<h3>Question 9</h3>
+
+<p class="question-text">
+The roots of x² − 9x + 20 = 0 are:
+</p>
+
+<div class="options">
+
+<label class="option">
+<input type="radio" name="q9" value="A">
+A. 2 and 10
+</label>
+
+<label class="option">
+<input type="radio" name="q9" value="B">
+B. 4 and 5
+</label>
+
+<label class="option">
+<input type="radio" name="q9" value="C">
+C. −4 and −5
+</label>
+
+<label class="option">
+<input type="radio" name="q9" value="D">
+D. 1 and 20
+</label>
+
+</div>
+</div>
+
+
+<!-- QUESTION 10 -->
+
+<div class="question">
+
+<h3>Question 10</h3>
+
+<p class="question-text">
+For x² + 4x + 4 = 0, the roots are:
+</p>
+
+<div class="options">
+
+<label class="option">
+<input type="radio" name="q10" value="A">
+A. 2, 2
+</label>
+
+<label class="option">
+<input type="radio" name="q10" value="B">
+B. −2, −2
+</label>
+
+<label class="option">
+<input type="radio" name="q10" value="C">
+C. 4, 4
+</label>
+
+<label class="option">
+<input type="radio" name="q10" value="D">
+D. −4, −4
+</label>
+
+</div>
+</div>
+
+
+<!-- QUESTION 11 -->
+
+<div class="question">
+
+<h3>Question 11</h3>
+
+<p class="question-text">
+The discriminant of x² − 6x + 9 = 0 is:
+</p>
+
+<div class="options">
+
+<label class="option">
+<input type="radio" name="q11" value="A">
+A. 0
+</label>
+
+<label class="option">
+<input type="radio" name="q11" value="B">
+B. 9
+</label>
+
+<label class="option">
+<input type="radio" name="q11" value="C">
+C. 36
+</label>
+
+<label class="option">
+<input type="radio" name="q11" value="D">
+D. −9
+</label>
+
+</div>
+</div>
+
+
+<!-- QUESTION 12 -->
+
+<div class="question">
+
+<h3>Question 12</h3>
+
+<p class="question-text">
+If D &gt; 0, the roots of a quadratic equation are:
+</p>
+
+<div class="options">
+
+<label class="option">
+<input type="radio" name="q12" value="A">
+A. Real and equal
+</label>
+
+<label class="option">
+<input type="radio" name="q12" value="B">
+B. Real and unequal
+</label>
+
+<label class="option">
+<input type="radio" name="q12" value="C">
+C. Not real
+</label>
+
+<label class="option">
+<input type="radio" name="q12" value="D">
+D. Zero
+</label>
+
+</div>
+</div>
+
+
+<!-- QUESTION 13 -->
+
+<div class="question">
+
+<h3>Question 13</h3>
+
+<p class="question-text">
+The roots of 2x² − 5x + 2 = 0 are:
+</p>
+
+<div class="options">
+
+<label class="option">
+<input type="radio" name="q13" value="A">
+A. 2 and 1/2
+</label>
+
+<label class="option">
+<input type="radio" name="q13" value="B">
+B. −2 and −1/2
+</label>
+
+<label class="option">
+<input type="radio" name="q13" value="C">
+C. 1 and 2
+</label>
+
+<label class="option">
+<input type="radio" name="q13" value="D">
+D. 3 and 2
+</label>
+
+</div>
+</div>
+
+
+<!-- QUESTION 14 -->
+
+<div class="question">
+
+<h3>Question 14</h3>
+
+<p class="question-text">
+The roots of x² + 5x + 6 = 0 are:
+</p>
+
+<div class="options">
+
+<label class="option">
+<input type="radio" name="q14" value="A">
+A. 2 and 3
+</label>
+
+<label class="option">
+<input type="radio" name="q14" value="B">
+B. −2 and −3
+</label>
+
+<label class="option">
+<input type="radio" name="q14" value="C">
+C. 1 and 6
+</label>
+
+<label class="option">
+<input type="radio" name="q14" value="D">
+D. −1 and −6
+</label>
+
+</div>
+</div>
+
+
+<!-- QUESTION 15 -->
+
+<div class="question">
+
+<h3>Question 15</h3>
+
+<p class="question-text">
+If the roots are 2 and 5, their sum is:
+</p>
+
+<div class="options">
+
+<label class="option">
+<input type="radio" name="q15" value="A">
+A. 7
+</label>
+
+<label class="option">
+<input type="radio" name="q15" value="B">
+B. 10
+</label>
+
+<label class="option">
+<input type="radio" name="q15" value="C">
+C. 3
+</label>
+
+<label class="option">
+<input type="radio" name="q15" value="D">
+D. −7
+</label>
+
+</div>
+</div>
+
+
+<!-- QUESTION 16 -->
+
+<div class="question">
+
+<h3>Question 16</h3>
+
+<p class="question-text">
+If the roots are 2 and 5, their product is:
+</p>
+
+<div class="options">
+
+<label class="option">
+<input type="radio" name="q16" value="A">
+A. 7
+</label>
+
+<label class="option">
+<input type="radio" name="q16" value="B">
+B. 10
+</label>
+
+<label class="option">
+<input type="radio" name="q16" value="C">
+C. 3
+</label>
+
+<label class="option">
+<input type="radio" name="q16" value="D">
+D. −10
+</label>
+
+</div>
+</div>
+
+
+<!-- QUESTION 17 -->
+
+<div class="question">
+
+<h3>Question 17</h3>
+
+<p class="question-text">
+The roots of x² − 4x + 4 = 0 are:
+</p>
+
+<div class="options">
+
+<label class="option">
+<input type="radio" name="q17" value="A">
+A. 2 and 2
+</label>
+
+<label class="option">
+<input type="radio" name="q17" value="B">
+B. −2 and −2
+</label>
+
+<label class="option">
+<input type="radio" name="q17" value="C">
+C. 4 and 4
+</label>
+
+<label class="option">
+<input type="radio" name="q17" value="D">
+D. 1 and 4
+</label>
+
+</div>
+</div>
+
+
+<!-- QUESTION 18 -->
+
+<div class="question">
+
+<h3>Question 18</h3>
+
+<p class="question-text">
+Which equation has no real roots?
+</p>
+
+<div class="options">
+
+<label class="option">
+<input type="radio" name="q18" value="A">
+A. x² − 4 = 0
+</label>
+
+<label class="option">
+<input type="radio" name="q18" value="B">
+B. x² + 4 = 0
+</label>
+
+<label class="option">
+<input type="radio" name="q18" value="C">
+C. x² − 5x + 6 = 0
+</label>
+
+<label class="option">
+<input type="radio" name="q18" value="D">
+D. x² − 9 = 0
+</label>
+
+</div>
+</div>
+
+
+<!-- QUESTION 19 -->
+
+<div class="question">
+
+<h3>Question 19</h3>
+
+<p class="question-text">
+The quadratic formula is:
+</p>
+
+<div class="options">
+
+<label class="option">
+<input type="radio" name="q19" value="A">
+A. x = (−b ± √(b² − 4ac))/(2a)
+</label>
+
+<label class="option">
+<input type="radio" name="q19" value="B">
+B. x = (b ± √(b² + 4ac))/(2a)
+</label>
+
+<label class="option">
+<input type="radio" name="q19" value="C">
+C. x = (−b ± √(b² + 4ac))/a
+</label>
+
+<label class="option">
+<input type="radio" name="q19" value="D">
+D. x = (b ± √(b² − 4ac))/a
+</label>
+
+</div>
+</div>
+
+
+<!-- QUESTION 20 -->
+
+<div class="question">
+
+<h3>Question 20</h3>
+
+<p class="question-text">
+For x² − 3x + 2 = 0, the sum of the roots is:
+</p>
+
+<div class="options">
+
+<label class="option">
+<input type="radio" name="q20" value="A">
+A. −3
+</label>
+
+<label class="option">
+<input type="radio" name="q20" value="B">
+B. 3
+</label>
+
+<label class="option">
+<input type="radio" name="q20" value="C">
+C. 2
+</label>
+
+<label class="option">
+<input type="radio" name="q20" value="D">
+D. −2
+</label>
+
+</div>
+</div>
+
+
+</div>
+
+
+<button class="submit-btn" onclick="checkTest()">
+🎯 Submit Chapter Test
+</button>
+
+
+<div id="result">
+
+<h2>📊 Test Result</h2>
+
+<div id="score"></div>
+
+<p id="message"></p>
+
+</div>
+
+
+<a class="back" href="class-x-mathematics.html">
+⬅️ Back to Class X Mathematics
+</a>
+
+
+</div>
+
+
+<footer>
+
+<strong>Karua Gadadhar Kar High School, Beldandia</strong><br>
+
+Class X Mathematics<br>
+
+Chapter 02 – Quadratic Equations<br>
+
+🎯 Chapter Test
+
+</footer>
+
+
+<script>
+
+function checkTest(){
+
+const answers = {
+
+q1:"B",
+q2:"B",
+q3:"B",
+q4:"B",
+q5:"B",
+q6:"B",
+q7:"B",
+q8:"C",
+q9:"B",
+q10:"B",
+q11:"A",
+q12:"B",
+q13:"A",
+q14:"B",
+q15:"A",
+q16:"B",
+q17:"A",
+q18:"B",
+q19:"A",
+q20:"B"
+
+};
+
+let score = 0;
+
+let total = 20;
+
+for(let i=1;i<=total;i++){
+
+const selected =
+document.querySelector(
+'input[name="q'+i+'"]:checked'
+);
+
+const options =
+document.querySelectorAll(
+'input[name="q'+i+'"]'
+);
+
+options.forEach(function(input){
+
+const label = input.parentElement;
+
+label.classList.remove("correct");
+label.classList.remove("wrong");
+
+if(input.value === answers["q"+i]){
+
+label.classList.add("correct");
+
+}
+
+});
+
+if(selected){
+
+if(selected.value === answers["q"+i]){
+
+score += 2;
+
+}else{
+
+selected.parentElement.classList.add("wrong");
+
+}
+
+}
+
+}
+
+document.getElementById("result").style.display="block";
+
+document.getElementById("score").innerHTML =
+"Your Score: " + score + " / 40";
+
+let message="";
+
+if(score >= 36){
+
+message="🌟 Excellent! Very good preparation.";
+
+}else if(score >= 28){
+
+message="👏 Very good. Keep practising.";
+
+}else if(score >= 20){
+
+message="📚 Good attempt. Revise the chapter once more.";
+
+}else{
+
+message="💪 Keep practising and try the test again.";
+
+}
+
+document.getElementById("message").innerHTML=message;
+
+document.getElementById("result").scrollIntoView({
+behavior:"smooth"
+});
+
+}
+
+</script>
+
+</body>
+</html>
