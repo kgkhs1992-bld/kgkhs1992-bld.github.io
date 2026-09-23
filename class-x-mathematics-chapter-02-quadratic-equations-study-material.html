@@ -23,6 +23,7 @@ body{
   font-family:Arial,Helvetica,sans-serif;
   background:linear-gradient(135deg,#eef7ff,#fff8ef);
   color:#17365d;
+  line-height:1.7;
 }
 
 .container{
@@ -30,6 +31,7 @@ body{
   max-width:950px;
   margin:25px auto 50px;
 }
+
 
 /* HEADER */
 
@@ -158,14 +160,667 @@ body{
   border-radius:15px;
   padding:17px;
   margin-top:13px;
+  font-size:17px;
+  line-height:1.8;
 }
 
-.method
+
+/* SUMMARY */
+
+.summary{
+  background:linear-gradient(135deg,#fff7d6,#fff);
+  margin-top:20px;
+  padding:23px;
+  border-radius:20px;
+  border:2px solid #f0c75e;
+  box-shadow:0 5px 18px rgba(0,0,0,0.10);
+}
+
+.summary h2{
+  color:#8a5a00;
+  margin-top:0;
+}
+
+.summary li{
+  font-size:17px;
+  margin:8px 0;
+}
+
+
+/* BACK BUTTON */
+
+.back{
+  text-align:center;
+  margin-top:30px;
+}
+
+.back a{
+  display:inline-block;
+  background:#064b82;
+  color:white;
+  text-decoration:none;
+  padding:15px 28px;
+  border-radius:30px;
+  font-size:18px;
+  font-weight:bold;
+  box-shadow:0 5px 15px rgba(0,0,0,0.15);
+}
+
+.back a:hover{
+  background:#032f52;
+}
+
+
+/* FOOTER */
+
+.footer{
+  text-align:center;
+  margin-top:30px;
+  padding:22px;
+  color:#526070;
+  font-size:15px;
+}
+
+
+/* MOBILE */
+
+@media(max-width:600px){
+
+  .container{
+    width:94%;
+    margin:15px auto 35px;
+  }
+
+  .header{
+    padding:27px 15px;
+  }
+
+  .intro,
+  .card,
+  .summary{
+    padding:19px;
+  }
+
+  .card h2{
+    font-size:22px;
+  }
+
+  .card p,
+  .card li,
+  .method,
+  .example,
+  .important{
+    font-size:16px;
+  }
+
+  .formula{
+    font-size:18px;
+    overflow-x:auto;
+  }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+<!-- HEADER -->
+
+<div class="header">
+
+<h1>
+Chapter 02 – Quadratic Equations
+</h1>
+
+<p>
+Study Material • Class X Mathematics
+</p>
+
+<p>
+Karua Gadadhar Kar High School, Beldandia
+</p>
+
+</div>
+
+
+<!-- INTRO -->
+
+<div class="intro">
+
+<h2>
+📘 Chapter Introduction
+</h2>
+
+<p>
+A quadratic equation is an equation in which the
+highest power of the variable is 2.
+This chapter explains the standard form of a
+quadratic equation, methods of solving quadratic
+equations, the discriminant, nature of roots,
+relations between roots and coefficients,
+formation of equations and applications.
+</p>
+
+</div>
+
+
+<!-- 1 -->
+
+<div class="card">
+
+<h2>
+1️⃣ What is a Quadratic Equation?
+</h2>
+
+<p>
+A quadratic equation in one variable is an equation
+of the form:
+</p>
+
+<div class="formula">
+
+ax² + bx + c = 0
+
+</div>
+
+<p>
+where <strong>a, b and c</strong> are real numbers and
+<strong>a ≠ 0</strong>.
+</p>
+
+<div class="important">
+
+📌 The highest power of the variable is 2.
+
+<br><br>
+
+📌 The coefficient of x² must not be zero.
+
+<br><br>
+
+📌 The equation is called quadratic because its
+degree is two.
+
+</div>
+
+<div class="example">
+
+<strong>Examples of quadratic equations:</strong>
+
+<br><br>
+
+x² + 5x + 6 = 0
+
+<br>
+
+2x² − 7x + 3 = 0
+
+<br>
+
+3x² + 4x − 8 = 0
+
+</div>
+
+</div>
+
+
+<!-- 2 -->
+
+<div class="card">
+
+<h2>
+2️⃣ Standard Form
+</h2>
+
+<p>
+The standard form of a quadratic equation is:
+</p>
+
+<div class="formula">
+
+ax² + bx + c = 0
+
+</div>
+
+<p>
+Before applying any method, it is important to
+bring the equation into standard form.
+</p>
+
+<div class="method">
+
+<strong>Identify:</strong>
+
+<br><br>
+
+a = coefficient of x²
+
+<br><br>
+
+b = coefficient of x
+
+<br><br>
+
+c = constant term
+
+</div>
+
+<div class="example">
+
+<strong>Example:</strong>
+
+<br><br>
+
+For:
+
+<br>
+
+2x² − 5x + 3 = 0
+
+<br><br>
+
+a = 2
+
+<br>
+
+b = −5
+
+<br>
+
+c = 3
+
+</div>
+
+</div>
+
+
+<!-- 3 -->
+
+<div class="card">
+
+<h2>
+3️⃣ Solving by Factorisation
+</h2>
+
+<p>
+A quadratic equation can often be solved by
+factorisation.
+</p>
+
+<h3>
+General Method
+</h3>
+
+<ol>
+
+<li>Write the equation in standard form.</li>
+
+<li>Factorise the quadratic expression.</li>
+
+<li>Use the zero-product property.</li>
+
+<li>Find the values of x.</li>
+
+</ol>
+
+<div class="example">
+
+<strong>Example:</strong>
+
+<br><br>
+
+x² − 5x + 6 = 0
+
+<br><br>
+
+Factorising:
+
+<br>
+
+(x − 2)(x − 3) = 0
+
+<br><br>
+
+Therefore:
+
+<br>
+
+x − 2 = 0
+
+<br>
+
+or
+
+<br>
+
+x − 3 = 0
+
+<br><br>
+
+Hence:
+
+<br>
+
+<strong>x = 2 or x = 3</strong>
+
+</div>
+
+<div class="important">
+
+📌 Always check the factors carefully before
+writing the roots.
+
+</div>
+
+</div>
+
+
+<!-- 4 -->
+
+<div class="card">
+
+<h2>
+4️⃣ Completing the Square
+</h2>
+
+<p>
+Another method of solving a quadratic equation is
+to convert it into a perfect square form.
+</p>
+
+<div class="method">
+
+<strong>Basic idea:</strong>
+
+<br><br>
+
+x² + 2px + p² = (x + p)²
+
+<br><br>
+
+and
+
+<br>
+
+x² − 2px + p² = (x − p)²
+
+</div>
+
+<h3>
+General Steps
+</h3>
+
+<ol>
+
+<li>Write the equation in standard form.</li>
+
+<li>Move the constant term to the other side.</li>
+
+<li>Add the required quantity to make a perfect square.</li>
+
+<li>Write the expression as a square.</li>
+
+<li>Take square roots.</li>
+
+<li>Find the values of x.</li>
+
+</ol>
+
+<div class="important">
+
+⚠️ When adding a quantity to one side of an
+equation, the same quantity must be added to the
+other side.
+
+</div>
+
+</div>
+
+
+<!-- 5 -->
+
+<div class="card">
+
+<h2>
+5️⃣ Quadratic Formula
+</h2>
+
+<p>
+For a quadratic equation
+</p>
+
+<div class="formula">
+
+ax² + bx + c = 0
+
+</div>
+
+<p>
+the roots can be obtained using the quadratic formula:
+</p>
+
+<div class="formula">
+
+x = (−b ± √(b² − 4ac)) / 2a
+
+</div>
+
+<h3>
+Steps for Using the Formula
+</h3>
+
+<ol>
+
+<li>Write the equation in standard form.</li>
+
+<li>Identify a, b and c.</li>
+
+<li>Calculate b² − 4ac.</li>
+
+<li>Substitute the values in the formula.</li>
+
+<li>Simplify carefully.</li>
+
+<li>Write both possible roots.</li>
+
+</ol>
+
+<div class="example">
+
+<strong>Example:</strong>
+
+<br><br>
+
+For:
+
+<br>
+
+x² − 5x + 6 = 0
+
+<br><br>
+
+a = 1, b = −5, c = 6
+
+<br><br>
+
+Using:
+
+<br>
+
+x = (−b ± √(b² − 4ac)) / 2a
+
+</div>
+
+<div class="important">
+
+⚠️ Pay special attention to the sign of b when
+substituting into −b.
+
+</div>
+
+</div>
+
+
+<!-- 6 -->
+
+<div class="card">
+
+<h2>
+6️⃣ Discriminant
+</h2>
+
+<p>
+The expression
+</p>
+
+<div class="formula">
+
+D = b² − 4ac
+
+</div>
+
+<p>
+is called the <strong>discriminant</strong> of a
+quadratic equation.
+</p>
+
+<h3>
+Nature of Roots
+</h3>
+
+<div class="method">
+
+<strong>If D &gt; 0:</strong>
+
+<br>
+
+The equation has two distinct real roots.
+
+<br><br>
+
+<strong>If D = 0:</strong>
+
+<br>
+
+The equation has two equal real roots.
+
+<br><br>
+
+<strong>If D &lt; 0:</strong>
+
+<br>
+
+The equation has no real roots.
+
+</div>
+
+<div class="important">
+
+📌 The discriminant helps us determine the nature
+of the roots without finding the roots completely.
+
+</div>
+
+</div>
+
+
+<!-- 7 -->
+
+<div class="card">
+
+<h2>
+7️⃣ Relation Between Roots and Coefficients
+</h2>
+
+<p>
+Suppose α and β are the roots of:
+</p>
+
+<div class="formula">
+
+ax² + bx + c = 0
+
+</div>
+
+<p>
+Then:
+</p>
+
+<div class="formula">
+
+α + β = −b/a
+
+<br><br>
+
+αβ = c/a
+
+</div>
+
+<div class="example">
+
+<strong>Example:</strong>
+
+<br><br>
+
+For:
+
+<br>
+
+2x² − 7x + 3 = 0
+
+<br><br>
+
+a = 2
+
+<br>
+
+b = −7
+
+<br>
+
+c = 3
+
+<br><br>
+
+Therefore:
+
+<br>
+
+α + β = 7/2
+
+<br><br>
+
+αβ = 3/2
+
+</div>
+
+<div class="important">
+
+📌 Sum of roots = −b/a
+
+<br><br>
+
+📌 Product of roots = c/a
+
+</div>
+
+</div>
+
+
 <!-- 8 -->
 
 <div class="card">
 
-<h2>8️⃣ Formation of a Quadratic Equation</h2>
+<h2>
+8️⃣ Formation of a Quadratic Equation
+</h2>
 
 <p>
 If α and β are the roots, the corresponding
@@ -219,7 +874,9 @@ x² − 7x + 10 = 0
 
 <div class="card">
 
-<h2>9️⃣ Equations Reducible to Quadratic Form</h2>
+<h2>
+9️⃣ Equations Reducible to Quadratic Form
+</h2>
 
 <p>
 Some equations can be transformed into a quadratic
@@ -267,7 +924,9 @@ the original expression when required.
 
 <div class="card">
 
-<h2>🔟 Applications of Quadratic Equations</h2>
+<h2>
+🔟 Applications of Quadratic Equations
+</h2>
 
 <p>
 Quadratic equations are used to solve problems where
@@ -275,7 +934,9 @@ the relationship between quantities leads to a
 second-degree equation.
 </p>
 
-<h3>General Steps</h3>
+<h3>
+General Steps
+</h3>
 
 <ol>
 
@@ -307,7 +968,9 @@ conditions of the problem.</li>
 
 <div class="card">
 
-<h2>1️⃣1️⃣ Checking a Solution</h2>
+<h2>
+1️⃣1️⃣ Checking a Solution
+</h2>
 
 <p>
 A value is a root of a quadratic equation only when
@@ -350,7 +1013,9 @@ original equation.
 
 <div class="card">
 
-<h2>1️⃣2️⃣ Important Formula Box</h2>
+<h2>
+1️⃣2️⃣ Important Formula Box
+</h2>
 
 <div class="formula">
 
@@ -401,7 +1066,9 @@ D = b² − 4ac
 
 <div class="card">
 
-<h2>1️⃣3️⃣ Exam Preparation Points</h2>
+<h2>
+1️⃣3️⃣ Exam Preparation Points
+</h2>
 
 <ul>
 
@@ -433,30 +1100,52 @@ root satisfies the original condition.</li>
 
 <div class="summary">
 
-<h2>🎯 Quick Chapter Revision</h2>
+<h2>
+🎯 Quick Chapter Revision
+</h2>
 
 <ul>
 
-<li>📌 Quadratic equation → equation of degree two.</li>
+<li>
+📌 Quadratic equation → equation of degree two.
+</li>
 
-<li>📌 Standard form → ax² + bx + c = 0.</li>
+<li>
+📌 Standard form → ax² + bx + c = 0.
+</li>
 
-<li>📌 Methods → factorisation, completing the square
-and quadratic formula.</li>
+<li>
+📌 Methods → factorisation, completing the square
+and quadratic formula.
+</li>
 
-<li>📌 Discriminant → D = b² − 4ac.</li>
+<li>
+📌 Discriminant → D = b² − 4ac.
+</li>
 
-<li>📌 D &gt; 0 → two distinct real roots.</li>
+<li>
+📌 D &gt; 0 → two distinct real roots.
+</li>
 
-<li>📌 D = 0 → two equal real roots.</li>
+<li>
+📌 D = 0 → two equal real roots.
+</li>
 
-<li>📌 D &lt; 0 → no real roots.</li>
+<li>
+📌 D &lt; 0 → no real roots.
+</li>
 
-<li>📌 Sum of roots → −b/a.</li>
+<li>
+📌 Sum of roots → −b/a.
+</li>
 
-<li>📌 Product of roots → c/a.</li>
+<li>
+📌 Product of roots → c/a.
+</li>
 
-<li>📌 Always check the answer when required.</li>
+<li>
+📌 Always check the answer when required.
+</li>
 
 </ul>
 
