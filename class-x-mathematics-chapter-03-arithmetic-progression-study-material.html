@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="or">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 03 – Arithmetic Progression | Study Material</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:"Noto Sans Oriya","Noto Sans",Arial,sans-serif;background:#f4f7fb;color:#172033;line-height:1.75}
+header{background:linear-gradient(135deg,#123b63,#176b87);color:#fff;text-align:center;padding:30px 16px}
+header h1{margin:0;font-size:clamp(25px,6vw,38px)}
+header p{margin:7px 0 0;font-size:16px}
+main{max-width:1000px;margin:auto;padding:18px}
+.box{background:#fff;margin:18px 0;padding:22px;border-radius:16px;box-shadow:0 5px 18px rgba(0,0,0,.08);border-left:6px solid #176b87}
+.box h2{margin-top:0;color:#124d69;font-size:23px}
+.card{background:#eef7fa;border-radius:12px;padding:15px;margin:12px 0}
+.formula{background:#fff8df;border:1px solid #e7c95a;border-radius:10px;padding:13px;text-align:center;font-size:20px;font-weight:700;margin:12px 0}
+.example{background:#f2f7ff;border-left:4px solid #3769a8;padding:14px;margin:12px 0;border-radius:8px}
+.note{background:#fff3cd;border-left:4px solid #e0a800;padding:13px;border-radius:8px}
+table{width:100%;border-collapse:collapse;margin:12px 0}
+th,td{border:1px solid #cbd5e1;padding:9px;text-align:center}
+th{background:#e8f1f7}
+ul,ol{padding-left:26px}
+.actions{text-align:center;margin:28px 0}
+.actions a,.actions button{display:inline-block;text-decoration:none;border:0;border-radius:10px;padding:12px 18px;margin:5px;font-weight:700;cursor:pointer}
+.back{background:#475569;color:white}
+.print{background:#176b87;color:white}
+footer{text-align:center;padding:24px;color:#64748b}
+@media print{body{background:#fff}.actions{display:none}.box{box-shadow:none;break-inside:avoid}}
+</style>
+</head>
+<body>
+
+<header>
+<h1>ଅଧ୍ୟାୟ ୦୩ – ସମାନ୍ତର ପ୍ରଗତି</h1>
+<p>(Arithmetic Progression – A.P.)</p>
+<p>Class X Mathematics • KGKHS Beldandia</p>
+</header>
+
+<main>
+
+<section class="box">
+<h2>୧. ଅଧ୍ୟାୟ ପରିଚୟ</h2>
+<p>
+ସମାନ୍ତର ପ୍ରଗତି (Arithmetic Progression) ହେଉଛି ଏକ ବିଶେଷ ପ୍ରକାରର ସଂଖ୍ୟା ଅନୁକ୍ରମ।
+ଅନୁକ୍ରମର ପ୍ରତ୍ୟେକ ପଦରୁ ତାହାର ପୂର୍ବପଦକୁ ବିୟୋଗ କଲେ ଯଦି ପ୍ରତ୍ୟେକଥର
+ସମାନ ସଂଖ୍ୟା ମିଳେ, ତେବେ ସେହି ଅନୁକ୍ରମକୁ ସମାନ୍ତର ପ୍ରଗତି କୁହାଯାଏ।
+ଏହି ସମାନ ସଂଖ୍ୟାକୁ <b>ସାଧାରଣ ଅନ୍ତର</b> (Common Difference) ଏବଂ
+ତାହାକୁ <b>d</b> ଦ୍ୱାରା ସୂଚିତ କରାଯାଏ।
+</p>
+<div class="example">
+<b>ଉଦାହରଣ:</b> 2, 4, 6, 8, 10, ...<br>
+ଏଠାରେ ପ୍ରତ୍ୟେକ ପଦରୁ ପୂର୍ବପଦ ବିୟୋଗ କଲେ 2 ମିଳେ। ତେଣୁ ଏହା ଏକ A.P. ଏବଂ
+ସାଧାରଣ ଅନ୍ତର d = 2।
+</div>
+<p>ଅନୁକ୍ରମର ପଦଗୁଡ଼ିକୁ ସାଧାରଣତଃ t₁, t₂, t₃, ... , tₙ ଭାବେ ଲେଖାଯାଏ।</p>
+</section>
+
+<section class="box">
+<h2>୨. ସମାନ୍ତର ପ୍ରଗତିର ସାଧାରଣ ରୂପ</h2>
+<p>
+ଯଦି A.P. ର ପ୍ରଥମ ପଦ <b>a</b> ଏବଂ ସାଧାରଣ ଅନ୍ତର <b>d</b>, ତେବେ A.P. ର ସାଧାରଣ ରୂପ:
+</p>
+<div class="formula">a, a + d, a + 2d, a + 3d, ...</div>
+<p>
+ଏଠାରେ ପ୍ରଥମ ପଦ a, ଦ୍ୱିତୀୟ ପଦ a+d, ତୃତୀୟ ପଦ a+2d ଇତ୍ୟାଦି।
+</p>
+<div class="card">
+<b>ସାଧାରଣ ଅନ୍ତର:</b><br>
+d = t₂ − t₁ = t₃ − t₂ = t₄ − t₃ = ...
+</div>
+<div class="note">
+ସାଧାରଣ ଅନ୍ତର ଧନାତ୍ମକ, ଋଣାତ୍ମକ କିମ୍ବା ଶୂନ ହୋଇପାରେ।
+</div>
+</section>
+
+<section class="box">
+<h2>୩. A.P. ର n-ତମ ପଦ</h2>
+<p>
+A.P. ର ପ୍ରଥମ ପଦ a ଏବଂ ସାଧାରଣ ଅନ୍ତର d ହେଲେ n-ତମ ପଦର ସୂତ୍ର:
+</p>
+<div class="formula">tₙ = a + (n − 1)d</div>
+<p>
+ଏହି ସୂତ୍ର ବ୍ୟବହାର କରି A.P. ର ଯେକୌଣସି ନିର୍ଦ୍ଦିଷ୍ଟ ପଦ ନିର୍ଣ୍ଣୟ କରାଯାଇପାରେ।
+</p>
+<div class="example">
+<b>ଉଦାହରଣ:</b> A.P. = 4, 7, 10, 13, ...<br>
+a = 4, d = 3<br>
+33-ତମ ପଦ:
+<br><b>t₃₃ = 4 + (33−1)×3 = 100</b>
+</div>
+<div class="example">
+<b>ଉଦାହରଣ:</b> 2, 4, 6, 8, ... ର 50-ତମ ପଦ:<br>
+a = 2, d = 2<br>
+t₅₀ = 2 + 49×2 = <b>100</b>
+</div>
+</section>
+
+<section class="box">
+<h2>୪. ପ୍ରଥମ nଟି ପଦର ଯୋଗଫଳ</h2>
+<p>
+A.P. ର ପ୍ରଥମ nଟି ପଦର ଯୋଗଫଳକୁ Sₙ ଦ୍ୱାରା ସୂଚିତ କରାଯାଏ।
+ଯଦି ଶେଷ ପଦ l ହୁଏ, ତେବେ:
+</p>
+<div class="formula">Sₙ = n/2 (a + l)</div>
+<p>କାରଣ l = a + (n−1)d, ତେଣୁ ଅନ୍ୟ ଏକ ଗୁରୁତ୍ୱପୂର୍ଣ୍ଣ ସୂତ୍ର:</p>
+<div class="formula">Sₙ = n/2 [2a + (n−1)d]</div>
+<div class="example">
+<b>ଉଦାହରଣ:</b> A.P. 4, 7, 10, 13, ... ର ପ୍ରଥମ 40ଟି ପଦର ଯୋଗଫଳ:<br>
+a=4, d=3, n=40<br>
+S₄₀ = 40/2 [8 + 39×3]<br>
+= 20 × 125<br>
+= <b>2500</b>
+</div>
+<div class="note">
+1 ରୁ n ପର୍ଯ୍ୟନ୍ତ ପ୍ରାକୃତିକ ସଂଖ୍ୟାର ଯୋଗଫଳ:
+<b>n(n+1)/2</b>
+</div>
+</section>
+
+<section class="box">
+<h2>୫. ଓଲଟାଇ ମିଶାଇବା ପଦ୍ଧତି</h2>
+<p>
+A.P. କିମ୍ବା କ୍ରମିକ ସଂଖ୍ୟାମାନଙ୍କର ଯୋଗଫଳ ଶୀଘ୍ର ନିର୍ଣ୍ଣୟ ପାଇଁ
+ପଦଗୁଡ଼ିକୁ ଓଲଟାଇ ଲେଖି ଯୋଗ କରାଯାଇପାରେ।
+</p>
+<div class="example">
+15 ରୁ 85 ପର୍ଯ୍ୟନ୍ତ ସଂଖ୍ୟାର ଯୋଗଫଳ:<br>
+S = 15+16+17+...+84+85<br>
+S = 85+84+83+...+16+15<br>
+2S = 100+100+100+...+100<br>
+ପଦସଂଖ୍ୟା = 85−15+1 = 71<br>
+ଅତଏବ S = 100×71/2 = <b>3550</b>
+</div>
+</section>
+
+<section class="box">
+<h2>୬. ଯୋଗଫଳ ସମ୍ପର୍କିତ ଗୁରୁତ୍ୱପୂର୍ଣ୍ଣ ଧାରଣା</h2>
+<div class="card"><b>ପ୍ରଥମ n ପ୍ରାକୃତିକ ସଂଖ୍ୟା:</b> 1+2+...+n = n(n+1)/2</div>
+<div class="card"><b>ପ୍ରଥମ n ବିଜୋଡ଼ ସଂଖ୍ୟା:</b> 1+3+5+...+(2n−1) = n²</div>
+<div class="card"><b>ପ୍ରଥମ n ଯୁଗ୍ମ ସଂଖ୍ୟା:</b> 2+4+6+...+2n = n(n+1)</div>
+<div class="card"><b>ପ୍ରଥମ n ଗଣନ ସଂଖ୍ୟାର ବର୍ଗର ଯୋଗ:</b> 1²+2²+...+n² = n(n+1)(2n+1)/6</div>
+<div class="card"><b>ପ୍ରଥମ n ଗଣନ ସଂଖ୍ୟାର ଘନର ଯୋଗ:</b> 1³+2³+...+n³ = [n(n+1)/2]²</div>
+<p>
+ଏହି ଧରଣର ଯୋଗଫଳକୁ A.P. ର ସୂତ୍ର ସହିତ ଯୋଗ କରି ବିଭିନ୍ନ ପ୍ରଶ୍ନ ସମାଧାନ କରାଯାଏ।
+</p>
+</section>
+
+<section class="box">
+<h2>୭. A.P. ର ପଦମାନଙ୍କ ସମ୍ପର୍କ</h2>
+<p>
+ଏକ A.P. ର ତିନୋଟି ପଦକୁ ସୁବିଧା ପାଇଁ <b>a−d, a, a+d</b> ଭାବେ ନିଆଯାଇପାରେ।
+ଚାରୋଟି ପଦ ପାଇଁ <b>a−3d, a−d, a+d, a+3d</b> ଭାବେ ନିଆଯାଇପାରେ।
+</p>
+<div class="example">
+ଯଦି a−d, a, a+d ଏକ A.P. ର ତିନୋଟି ପଦ, ତେବେ ମଧ୍ୟମ ପଦ a ହେବ ଏବଂ
+ପ୍ରଥମ ଓ ତୃତୀୟ ପଦର ସାଧାରଣ ଅନ୍ତର d ରହିବ।
+</div>
+<div class="note">
+ତିନୋଟି ସଂଖ୍ୟା A.P. ରେ ଥିଲେ ମଧ୍ୟମ ସଂଖ୍ୟା = ପ୍ରଥମ ଓ ତୃତୀୟ ସଂଖ୍ୟାର ଗାଣିତିକ ମଧ୍ୟକ।
+</div>
+<div class="formula">2 × ମଧ୍ୟମ ପଦ = ପ୍ରଥମ ପଦ + ତୃତୀୟ ପଦ</div>
+</section>
+
+<section class="box">
+<h2>୮. ଦୁଇଟି ସଂଖ୍ୟା ମଧ୍ୟରେ A.M. ସ୍ଥାପନ</h2>
+<p>
+ଦୁଇଟି ସଂଖ୍ୟା a ଓ b ମଧ୍ୟରେ ଗୋଟିଏ Arithmetic Mean (A.M.) ସ୍ଥାପନ କରିବାକୁ
+ସେହି ତିନୋଟି ସଂଖ୍ୟାକୁ A.P. ରେ ନିଆଯାଏ।
+</p>
+<div class="formula">A.M. = (a + b)/2</div>
+<div class="example">
+ଉଦାହରଣ: 12 ଓ 36 ମଧ୍ୟରେ ଗୋଟିଏ A.M.<br>
+A.M. = (12+36)/2 = <b>24</b><br>
+ତେଣୁ 12, 24, 36 ଏକ A.P.
+</div>
+<p>
+ଏକାଧିକ A.M. ସ୍ଥାପନ କରିବାକୁ A.P. ର n-ତମ ପଦର ସୂତ୍ର ଓ ସାଧାରଣ ଅନ୍ତର ବ୍ୟବହାର କରାଯାଏ।
+</p>
+</section>
+
+<section class="box">
+<h2>୯. A.P. ରେ ଥିବା ପଦମାନଙ୍କ ଯୋଗଫଳର ବିଶେଷ ରୂପ</h2>
+<p>
+ଅଧ୍ୟାୟର ଅଭ୍ୟାସଗୁଡ଼ିକରେ A.P. ର ପଦମାନଙ୍କ ଯୋଗଫଳକୁ ବୀଜଗାଣିତିକ ରୂପରେ
+ପରିବର୍ତ୍ତନ କରି ସମାଧାନ କରିବାକୁ କୁହାଯାଇଛି। ଯଥା:
+</p>
+<ul>
+<li>n-ତମ ପଦ ଦିଆଥିଲେ ପ୍ରଥମ n ପଦର ଯୋଗଫଳ ନିର୍ଣ୍ଣୟ।</li>
+<li>କିଛି ପଦର ଯୋଗଫଳ ଦିଆଥିଲେ ଅଜ୍ଞାତ ପଦସଂଖ୍ୟା ନିର୍ଣ୍ଣୟ।</li>
+<li>ଦୁଇଟି ନିର୍ଦ୍ଦିଷ୍ଟ ପଦ ଦିଆଥିଲେ a ଓ d ନିର୍ଣ୍ଣୟ।</li>
+<li>ଏକାଧିକ A.P. ର ଯୋଗଫଳ ମଧ୍ୟରେ ସମ୍ପର୍କ ପ୍ରମାଣ କରିବା।</li>
+<li>A.P. ରେ ଥିବା ମଧ୍ୟକ ସ୍ଥାପନ କରିବା।</li>
+</ul>
+<div class="example">
+<b>ସମାଧାନ ପାଇଁ ସାଧାରଣ ପଦ୍ଧତି:</b><br>
+(୧) ପ୍ରଥମ ପଦ a ଚିହ୍ନଟ କର → (୨) d ନିର୍ଣ୍ଣୟ କର →
+(୩) n-ତମ ପଦ ବା Sₙ ସୂତ୍ର ବାଛ → (୪) ଦତ୍ତ ମାନ ବସାଅ →
+(୫) ଉତ୍ତର ଯାଞ୍ଚ କର।
+</div>
+</section>
+
+<section class="box">
+<h2>୧୦. ଅଧ୍ୟାୟର ଅଭ୍ୟାସରେ ଥିବା ପ୍ରଶ୍ନର ପ୍ରକାର</h2>
+<ol>
+<li>A.P. ଚିହ୍ନଟ କରି a ଓ d ନିର୍ଣ୍ଣୟ।</li>
+<li>ନିର୍ଦ୍ଦିଷ୍ଟ n-ତମ ପଦ ନିର୍ଣ୍ଣୟ।</li>
+<li>ପ୍ରଥମ n ପଦର ଯୋଗଫଳ ନିର୍ଣ୍ଣୟ।</li>
+<li>ଯୋଗଫଳ ଦିଆଥିଲେ ପଦସଂଖ୍ୟା ନିର୍ଣ୍ଣୟ।</li>
+<li>ଦୁଇଟି ସଂଖ୍ୟା ମଧ୍ୟରେ ଗୋଟିଏ କିମ୍ବା ଅଧିକ A.M. ସ୍ଥାପନ।</li>
+<li>A.P. ରେ ଥିବା ପଦମାନଙ୍କୁ ନେଇ ପ୍ରମାଣ କରିବା।</li>
+<li>ପ୍ରାକୃତିକ ସଂଖ୍ୟା, ବର୍ଗ ଓ ଘନର ଯୋଗଫଳ ନିର୍ଣ୍ଣୟ।</li>
+<li>ଦିଆଯାଇଥିବା ଧାରାର nଟି ପଦ ପର୍ଯ୍ୟନ୍ତ ଯୋଗଫଳ ନିର୍ଣ୍ଣୟ।</li>
+</ol>
+</section>
+
+<section class="box">
+<h2>୧୧. ମନେ ରଖିବା ପାଇଁ ମୁଖ୍ୟ ସୂତ୍ର</h2>
+<table>
+<tr><th>ବିଷୟ</th><th>ସୂତ୍ର</th></tr>
+<tr><td>n-ତମ ପଦ</td><td>tₙ = a + (n−1)d</td></tr>
+<tr><td>ପ୍ରଥମ n ପଦର ଯୋଗ</td><td>Sₙ = n/2 [2a + (n−1)d]</td></tr>
+<tr><td>ଶେଷ ପଦ l ଦିଆଥିଲେ</td><td>Sₙ = n/2 (a+l)</td></tr>
+<tr><td>ଗୋଟିଏ A.M.</td><td>(a+b)/2</td></tr>
+<tr><td>1 ରୁ n ଯୋଗ</td><td>n(n+1)/2</td></tr>
+<tr><td>1² ରୁ n² ଯୋଗ</td><td>n(n+1)(2n+1)/6</td></tr>
+<tr><td>1³ ରୁ n³ ଯୋଗ</td><td>[n(n+1)/2]²</td></tr>
+</table>
+</section>
+
+<section class="box">
+<h2>୧୨. ପରୀକ୍ଷା ପାଇଁ ଶେଷ ପୁନରାବୃତ୍ତି</h2>
+<div class="card"><b>ପ୍ରଥମେ:</b> A.P. କି ନୁହେଁ ଚିହ୍ନଟ କର।</div>
+<div class="card"><b>ତାପରେ:</b> a ଓ d ଲେଖ।</div>
+<div class="card"><b>n-ତମ ପଦ ଦରକାର:</b> tₙ = a+(n−1)d ବ୍ୟବହାର କର।</div>
+<div class="card"><b>ପ୍ରଥମ n ପଦର ଯୋଗ ଦରକାର:</b> Sₙ ର ସୂତ୍ର ବ୍ୟବହାର କର।</div>
+<div class="card"><b>A.M. ଦରକାର:</b> ମଧ୍ୟମ ପଦ ଧାରଣା ବ୍ୟବହାର କର।</div>
+<div class="card"><b>ଶେଷରେ:</b> ମାନଗୁଡ଼ିକ ବସାଇ ଉତ୍ତର ଯାଞ୍ଚ କର।</div>
+</section>
+
+<div class="actions">
+<button class="print" onclick="window.print()">🖨️ Print / Save as PDF</button>
+<a class="back" href="class-x-mathematics.html">← Back to Class X Mathematics</a>
+</div>
+
+</main>
+<footer>
+Class X Mathematics • Chapter 03 – Arithmetic Progression • KGKHS Beldandia
+</footer>
+</body>
+</html>
