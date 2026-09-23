@@ -891,7 +891,47 @@ onclick="history.back()">
 </div>
 
 <script>
+const quiz = document.getElementById("quiz");
 
+questions.forEach(function(item,index){
+
+    const box = document.createElement("div");
+
+    box.className = "question";
+
+    box.id = "q" + index;
+
+    let html = "";
+
+    html += '<div class="question-title">';
+    html += item.q;
+    html += '</div>';
+
+    item.o.forEach(function(option,optIndex){
+
+        html += '<label class="option">';
+
+        html += '<input type="radio" ';
+        html += 'name="q' + index + '" ';
+        html += 'value="' + optIndex + '">';
+
+        html += ' ';
+
+        html += String.fromCharCode(65 + optIndex);
+
+        html += ') ';
+
+        html += option;
+
+        html += '</label>';
+
+    });
+
+    box.innerHTML = html;
+
+    quiz.appendChild(box);
+
+});
 function checkAnswers(){
 
     let score = 0;
