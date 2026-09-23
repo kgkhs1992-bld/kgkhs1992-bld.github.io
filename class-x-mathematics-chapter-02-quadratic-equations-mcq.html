@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="or">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Class X Mathematics - Chapter 02 MCQ</title>
+
+<style>
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:"Noto Sans Oriya","Noto Sans",Arial,sans-serif;
+    background:linear-gradient(135deg,#f5fbff,#ffffff);
+    color:#123f70;
+}
+
+.page{
+    max-width:900px;
+    margin:auto;
+    padding:18px 12px 40px;
+}
+
+.back-btn{
+    display:block;
+    width:100%;
+    padding:13px 18px;
+    margin-bottom:16px;
+    border:none;
+    border-radius:14px;
+    background:#eaf5ff;
+    color:#174d80;
+    font-size:18px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+.header{
+    background:linear-gradient(135deg,#0d4d87,#1769aa);
+    color:white;
+    text-align:center;
+    border-radius:22px;
+    padding:24px 15px;
+    margin-bottom:20px;
+    box-shadow:0 5px 16px rgba(0,0,0,.15);
+}
+
+.header h1{
+    margin:0;
+    font-size:27px;
+}
+
+.header h2{
+    margin:9px 0 0;
+    font-size:21px;
+}
+
+.header p{
+    margin:10px 0 0;
+    font-size:16px;
+}
+
+.question{
+    background:white;
+    border:2px solid #d8e9f6;
+    border-radius:18px;
+    padding:18px;
+    margin-bottom:18px;
+    box-shadow:0 3px 12px rgba(0,0,0,.07);
+}
+
+.question-title{
+    font-size:18px;
+    font-weight:700;
+    line-height:1.6;
+    color:#173f69;
+    margin-bottom:13px;
+}
+
+.option{
+    display:block;
+    padding:12px 14px;
+    margin:8px 0;
+    border-radius:12px;
+    background:#f1f8fd;
+    border:1px solid #c9dfef;
+    cursor:pointer;
+    font-size:17px;
+    color:#164a78;
+}
+
+.option:hover{
+    background:#e2f1fc;
+}
+
+.option input{
+    margin-right:9px;
+    transform:scale(1.15);
+}
+
+.correct{
+    background:#dff6e5 !important;
+    border-color:#39a85c !important;
+}
+
+.wrong{
+    background:#ffe1e1 !important;
+    border-color:#dc5555 !important;
+}
+
+.submit-btn{
+    width:100%;
+    border:none;
+    border-radius:17px;
+    padding:16px;
+    background:#064b8f;
+    color:white;
+    font-size:20px;
+    font-weight:800;
+    cursor:pointer;
+    margin-top:5px;
+}
+
+.result{
+    display:none;
+    margin-top:20px;
+    padding:20px;
+    border-radius:18px;
+    text-align:center;
+    background:#eaf6ff;
+    border:2px solid #8fc4e8;
+    color:#104b7b;
+}
+
+.result h2{
+    margin:0 0 8px;
+}
+
+.score{
+    font-size:27px;
+    font-weight:800;
+}
+
+.footer{
+    text-align:center;
+    margin-top:28px;
+    color:#607d94;
+    font-size:14px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="page">
+
+<button class="back-btn" onclick="history.back()">
+🔙 ପଛକୁ ଯାଆନ୍ତୁ
+</button>
+
+<div class="header">
+<h1>📐 ଶ୍ରେଣୀ – X ଗଣିତ</h1>
+
+<h2>ଅଧ୍ୟାୟ ୦୨ – ଦ୍ୱିଘାତ ସମୀକରଣ</h2>
+
+<p>📝 MCQ Practice – ୫୦ଟି ବହୁବିକଳ୍ପୀୟ ପ୍ରଶ୍ନ</p>
+</div>
+
+<div id="quiz"></div>
+
+<button class="submit-btn" onclick="checkAnswers()">
+🎯 ଉତ୍ତର ଯାଞ୍ଚ କରନ୍ତୁ
+</button>
+
+<div class="result" id="result">
+
+<h2>🏆 ଆପଣଙ୍କ ଫଳାଫଳ</h2>
+
+<div class="score" id="score"></div>
+
+<p id="message"></p>
+
+</div>
+
+<div class="footer">
+Karua Gadadhar Kar High School, Beldandia<br>
+Class X Mathematics – Chapter 02
+</div>
+
+</div>
+
+<script>
+
+const questions = [
+
+{
+q:"୧. ଦ୍ୱିଘାତ ସମୀକରଣର ସାଧାରଣ ରୂପ କେଉଁଟି?",
+o:[
+"ax² + bx + c = 0, a ≠ 0",
+"ax + b = 0",
+"ax³ + bx² + c = 0",
+"a + b + c = 0"
+],
+a:0
+},
+
+{
+q:"୨. ଦ୍ୱିଘାତ ସମୀକରଣର ସର୍ବୋଚ୍ଚ ଘାତ କେତେ?",
+o:[
+"୧",
+"୨",
+"୩",
+"୪"
+],
+a:1
+},
+
+{
+q:"୩. x² − 5x + 6 = 0 ର ମୂଳ କେଉଁଗୁଡ଼ିକ?",
+o:[
+"୧, ୬",
+"୨, ୩",
+"−୨, −୩",
+"୩, ୪"
+],
+a:1
+},
+
+{
+q:"୪. ax² + bx + c = 0 ର ବିଚ୍ଛେଦକ କେଉଁଟି?",
+o:[
+"a² − 4bc",
+"b² − 4ac",
+"b² + 4ac",
+"4ac − b²"
+],
+a:1
+},
+
+{
+q:"୫. D = 0 ହେଲେ ମୂଳଗୁଡ଼ିକ କିପରି ହୁଏ?",
+o:[
+"ବାସ୍ତବ ଓ ଅସମାନ",
+"ବାସ୍ତବ ଓ ସମାନ",
+"କଳ୍ପିତ",
+"କୌଣସି ମୂଳ ନାହିଁ"
+],
+a:1
+},
+
+{
+q:"୬. D > 0 ହେଲେ କ’ଣ ହୁଏ?",
+o:[
+"ଦୁଇଟି ସମାନ ବାସ୍ତବ ମୂଳ",
+"ଦୁଇଟି ଭିନ୍ନ ବାସ୍ତବ ମୂଳ",
+"କୌଣସି ବାସ୍ତବ ମୂଳ ନାହିଁ",
+"ଏକମାତ୍ର ମୂଳ"
+],
+a:1
+},
+
+{
+q:"୭. D < 0 ହେଲେ କ’ଣ ହୁଏ?",
+o:[
+"ଦୁଇଟି ଭିନ୍ନ ବାସ୍ତବ ମୂଳ",
+"ଦୁଇଟି ସମାନ ବାସ୍ତବ ମୂଳ",
+"କୌଣସି ବାସ୍ତବ ମୂଳ ନାହିଁ",
+"ଏକମାତ୍ର ମୂଳ"
+],
+a:2
+},
+
+{
+q:"୮. x² − 9 = 0 ର ମୂଳ କେଉଁଟି?",
+o:[
+"୩, ୩",
+"−୩, −୩",
+"୩, −୩",
+"୯, −୯"
+],
+a:2
+},
+
+{
+q:"୯. x² + 5x + 6 = 0 ର ମୂଳ କେଉଁଟି?",
+o:[
+"୨, ୩",
+"−୨, −୩",
+"−୨, ୩",
+"୧, ୬"
+],
+a:1
+},
+
+{
+q:"୧୦. ax² + bx + c = 0 ର ମୂଳଦ୍ୱୟର ଯୋଗଫଳ କେତେ?",
+o:[
+"b/a",
+"−b/a",
+"c/a",
+"−c/a"
+],
+a:1
+},
+
+{
+q:"୧୧. ax² + bx + c = 0 ର ମୂଳଦ୍ୱୟର ଗୁଣଫଳ କେତେ?",
+o:[
+"b/a",
+"−b/a",
+"c/a",
+"−c/a"
+],
+a:2
+},
+
+{
+q:"୧୨. ମୂଳ ୪ ଓ −୧ ହେଲେ ସମୀକରଣ କେଉଁଟି?",
+o:[
+"x² + 3x − 4 = 0",
+"x² − 3x − 4 = 0",
+"x² − 5x + 4 = 0",
+"x² + 5x − 4 = 0"
+],
+a:1
+},
+
+{
+q:"୧୩. x² − 7x + 10 = 0 ର ମୂଳ କେଉଁଟି?",
+o:[
+"୫, ୨",
+"−୫, −୨",
+"୧୦, −୧",
+"୭, ୧୦"
+],
+a:0
+},
+
+{
+q:"୧୪. 2x² − 8x = 0 ର ମୂଳ କେଉଁଟି?",
+o:[
+"୦, ୪",
+"୦, −୪",
+"୨, ୪",
+"−୨, ୪"
+],
+a:0
+},
+
+{
+q:"୧୫. x² + 1 = 0 ର ବାସ୍ତବ ମୂଳ ଅଛି କି?",
+o:[
+"ହଁ, ଦୁଇଟି",
+"ହଁ, ଗୋଟିଏ",
+"ନାହିଁ",
+"ମୂଳ ୧"
+],
+a:2
+},
+
+{
+q:"୧୬. x² − 4x + 4 = 0 କୁ ଗୁଣନୀୟକରେ ଲେଖିଲେ କେଉଁଟି?",
+o:[
+"(x + 2)²",
+"(x − 2)²",
+"(x − 4)²",
+"(x + 4)²"
+],
+a:1
+},
+
+{
+q:"୧୭. x² − 4x + 4 = 0 ର ପୁନରାବୃତ୍ତ ମୂଳ କେତେ?",
+o:[
+"−୨",
+"୨",
+"୪",
+"−୪"
+],
+a:1
+},
+
+{
+q:"୧୮. x² + 6x + 5 = 0 ର ମୂଳ କେଉଁଟି?",
+o:[
+"୧, ୫",
+"−୧, −୫",
+"−୧, ୫",
+"୧, −୫"
+],
+a:1
+},
+
+{
+q:"୧୯. 3x² − 5x + 2 = 0 ର ମୂଳ କେଉଁଟି?",
+o:[
+"୧, ୨/୩",
+"−୧, −୨/୩",
+"୨, ୧/୩",
+"୩, ୨"
+],
+a:0
+},
+
+{
+q:"୨୦. ମୂଳ ୦ ଓ −୫ ହେଲେ ଏକ ଦ୍ୱିଘାତ ସମୀକରଣ କେଉଁଟି?",
+o:[
+"x² − 5x = 0",
+"x² + 5x = 0",
+"x² + 5 = 0",
+"x² − 5 = 0"
+],
+a:1
+},
+
+{
+q:"୨୧. ମୂଳ α, β ହେଲେ α + β କେତେ?",
+o:[
+"−b/a",
+"b/a",
+"c/a",
+"−c/a"
+],
+a:0
+},
+
+{
+q:"୨୨. ମୂଳ α, β ହେଲେ αβ କେତେ?",
+o:[
+"−b/a",
+"b/a",
+"c/a",
+"−c/a"
+],
+a:2
+},
+
+{
+q:"୨୩. ମୂଳ α, β ହେଲେ ସମୀକରଣର ଏକ ରୂପ କେଉଁଟି?",
+o:[
+"x² + (α+β)x + αβ = 0",
+"x² − (α+β)x + αβ = 0",
+"x² + (α−β)x − αβ = 0",
+"x² − αβx + (α+β) = 0"
+],
+a:1
+},
+
+{
+q:"୨୪. D = 25 ହେଲେ ମୂଳଗୁଡ଼ିକ କିପରି?",
+o:[
+"ସମାନ ବାସ୍ତବ",
+"ଭିନ୍ନ ବାସ୍ତବ",
+"ବାସ୍ତବ ନୁହେଁ",
+"କୌଣସି ମୂଳ ନାହିଁ"
+],
+a:1
+},
+
+{
+q:"୨୫. x² + 2x + 1 = 0 ର D କେତେ?",
+o:[
+"୦",
+"୧",
+"୨",
+"୪"
+],
+a:0
+},
+  {
+q:"୨୫. x² + 2x + 1 = 0 ର D କେତେ?",
+o:[
+"୦",
+"୧",
+"୨",
+"୪"
+],
+a:0
+},
+  {
+q:"୨୬. 2x² + 3x + 5 = 0 ର D କେତେ?",
+o:[
+"୩୧",
+"−୩୧",
+"−୨୯",
+"୪୯"
+],
+a:1
+},
+
+{
+q:"୨୭. x² − 6x + 8 = 0 ର ମୂଳଦ୍ୱୟର ଯୋଗଫଳ କେତେ?",
+o:[
+"−୬",
+"୬",
+"୮",
+"−୮"
+],
+a:1
+},
+
+{
+q:"୨୮. x² − 6x + 8 = 0 ର ମୂଳଦ୍ୱୟର ଗୁଣଫଳ କେତେ?",
+o:[
+"−୬",
+"୬",
+"୮",
+"−୮"
+],
+a:2
+},
+
+{
+q:"୨୯. 2x² − 7x + 3 = 0 ର ମୂଳ କେଉଁଟି?",
+o:[
+"୩, ୧/୨",
+"−୩, −୧/୨",
+"୨, ୩",
+"୧, ୩"
+],
+a:0
+},
+
+{
+q:"୩୦. x² − 2x − 8 = 0 ର ମୂଳ କେଉଁଟି?",
+o:[
+"୪, −୨",
+"−୪, ୨",
+"୪, ୨",
+"−୪, −୨"
+],
+a:0
+},
+
+{
+q:"୩୧. x² + 3x − 10 = 0 ର ମୂଳ କେଉଁଟି?",
+o:[
+"୫, −୨",
+"−୫, ୨",
+"୫, ୨",
+"−୫, −୨"
+],
+a:0
+},
+
+{
+q:"୩୨. x² − 10x + 25 = 0 ର ମୂଳ କିପରି?",
+o:[
+"ଭିନ୍ନ ବାସ୍ତବ",
+"ସମାନ ବାସ୍ତବ",
+"କଳ୍ପିତ",
+"କୌଣସି ମୂଳ ନାହିଁ"
+],
+a:1
+},
+
+{
+q:"୩୩. x² + 4x + 7 = 0 ର D କେତେ?",
+o:[
+"୧୨",
+"−୧୨",
+"୧୬",
+"−୧୬"
+],
+a:1
+},
+
+{
+q:"୩୪. x² − 4x − 5 = 0 ର ମୂଳ କେଉଁଟି?",
+o:[
+"୫, −୧",
+"−୫, ୧",
+"୫, ୧",
+"−୫, −୧"
+],
+a:0
+},
+
+{
+q:"୩୫. ଯଦି D > 0, ତେବେ √D କିପରି?",
+o:[
+"୦",
+"ଋଣାତ୍ମକ",
+"ଧନାତ୍ମକ ବାସ୍ତବ",
+"କଳ୍ପିତ"
+],
+a:2
+},
+
+{
+q:"୩୬. ଦ୍ୱିଘାତ ସୂତ୍ର କେଉଁଟି?",
+o:[
+"x = (−b ± √(b²−4ac))/(2a)",
+"x = (b ± √(b²−4ac))/(2a)",
+"x = (−b ± √(b²+4ac))/a",
+"x = (b ± √(b²+4ac))/(2a)"
+],
+a:0
+},
+
+{
+q:"୩୭. x² − 3x + 2 = 0 ର ମୂଳଦ୍ୱୟର ଯୋଗଫଳ କେତେ?",
+o:[
+"−୩",
+"୩",
+"୨",
+"−୨"
+],
+a:1
+},
+
+{
+q:"୩୮. x² − 3x + 2 = 0 ର ମୂଳଦ୍ୱୟର ଗୁଣଫଳ କେତେ?",
+o:[
+"−୩",
+"୩",
+"୨",
+"−୨"
+],
+a:2
+},
+
+{
+q:"୩୯. 5x² − 20 = 0 ର ମୂଳ କେଉଁଟି?",
+o:[
+"୨, −୨",
+"୪, −୪",
+"୫, −୫",
+"୦, ୪"
+],
+a:0
+},
+
+{
+q:"୪୦. x² − 1 = 0 ର ମୂଳ କେଉଁଟି?",
+o:[
+"୧, ୧",
+"−୧, −୧",
+"୧, −୧",
+"୦, ୧"
+],
+a:2
+},
+
+{
+q:"୪୧. 4x² − 12x + 9 = 0 ର D କେତେ?",
+o:[
+"୦",
+"୯",
+"−୯",
+"୩୬"
+],
+a:0
+},
+
+{
+q:"୪୨. 4x² − 12x + 9 = 0 ର ମୂଳ କେତେ?",
+o:[
+"୩/୨, ୩/୨",
+"−୩/୨, −୩/୨",
+"୩, ୩",
+"୧/୨, ୧/୨"
+],
+a:0
+},
+
+{
+q:"୪୩. x² + 7x + 12 = 0 ର ମୂଳ କେଉଁଟି?",
+o:[
+"୩, ୪",
+"−୩, −୪",
+"−୩, ୪",
+"୩, −୪"
+],
+a:1
+},
+
+{
+q:"୪୪. 2x² − 5x − 3 = 0 ର ମୂଳ କେଉଁଟି?",
+o:[
+"୩, −୧/୨",
+"−୩, ୧/୨",
+"୧, −୩/୨",
+"−୧, ୩/୨"
+],
+a:0
+},
+
+{
+q:"୪୫. ଯଦି ଗୋଟିଏ ମୂଳ ୨ ଓ ଅନ୍ୟ ମୂଳ ୩, ତେବେ ମୂଳଦ୍ୱୟର ଗୁଣଫଳ କେତେ?",
+o:[
+"୫",
+"୬",
+"୧",
+"−୬"
+],
+a:1
+},
+
+{
+q:"୪୬. x² − 9x + 20 = 0 ର ମୂଳଦ୍ୱୟର ଯୋଗଫଳ କେତେ?",
+o:[
+"−୯",
+"୯",
+"୨୦",
+"−୨୦"
+],
+a:1
+},
+
+{
+q:"୪୭. x² − 9x + 20 = 0 ର ମୂଳଦ୍ୱୟର ଗୁଣଫଳ କେତେ?",
+o:[
+"−୯",
+"୯",
+"୨୦",
+"−୨୦"
+],
+a:2
+},
+
+{
+q:"୪୮. x² + 2x − 15 = 0 ର ମୂଳ କେଉଁଟି?",
+o:[
+"୩, −୫",
+"−୩, ୫",
+"୩, ୫",
+"−୩, −୫"
+],
+a:0
+},
+
+{
+q:"୪୯. 3x² + 2x − 1 = 0 ର ମୂଳ କେଉଁଟି?",
+o:[
+"୧/୩, −୧",
+"୧, −୧/୩",
+"−୧/୩, −୧",
+"୧/୩, ୧"
+],
+a:0
+},
+
+{
+q:"୫୦. x² − 4x + 3 = 0 ର ମୂଳ କେଉଁଟି?",
+o:[
+"୧, ୩",
+"−୧, −୩",
+"
+ <!-- BOTTOM BACK BUTTON -->
+<div style="margin-top:25px;">
+
+<button class="back-btn"
+onclick="history.back()">
+🔙 ପଛକୁ ଯାଆନ୍ତୁ
+</button>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+
+    <strong>Karua Gadadhar Kar High School, Beldandia</strong><br>
+
+    📐 Class X Mathematics<br>
+
+    📘 Chapter 02 – Quadratic Equations<br>
+
+    📝 MCQ Practice – 50 Questions
+
+</div>
+
+</div>
+
+<script>
+
+function checkAnswers(){
+
+    let score = 0;
+
+    questions.forEach((item,index)=>{
+
+        const box =
+        document.getElementById("q"+index);
+
+        const options =
+        box.querySelectorAll(".option");
+
+        const selected =
+        box.querySelector(
+        `input[name="q${index}"]:checked`
+        );
+
+        options.forEach((option,i)=>{
+
+            option.classList.remove(
+                "correct",
+                "wrong"
+            );
+
+            if(i === item.a){
+
+                option.classList.add("correct");
+
+            }
+
+        });
+
+        if(selected){
+
+            const selectedValue =
+            Number(selected.value);
+
+            if(selectedValue === item.a){
+
+                score++;
+
+            }else{
+
+                options[selectedValue]
+                .classList.add("wrong");
+
+            }
+
+        }
+
+    });
+
+    const result =
+    document.getElementById("result");
+
+    const scoreText =
+    document.getElementById("score");
+
+    const message =
+    document.getElementById("message");
+
+    result.style.display = "block";
+
+    scoreText.innerHTML =
+    `ଆପଣଙ୍କ ମାର୍କ: ${score} / ${questions.length}`;
+
+    if(score >= 45){
+
+        message.innerHTML =
+        "🌟 ଅତ୍ୟନ୍ତ ଭଲ! ଆପଣଙ୍କ ପ୍ରସ୍ତୁତି ଭଲ ଅଛି।";
+
+    }
+    else if(score >= 35){
+
+        message.innerHTML =
+        "👏 ଭଲ କରିଛନ୍ତି! ଆଉ କିଛି ଅଭ୍ୟାସ କରନ୍ତୁ।";
+
+    }
+    else if(score >= 25){
+
+        message.innerHTML =
+        "📚 ଭଲ ଚେଷ୍ଟା। ଅଧ୍ୟାୟଟି ପୁଣିଥରେ ପଢ଼ନ୍ତୁ।";
+
+    }
+    else{
+
+        message.innerHTML =
+        "💪 Study 
+          <!-- BOTTOM BACK BUTTON -->
+<div style="margin-top:25px;">
+
+<button class="back-btn"
+onclick="history.back()">
+🔙 ପଛକୁ ଯାଆନ୍ତୁ
+</button>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+
+    <strong>Karua Gadadhar Kar High School, Beldandia</strong><br>
+
+    📐 Class X Mathematics<br>
+
+    📘 Chapter 02 – Quadratic Equations<br>
+
+    📝 MCQ Practice – 50 Questions
+
+</div>
+
+</div>
+
+<script>
+
+function checkAnswers(){
+
+    let score = 0;
+
+    questions.forEach((item,index)=>{
+
+        const box =
+        document.getElementById("q"+index);
+
+        const options =
+        box.querySelectorAll(".option");
+
+        const selected =
+        box.querySelector(
+        `input[name="q${index}"]:checked`
+        );
+
+        options.forEach((option,i)=>{
+
+            option.classList.remove(
+                "correct",
+                "wrong"
+            );
+
+            if(i === item.a){
+
+                option.classList.add("correct");
+
+            }
+
+        });
+
+        if(selected){
+
+            const selectedValue =
+            Number(selected.value);
+
+            if(selectedValue === item.a){
+
+                score++;
+
+            }else{
+
+                options[selectedValue]
+                .classList.add("wrong");
+
+            }
+
+        }
+
+    });
+
+    const result =
+    document.getElementById("result");
+
+    const scoreText =
+    document.getElementById("score");
+
+    const message =
+    document.getElementById("message");
+
+    result.style.display = "block";
+
+    scoreText.innerHTML =
+    `ଆପଣଙ୍କ ମାର୍କ: ${score} / ${questions.length}`;
+
+    if(score >= 45){
+
+        message.innerHTML =
+        "🌟 ଅତ୍ୟନ୍ତ ଭଲ! ଆପଣଙ୍କ ପ୍ରସ୍ତୁତି ଭଲ ଅଛି।";
+
+    }
+    else if(score >= 35){
+
+        message.innerHTML =
+        "👏 ଭଲ କରିଛନ୍ତି! ଆଉ କିଛି ଅଭ୍ୟାସ କରନ୍ତୁ।";
+
+    }
+    else if(score >= 25){
+
+        message.innerHTML =
+        "📚 ଭଲ ଚେଷ୍ଟା। ଅଧ୍ୟାୟଟି ପୁଣିଥରେ ପଢ଼ନ୍ତୁ।";
+
+    }
+    else{
+
+        message.innerHTML =
+        "💪 Study Material ପଢ଼ି ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।";
+
+    }
+
+    result.scrollIntoView({
+        behavior:"smooth",
+        block:"center"
+    });
+
+}
+
+</script>
+
+</body>
+</html>
