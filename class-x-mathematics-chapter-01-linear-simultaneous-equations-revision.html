@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Quick Revision – Linear Simultaneous Equations | Class X Mathematics</title>
+
+<style>
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  background:linear-gradient(135deg,#eef7ff,#f8f2ff);
+  color:#17365d;
+}
+
+.container{
+  width:94%;
+  max-width:950px;
+  margin:25px auto 50px;
+}
+
+/* HEADER */
+.header{
+  background:linear-gradient(135deg,#064b82,#087f8c);
+  color:white;
+  padding:32px 20px;
+  text-align:center;
+  border-radius:24px;
+  box-shadow:0 8px 25px rgba(0,0,0,0.15);
+}
+
+.header h1{
+  margin:0;
+  font-size:clamp(28px,5vw,44px);
+  line-height:1.2;
+}
+
+.header p{
+  margin:10px 0 0;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Quick Revision – Linear Simultaneous Equations | Class X Mathematics</title>
+
+<style>
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  background:linear-gradient(135deg,#eef7ff,#f8f2ff);
+  color:#17365d;
+}
+
+.container{
+  width:94%;
+  max-width:950px;
+  margin:25px auto 50px;
+}
+
+/* HEADER */
+.header{
+  background:linear-gradient(135deg,#064b82,#087f8c);
+  color:white;
+  padding:32px 20px;
+  text-align:center;
+  border-radius:24px;
+  box-shadow:0 8px 25px rgba(0,0,0,0.15);
+}
+
+.header h1{
+  margin:0;
+  font-size:clamp(28px,5vw,44px);
+  line-height:1.2;
+}
+
+.header p{
+  margin:10px 0 0;
+  font-size:clamp(16px,3vw,21px);
+}
+
+/* INTRO */
+.intro{
+  background:white;
+  margin-top:22px;
+  padding:22px;
+  border-radius:20px;
+  box-shadow:0 5px 18px rgba(0,0,0,0.10);
+  text-align:center;
+}
+
+.intro h2{
+  margin:0 0 8px;
+  color:#064b82;
+  font-size:28px;
+}
+
+.intro p{
+  margin:0;
+  font-size:17px;
+  line-height:1.6;
+}
+
+/* REVISION CARDS */
+.card{
+  background:white;
+  margin-top:18px;
+  padding:23px;
+  border-radius:20px;
+  box-shadow:0 5px 18px rgba(0,0,0,0.10);
+  border-left:7px solid #087f8c;
+}
+
+.card h3{
+  margin:0 0 14px;
+  color:#064b82;
+  font-size:23px;
+}
+
+.card p,
+.card li{
+  font-size:17px;
+  line-height:1.65;
+}
+
+.formula{
+  background:#eef7ff;
+  border:2px solid #c8e2f5;
+  border-radius:14px;
+  padding:17px;
+  margin-top:12px;
+  text-align:center;
+  font-size:20px;
+  font-weight:bold;
+  color:#063e6d;
+}
+
+.example{
+  background:#f7f4ff;
+  border-left:5px solid #7048b8;
+  border-radius:12px;
+  padding:16px;
+  margin-top:13px;
+  font-size:18px;
+  line-height:1.7;
+}
+
+.tip{
+  background:#fff8df;
+  border-left:6px solid #f2a900;
+  padding:16px;
+  margin-top:13px;
+  border-radius:12px;
+  font-size:17px;
+  line-height:1.6;
+}
+
+/* METHODS */
+.method{
+  background:#f1fbf8;
+  border:2px solid #b8e4d8;
+  border-radius:15px;
+  padding:17px;
+  margin-top:12px;
+}
+
+.method strong{
+  color:#087f62;
+  font-size:19px;
+}
+
+/* CHECKLIST */
+.check{
+  background:white;
+  margin-top:22px;
+  padding:24px;
+  border-radius:20px;
+  box-shadow:0 5px 18px rgba(0,0,0,0.10);
+}
+
+.check h2{
+  margin-top:0;
+  color:#087f62;
+}
+
+.check li{
+  font-size:17px;
+  line-height:1.75;
+}
+
+/* BACK BUTTON */
+.back{
+  text-align:center;
+  margin-top:30px;
+}
+
+.back a{
+  display:inline-block;
+  background:#064b82;
+  color:white;
+  text-decoration:none;
+  padding:15px 28px;
+  border-radius:30px;
+  font-size:18px;
+  font-weight:bold;
+  box-shadow:0 5px 15px rgba(0,0,0,0.15);
+}
+
+.back a:hover{
+  background:#032f52;
+}
+
+/* FOOTER */
+.footer{
+  text-align:center;
+  margin-top:25px;
+  color:#667;
+  font-size:14px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header">
+    <h1>🔄 Quick Revision</h1>
+    <p>Chapter 01 – Linear Simultaneous Equations</p>
+    <p><strong>Class X Mathematics</strong></p>
+  </div>
+
+  <!-- INTRO -->
+  <div class="intro">
+    <h2>📚 Chapter at a Glance</h2>
+
+    <p>
+      Revise the important concepts, methods,
+      formulas and steps before solving problems.
+    </p>
+  </div>
+
+  <!-- 1 -->
+  <div class="card">
+
+    <h3>1️⃣ What is a Linear Simultaneous Equation?</h3>
+
+    <p>
+      Two linear equations containing the same two
+      variables are called a pair of linear simultaneous
+      equations.
+    </p>
+
+    <div class="formula">
+      ax + by = c
+      <br><br>
+      dx + ey = f
+    </div>
+
+    <p>
+      Here <strong>x</strong> and <strong>y</strong> are
+      the variables.
+    </p>
+
+  </div>
+
+  <!-- 2 -->
+  <div class="card">
+
+    <h3>2️⃣ Main Methods of Solving</h3>
+
+    <div class="method">
+      <strong>➊ Substitution Method</strong>
+      <p>
+        Find one variable in terms of the other and
+        substitute it into the second equation.
+      </p>
+    </div>
+
+    <div class="method">
+      <strong>➋ Elimination Method</strong>
+      <p>
+        Make the coefficients of one variable equal
+        or opposite and eliminate that variable.
+      </p>
+    </div>
+
+    <div class="method">
+      <strong>➌ Graphical Method</strong>
+      <p>
+        Represent both equations as straight lines.
+        Their point of intersection gives the solution.
+      </p>
+    </div>
+
+  </div>
+
+  <!-- 3 -->
+  <div class="card">
+
+    <h3>3️⃣ Substitution Method – Steps</h3>
+
+    <ol>
+      <li>Take either equation.</li>
+      <li>Express one variable in terms of the other.</li>
+      <li>Substitute this value into the second equation.</li>
+      <li>Solve for the remaining variable.</li>
+      <li>Substitute the value back to find the other variable.</li>
+      <li>Check the answer in both original equations.</li>
+    </ol>
+
+    <div class="example">
+      Example:
+      <br>
+      x + y = 9
+      <br>
+      x − y = 1
+      <br><br>
+      Adding the equations:
+      <br>
+      2x = 10
+      <br>
+      Therefore, <strong>x = 5</strong>
+      <br>
+      and <strong>y = 4</strong>.
+    </div>
+
+  </div>
+
+  <!-- 4 -->
+  <div class="card">
+
+    <h3>4️⃣ Elimination Method – Steps</h3>
+
+    <ol>
+      <li>Arrange both equations properly.</li>
+      <li>Choose the variable to eliminate.</li>
+      <li>Multiply one or both equations if necessary.</li>
+      <li>Add or subtract the equations.</li>
+      <li>Find one variable.</li>
+      <li>Substitute it to find the other variable.</li>
+      <li>Verify the solution.</li>
+    </ol>
+
+    <div class="formula">
+      2x + y = 7
+      <br>
+      3x − y = 8
+      <br><br>
+      Add → 5x = 15
+      <br>
+      x = 3
+    </div>
+
+  </div>
+
+  <!-- 5 -->
+  <div class="card">
+
+    <h3>5️⃣ Graphical Method</h3>
+
+    <p>
+      Each linear equation represents a straight line.
+      The solution depends on how the two lines meet.
+    </p>
+
+    <div class="formula">
+      Intersecting lines → One solution
+      <br><br>
+      Parallel lines → No solution
+      <br><br>
+      Same line → Infinitely many solutions
+    </div>
+
+  </div>
+
+  <!-- 6 -->
+  <div class="card">
+
+    <h3>6️⃣ Important Sign Rules</h3>
+
+    <div class="formula">
+      + × + = +
+      <br>
+      + × − = −
+      <br>
+      − × + = −
+      <br>
+      − × − = +
+    </div>
+
+    <div class="tip">
+      💡 When a term is moved from one side of an
+      equation to the other, its sign changes.
+    </div>
+
+  </div>
+
+  <!-- 7 -->
+  <div class="card">
+
+    <h3>7️⃣ Checking the Solution</h3>
+
+    <p>
+      Suppose the solution obtained is:
+    </p>
+
+    <div class="formula">
+      x = 5, &nbsp;&nbsp; y = 4
+    </div>
+
+    <p>
+      Put these values into both original equations.
+      Both equations must be satisfied.
+    </p>
+
+    <div class="tip">
+      ✅ Always check your final answer.
+    </div>
+
+  </div>
+
+  <!-- 8 -->
+  <div class="card">
+
+    <h3>8️⃣ Word Problems – Quick Steps</h3>
+
+    <ol>
+      <li>Read the problem carefully.</li>
+      <li>Let the unknown quantities be x and y.</li>
+      <li>Form the first equation.</li>
+      <li>Form the second equation.</li>
+      <li>Solve the simultaneous equations.</li>
+      <li>Interpret the answer according to the question.</li>
+      <li>Check whether the answer is reasonable.</li>
+    </ol>
+
+  </div>
+
+  <!-- 9 -->
+  <div class="card">
+
+    <h3>9️⃣ Most Important Exam Tips</h3>
+
+    <ul>
+      <li>✔️ Write equations clearly.</li>
+      <li>✔️ Keep like terms together.</li>
+      <li>✔️ Be careful with negative signs.</li>
+      <li>✔️ Show all important steps.</li>
+      <li>✔️ Use brackets when substituting negative values.</li>
+      <li>✔️ Check the final values in both equations.</li>
+      <li>✔️ Write the final answer clearly.</li>
+    </ul>
+
+  </div>
+
+  <!-- FINAL REVISION -->
+  <div class="check">
+
+    <h2>🎯 30-Second Final Revision</h2>
+
+    <ul>
+      <li>📌 Two equations → two variables.</li>
+      <li>📌 Main methods → Substitution, Elimination, Graphical.</li>
+      <li>📌 Elimination → remove one variable.</li>
+      <li>📌 Substitution → replace one variable.</li>
+      <li>📌 Graphical → intersection gives the solution.</li>
+      <li>📌 Check the answer in both original equations.</li>
+    </ul>
+
+  </div>
+
+  <!-- BACK -->
+  <div class="back">
+    <a href="class-x-mathematics-chapter-01-linear-simultaneous-equations.html">
+      ⬅️ Back to Chapter 01
+    </a>
+  </div>
+
+  <div class="footer">
+    Karua Gadadhar Kar High School, Beldandia
+  </div>
+
+</div>
+
+</body>
+</html>
