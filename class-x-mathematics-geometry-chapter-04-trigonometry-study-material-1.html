@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="or">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Class X Geometry Chapter 04 – ତ୍ରିକୋଣମିତି – Study Material</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,"Noto Sans Oriya","Nirmala UI",sans-serif;background:linear-gradient(135deg,#eef8ff,#fff7e8);color:#172033;line-height:1.85}
+header{background:linear-gradient(135deg,#1268a6,#65499a);color:white;text-align:center;padding:30px 14px}
+header h1{margin:0;font-size:clamp(25px,5vw,40px)}
+header p{margin:5px;font-size:17px}
+.wrap{max-width:1100px;margin:18px auto;padding:0 14px}
+.back,.print{display:inline-block;background:#123f6c;color:white;text-decoration:none;padding:11px 18px;border-radius:10px;font-weight:bold;margin:4px 6px 14px 0;border:0;cursor:pointer;font-size:15px}
+.card{background:white;border-radius:16px;padding:21px;margin:16px 0;box-shadow:0 4px 16px #00000012;border:1px solid #dce6ef}
+.card h2{color:#1268a6;margin-top:0;border-bottom:2px solid #e6eef5;padding-bottom:7px}
+.card h3{color:#65499a}
+.note{background:#fff8e6;border-left:6px solid #d28a25}
+.formula{background:#f2f9ff;border-left:6px solid #4779a6}
+.example{background:#f0fbf6;border-left:6px solid #24936e;padding:15px;margin:12px 0;border-radius:10px}
+.warning{background:#fff1f1;border-left:6px solid #d34b4b;padding:15px;border-radius:10px}
+table{width:100%;border-collapse:collapse;margin:13px 0}
+th,td{border:1px solid #cbd8e4;padding:9px;text-align:center;vertical-align:middle}
+th{background:#eaf4fc}
+.left{text-align:left}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:14px}
+.mini{background:#f8fbfd;border:1px solid #d9e6ef;border-radius:12px;padding:15px}
+.math{font-family:"Times New Roman",serif;font-size:19px;background:#f7f7fb;padding:10px;border-radius:8px}
+ol,ul{padding-left:25px}
+footer{text-align:center;padding:28px;color:#566474}
+@media(max-width:650px){.card{padding:15px}table{font-size:13px}.math{font-size:17px}}
+@media print{.back,.print{display:none}body{background:white}.card{box-shadow:none;break-inside:avoid}}
+</style>
+</head>
+<body>
+<header>
+<h1>Geometry – Chapter 04</h1>
+<p>ତ୍ରିକୋଣମିତି (TRIGONOMETRY)</p>
+<p><b>📘 ବିସ୍ତୃତ Study Material</b></p>
+<p>ଶ୍ରେଣୀ – X | ଗଣିତ</p>
+</header>
+
+<div class="wrap">
+<a class="back" href="class-x-mathematics.html">🔙 ପଛକୁ – Class X Mathematics</a>
+<button class="print" onclick="window.print()">🖨️ Print / Save as PDF</button>
+
+<div class="card note">
+<b>📚 ପାଠ୍ୟପୁସ୍ତକ ଆଧାର:</b>
+ଏହି ପୃଷ୍ଠା Class X Geometry textbook ର <b>Chapter 04 – ତ୍ରିକୋଣମିତି</b>,
+printed pages <b>95–118</b> ଆଧାରରେ ବିସ୍ତାର କରାଯାଇଛି। ପାଠ୍ୟପୁସ୍ତକରେ
+4.1 Introduction ଠାରୁ ଆରମ୍ଭ କରି trigonometric ratios, standard values,
+90°−θ ଓ 180°−θ ସମ୍ପର୍କ, compound angles ଏବଂ ଅଭ୍ୟାସ ପ୍ରଶ୍ନ ଆସିଛି।
+ମୂଳ ଚିତ୍ର, exercise ର exact wording ଓ ପାଠ୍ୟପୁସ୍ତକର ଉତ୍ତର ପାଇଁ
+“📚 Textbook Reference” PDF ବ୍ୟବହାର କରନ୍ତୁ।
+</div>
+
+<div class="card">
+<h2>1. ତ୍ରିକୋଣମିତିର ପରିଚୟ</h2>
+<p><b>ତ୍ରିକୋଣମିତି</b> ହେଉଛି ତ୍ରିଭୁଜର କୋଣ ଓ ପାର୍ଶ୍ୱମାନଙ୍କ ମଧ୍ୟର ସମ୍ପର୍କର ଅଧ୍ୟୟନ। ଏହି ଅଧ୍ୟାୟରେ ବିଶେଷଭାବେ ସମକୋଣୀ ତ୍ରିଭୁଜକୁ ନେଇ ବିଭିନ୍ନ ratio ନିର୍ଣ୍ଣୟ କରାଯାଏ।</p>
+<div class="two">
+<div class="mini"><b>ମୁଖ୍ୟ ଚିହ୍ନ:</b><br>sin θ, cos θ, tan θ, cot θ, sec θ, cosec θ</div>
+<div class="mini"><b>ମୁଖ୍ୟ କୋଣ:</b><br>0°, 30°, 45°, 60°, 90° ଏବଂ 120°, 135°, 150° ଭଳି କୋଣ</div>
+</div>
+</div>
+
+<div class="card">
+<h2>2. ସମକୋଣୀ ତ୍ରିଭୁଜର ପାର୍ଶ୍ୱ</h2>
+<ul>
+<li><b>ଅତିଭୁଜ (Hypotenuse):</b> 90° କୋଣର ବିପରୀତ ପାର୍ଶ୍ୱ।</li>
+<li><b>ଲମ୍ବ / ବିପରୀତ ପାର୍ଶ୍ୱ (Perpendicular / Opposite):</b> ନିର୍ଦ୍ଦିଷ୍ଟ କୋଣର ବିପରୀତ ପାର୍ଶ୍ୱ।</li>
+<li><b>ଭୂମି / ସନ୍ନିହିତ ପାର୍ଶ୍ୱ (Base / Adjacent):</b> ନିର୍ଦ୍ଦିଷ୍ଟ କୋଣ ସହିତ ଥିବା ପାର୍ଶ୍ୱ, ଅତିଭୁଜକୁ ଛାଡ଼ି।</li>
+</ul>
+<div class="warning"><b>ସତର୍କତା:</b> କୋଣ ପରିବର୍ତ୍ତନ କଲେ Opposite ଓ Adjacent ପାର୍ଶ୍ୱ ପରିବର୍ତ୍ତିତ ହୋଇପାରେ। Hypotenuse ସବୁବେଳେ 90° କୋଣର ବିପରୀତ ପାର୍ଶ୍ୱ।</div>
+</div>
+
+<div class="card">
+<h2>3. ଛଅଟି Trigonometric Ratios</h2>
+<table>
+<tr><th>ଅନୁପାତ</th><th>ସୂତ୍ର</th><th>ସରଳ ସ୍ମରଣ</th></tr>
+<tr><td>sin θ</td><td>ଲମ୍ବ / ଅତିଭୁଜ</td><td>P/H</td></tr>
+<tr><td>cos θ</td><td>ଭୂମି / ଅତିଭୁଜ</td><td>B/H</td></tr>
+<tr><td>tan θ</td><td>ଲମ୍ବ / ଭୂମି</td><td>P/B</td></tr>
+<tr><td>cot θ</td><td>ଭୂମି / ଲମ୍ବ</td><td>B/P</td></tr>
+<tr><td>sec θ</td><td>ଅତିଭୁଜ / ଭୂମି</td><td>H/B</td></tr>
+<tr><td>cosec θ</td><td>ଅତିଭୁଜ / ଲମ୍ବ</td><td>H/P</td></tr>
+</table>
+<div class="formula">
+<b>ପରସ୍ପର ପୂରକ ସମ୍ପର୍କ:</b><br>
+cosec θ = 1/sin θ &nbsp;&nbsp; | &nbsp;&nbsp;
+sec θ = 1/cos θ &nbsp;&nbsp; | &nbsp;&nbsp;
+cot θ = 1/tan θ
+</div>
+</div>
+
+<div class="card">
+<h2>4. ଅନୁପାତରୁ ପାର୍ଶ୍ୱ ଚିହ୍ନଟ</h2>
+<p>ଯଦି ଗୋଟିଏ ସମକୋଣୀ ତ୍ରିଭୁଜରେ θ କୋଣ ଦିଆଯାଇଛି, ପ୍ରଥମେ θ କୁ ଦେଖି Opposite, Adjacent ଓ Hypotenuse ଚିହ୍ନଟ କରନ୍ତୁ।</p>
+<div class="math">
+sin θ = Opposite/Hypotenuse<br>
+cos θ = Adjacent/Hypotenuse<br>
+tan θ = Opposite/Adjacent
+</div>
+<p>ଏହାର reciprocal ଦ୍ୱାରା cot, sec ଓ cosec ମିଳେ।</p>
+</div>
+
+<div class="card">
+<h2>5. 0° ଓ 90° ର ମାନ</h2>
+<table>
+<tr><th>θ</th><th>sin θ</th><th>cos θ</th><th>tan θ</th><th>cot θ</th><th>sec θ</th><th>cosec θ</th></tr>
+<tr><td>0°</td><td>0</td><td>1</td><td>0</td><td>ଅସଂଜ୍ଞା</td><td>1</td><td>ଅସଂଜ୍ଞା</td></tr>
+<tr><td>90°</td><td>1</td><td>0</td><td>ଅସଂଜ୍ଞା</td><td>0</td><td>ଅସଂଜ୍ଞା</td><td>1</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h2>6. 30°, 45°, 60° ର Standard Values</h2>
+<table>
+<tr><th>θ</th><th>0°</th><th>30°</th><th>45°</th><th>60°</th><th>90°</th></tr>
+<tr><td>sin θ</td><td>0</td><td>1/2</td><td>1/√2</td><td>√3/2</td><td>1</td></tr>
+<tr><td>cos θ</td><td>1</td><td>√3/2</td><td>1/√2</td><td>1/2</td><td>0</td></tr>
+<tr><td>tan θ</td><td>0</td><td>1/√3</td><td>1</td><td>√3</td><td>ଅସଂଜ୍ଞା</td></tr>
+<tr><td>cot θ</td><td>ଅସଂଜ୍ଞା</td><td>√3</td><td>1</td><td>1/√3</td><td>0</td></tr>
+<tr><td>sec θ</td><td>1</td><td>2/√3</td><td>√2</td><td>2</td><td>ଅସଂଜ୍ଞା</td></tr>
+<tr><td>cosec θ</td><td>ଅସଂଜ୍ଞା</td><td>2</td><td>√2</td><td>2/√3</td><td>1</td></tr>
+</table>
+<div class="note"><b>ମନେ ରଖିବା ଉପାୟ:</b> sin 30°, sin 45°, sin 60° ର numerator ହେଉଛି 1, √2, √3 ଏବଂ denominator 2; cos ପାଇଁ ଏହାର ଅନୁକ୍ରମ ଉଲଟା।</div>
+</div>
+
+<div class="card">
+<h2>7. ମୌଳିକ Trigonometric Identities</h2>
+<div class="formula">
+<p><b>sin²θ + cos²θ = 1</b></p>
+<p><b>1 + tan²θ = sec²θ</b></p>
+<p><b>1 + cot²θ = cosec²θ</b></p>
+</div>
+<p>ଏହି ତିନୋଟି identity ପରୀକ୍ଷାରେ ବହୁତ ଗୁରୁତ୍ୱପୂର୍ଣ୍ଣ। ଦିଆଯାଇଥିବା ratio ରୁ ଅନ୍ୟ ratio ବାହାର କରିବା ଓ expression ସରଳ କରିବାରେ ଏଗୁଡ଼ିକ ବ୍ୟବହୃତ ହୁଏ।</p>
+</div>
+
+<div class="card">
+<h2>8. Identity କିପରି ବ୍ୟବହାର କରିବେ?</h2>
+<ol>
+<li>ପ୍ରଶ୍ନରେ ଦିଆଯାଇଥିବା ratio ଚିହ୍ନଟ କରନ୍ତୁ।</li>
+<li>ସେହି ratio ସହିତ ସମ୍ପର୍କିତ identity ବାଛନ୍ତୁ।</li>
+<li>Square ନିଅନ୍ତୁ ଯଦି ଆବଶ୍ୟକ।</li>
+<li>ଅନ୍ୟ ପାର୍ଶ୍ୱକୁ ସରାନ୍ତୁ।</li>
+<li>ଶେଷରେ positive/negative sign ବିଷୟରେ କୋଣର ପରିସର ଅନୁଯାୟୀ ଯାଞ୍ଚ କରନ୍ତୁ।</li>
+</ol>
+</div>
+
+<div class="card">
+<h2>9. Complementary Angles – 90°−θ</h2>
+<p>ଯେତେବେଳେ ଦୁଇଟି କୋଣର ଯୋଗ 90° ହୁଏ, ସେଗୁଡ଼ିକୁ complementary angles କୁହାଯାଏ।</p>
+<div class="formula">
+<p>sin(90°−θ) = cos θ</p>
+<p>cos(90°−θ) = sin θ</p>
+<p>tan(90°−θ) = cot θ</p>
+<p>cot(90°−θ) = tan θ</p>
+<p>sec(90°−θ) = cosec θ</p>
+<p>cosec(90°−θ) = sec θ</p>
+</div>
+</div>
+
+<div class="card">
+<h2>10. 180°−θ ସମ୍ପର୍କ</h2>
+<div class="formula">
+<p>sin(180°−θ) = sin θ</p>
+<p>cos(180°−θ) = −cos θ</p>
+<p>tan(180°−θ) = −tan θ</p>
+<p>cot(180°−θ) = −cot θ</p>
+<p>sec(180°−θ) = −sec θ</p>
+<p>cosec(180°−θ) = cosec θ</p>
+</div>
+<p>ଏଠାରେ 180°−θ ଦ୍ୱିତୀୟ quadrant ରେ ଥିବାରୁ cos, tan, cot, sec ର sign ଋଣାତ୍ମକ ହୁଏ।</p>
+</div>
+
+<div class="card">
+<h2>11. 90°+θ ସମ୍ପର୍କ</h2>
+<p>ପାଠ୍ୟପୁସ୍ତକର ପରବର୍ତ୍ତୀ ଅଂଶରେ 90°+θ ପ୍ରକାରର ratio ମଧ୍ୟ ଦିଆଯାଇଛି।</p>
+<div class="formula">
+<p>sin(90°+θ) = cos θ</p>
+<p>cos(90°+θ) = −sin θ</p>
+<p>tan(90°+θ) = −cot θ</p>
+<p>cot(90°+θ) = −tan θ</p>
+<p>sec(90°+θ) = −cosec θ</p>
+<p>cosec(90°+θ) = sec θ</p>
+</div>
+</div>
+
+<div class="card">
+<h2>12. 120°, 135°, 150° ର ମାନ</h2>
+<table>
+<tr><th>କୋଣ</th><th>sin</th><th>cos</th><th>tan</th></tr>
+<tr><td>120°</td><td>√3/2</td><td>−1/2</td><td>−√3</td></tr>
+<tr><td>135°</td><td>1/√2</td><td>−1/√2</td><td>−1</td></tr>
+<tr><td>150°</td><td>1/2</td><td>−√3/2</td><td>−1/√3</td></tr>
+</table>
+<p>ଏହି ମାନଗୁଡ଼ିକ 180°−θ ସମ୍ପର୍କ ବ୍ୟବହାର କରି ସହଜରେ ମିଳିପାରେ।</p>
+</div>
+
+<div class="card">
+<h2>13. Compound Angles – A+B ଓ A−B</h2>
+<p>ପାଠ୍ୟପୁସ୍ତକର compound-angle ଅଂଶରେ A+B ଓ A−B ପାଇଁ trigonometric ratios ର ସମ୍ପର୍କ ଉନ୍ନତ କରାଯାଇଛି।</p>
+<div class="formula">
+<p><b>sin(A+B) = sin A cos B + cos A sin B</b></p>
+<p><b>sin(A−B) = sin A cos B − cos A sin B</b></p>
+<p><b>cos(A+B) = cos A cos B − sin A sin B</b></p>
+<p><b>cos(A−B) = cos A cos B + sin A sin B</b></p>
+</div>
+<p>ଏହି ସୂତ୍ରଗୁଡ଼ିକରୁ tan(A±B) ମଧ୍ୟ ନିର୍ଣ୍ଣୟ କରାଯାଇପାରେ।</p>
+<div class="formula">
+<p><b>tan(A+B) = (tan A + tan B)/(1 − tan A tan B)</b></p>
+<p><b>tan(A−B) = (tan A − tan B)/(1 + tan A tan B)</b></p>
+</div>
+</div>
+
+<div class="card">
+<h2>14. Compound Angle ବ୍ୟବହାର କରି Standard Value</h2>
+<div class="example">
+<p><b>ଉଦାହରଣ:</b> sin 75° ନିର୍ଣ୍ଣୟ କରନ୍ତୁ।</p>
+<p>75° = 45° + 30°</p>
+<p>sin(45°+30°) = sin45°cos30° + cos45°sin30°</p>
+<p>= (1/√2)(√3/2) + (1/√2)(1/2)</p>
+<p><b>= (√3+1)/(2√2)</b>.</p>
+</div>
+</div>
+
+<div class="card">
+<h2>15. Worked Example – 01</h2>
+<div class="example">
+<p><b>ପ୍ରଶ୍ନ:</b> sin θ = 3/5 ହେଲେ cos θ ନିର୍ଣ୍ଣୟ କରନ୍ତୁ, θ ତୀକ୍ଷ୍ଣ କୋଣ।</p>
+<p>sin²θ + cos²θ = 1</p>
+<p>9/25 + cos²θ = 1</p>
+<p>cos²θ = 16/25</p>
+<p><b>∴ cos θ = 4/5</b>.</p>
+</div>
+</div>
+
+<div class="card">
+<h2>16. Worked Example – 02</h2>
+<div class="example">
+<p><b>ପ୍ରଶ୍ନ:</b> tan θ = 3/4 ହେଲେ sec θ ନିର୍ଣ୍ଣୟ କରନ୍ତୁ।</p>
+<p>1 + tan²θ = sec²θ</p>
+<p>1 + 9/16 = sec²θ</p>
+<p>sec²θ = 25/16</p>
+<p><b>∴ sec θ = 5/4</b> (θ ତୀକ୍ଷ୍ଣ କୋଣ)।</p>
+</div>
+</div>
+
+<div class="card">
+<h2>17. Worked Example – 03</h2>
+<div class="example">
+<p><b>ପ୍ରଶ୍ନ:</b> cot θ = 5/12 ହେଲେ cosec θ ନିର୍ଣ୍ଣୟ କରନ୍ତୁ।</p>
+<p>1 + cot²θ = cosec²θ</p>
+<p>1 + 25/144 = cosec²θ</p>
+<p>cosec²θ = 169/144</p>
+<p><b>∴ cosec θ = 13/12</b>.</p>
+</div>
+</div>
+
+<div class="card">
+<h2>18. Worked Example – 04</h2>
+<div class="example">
+<p><b>ପ୍ରଶ୍ନ:</b> sin30° + cos60° ନିର୍ଣ୍ଣୟ କରନ୍ତୁ।</p>
+<p>= 1/2 + 1/2 = <b>1</b>.</p>
+</div>
+</div>
+
+<div class="card">
+<h2>19. Worked Example – 05</h2>
+<div class="example">
+<p><b>ପ୍ରଶ୍ନ:</b> tan45° × cot45° ନିର୍ଣ୍ଣୟ କରନ୍ତୁ।</p>
+<p>= 1 × 1 = <b>1</b>.</p>
+</div>
+</div>
+
+<div class="card">
+<h2>20. Worked Example – 06</h2>
+<div class="example">
+<p><b>ପ୍ରଶ୍ନ:</b> sec60° + cosec30° ନିର୍ଣ୍ଣୟ କରନ୍ତୁ।</p>
+<p>= 2 + 2 = <b>4</b>.</p>
+</div>
+</div>
+
+<div class="card">
+<h2>21. Worked Example – 07</h2>
+<div class="example">
+<p><b>ପ୍ରଶ୍ନ:</b> sin(90°−30°) ନିର୍ଣ୍ଣୟ କରନ୍ତୁ।</p>
+<p>sin(90°−30°) = cos30° = <b>√3/2</b>.</p>
+</div>
+</div>
+
+<div class="card">
+<h2>22. Worked Example – 08</h2>
+<div class="example">
+<p><b>ପ୍ରଶ୍ନ:</b> cos(90°−60°) ନିର୍ଣ୍ଣୟ କରନ୍ତୁ।</p>
+<p>cos(90°−60°) = sin60° = <b>√3/2</b>.</p>
+</div>
+</div>
+
+<div class="card">
+<h2>23. Worked Example – 09</h2>
+<div class="example">
+<p><b>ପ୍ରଶ୍ନ:</b> sin150° ନିର୍ଣ୍ଣୟ କରନ୍ତୁ।</p>
+<p>150° = 180°−30°</p>
+<p>sin150° = sin30° = <b>1/2</b>.</p>
+</div>
+</div>
+
+<div class="card">
+<h2>24. Worked Example – 10</h2>
+<div class="example">
+<p><b>ପ୍ରଶ୍ନ:</b> cos120° ନିର୍ଣ୍ଣୟ କରନ୍ତୁ।</p>
+<p>120° = 180°−60°</p>
+<p>cos120° = −cos60° = <b>−1/2</b>.</p>
+</div>
+</div>
+
+<div class="card">
+<h2>25. Worked Example – 11</h2>
+<div class="example">
+<p><b>ପ୍ରଶ୍ନ:</b> tan135° ନିର୍ଣ୍ଣୟ କରନ୍ତୁ।</p>
+<p>135° = 180°−45°</p>
+<p>tan135° = −tan45° = <b>−1</b>.</p>
+</div>
+</div>
+
+<div class="card">
+<h2>26. Worked Example – 12</h2>
+<div class="example">
+<p><b>ପ୍ରଶ୍ନ:</b> sin²30° + cos²60° ନିର୍ଣ୍ଣୟ କରନ୍ତୁ।</p>
+<p>sin30° = 1/2, cos60° = 1/2</p>
+<p>∴ (1/2)² + (1/2)² = 1/4 + 1/4 = <b>1/2</b>.</p>
+</div>
+</div>
+
+<div class="card">
+<h2>27. Worked Example – 13</h2>
+<div class="example">
+<p><b>ପ୍ରଶ୍ନ:</b> 1 + tan²45° ନିର୍ଣ୍ଣୟ କରନ୍ତୁ।</p>
+<p>tan45° = 1</p>
+<p>1 + 1² = <b>2</b>.</p>
+<p>ଏହା sec²45° ସହିତ ମଧ୍ୟ ସମାନ।</p>
+</div>
+</div>
+
+<div class="card">
+<h2>28. Worked Example – 14</h2>
+<div class="example">
+<p><b>ପ୍ରଶ୍ନ:</b> sin(180°−60°) + cos(180°−60°) ନିର୍ଣ୍ଣୟ କରନ୍ତୁ।</p>
+<p>sin120° = √3/2 ଏବଂ cos120° = −1/2</p>
+<p>∴ ମାନ = <b>(√3−1)/2</b>.</p>
+</div>
+</div>
+
+<div class="card">
+<h2>29. Worked Example – 15</h2>
+<div class="example">
+<p><b>ପ୍ରଶ୍ନ:</b> cos(A+B) ସୂତ୍ର ବ୍ୟବହାର କରି cos75° ନିର୍ଣ୍ଣୟ କରନ୍ତୁ।</p>
+<p>75° = 45°+30°</p>
+<p>cos(45°+30°)=cos45°cos30°−sin45°sin30°</p>
+<p>=(1/√2)(√3/2)−(1/√2)(1/2)</p>
+<p><b>=(√3−1)/(2√2)</b>.</p>
+</div>
+</div>
+
+<div class="card">
+<h2>30. ପାଠ୍ୟପୁସ୍ତକର exercise ରେ ଦେଖାଯାଇଥିବା ମୁଖ୍ୟ ପ୍ରକାର</h2>
+<ul>
+<li>Standard angles ର ratio ର ମାନ ନିର୍ଣ୍ଣୟ।</li>
+<li>ଏକାଧିକ ratio ର ଯୋଗ, ବିୟୋଗ ଓ ଗୁଣନ।</li>
+<li>Trigonometric identities ବ୍ୟବହାର କରି expression ସରଳ କରିବା।</li>
+<li>90°−θ, 90°+θ ଓ 180°−θ ସମ୍ପର୍କ ବ୍ୟବହାର।</li>
+<li>tan, cot, sec, cosec ର reciprocal relation ବ୍ୟବହାର।</li>
+<li>Compound angles A+B ଓ A−B ର ସୂତ୍ର ବ୍ୟବହାର।</li>
+<li>ସମକୋଣୀ ତ୍ରିଭୁଜରେ ଦିଆ ratio ରୁ ଅନ୍ୟ ratio ନିର୍ଣ୍ଣୟ।</li>
+</ul>
+</div>
+
+<div class="card">
+<h2>31. 15ଟି ତୁରନ୍ତ ଅଭ୍ୟାସ – ଉତ୍ତର ସହିତ</h2>
+<ol>
+<li>sin30° = <b>1/2</b></li>
+<li>cos60° = <b>1/2</b></li>
+<li>tan45° = <b>1</b></li>
+<li>cot45° = <b>1</b></li>
+<li>sec60° = <b>2</b></li>
+<li>cosec30° = <b>2</b></li>
+<li>sin90° = <b>1</b></li>
+<li>cos0° = <b>1</b></li>
+<li>tan0° = <b>0</b></li>
+<li>sin150° = <b>1/2</b></li>
+<li>cos120° = <b>−1/2</b></li>
+<li>tan135° = <b>−1</b></li>
+<li>sin(90°−30°) = <b>√3/2</b></li>
+<li>cos(90°−60°) = <b>√3/2</b></li>
+<li>sec²45° = <b>2</b></li>
+</ol>
+</div>
+
+<div class="card">
+<h2>32. ଦିଆଯାଇଥିବା ratio ରୁ ଅନ୍ୟ ratio</h2>
+<div class="example">
+<p><b>ଉଦାହରଣ:</b> tan θ = 3/4.</p>
+<p>ଏକ ସମକୋଣୀ ତ୍ରିଭୁଜ ଭାବିଲେ Opposite : Adjacent = 3 : 4। Pythagoras ଦ୍ୱାରା Hypotenuse = 5।</p>
+<p>ତେଣୁ:</p>
+<p>sinθ = 3/5, cosθ = 4/5, cotθ = 4/3, secθ = 5/4, cosecθ = 5/3.</p>
+</div>
+</div>
+
+<div class="card">
+<h2>33. Trigonometric Expression ସରଳ କରିବାର ନିୟମ</h2>
+<ol>
+<li>ପ୍ରଥମେ standard values ଥିଲେ ସେଗୁଡ଼ିକ ବସାନ୍ତୁ।</li>
+<li>ଏକାଧିକ ratio ଥିଲେ reciprocal relation ବ୍ୟବହାର କରନ୍ତୁ।</li>
+<li>sin²θ+cos²θ=1 ଦେଖାଗଲେ identity ବ୍ୟବହାର କରନ୍ତୁ।</li>
+<li>1+tan²θ କୁ sec²θ ଏବଂ 1+cot²θ କୁ cosec²θ କରିପାରିବେ।</li>
+<li>90°−θ ବା 180°−θ ଥିଲେ angle relation ବ୍ୟବହାର କରନ୍ତୁ।</li>
+<li>ଶେଷ ଉତ୍ତରକୁ ସରଳ ରୂପରେ ରଖନ୍ତୁ।</li>
+</ol>
+</div>
+
+<div class="card">
+<h2>34. ପରୀକ୍ଷା ପାଇଁ Formula Sheet</h2>
+<div class="formula">
+<p>sin θ = P/H &nbsp; | &nbsp; cos θ = B/H &nbsp; | &nbsp; tan θ = P/B</p>
+<p>cot θ = B/P &nbsp; | &nbsp; sec θ = H/B &nbsp; | &nbsp; cosec θ = H/P</p>
+<p>sin²θ+cos²θ=1</p>
+<p>1+tan²θ=sec²θ</p>
+<p>1+cot²θ=cosec²θ</p>
+<p>sin(90°−θ)=cosθ</p>
+<p>cos(90°−θ)=sinθ</p>
+<p>tan(90°−θ)=cotθ</p>
+<p>cot(90°−θ)=tanθ</p>
+<p>sec(90°−θ)=cosecθ</p>
+<p>cosec(90°−θ)=secθ</p>
+<p>sin(A+B)=sinAcosB+cosAsinB</p>
+<p>sin(A−B)=sinAcosB−cosAsinB</p>
+<p>cos(A+B)=cosAcosB−sinAsinB</p>
+<p>cos(A−B)=cosAcosB+sinAsinB</p>
+<p>tan(A+B)=(tanA+tanB)/(1−tanAtanB)</p>
+<p>tan(A−B)=(tanA−tanB)/(1+tanAtanB)</p>
+</div>
+</div>
+
+<div class="card">
+<h2>35. ସାଧାରଣ ଭୁଲ</h2>
+<ul>
+<li>sin ଓ cos ର numerator ଭୁଲ କରିବା।</li>
+<li>tan = P/H ଲେଖିଦେବା — ଠିକ୍ ହେଉଛି P/B।</li>
+<li>cot = P/B ଲେଖିଦେବା — ଠିକ୍ ହେଉଛି B/P।</li>
+<li>sec ଓ cosec କୁ reciprocal ଭାବେ ନ ନେବା।</li>
+<li>90° ରେ tan ଓ sec ର value କୁ 0 ଧରିବା।</li>
+<li>120°, 135°, 150° ର cos/tan ର negative sign ଭୁଲିଯିବା।</li>
+<li>sin(90°−θ) କୁ sinθ ଲେଖିବା; ଠିକ୍ ହେଉଛି cosθ।</li>
+<li>cos(180°−θ) ର negative sign ଛାଡ଼ିଦେବା।</li>
+<li>Compound-angle formula ର +/− ଚିହ୍ନ ଭୁଲ କରିବା।</li>
+<li>ଉତ୍ତରରେ ଅସଂଜ୍ଞା (undefined) କୁ ସଂଖ୍ୟା ଭାବେ ଲେଖିବା।</li>
+</ul>
+</div>
+
+<div class="card">
+<h2>36. ପରୀକ୍ଷା ପୂର୍ବରୁ ଶେଷ ଯାଞ୍ଚ</h2>
+<ol>
+<li>ଛଅଟି ratio ମନେ ଅଛି କି?</li>
+<li>30°, 45°, 60° ର values ମନେ ଅଛି କି?</li>
+<li>0° ଓ 90° ର special values ମନେ ଅଛି କି?</li>
+<li>ତିନୋଟି fundamental identities ମନେ ଅଛି କି?</li>
+<li>90°−θ ର ସମ୍ପର୍କଗୁଡ଼ିକ ମନେ ଅଛି କି?</li>
+<li>180°−θ ର sign ଠିକ୍ ରଖିପାରୁଛନ୍ତି କି?</li>
+<li>120°, 135°, 150° ର values ନିର୍ଣ୍ଣୟ କରିପାରୁଛନ୍ତି କି?</li>
+<li>A+B ଓ A−B ର sin/cos formula ମନେ ଅଛି କି?</li>
+<li>ପ୍ରତ୍ୟେକ calculation ପଦକ୍ରମେ ଲେଖୁଛନ୍ତି କି?</li>
+</ol>
+</div>
+
+<div class="card note">
+<b>📖 ମୂଳ ପାଠ୍ୟପୁସ୍ତକ:</b>
+Chapter 04 ର printed pages <b>95–118</b> ମଧ୍ୟରେ ଥିବା original diagrams, examples,
+exercise ଓ answer-key ପାଇଁ ଆପଣଙ୍କ Chapter 04 “📚 Textbook Reference” PDF ଖୋଲନ୍ତୁ।
+</div>
+
+<a class="back" href="class-x-mathematics.html">🔙 ପଛକୁ – Class X Mathematics</a>
+</div>
+
+<footer>© Karua Gadadhar Kar High School, Beldandia | Class X Mathematics</footer>
+</body>
+</html>
