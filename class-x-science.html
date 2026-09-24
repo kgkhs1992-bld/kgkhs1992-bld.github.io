@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="or">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,441 +7,953 @@
 <title>Class X Science | KGKHS Beldandia</title>
 
 <style>
-* {
-    box-sizing: border-box;
+
+*{
+    box-sizing:border-box;
 }
 
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #f4f7fb;
-    color: #17324d;
+body{
+    margin:0;
+    font-family:"Noto Sans Oriya","Nirmala UI",Arial,sans-serif;
+    background:linear-gradient(135deg,#eef7ff,#f8f2ff);
+    color:#17324d;
 }
 
-header {
-    background: linear-gradient(135deg, #00695c, #26a69a);
-    color: white;
-    text-align: center;
-    padding: 28px 15px;
+/* ================= HEADER ================= */
+
+header{
+    background:linear-gradient(135deg,#075985,#09a8e5);
+    color:white;
+    text-align:center;
+    padding:32px 15px;
+    box-shadow:0 5px 20px rgba(0,0,0,.15);
 }
 
-header h1 {
-    margin: 0;
-    font-size: 30px;
+header h1{
+    margin:0;
+    font-size:32px;
+    font-weight:800;
 }
 
-header p {
-    margin: 8px 0 0;
-    font-size: 16px;
+header p{
+    margin:7px 0;
+    font-size:17px;
 }
 
-.back-button {
-    display: inline-block;
-    margin: 20px auto;
-    padding: 12px 22px;
-    background: #17324d;
-    color: white;
-    text-decoration: none;
-    border-radius: 25px;
-    font-weight: bold;
+/* ================= BACK BUTTON ================= */
+
+.back-area{
+    text-align:center;
+    padding:22px 10px 10px;
 }
 
-.container {
-    width: 94%;
-    max-width: 1100px;
-    margin: auto;
-    padding-bottom: 40px;
+.back-button{
+    display:inline-block;
+    padding:14px 30px;
+    background:#123d5a;
+    color:white;
+    text-decoration:none;
+    border-radius:40px;
+    font-size:19px;
+    font-weight:bold;
+    box-shadow:0 5px 15px rgba(0,0,0,.18);
+    transition:.25s;
 }
 
-.section-title {
-    margin-top: 25px;
-    padding: 16px;
-    text-align: center;
-    color: white;
-    border-radius: 14px;
-    font-size: 24px;
+.back-button:hover{
+    transform:scale(1.04);
 }
 
-.physical-title {
-    background: linear-gradient(135deg, #1565c0, #42a5f5);
+/* ================= MAIN CONTAINER ================= */
+
+.container{
+    width:94%;
+    max-width:1100px;
+    margin:auto;
+    padding-bottom:40px;
 }
 
-.life-title {
-    background: linear-gradient(135deg, #2e7d32, #66bb6a);
+/* ================= SECTION TITLE ================= */
+
+.section-title{
+    margin:28px 0 20px;
+    padding:21px 15px;
+    text-align:center;
+    color:white;
+    border-radius:20px;
+    font-size:29px;
+    font-weight:800;
+    box-shadow:0 7px 22px rgba(0,0,0,.15);
 }
 
-.topic-card {
-    background: white;
-    margin: 18px 0;
-    padding: 20px;
-    border-radius: 18px;
-    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.10);
-    border-left: 7px solid #2196f3;
+.physical-title{
+    background:linear-gradient(135deg,#0878d1,#17b6ed);
 }
 
-.life-card {
-    border-left-color: #43a047;
+.life-title{
+    background:linear-gradient(135deg,#16843b,#61c96b);
 }
 
-.topic-number {
-    color: #777;
-    font-size: 14px;
-    font-weight: bold;
+/* ================= TOPIC CARD ================= */
+
+.topic-card{
+    background:white;
+    margin:22px 0;
+    padding:22px;
+    border-radius:24px;
+    box-shadow:0 7px 25px rgba(30,50,80,.13);
+    border-left:9px solid #1599dc;
+    transition:.25s;
 }
 
-.topic-card h2 {
-    margin: 7px 0;
-    color: #17324d;
-    font-size: 21px;
+.topic-card:hover{
+    transform:translateY(-3px);
+    box-shadow:0 11px 30px rgba(30,50,80,.18);
 }
 
-.topic-card p {
-    margin: 5px 0 15px;
-    color: #555;
-    font-size: 16px;
+.life-card{
+    border-left-color:#32a852;
 }
 
-.resource-boxes {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
+/* ================= TOPIC TEXT ================= */
+
+.topic-number{
+    color:#777;
+    font-size:14px;
+    font-weight:800;
+    letter-spacing:.5px;
 }
 
-.resource-box {
-    display: block;
-    padding: 14px 10px;
-    text-align: center;
-    text-decoration: none;
-    color: white;
-    border-radius: 12px;
-    font-weight: bold;
-    font-size: 15px;
+.topic-card h2{
+    margin:7px 0 3px;
+    color:#123d5a;
+    font-size:24px;
+    font-weight:800;
 }
 
-.textbook {
-    background: #1976d2;
+.topic-card p{
+    margin:3px 0 18px;
+    color:#555;
+    font-size:17px;
 }
 
-.notes {
-    background: #8e24aa;
+/* ================= RESOURCE BOXES ================= */
+
+.resource-boxes{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:14px;
 }
 
-.practice {
-    background: #ef6c00;
+.resource-box{
+    min-height:65px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:14px 10px;
+    color:white;
+    text-decoration:none;
+    border-radius:17px;
+    font-size:16px;
+    font-weight:800;
+    box-shadow:0 4px 11px rgba(0,0,0,.13);
+    transition:.25s;
 }
 
-.video {
-    background: #c62828;
+.resource-box:hover{
+    transform:scale(1.025);
+    filter:brightness(1.08);
 }
 
-.resource-box:hover {
-    opacity: 0.85;
-    transform: scale(1.02);
+/* BLUE */
+
+.textbook{
+    background:linear-gradient(135deg,#0878d1,#16a6e8);
 }
 
-footer {
-    margin-top: 35px;
-    padding: 20px;
-    background: #17324d;
-    color: white;
-    text-align: center;
+/* PURPLE */
+
+.notes{
+    background:linear-gradient(135deg,#8b16a8,#b72bd1);
 }
 
-@media (max-width: 600px) {
-    header h1 {
-        font-size: 25px;
+/* ORANGE */
+
+.questions{
+    background:linear-gradient(135deg,#f06400,#ff9000);
+}
+
+/* RED */
+
+.mcq{
+    background:linear-gradient(135deg,#d60024,#f0143b);
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+    margin-top:35px;
+    padding:25px 15px;
+    background:#123d5a;
+    color:white;
+    text-align:center;
+    font-size:15px;
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:650px){
+
+    header h1{
+        font-size:27px;
     }
 
-    .topic-card h2 {
-        font-size: 18px;
+    header p{
+        font-size:15px;
     }
 
-    .resource-boxes {
-        grid-template-columns: 1fr;
+    .back-button{
+        font-size:18px;
+        padding:13px 25px;
     }
+
+    .section-title{
+        font-size:24px;
+        padding:18px 10px;
+    }
+
+    .topic-card{
+        padding:17px;
+        border-radius:21px;
+    }
+
+    .topic-card h2{
+        font-size:21px;
+    }
+
+    .topic-card p{
+        font-size:15px;
+    }
+
+    .resource-boxes{
+        grid-template-columns:1fr;
+    }
+
+    .resource-box{
+        font-size:16px;
+        min-height:60px;
+    }
+
 }
+
 </style>
 </head>
 
 <body>
 
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
 <header>
+
     <h1>🔬 Class X Science</h1>
-    <p>Physical Science and Life Science</p>
+
+    <p>⚗️ Physical Science &nbsp; | &nbsp; 🌿 Life Science</p>
+
     <p>Karua Gadadhar Kar High School, Beldandia</p>
+
 </header>
 
-<div style="text-align:center;">
-    <a href="learning.html" class="back-button">⬅ Back to Learning</a>
+
+<!-- =====================================================
+     BACK TO LEARNING
+===================================================== -->
+
+<div class="back-area">
+
+    <a href="learning.html" class="back-button">
+        ← Back to Learning
+    </a>
+
 </div>
+
 
 <div class="container">
 
-    <!-- PHYSICAL SCIENCE -->
 
-    <h2 class="section-title physical-title">
-        ⚗️ Physical Science
+<!-- =====================================================
+     PHYSICAL SCIENCE
+===================================================== -->
+
+<h2 class="section-title physical-title">
+    ⚗️ Physical Science
+</h2>
+
+
+<!-- =====================================================
+     PHYSICAL SCIENCE – 01
+===================================================== -->
+
+<div class="topic-card">
+
+    <div class="topic-number">
+        PHYSICAL SCIENCE – TOPIC 01
+    </div>
+
+    <h2>
+        ୧. ରାସାୟନିକ ପ୍ରତିକ୍ରିୟା ଓ ସମୀକରଣ
     </h2>
 
-    <div class="topic-card">
-        <div class="topic-number">PHYSICAL SCIENCE – TOPIC 01</div>
-        <h2>୧. ରାସାୟନିକ ପ୍ରତିକ୍ରିୟା ଓ ସମୀକରଣ</h2>
-        <p>Chemical Reactions and Equations</p>
+    <p>
+        Chemical Reactions and Equations
+    </p>
 
-        <div class="resource-boxes">
-            <a href="#" class="resource-box textbook">📘 ପାଠ୍ୟପୁସ୍ତକ</a>
-            <a href="#" class="resource-box notes">📝 ଶିକ୍ଷକଙ୍କ ନୋଟ୍</a>
-            <a href="#" class="resource-box practice">❓ ଅଭ୍ୟାସ ପ୍ରଶ୍ନ ଓ ଉତ୍ତର</a>
-            <a href="#" class="resource-box video">🎥 ଭିଡିଓ</a>
-        </div>
-    </div>
+    <div class="resource-boxes">
 
-    <div class="topic-card">
-        <div class="topic-number">PHYSICAL SCIENCE – TOPIC 02</div>
-        <h2>୨. ଅମ୍ଳ, କ୍ଷାରକ ଓ ଲବଣ</h2>
-        <p>Acids, Bases and Salts</p>
+        <a href="#"
+           class="resource-box textbook">
+            📘 ପାଠ୍ୟପୁସ୍ତକ
+        </a>
 
-        <div class="resource-boxes">
-            <a href="#" class="resource-box textbook">📘 ପାଠ୍ୟପୁସ୍ତକ</a>
-            <a href="#" class="resource-box notes">📝 ଶିକ୍ଷକଙ୍କ ନୋଟ୍</a>
-            <a href="#" class="resource-box practice">❓ ଅଭ୍ୟାସ ପ୍ରଶ୍ନ ଓ ଉତ୍ତର</a>
-            <a href="#" class="resource-box video">🎥 ଭିଡିଓ</a>
-        </div>
-    </div>
+        <a href="class-x-physical-science-chapter-01-chemical-reactions-study-material.html"
+           class="resource-box notes">
+            📝 ଅଧ୍ୟୟନ ସାମଗ୍ରୀ
+        </a>
 
-    <div class="topic-card">
-        <div class="topic-number">PHYSICAL SCIENCE – TOPIC 03</div>
-        <h2>୩. ଧାତୁ ଓ ଅଧାତୁ</h2>
-        <p>Metals and Non-Metals</p>
+        <a href="#"
+           class="resource-box questions">
+            ❓ ପ୍ରଶ୍ନ ଓ ଉତ୍ତର
+        </a>
 
-        <div class="resource-boxes">
-            <a href="#" class="resource-box textbook">📘 ପାଠ୍ୟପୁସ୍ତକ</a>
-            <a href="#" class="resource-box notes">📝 ଶିକ୍ଷକଙ୍କ ନୋଟ୍</a>
-            <a href="#" class="resource-box practice">❓ ଅଭ୍ୟାସ ପ୍ରଶ୍ନ ଓ ଉତ୍ତର</a>
-            <a href="#" class="resource-box video">🎥 ଭିଡିଓ</a>
-        </div>
-    </div>
+        <a href="#"
+           class="resource-box mcq">
+            📝 MCQ – 50 × 1 + 5 × 5
+        </a>
 
-    <div class="topic-card">
-        <div class="topic-number">PHYSICAL SCIENCE – TOPIC 04</div>
-        <h2>୪. କାର୍ବନ ଓ ଏହାର ଯୌଗିକ</h2>
-        <p>Carbon and its Compounds</p>
-
-        <div class="resource-boxes">
-            <a href="#" class="resource-box textbook">📘 ପାଠ୍ୟପୁସ୍ତକ</a>
-            <a href="#" class="resource-box notes">📝 ଶିକ୍ଷକଙ୍କ ନୋଟ୍</a>
-            <a href="#" class="resource-box practice">❓ ଅଭ୍ୟାସ ପ୍ରଶ୍ନ ଓ ଉତ୍ତର</a>
-            <a href="#" class="resource-box video">🎥 ଭିଡିଓ</a>
-        </div>
-    </div>
-
-    <div class="topic-card">
-        <div class="topic-number">PHYSICAL SCIENCE – TOPIC 05</div>
-        <h2>୫. ମୌଳିକଗୁଡ଼ିକର ପର୍ଯ୍ୟାୟ ସ୍ରେଣୀକରଣ</h2>
-        <p>Periodic Classification of Elements</p>
-
-        <div class="resource-boxes">
-            <a href="#" class="resource-box textbook">📘 ପାଠ୍ୟପୁସ୍ତକ</a>
-            <a href="#" class="resource-box notes">📝 ଶିକ୍ଷକଙ୍କ ନୋଟ୍</a>
-            <a href="#" class="resource-box practice">❓ ଅଭ୍ୟାସ ପ୍ରଶ୍ନ ଓ ଉତ୍ତର</a>
-            <a href="#" class="resource-box video">🎥 ଭିଡିଓ</a>
-        </div>
-    </div>
-
-    <div class="topic-card">
-        <div class="topic-number">PHYSICAL SCIENCE – TOPIC 06</div>
-        <h2>୬. ଆଲୋକ - ପ୍ରତିଫଳନ ଓ ପ୍ରତିସରଣ</h2>
-        <p>Light - Reflection and Refraction</p>
-
-        <div class="resource-boxes">
-            <a href="#" class="resource-box textbook">📘 ପାଠ୍ୟପୁସ୍ତକ</a>
-            <a href="#" class="resource-box notes">📝 ଶିକ୍ଷକଙ୍କ ନୋଟ୍</a>
-            <a href="#" class="resource-box practice">❓ ଅଭ୍ୟାସ ପ୍ରଶ୍ନ ଓ ଉତ୍ତର</a>
-            <a href="#" class="resource-box video">🎥 ଭିଡିଓ</a>
-        </div>
-    </div>
-
-    <div class="topic-card">
-        <div class="topic-number">PHYSICAL SCIENCE – TOPIC 07</div>
-        <h2>୭. ମାନବ ଚକ୍ଷୁ ଓ ବର୍ଣ୍ଣମୟ ଜଗତ</h2>
-        <p>The Human Eye and the Colourful World</p>
-
-        <div class="resource-boxes">
-            <a href="#" class="resource-box textbook">📘 ପାଠ୍ୟପୁସ୍ତକ</a>
-            <a href="#" class="resource-box notes">📝 ଶିକ୍ଷକଙ୍କ ନୋଟ୍</a>
-            <a href="#" class="resource-box practice">❓ ଅଭ୍ୟାସ ପ୍ରଶ୍ନ ଓ ଉତ୍ତର</a>
-            <a href="#" class="resource-box video">🎥 ଭିଡିଓ</a>
-        </div>
-    </div>
-
-    <div class="topic-card">
-        <div class="topic-number">PHYSICAL SCIENCE – TOPIC 08</div>
-        <h2>୮. ବିଦ୍ୟୁତ</h2>
-        <p>Electricity</p>
-
-        <div class="resource-boxes">
-            <a href="#" class="resource-box textbook">📘 ପାଠ୍ୟପୁସ୍ତକ</a>
-            <a href="#" class="resource-box notes">📝 ଶିକ୍ଷକଙ୍କ ନୋଟ୍</a>
-            <a href="#" class="resource-box practice">❓ ଅଭ୍ୟାସ ପ୍ରଶ୍ନ ଓ ଉତ୍ତର</a>
-            <a href="#" class="resource-box video">🎥 ଭିଡିଓ</a>
-        </div>
-    </div>
-
-    <div class="topic-card">
-        <div class="topic-number">PHYSICAL SCIENCE – TOPIC 09</div>
-        <h2>୯. ବିଦ୍ୟୁତର ଚୁମ୍ବକୀୟ ପ୍ରଭାବ</h2>
-        <p>Magnetic Effects of Electric Current</p>
-
-        <div class="resource-boxes">
-            <a href="#" class="resource-box textbook">📘 ପାଠ୍ୟପୁସ୍ତକ</a>
-            <a href="#" class="resource-box notes">📝 ଶିକ୍ଷକଙ୍କ ନୋଟ୍</a>
-            <a href="#" class="resource-box practice">❓ ଅଭ୍ୟାସ ପ୍ରଶ୍ନ ଓ ଉତ୍ତର</a>
-            <a href="#" class="resource-box video">🎥 ଭିଡିଓ</a>
-        </div>
-    </div>
-
-
-    <!-- LIFE SCIENCE -->
-
-    <h2 class="section-title life-title">
-        🌿 Life Science
-    </h2>
-
-    <div class="topic-card life-card">
-        <div class="topic-number">LIFE SCIENCE – TOPIC 01</div>
-        <h2>୧. ପୋଷଣ</h2>
-        <p>Nutrition</p>
-
-        <div class="resource-boxes">
-            <a href="#" class="resource-box textbook">📘 ପାଠ୍ୟପୁସ୍ତକ</a>
-            <a href="#" class="resource-box notes">📝 ଶିକ୍ଷକଙ୍କ ନୋଟ୍</a>
-            <a href="#" class="resource-box practice">❓ ଅଭ୍ୟାସ ପ୍ରଶ୍ନ ଓ ଉତ୍ତର</a>
-            <a href="#" class="resource-box video">🎥 ଭିଡିଓ</a>
-        </div>
-    </div>
-
-    <div class="topic-card life-card">
-        <div class="topic-number">LIFE SCIENCE – TOPIC 02</div>
-        <h2>୨. ଶ୍ୱସନ</h2>
-        <p>Respiration</p>
-
-        <div class="resource-boxes">
-            <a href="#" class="resource-box textbook">📘 ପାଠ୍ୟପୁସ୍ତକ</a>
-            <a href="#" class="resource-box notes">📝 ଶିକ୍ଷକଙ୍କ ନୋଟ୍</a>
-            <a href="#" class="resource-box practice">❓ ଅଭ୍ୟାସ ପ୍ରଶ୍ନ ଓ ଉତ୍ତର</a>
-            <a href="#" class="resource-box video">🎥 ଭିଡିଓ</a>
-        </div>
-    </div>
-
-    <div class="topic-card life-card">
-        <div class="topic-number">LIFE SCIENCE – TOPIC 03</div>
-        <h2>୩. ପରିବହନ ଓ ସଞ୍ଚାଳନ</h2>
-        <p>Transportation and Circulation</p>
-
-        <div class="resource-boxes">
-            <a href="#" class="resource-box textbook">📘 ପାଠ୍ୟପୁସ୍ତକ</a>
-            <a href="#" class="resource-box notes">📝 ଶିକ୍ଷକଙ୍କ ନୋଟ୍</a>
-            <a href="#" class="resource-box practice">❓ ଅଭ୍ୟାସ ପ୍ରଶ୍ନ ଓ ଉତ୍ତର</a>
-            <a href="#" class="resource-box video">🎥 ଭିଡିଓ</a>
-        </div>
-    </div>
-
-    <div class="topic-card life-card">
-        <div class="topic-number">LIFE SCIENCE – TOPIC 04</div>
-        <h2>୪. ବର୍ଜନ</h2>
-        <p>Excretion</p>
-
-        <div class="resource-boxes">
-            <a href="#" class="resource-box textbook">📘 ପାଠ୍ୟପୁସ୍ତକ</a>
-            <a href="#" class="resource-box notes">📝 ଶିକ୍ଷକଙ୍କ ନୋଟ୍</a>
-            <a href="#" class="resource-box practice">❓ ଅଭ୍ୟାସ ପ୍ରଶ୍ନ ଓ ଉତ୍ତର</a>
-            <a href="#" class="resource-box video">🎥 ଭିଡିଓ</a>
-        </div>
-    </div>
-
-    <div class="topic-card life-card">
-        <div class="topic-number">LIFE SCIENCE – TOPIC 05</div>
-        <h2>୫. ନିୟନ୍ତ୍ରଣ ଓ ସମନ୍ୱୟ</h2>
-        <p>Control and Co-ordination</p>
-
-        <div class="resource-boxes">
-            <a href="#" class="resource-box textbook">📘 ପାଠ୍ୟପୁସ୍ତକ</a>
-            <a href="#" class="resource-box notes">📝 ଶିକ୍ଷକଙ୍କ ନୋଟ୍</a>
-            <a href="#" class="resource-box practice">❓ ଅଭ୍ୟାସ ପ୍ରଶ୍ନ ଓ ଉତ୍ତର</a>
-            <a href="#" class="resource-box video">🎥 ଭିଡିଓ</a>
-        </div>
-    </div>
-
-    <div class="topic-card life-card">
-        <div class="topic-number">LIFE SCIENCE – TOPIC 06</div>
-        <h2>୬. ଜନନ</h2>
-        <p>Reproduction</p>
-
-        <div class="resource-boxes">
-            <a href="#" class="resource-box textbook">📘 ପାଠ୍ୟପୁସ୍ତକ</a>
-            <a href="#" class="resource-box notes">📝 ଶିକ୍ଷକଙ୍କ ନୋଟ୍</a>
-            <a href="#" class="resource-box practice">❓ ଅଭ୍ୟାସ ପ୍ରଶ୍ନ ଓ ଉତ୍ତର</a>
-            <a href="#" class="resource-box video">🎥 ଭିଡିଓ</a>
-        </div>
-    </div>
-
-    <div class="topic-card life-card">
-        <div class="topic-number">LIFE SCIENCE – TOPIC 07</div>
-        <h2>୭. ବଂଶାନୁକ୍ରମଣ ଓ ବିବର୍ତ୍ତନ</h2>
-        <p>Heredity and Evolution</p>
-
-        <div class="resource-boxes">
-            <a href="#" class="resource-box textbook">📘 ପାଠ୍ୟପୁସ୍ତକ</a>
-            <a href="#" class="resource-box notes">📝 ଶିକ୍ଷକଙ୍କ ନୋଟ୍</a>
-            <a href="#" class="resource-box practice">❓ ଅଭ୍ୟାସ ପ୍ରଶ୍ନ ଓ ଉତ୍ତର</a>
-            <a href="#" class="resource-box video">🎥 ଭିଡିଓ</a>
-        </div>
-    </div>
-
-    <div class="topic-card life-card">
-        <div class="topic-number">LIFE SCIENCE – TOPIC 08</div>
-        <h2>୮. ଶକ୍ତିର ଉତ୍ସ</h2>
-        <p>Sources of Energy</p>
-
-        <div class="resource-boxes">
-            <a href="#" class="resource-box textbook">📘 ପାଠ୍ୟପୁସ୍ତକ</a>
-            <a href="#" class="resource-box notes">📝 ଶିକ୍ଷକଙ୍କ ନୋଟ୍</a>
-            <a href="#" class="resource-box practice">❓ ଅଭ୍ୟାସ ପ୍ରଶ୍ନ ଓ ଉତ୍ତର</a>
-            <a href="#" class="resource-box video">🎥 ଭିଡିଓ</a>
-        </div>
-    </div>
-
-    <div class="topic-card life-card">
-        <div class="topic-number">LIFE SCIENCE – TOPIC 09</div>
-        <h2>୯. ଆମ ପରିବେଶ</h2>
-        <p>Our Environment</p>
-
-        <div class="resource-boxes">
-            <a href="#" class="resource-box textbook">📘 ପାଠ୍ୟପୁସ୍ତକ</a>
-            <a href="#" class="resource-box notes">📝 ଶିକ୍ଷକଙ୍କ ନୋଟ୍</a>
-            <a href="#" class="resource-box practice">❓ ଅଭ୍ୟାସ ପ୍ରଶ୍ନ ଓ ଉତ୍ତର</a>
-            <a href="#" class="resource-box video">🎥 ଭିଡିଓ</a>
-        </div>
-    </div>
-
-    <div class="topic-card life-card">
-        <div class="topic-number">LIFE SCIENCE – TOPIC 10</div>
-        <h2>୧୦. ପ୍ରାକୃତିକ ସମ୍ପଦର ସଂରକ୍ଷଣ</h2>
-        <p>Conservation of Natural Resources</p>
-
-        <div class="resource-boxes">
-            <a href="#" class="resource-box textbook">📘 ପାଠ୍ୟପୁସ୍ତକ</a>
-            <a href="#" class="resource-box notes">📝 ଶିକ୍ଷକଙ୍କ ନୋଟ୍</a>
-            <a href="#" class="resource-box practice">❓ ଅଭ୍ୟାସ ପ୍ରଶ୍ନ ଓ ଉତ୍ତର</a>
-            <a href="#" class="resource-box video">🎥 ଭିଡିଓ</a>
-        </div>
     </div>
 
 </div>
 
+
+<!-- =====================================================
+     PHYSICAL SCIENCE – 02
+===================================================== -->
+
+<div class="topic-card">
+
+    <div class="topic-number">
+        PHYSICAL SCIENCE – TOPIC 02
+    </div>
+
+    <h2>
+        ୨. ଅମ୍ଳ, କ୍ଷାରକ ଓ ଲବଣ
+    </h2>
+
+    <p>
+        Acids, Bases and Salts
+    </p>
+
+    <div class="resource-boxes">
+
+        <a href="#" class="resource-box textbook">📘 ପାଠ୍ୟପୁସ୍ତକ</a>
+
+        <a href="#" class="resource-box notes">📝 ଅଧ୍ୟୟନ ସାମଗ୍ରୀ</a>
+
+        <a href="#" class="resource-box questions">❓ ପ୍ରଶ୍ନ ଓ ଉତ୍ତର</a>
+
+        <a href="#" class="resource-box mcq">📝 MCQ – 50 × 1 + 5 × 5</a>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     PHYSICAL SCIENCE – 03
+===================================================== -->
+
+<div class="topic-card">
+
+    <div class="topic-number">
+        PHYSICAL SCIENCE – TOPIC 03
+    </div>
+
+    <h2>
+        ୩. ଧାତୁ ଓ ଅଧାତୁ
+    </h2>
+
+    <p>
+        Metals and Non-Metals
+    </p>
+
+    <div class="resource-boxes">
+
+        <a href="#" class="resource-box textbook">📘 ପାଠ୍ୟପୁସ୍ତକ</a>
+
+        <a href="#" class="resource-box notes">📝 ଅଧ୍ୟୟନ ସାମଗ୍ରୀ</a>
+
+        <a href="#" class="resource-box questions">❓ ପ୍ରଶ୍ନ ଓ ଉତ୍ତର</a>
+
+        <a href="#" class="resource-box mcq">📝 MCQ – 50 × 1 + 5 × 5</a>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     PHYSICAL SCIENCE – 04
+===================================================== -->
+
+<div class="topic-card">
+
+    <div class="topic-number">
+        PHYSICAL SCIENCE – TOPIC 04
+    </div>
+
+    <h2>
+        ୪. କାର୍ବନ ଓ ଏହାର ଯୌଗିକ
+    </h2>
+
+    <p>
+        Carbon and its Compounds
+    </p>
+
+    <div class="resource-boxes">
+
+        <a href="#" class="resource-box textbook">📘 ପାଠ୍ୟପୁସ୍ତକ</a>
+
+        <a href="#" class="resource-box notes">📝 ଅଧ୍ୟୟନ ସାମଗ୍ରୀ</a>
+
+        <a href="#" class="resource-box questions">❓ ପ୍ରଶ୍ନ ଓ ଉତ୍ତର</a>
+
+        <a href="#" class="resource-box mcq">📝 MCQ – 50 × 1 + 5 × 5</a>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     PHYSICAL SCIENCE – 05
+===================================================== -->
+
+<div class="topic-card">
+
+    <div class="topic-number">
+        PHYSICAL SCIENCE – TOPIC 05
+    </div>
+
+    <h2>
+        ୫. ମୌଳିକଗୁଡ଼ିକର ପର୍ଯ୍ୟାୟ ସ୍ରେଣୀକରଣ
+    </h2>
+
+    <p>
+        Periodic Classification of Elements
+    </p>
+
+    <div class="resource-boxes">
+
+        <a href="#" class="resource-box textbook">📘 ପାଠ୍ୟପୁସ୍ତକ</a>
+
+        <a href="#" class="resource-box notes">📝 ଅଧ୍ୟୟନ ସାମଗ୍ରୀ</a>
+
+        <a href="#" class="resource-box questions">❓ ପ୍ରଶ୍ନ ଓ ଉତ୍ତର</a>
+
+        <a href="#" class="resource-box mcq">📝 MCQ – 50 × 1 + 5 × 5</a>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     PHYSICAL SCIENCE – 06
+===================================================== -->
+
+<div class="topic-card">
+
+    <div class="topic-number">
+        PHYSICAL SCIENCE – TOPIC 06
+    </div>
+
+    <h2>
+        ୬. ଆଲୋକ - ପ୍ରତିଫଳନ ଓ ପ୍ରତିସରଣ
+    </h2>
+
+    <p>
+        Light - Reflection and Refraction
+    </p>
+
+    <div class="resource-boxes">
+
+        <a href="#" class="resource-box textbook">📘 ପାଠ୍ୟପୁସ୍ତକ</a>
+
+        <a href="#" class="resource-box notes">📝 ଅଧ୍ୟୟନ ସାମଗ୍ରୀ</a>
+
+        <a href="#" class="resource-box questions">❓ ପ୍ରଶ୍ନ ଓ ଉତ୍ତର</a>
+
+        <a href="#" class="resource-box mcq">📝 MCQ – 50 × 1 + 5 × 5</a>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     PHYSICAL SCIENCE – 07
+===================================================== -->
+
+<div class="topic-card">
+
+    <div class="topic-number">
+        PHYSICAL SCIENCE – TOPIC 07
+    </div>
+
+    <h2>
+        ୭. ମାନବ ଚକ୍ଷୁ ଓ ବର୍ଣ୍ଣମୟ ଜଗତ
+    </h2>
+
+    <p>
+        The Human Eye and the Colourful World
+    </p>
+
+    <div class="resource-boxes">
+
+        <a href="#" class="resource-box textbook">📘 ପାଠ୍ୟପୁସ୍ତକ</a>
+
+        <a href="#" class="resource-box notes">📝 ଅଧ୍ୟୟନ ସାମଗ୍ରୀ</a>
+
+        <a href="#" class="resource-box questions">❓ ପ୍ରଶ୍ନ ଓ ଉତ୍ତର</a>
+
+        <a href="#" class="resource-box mcq">📝 MCQ – 50 × 1 + 5 × 5</a>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     PHYSICAL SCIENCE – 08
+===================================================== -->
+
+<div class="topic-card">
+
+    <div class="topic-number">
+        PHYSICAL SCIENCE – TOPIC 08
+    </div>
+
+    <h2>
+        ୮. ବିଦ୍ୟୁତ
+    </h2>
+
+    <p>
+        Electricity
+    </p>
+
+    <div class="resource-boxes">
+
+        <a href="#" class="resource-box textbook">📘 ପାଠ୍ୟପୁସ୍ତକ</a>
+
+        <a href="#" class="resource-box notes">📝 ଅଧ୍ୟୟନ ସାମଗ୍ରୀ</a>
+
+        <a href="#" class="resource-box questions">❓ ପ୍ରଶ୍ନ ଓ ଉତ୍ତର</a>
+
+        <a href="#" class="resource-box mcq">📝 MCQ – 50 × 1 + 5 × 5</a>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     PHYSICAL SCIENCE – 09
+===================================================== -->
+
+<div class="topic-card">
+
+    <div class="topic-number">
+        PHYSICAL SCIENCE – TOPIC 09
+    </div>
+
+    <h2>
+        ୯. ବିଦ୍ୟୁତର ଚୁମ୍ବକୀୟ ପ୍ରଭାବ
+    </h2>
+
+    <p>
+        Magnetic Effects of Electric Current
+    </p>
+
+    <div class="resource-boxes">
+
+        <a href="#" class="resource-box textbook">📘 ପାଠ୍ୟପୁସ୍ତକ</a>
+
+        <a href="#" class="resource-box notes">📝 ଅଧ୍ୟୟନ ସାମଗ୍ରୀ</a>
+
+        <a href="#" class="resource-box questions">❓ ପ୍ରଶ୍ନ ଓ ଉତ୍ତର</a>
+
+        <a href="#" class="resource-box mcq">📝 MCQ – 50 × 1 + 5 × 5</a>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     LIFE SCIENCE
+===================================================== -->
+
+<h2 class="section-title life-title">
+    🌿 Life Science
+</h2>
+
+
+<!-- =====================================================
+     LIFE SCIENCE – 01
+===================================================== -->
+
+<div class="topic-card life-card">
+
+    <div class="topic-number">
+        LIFE SCIENCE – TOPIC 01
+    </div>
+
+    <h2>
+        ୧. ପୋଷଣ
+    </h2>
+
+    <p>
+        Nutrition
+    </p>
+
+    <div class="resource-boxes">
+
+        <a href="#" class="resource-box textbook">📘 ପାଠ୍ୟପୁସ୍ତକ</a>
+
+        <a href="#" class="resource-box notes">📝 ଅଧ୍ୟୟନ ସାମଗ୍ରୀ</a>
+
+        <a href="#" class="resource-box questions">❓ ପ୍ରଶ୍ନ ଓ ଉତ୍ତର</a>
+
+        <a href="#" class="resource-box mcq">📝 MCQ – 50 × 1 + 5 × 5</a>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     LIFE SCIENCE – 02
+===================================================== -->
+
+<div class="topic-card life-card">
+
+    <div class="topic-number">
+        LIFE SCIENCE – TOPIC 02
+    </div>
+
+    <h2>
+        ୨. ଶ୍ୱସନ
+    </h2>
+
+    <p>
+        Respiration
+    </p>
+
+    <div class="resource-boxes">
+
+        <a href="#" class="resource-box textbook">📘 ପାଠ୍ୟପୁସ୍ତକ</a>
+
+        <a href="#" class="resource-box notes">📝 ଅଧ୍ୟୟନ ସାମଗ୍ରୀ</a>
+
+        <a href="#" class="resource-box questions">❓ ପ୍ରଶ୍ନ ଓ ଉତ୍ତର</a>
+
+        <a href="#" class="resource-box mcq">📝 MCQ – 50 × 1 + 5 × 5</a>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     LIFE SCIENCE – 03
+===================================================== -->
+
+<div class="topic-card life-card">
+
+    <div class="topic-number">
+        LIFE SCIENCE – TOPIC 03
+    </div>
+
+    <h2>
+        ୩. ପରିବହନ ଓ ସଞ୍ଚାଳନ
+    </h2>
+
+    <p>
+        Transportation and Circulation
+    </p>
+
+    <div class="resource-boxes">
+
+        <a href="#" class="resource-box textbook">📘 ପାଠ୍ୟପୁସ୍ତକ</a>
+
+        <a href="#" class="resource-box notes">📝 ଅଧ୍ୟୟନ ସାମଗ୍ରୀ</a>
+
+        <a href="#" class="resource-box questions">❓ ପ୍ରଶ୍ନ ଓ ଉତ୍ତର</a>
+
+        <a href="#" class="resource-box mcq">📝 MCQ – 50 × 1 + 5 × 5</a>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     LIFE SCIENCE – 04
+===================================================== -->
+
+<div class="topic-card life-card">
+
+    <div class="topic-number">
+        LIFE SCIENCE – TOPIC 04
+    </div>
+
+    <h2>
+        ୪. ବର୍ଜନ
+    </h2>
+
+    <p>
+        Excretion
+    </p>
+
+    <div class="resource-boxes">
+
+        <a href="#" class="resource-box textbook">📘 ପାଠ୍ୟପୁସ୍ତକ</a>
+
+        <a href="#" class="resource-box notes">📝 ଅଧ୍ୟୟନ ସାମଗ୍ରୀ</a>
+
+        <a href="#" class="resource-box questions">❓ ପ୍ରଶ୍ନ ଓ ଉତ୍ତର</a>
+
+        <a href="#" class="resource-box mcq">📝 MCQ – 50 × 1 + 5 × 5</a>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     LIFE SCIENCE – 05
+===================================================== -->
+
+<div class="topic-card life-card">
+
+    <div class="topic-number">
+        LIFE SCIENCE – TOPIC 05
+    </div>
+
+    <h2>
+        ୫. ନିୟନ୍ତ୍ରଣ ଓ ସମନ୍ୱୟ
+    </h2>
+
+    <p>
+        Control and Co-ordination
+    </p>
+
+    <div class="resource-boxes">
+
+        <a href="#" class="resource-box textbook">📘 ପାଠ୍ୟପୁସ୍ତକ</a>
+
+        <a href="#" class="resource-box notes">📝 ଅଧ୍ୟୟନ ସାମଗ୍ରୀ</a>
+
+        <a href="#" class="resource-box questions">❓ ପ୍ରଶ୍ନ ଓ ଉତ୍ତର</a>
+
+        <a href="#" class="resource-box mcq">📝 MCQ – 50 × 1 + 5 × 5</a>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     LIFE SCIENCE – 06
+===================================================== -->
+
+<div class="topic-card life-card">
+
+    <div class="topic-number">
+        LIFE SCIENCE – TOPIC 06
+    </div>
+
+    <h2>
+        ୬. ଜନନ
+    </h2>
+
+    <p>
+        Reproduction
+    </p>
+
+    <div class="resource-boxes">
+
+        <a href="#" class="resource-box textbook">📘 ପାଠ୍ୟପୁସ୍ତକ</a>
+
+        <a href="#" class="resource-box notes">📝 ଅଧ୍ୟୟନ ସାମଗ୍ରୀ</a>
+
+        <a href="#" class="resource-box questions">❓ ପ୍ରଶ୍ନ ଓ ଉତ୍ତର</a>
+
+        <a href="#" class="resource-box mcq">📝 MCQ – 50 × 1 + 5 × 5</a>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     LIFE SCIENCE – 07
+===================================================== -->
+
+<div class="topic-card life-card">
+
+    <div class="topic-number">
+        LIFE SCIENCE – TOPIC 07
+    </div>
+
+    <h2>
+        ୭. ବଂଶାନୁକ୍ରମଣ ଓ ବିବର୍ତ୍ତନ
+    </h2>
+
+    <p>
+        Heredity and Evolution
+    </p>
+
+    <div class="resource-boxes">
+
+        <a href="#" class="resource-box textbook">📘 ପାଠ୍ୟପୁସ୍ତକ</a>
+
+        <a href="#" class="resource-box notes">📝 ଅଧ୍ୟୟନ ସାମଗ୍ରୀ</a>
+
+        <a href="#" class="resource-box questions">❓ ପ୍ରଶ୍ନ ଓ ଉତ୍ତର</a>
+
+        <a href="#" class="resource-box mcq">📝 MCQ – 50 × 1 + 5 × 5</a>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     LIFE SCIENCE – 08
+===================================================== -->
+
+<div class="topic-card life-card">
+
+    <div class="topic-number">
+        LIFE SCIENCE – TOPIC 08
+    </div>
+
+    <h2>
+        ୮. ଶକ୍ତିର ଉତ୍ସ
+    </h2>
+
+    <p>
+        Sources of Energy
+    </p>
+
+    <div class="resource-boxes">
+
+        <a href="#" class="resource-box textbook">📘 ପାଠ୍ୟପୁସ୍ତକ</a>
+
+        <a href="#" class="resource-box notes">📝 ଅଧ୍ୟୟନ ସାମଗ୍ରୀ</a>
+
+        <a href="#" class="resource-box questions">❓ ପ୍ରଶ୍ନ ଓ ଉତ୍ତର</a>
+
+        <a href="#" class="resource-box mcq">📝 MCQ – 50 × 1 + 5 × 5</a>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     LIFE SCIENCE – 09
+===================================================== -->
+
+<div class="topic-card life-card">
+
+    <div class="topic-number">
+        LIFE SCIENCE – TOPIC 09
+    </div>
+
+    <h2>
+        ୯. ଆମ ପରିବେଶ
+    </h2>
+
+    <p>
+        Our Environment
+    </p>
+
+    <div class="resource-boxes">
+
+        <a href="#" class="resource-box textbook">📘 ପାଠ୍ୟପୁସ୍ତକ</a>
+
+        <a href="#" class="resource-box notes">📝 ଅଧ୍ୟୟନ ସାମଗ୍ରୀ</a>
+
+        <a href="#" class="resource-box questions">❓ ପ୍ରଶ୍ନ ଓ ଉତ୍ତର</a>
+
+        <a href="#" class="resource-box mcq">📝 MCQ – 50 × 1 + 5 × 5</a>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     LIFE SCIENCE – 10
+===================================================== -->
+
+<div class="topic-card life-card">
+
+    <div class="topic-number">
+        LIFE SCIENCE – TOPIC 10
+    </div>
+
+    <h2>
+        ୧୦. ପ୍ରାକୃତିକ ସମ୍ପଦର ସଂରକ୍ଷଣ
+    </h2>
+
+    <p>
+        Conservation of Natural Resources
+    </p>
+
+    <div class="resource-boxes">
+
+        <a href="#" class="resource-box textbook">📘 ପାଠ୍ୟପୁସ୍ତକ</a>
+
+        <a href="#" class="resource-box notes">📝 ଅଧ୍ୟୟନ ସାମଗ୍ରୀ</a>
+
+        <a href="#" class="resource-box questions">❓ ପ୍ରଶ୍ନ ଓ ଉତ୍ତର</a>
+
+        <a href="#" class="resource-box mcq">📝 MCQ – 50 × 1 + 5 × 5</a>
+
+    </div>
+
+</div>
+
+
+</div>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
 <footer>
+
     © 2026 Karua Gadadhar Kar High School, Beldandia
+
 </footer>
+
 
 </body>
 </html>
