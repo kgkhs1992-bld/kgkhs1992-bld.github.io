@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="or">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Class X Mathematics - Chapter 07 Probability - Study Material</title>
+<style>
+:root{--blue:#0b4f8a;--light:#eef7ff;--gold:#f5b700;--green:#16834b;--red:#b42318;--ink:#17212b}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Noto Sans Oriya","Noto Sans",Arial,sans-serif;background:#f4f7fb;color:var(--ink);line-height:1.7}
+header{background:linear-gradient(135deg,#073b66,#0b70b8);color:white;padding:28px 16px;text-align:center}
+header h1{margin:0;font-size:clamp(24px,6vw,38px)}
+header p{margin:6px 0 0;font-size:16px}
+.container{max-width:1050px;margin:auto;padding:16px}
+.back{display:inline-block;margin:4px 0 18px;padding:10px 18px;background:#222;color:#fff;text-decoration:none;border-radius:10px;font-weight:700}
+.card{background:#fff;margin:14px 0;padding:20px;border-radius:16px;box-shadow:0 4px 16px #00000012;border-left:5px solid var(--blue)}
+.card h2{color:var(--blue);margin-top:0}
+.formula{background:#eef8f1;border-left:5px solid var(--green);padding:14px;border-radius:10px;margin:12px 0;font-size:18px;font-weight:700}
+.example{background:#fff8e5;border-left:5px solid var(--gold);padding:15px;border-radius:10px;margin:12px 0}
+.warn{background:#fff0ef;border-left:5px solid var(--red);padding:14px;border-radius:10px}
+table{width:100%;border-collapse:collapse;margin:12px 0}
+th,td{border:1px solid #ccd6df;padding:9px;text-align:left}
+th{background:#e9f3fb}
+.tag{display:inline-block;background:#e8f1ff;color:#084b83;border-radius:20px;padding:4px 10px;margin:3px;font-weight:700}
+ol,ul{padding-left:25px}
+footer{text-align:center;padding:25px;color:#555}
+@media(max-width:650px){.card{padding:15px}table{font-size:14px}.formula{font-size:16px}}
+@media print{.back{display:none}body{background:white}.card{box-shadow:none;break-inside:avoid}}
+</style>
+</head>
+<body>
+<header>
+<h1>📘 ସମ୍ଭାବ୍ୟତା (PROBABILITY)</h1>
+<p>ଶ୍ରେଣୀ–X • ଗଣିତ • Chapter 07 • Study Material</p>
+</header>
+
+<div class="container">
+<a class="back" href="class-x-mathematics.html">🔙 Back</a>
+
+<div class="card">
+<h2>📚 ଏହି ଅଧ୍ୟାୟର ଆଧାର</h2>
+<p>ଏହି Study Material ଶ୍ରେଣୀ–X ବୀଜଗଣିତ ପାଠ୍ୟପୁସ୍ତକର Chapter 07 <b>ସମ୍ଭାବ୍ୟତା (Probability)</b> ଅଂଶକୁ ଆଧାର କରି ପ୍ରସ୍ତୁତ। ପାଠ୍ୟପୁସ୍ତକରେ ଏହି ଅଧ୍ୟାୟଟି ମୁଖ୍ୟତଃ ଘଟଣା, ନମୁନା ସ୍ଥାନ (Sample Space), empirical/theoretical probability ଏବଂ ବିଭିନ୍ନ ଉଦାହରଣ ମାଧ୍ୟମରେ ବିଷୟଟି ବୁଝାଏ।</p>
+<p><span class="tag">Empirical Probability</span><span class="tag">Theoretical Probability</span><span class="tag">Sample Space</span><span class="tag">Event</span></p>
+</div>
+
+<div class="card">
+<h2>1️⃣ ଭୂମିକା — Introduction</h2>
+<p>ଦୈନନ୍ଦିନ ଜୀବନରେ କେତେକ ଘଟଣା ନିଶ୍ଚିତ ଭାବେ ଘଟେ, କେତେକ ଘଟଣା ଘଟିବ ନାହିଁ, ଆଉ କେତେକ ଘଟଣା ଘଟିପାରେ କିମ୍ବା ଘଟିନପାରେ। ଏପରି ଘଟଣାର ଘଟିବାର ସମ୍ଭାବନାକୁ ଗଣିତୀୟ ଭାବରେ ଅଧ୍ୟୟନ କରିବାକୁ <b>ସମ୍ଭାବ୍ୟତା</b> କୁହାଯାଏ।</p>
+<ul>
+<li>ନିଶ୍ଚିତ ଘଟଣା → probability = 1</li>
+<li>ଅସମ୍ଭବ ଘଟଣା → probability = 0</li>
+<li>ଅନିଶ୍ଚିତ ଘଟଣା → probability 0 ଓ 1 ମଧ୍ୟରେ</li>
+</ul>
+</div>
+
+<div class="card">
+<h2>2️⃣ ପରୀକ୍ଷଣ, ଫଳାଫଳ ଓ ଘଟଣା</h2>
+<p><b>Random Experiment:</b> ଏପରି ଏକ ପରୀକ୍ଷଣ ଯାହାର ଫଳାଫଳ ପୂର୍ବରୁ ନିଶ୍ଚିତ ଭାବେ କୁହିହେବ ନାହିଁ, କିନ୍ତୁ ସମ୍ଭବ ଫଳାଫଳଗୁଡ଼ିକୁ ଜଣାଯାଇପାରେ।</p>
+<p><b>Outcome:</b> Random experiment ର ଗୋଟିଏ ସମ୍ଭବ ଫଳାଫଳ।</p>
+<p><b>Event:</b> ଗୋଟିଏ କିମ୍ବା ଅଧିକ outcome ର ସମୁହକୁ event କୁହାଯାଏ।</p>
+<div class="example"><b>ଉଦାହରଣ:</b> ଗୋଟିଏ ଛଅମୁହାଁ ଛକା ଥରେ ଗଡ଼ାଗଲା। ସମ୍ଭବ ଫଳାଫଳ: 1, 2, 3, 4, 5, 6। “ଯୁଗ୍ମ ସଂଖ୍ୟା ଆସିବା” ଏକ event ଏବଂ ଏହାର outcomes ହେଉଛି 2, 4, 6।</div>
+</div>
+
+<div class="card">
+<h2>3️⃣ Sample Space — ନମୁନା ସ୍ଥାନ</h2>
+<p>Random experiment ର ସମସ୍ତ ସମ୍ଭବ outcome ର ସମୁହକୁ <b>Sample Space</b> କୁହାଯାଏ ଏବଂ ସାଧାରଣତଃ <b>S</b> ଦ୍ୱାରା ଦର୍ଶାଯାଏ।</p>
+<div class="formula">ଛକା ଥରେ ଗଡ଼ାଇଲେ: S = {1, 2, 3, 4, 5, 6}</div>
+<div class="example"><b>Event E:</b> ଯୁଗ୍ମ ସଂଖ୍ୟା ଆସିବା ⇒ E = {2, 4, 6}</div>
+<p>ଏଠାରେ E, S ର ଏକ subset।</p>
+</div>
+
+<div class="card">
+<h2>4️⃣ Empirical Probability — ପରୀକ୍ଷଣାଧାରିତ ସମ୍ଭାବ୍ୟତା</h2>
+<p>କୌଣସି ପରୀକ୍ଷଣକୁ ଅନେକଥର କରି ଗୋଟିଏ event ଯେତେଥର ଘଟିଛି ତାହାର ଅନୁପାତରୁ empirical probability ନିର୍ଣ୍ଣୟ କରାଯାଏ।</p>
+<div class="formula">P(E) = Event E ଘଟିଥିବା ଥର ସଂଖ୍ୟା ÷ ପରୀକ୍ଷଣର ସମୁଦାୟ ଥର ସଂଖ୍ୟା</div>
+<div class="example"><b>ଉଦାହରଣ:</b> ଗୋଟିଏ ଛକାକୁ 50 ଥର ଗଡ଼ାଗଲା ଏବଂ 6 ସଂଖ୍ୟା 9 ଥର ଆସିଲା।<br>
+P(6) = 9/50.</div>
+</div>
+
+<div class="card">
+<h2>5️⃣ Theoretical Probability — ତାତ୍ତ୍ୱିକ ସମ୍ଭାବ୍ୟତା</h2>
+<p>ଯେତେବେଳେ experiment ର ସମସ୍ତ ସମ୍ଭବ outcome ସମାନ ଭାବରେ ସମ୍ଭବ (equally likely), ତେବେ event ର theoretical probability ବ୍ୟବହାର କରାଯାଏ।</p>
+<div class="formula">P(E) = n(E) / n(S)</div>
+<p>ଯେଉଁଠାରେ <b>n(E)</b> = event E ର favourable outcomes ସଂଖ୍ୟା ଏବଂ <b>n(S)</b> = sample space ର ସମୁଦାୟ outcomes ସଂଖ୍ୟା।</p>
+</div>
+
+<div class="card">
+<h2>6️⃣ ଛକାର ଉଦାହରଣ</h2>
+<div class="example">
+<b>ପ୍ରଶ୍ନ:</b> ଗୋଟିଏ fair die ଥରେ ଗଡ଼ାଗଲା। ଯୁଗ୍ମ ସଂଖ୍ୟା ଆସିବାର probability ନିର୍ଣ୍ଣୟ କର।<br><br>
+<b>ସମାଧାନ:</b><br>
+S = {1,2,3,4,5,6}, ତେଣୁ n(S)=6।<br>
+E = {2,4,6}, ତେଣୁ n(E)=3।<br>
+P(E)=3/6=<b>1/2</b>.
+</div>
+</div>
+
+<div class="card">
+<h2>7️⃣ ଦୁଇଟି ଛକା — Sample Space ର ଧାରଣା</h2>
+<p>ଦୁଇଟି ଛକା ଏକାସାଙ୍ଗରେ ଗଡ଼ାଇଲେ outcome ଗୁଡ଼ିକ ordered pair ଭାବରେ ଲେଖାଯାଇପାରେ:</p>
+<div class="formula">S = {(1,1),(1,2),...,(1,6),(2,1),...,(6,6)}</div>
+<p>ଏଠାରେ ମୋଟ outcome ସଂଖ୍ୟା = 6 × 6 = <b>36</b>।</p>
+<div class="example"><b>ଉଦାହରଣ:</b> ଦୁଇ ଛକାର ଯୋଗ 7 ହେବାର favourable outcomes ହେଉଛି<br>
+(1,6),(2,5),(3,4),(4,3),(5,2),(6,1)।<br>
+ତେଣୁ favourable outcomes = 6 ଏବଂ probability = 6/36 = <b>1/6</b>।</div>
+</div>
+
+<div class="card">
+<h2>8️⃣ Mutually Exclusive Events</h2>
+<p>ଦୁଇଟି event ଏକାସାଙ୍ଗରେ ଘଟିପାରେ ନାହିଁ ଯଦି, ସେମାନଙ୍କୁ mutually exclusive events କୁହାଯାଏ।</p>
+<div class="formula">A ∩ B = ∅</div>
+<div class="example">ଉଦାହରଣ: ଗୋଟିଏ die ଗଡ଼ାଇବାରେ “1 ଆସିବା” ଓ “6 ଆସିବା” ଏକାସାଙ୍ଗରେ ଘଟିପାରେ ନାହିଁ।</div>
+</div>
+
+<div class="card">
+<h2>9️⃣ Complementary Event</h2>
+<p>Event E ନଘଟିବାର event କୁ E ର complement କୁହାଯାଏ। ଏହାକୁ ସାଧାରଣତଃ E′ କିମ୍ବା E̅ ଭାବେ ଲେଖାଯାଏ।</p>
+<div class="formula">P(E′) = 1 − P(E)</div>
+<div class="example"><b>ଉଦାହରଣ:</b> ଗୋଟିଏ die ରେ even number ଆସିବାର probability 1/2। ତେଣୁ odd number ଆସିବାର probability = 1 − 1/2 = <b>1/2</b>।</div>
+</div>
+
+<div class="card">
+<h2>🔟 Probability ର ମୁଖ୍ୟ ନିୟମ</h2>
+<table>
+<tr><th>ଘଟଣା</th><th>ସମ୍ଭାବ୍ୟତା</th></tr>
+<tr><td>Impossible event</td><td>P(E)=0</td></tr>
+<tr><td>Certain event</td><td>P(E)=1</td></tr>
+<tr><td>Any event</td><td>0 ≤ P(E) ≤ 1</td></tr>
+<tr><td>Complement</td><td>P(E′)=1−P(E)</td></tr>
+<tr><td>Equally likely outcomes</td><td>P(E)=n(E)/n(S)</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h2>1️⃣1️⃣ ମୁଖ୍ୟ Formula Sheet</h2>
+<div class="formula">P(E) = n(E) / n(S)</div>
+<div class="formula">P(E′) = 1 − P(E)</div>
+<div class="formula">P(S) = 1</div>
+<div class="formula">P(∅) = 0</div>
+<div class="formula">0 ≤ P(E) ≤ 1</div>
+</div>
+
+<div class="card">
+<h2>1️⃣2️⃣ ପରୀକ୍ଷା ପାଇଁ ପଦକ୍ରମ</h2>
+<ol>
+<li>ପ୍ରଥମେ experiment ଓ sample space ଚିହ୍ନଟ କର।</li>
+<li>ସମସ୍ତ possible outcomes ଲେଖ।</li>
+<li>ପ୍ରଶ୍ନରେ ଦିଆଯାଇଥିବା event E ଲେଖ।</li>
+<li>favourable outcomes ଗଣି n(E) ନିର୍ଣ୍ଣୟ କର।</li>
+<li>ସମୁଦାୟ outcomes n(S) ନିର୍ଣ୍ଣୟ କର।</li>
+<li>P(E)=n(E)/n(S) ବ୍ୟବହାର କର।</li>
+<li>ଉତ୍ତରକୁ ସରଳ ଭାଗରେ ଲେଖ।</li>
+</ol>
+</div>
+
+<div class="card">
+<h2>1️⃣3️⃣ Worked Examples — ଦ୍ରୁତ ଅଭ୍ୟାସ</h2>
+<div class="example"><b>Example 1:</b> Coin toss: S={H,T}. P(H)=1/2.</div>
+<div class="example"><b>Example 2:</b> Die ରେ 5 ଠାରୁ ବଡ଼ ସଂଖ୍ୟା: E={6}. P(E)=1/6.</div>
+<div class="example"><b>Example 3:</b> Die ରେ prime number: E={2,3,5}. P(E)=3/6=1/2.</div>
+<div class="example"><b>Example 4:</b> Die ରେ number less than 4: E={1,2,3}. P(E)=3/6=1/2.</div>
+<div class="example"><b>Example 5:</b> Die ରେ odd number: E={1,3,5}. P(E)=3/6=1/2.</div>
+<div class="example"><b>Example 6:</b> Two dice sum 7: favourable outcomes 6, total 36. P=1/6.</div>
+<div class="example"><b>Example 7:</b> If P(E)=3/5, then P(E′)=1−3/5=2/5.</div>
+<div class="example"><b>Example 8:</b> If an event occurs 18 times in 60 trials, empirical P=18/60=3/10.</div>
+</div>
+
+<div class="card">
+<h2>1️⃣4️⃣ ଧ୍ୟାନରେ ରଖନ୍ତୁ</h2>
+<ul>
+<li>Probability କେବେ 1 ଠାରୁ ଅଧିକ ହୁଏ ନାହିଁ।</li>
+<li>Favourable outcomes ମାନେ ଆମ ଚାହୁଁଥିବା event କୁ satisfy କରୁଥିବା outcomes।</li>
+<li>ଦୁଇଟି dice ରେ 6+6 ପରି ordered pair ଗୁଡ଼ିକୁ ଭିନ୍ନ outcome ଭାବେ ଗଣିବାକୁ ପଡ଼େ।</li>
+<li>Empirical probability ଓ theoretical probability ର ଅର୍ଥ ଏକ ନୁହେଁ; ପ୍ରଥମଟି observed trials ଉପରେ ଏବଂ ଦ୍ୱିତୀୟଟି equally likely outcomes ଉପରେ ଆଧାରିତ।</li>
+</ul>
+<div class="warn"><b>ପାଠ୍ୟପୁସ୍ତକ ସୂଚନା:</b> ମୂଳ PDF ର କିଛି Odia text/diagram OCR ରେ ସଠିକ୍ ଭାବେ ପଢ଼ାଯାଇନଥିବାରୁ ଏଠାରେ ସେଗୁଡ଼ିକୁ verbatim ଭାବେ ନୁହେଁ, ପାଠ୍ୟପୁସ୍ତକର ଧାରଣା ଓ ଗଣିତୀୟ notation ଅନୁସାରେ study-version ଭାବେ ସଜାଯାଇଛି। Exact textbook wording ଓ diagram ପାଇଁ <b>📚 Textbook Reference</b> PDF ଦେଖନ୍ତୁ।</div>
+</div>
+
+<div class="card">
+<h2>🎯 Self Check</h2>
+<ol>
+<li>Sample Space କ'ଣ?</li>
+<li>Empirical probability ର formula ଲେଖ।</li>
+<li>Theoretical probability ର formula ଲେଖ।</li>
+<li>ଗୋଟିଏ die ରେ prime number ଆସିବାର probability ନିର୍ଣ୍ଣୟ କର।</li>
+<li>ଦୁଇ dice ରେ total outcomes କେତେ?</li>
+<li>P(E)=2/7 ହେଲେ P(E′) କେତେ?</li>
+<li>Impossible event ର probability କେତେ?</li>
+<li>Certain event ର probability କେତେ?</li>
+</ol>
+</div>
+
+<div class="card">
+<h2>🖨️ Print / Save</h2>
+<p>ଏହି ପୃଷ୍ଠାଟି browser ର <b>Print → Save as PDF</b> ବ୍ୟବହାର କରି PDF ଭାବେ ସଂରକ୍ଷଣ କରିପାରିବେ।</p>
+</div>
+</div>
+
+<footer>Karua Gadadhar Kar High School, Beldandia • Class X Mathematics • Probability</footer>
+</body>
+</html>
