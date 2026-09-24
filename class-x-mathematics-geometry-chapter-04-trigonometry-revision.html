@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="or">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Class X Mathematics – Geometry Chapter 04 – Quick Revision</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,"Noto Sans Oriya",sans-serif;background:linear-gradient(135deg,#eef7ff,#fff8ee);color:#172033;line-height:1.7}
+header{background:linear-gradient(135deg,#123c69,#176b87);color:#fff;padding:30px 16px;text-align:center}
+header h1{margin:0;font-size:clamp(24px,5vw,38px)}
+header p{margin:7px 0 0}
+.wrap{max-width:1100px;margin:22px auto;padding:0 14px}
+.back,.print{display:inline-block;text-decoration:none;border:0;background:#123c69;color:#fff;padding:11px 18px;border-radius:9px;font-weight:bold;margin:5px 6px 18px 0;cursor:pointer}
+.card{background:#fff;border-radius:15px;margin:16px 0;padding:20px;box-shadow:0 4px 15px #00000012;border:1px solid #dbe6ef}
+.card h2{color:#123c69;margin-top:0;border-bottom:2px solid #dbe6ef;padding-bottom:8px}
+.formula{font-family:"Times New Roman",serif;font-size:19px;background:#f7f7fb;padding:11px 14px;border-radius:8px;margin:9px 0;text-align:center}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:13px}
+.box{background:#f8fbfd;border:1px solid #d9e6ef;border-radius:12px;padding:14px}
+.note{background:#fff8e8;border-left:6px solid #d38b25;padding:14px 17px;border-radius:10px}
+.good{background:#f1fbf6;border-left:6px solid #24936e;padding:14px 17px;border-radius:10px}
+table{width:100%;border-collapse:collapse;margin:10px 0}
+th,td{border:1px solid #cbd7e2;padding:8px;text-align:center}
+th{background:#eaf4fc}
+@media(max-width:600px){.card{padding:15px}.formula{font-size:17px}table{font-size:13px}}
+@media print{.back,.print{display:none}body{background:#fff}.card{box-shadow:none;break-inside:avoid}}
+</style>
+</head>
+<body>
+<header>
+<h1>Geometry – Chapter 04</h1>
+<p>ତ୍ରିକୋଣମିତି — Trigonometry</p>
+<p><b>🔄 Quick Revision</b></p>
+<p>Class X Mathematics</p>
+</header>
+
+<div class="wrap">
+<a class="back" href="class-x-mathematics.html">🔙 ପଛକୁ – Class X Mathematics</a>
+<button class="print" onclick="window.print()">🖨️ Print / Save as PDF</button>
+
+<div class="card note">
+<b>📚 ପାଠ୍ୟପୁସ୍ତକ ଆଧାର:</b> Chapter 04 – <b>ତ୍ରିକୋଣମିତି</b>, printed pages <b>95–118</b>।
+ଏହି revision page ରେ chapter ର ratios, standard values, associated angles,
+identities ଓ compound-angle formulas କୁ ଶୀଘ୍ର ପୁନରାବୃତ୍ତି ପାଇଁ ସଜାଯାଇଛି।
+ମୂଳ textbook ର exact diagrams ଓ exercise wording ପାଇଁ Textbook Reference PDF ଦେଖନ୍ତୁ।
+</div>
+
+<div class="card">
+<h2>1. 📐 Trigonometric Ratios — ମୂଳ 6ଟି Ratio</h2>
+<div class="formula">sin θ = Perpendicular / Hypotenuse</div>
+<div class="formula">cos θ = Base / Hypotenuse</div>
+<div class="formula">tan θ = Perpendicular / Base</div>
+<div class="formula">cosec θ = Hypotenuse / Perpendicular = 1/sin θ</div>
+<div class="formula">sec θ = Hypotenuse / Base = 1/cos θ</div>
+<div class="formula">cot θ = Base / Perpendicular = 1/tan θ</div>
+</div>
+
+<div class="card">
+<h2>2. ⭐ Fundamental Relations</h2>
+<div class="formula">tan θ = sin θ / cos θ</div>
+<div class="formula">cot θ = cos θ / sin θ</div>
+<div class="formula">sin²θ + cos²θ = 1</div>
+<div class="formula">1 + tan²θ = sec²θ</div>
+<div class="formula">1 + cot²θ = cosec²θ</div>
+<div class="formula">sec²θ − tan²θ = 1</div>
+<div class="formula">cosec²θ − cot²θ = 1</div>
+</div>
+
+<div class="card">
+<h2>3. 📊 Standard Values</h2>
+<table>
+<tr><th>θ</th><th>0°</th><th>30°</th><th>45°</th><th>60°</th><th>90°</th></tr>
+<tr><th>sin θ</th><td>0</td><td>1/2</td><td>√2/2</td><td>√3/2</td><td>1</td></tr>
+<tr><th>cos θ</th><td>1</td><td>√3/2</td><td>√2/2</td><td>1/2</td><td>0</td></tr>
+<tr><th>tan θ</th><td>0</td><td>1/√3</td><td>1</td><td>√3</td><td>ଅସୀମ/undefined</td></tr>
+</table>
+<div class="good"><b>ମନେ ରଖନ୍ତୁ:</b> 30° ଓ 60° ର sin/cos ଏକାପରେକାର ସ୍ଥାନ ବଦଳ କରେ। 45° ରେ sin ଓ cos ସମାନ।</div>
+</div>
+
+<div class="card">
+<h2>4. 🔄 Associated Angles</h2>
+<div class="grid">
+<div class="box"><b>90°−θ</b><br>sin(90°−θ)=cosθ<br>cos(90°−θ)=sinθ<br>tan(90°−θ)=cotθ</div>
+<div class="box"><b>180°−θ</b><br>sin(180°−θ)=sinθ<br>cos(180°−θ)=−cosθ<br>tan(180°−θ)=−tanθ</div>
+<div class="box"><b>Reciprocal relations</b><br>sec(90°−θ)=cosecθ<br>cosec(90°−θ)=secθ<br>cot(90°−θ)=tanθ</div>
+</div>
+</div>
+
+<div class="card">
+<h2>5. 🧭 120°, 135°, 150° — Sign Revision</h2>
+<p>ଏହି angles second quadrant ରେ ପଡ଼େ। ସେଠାରେ sine positive, କିନ୍ତୁ cosine ଓ tangent negative।</p>
+<div class="formula">sin120° = sin60° = √3/2</div>
+<div class="formula">cos120° = −cos60° = −1/2</div>
+<div class="formula">tan120° = −tan60° = −√3</div>
+<div class="formula">sin135° = √2/2, &nbsp; cos135° = −√2/2, &nbsp; tan135° = −1</div>
+<div class="formula">sin150° = 1/2, &nbsp; cos150° = −√3/2, &nbsp; tan150° = −1/√3</div>
+</div>
+
+<div class="card">
+<h2>6. ➕➖ Compound Angles — 4ଟି ମୁଖ୍ୟ Formula</h2>
+<div class="formula">sin(A+B)=sinA cosB + cosA sinB</div>
+<div class="formula">sin(A−B)=sinA cosB − cosA sinB</div>
+<div class="formula">cos(A+B)=cosA cosB − sinA sinB</div>
+<div class="formula">cos(A−B)=cosA cosB + sinA sinB</div>
+</div>
+
+<div class="card">
+<h2>7. 📌 Compound-Angle Tangent Formula</h2>
+<div class="formula">tan(A+B) = (tanA + tanB)/(1 − tanA tanB)</div>
+<div class="formula">tan(A−B) = (tanA − tanB)/(1 + tanA tanB)</div>
+<div class="good"><b>Exam memory:</b> tan(A+B) ର denominator ରେ <b>minus</b>; tan(A−B) ର denominator ରେ <b>plus</b>।</div>
+</div>
+
+<div class="card">
+<h2>8. 🔁 Useful Derived Identities</h2>
+<div class="formula">sin(A+B)+sin(A−B)=2sinA cosB</div>
+<div class="formula">sin(A+B)−sin(A−B)=2cosA sinB</div>
+<div class="formula">cos(A+B)+cos(A−B)=2cosA cosB</div>
+<div class="formula">cos(A−B)−cos(A+B)=2sinA sinB</div>
+</div>
+
+<div class="card">
+<h2>9. 🧮 Ratio-Given Question — Fast Method</h2>
+<p>ଯଦି <b>tan θ = 5/12</b>, then ନିଅନ୍ତୁ:</p>
+<div class="formula">P : B = 5 : 12</div>
+<p>Hypotenuse:</p>
+<div class="formula">H = √(5²+12²) = √169 = 13</div>
+<div class="formula">sinθ = 5/13 &nbsp;&nbsp; cosθ = 12/13 &nbsp;&nbsp; secθ = 13/12 &nbsp;&nbsp; cosecθ = 13/5 &nbsp;&nbsp; cotθ = 12/5</div>
+</div>
+
+<div class="card">
+<h2>10. 🏗️ Height &amp; Distance — Quick Method</h2>
+<ol>
+<li>ପ୍ରଥମେ right triangle ଆଙ୍କନ୍ତୁ।</li>
+<li>Height = vertical/opposite side, distance = horizontal/adjacent side ଚିହ୍ନଟ କରନ୍ତୁ।</li>
+<li>Angle of elevation/depression ଚିହ୍ନଟ କରନ୍ତୁ।</li>
+<li>ଦିଆଥିବା sides ଅନୁସାରେ sin/cos/tan ବାଛନ୍ତୁ।</li>
+<li>ସାଧାରଣତଃ height-distance problem ରେ <b>tanθ = height/distance</b> ବହୁତ useful।</li>
+<li>ଶେଷରେ unit ଲେଖନ୍ତୁ।</li>
+</ol>
+</div>
+
+<div class="card">
+<h2>11. ✍️ Identity Proof — 5-Step Method</h2>
+<div class="grid">
+<div class="box"><b>Step 1</b><br>LHS ରୁ ଆରମ୍ଭ କରନ୍ତୁ।</div>
+<div class="box"><b>Step 2</b><br>Fraction ରେ sin/cos କରିପାରନ୍ତୁ।</div>
+<div class="box"><b>Step 3</b><br>Known identity ବ୍ୟବହାର କରନ୍ତୁ।</div>
+<div class="box"><b>Step 4</b><br>Expression simplify କରନ୍ତୁ।</div>
+<div class="box"><b>Step 5</b><br>RHS ମିଳିଲେ proof complete କରନ୍ତୁ।</div>
+</div>
+</div>
+
+<div class="card">
+<h2>12. 🎯 10ଟି One-Line Revision Questions</h2>
+<ol>
+<li>tanθ କେଉଁ ଦୁଇ ratio ର quotient? — <b>sinθ/cosθ</b></li>
+<li>1+tan²θ = ? — <b>sec²θ</b></li>
+<li>1+cot²θ = ? — <b>cosec²θ</b></li>
+<li>sin(90°−θ) = ? — <b>cosθ</b></li>
+<li>cos(90°−θ) = ? — <b>sinθ</b></li>
+<li>sin(180°−θ) = ? — <b>sinθ</b></li>
+<li>cos(180°−θ) = ? — <b>−cosθ</b></li>
+<li>tan45° = ? — <b>1</b></li>
+<li>sin150° = ? — <b>1/2</b></li>
+<li>cos150° = ? — <b>−√3/2</b></li>
+</ol>
+</div>
+
+<div class="card">
+<h2>13. 📝 5-Mark Answer Checklist</h2>
+<ol>
+<li>Question ର given data ଲେଖନ୍ତୁ।</li>
+<li>ଦରକାରୀ formula/identity ସ୍ପଷ୍ଟ ଭାବରେ ଲେଖନ୍ତୁ।</li>
+<li>Values substitute କରନ୍ତୁ।</li>
+<li>ପ୍ରତ୍ୟେକ algebraic step ଦେଖାନ୍ତୁ।</li>
+<li>Final answer କୁ underline/box କରନ୍ତୁ।</li>
+<li>Length/height ହେଲେ unit ଲେଖନ୍ତୁ।</li>
+</ol>
+</div>
+
+<div class="card">
+<h2>⚡ 60-Second Final Revision</h2>
+<div class="formula">sin = P/H &nbsp; | &nbsp; cos = B/H &nbsp; | &nbsp; tan = P/B</div>
+<div class="formula">sin²θ+cos²θ=1</div>
+<div class="formula">1+tan²θ=sec²θ</div>
+<div class="formula">1+cot²θ=cosec²θ</div>
+<div class="formula">sin(A+B)=sinAcosB+cosAsinB</div>
+<div class="formula">cos(A+B)=cosAcosB−sinAsinB</div>
+<div class="formula">tan(A+B)=(tanA+tanB)/(1−tanAtanB)</div>
+<p><b>ଏବେ:</b> MCQ → Chapter Test → Textbook Questions &amp; Answers କରି ନିଜ ପ୍ରସ୍ତୁତି ଯାଞ୍ଚ କରନ୍ତୁ।</p>
+</div>
+
+<div class="card note">
+<b>📚 ମୂଳ ପୁସ୍ତକ:</b> Chapter 04, printed pages 95–118. ଏହି page ହେଉଛି quick-revision aid; textbook ର original diagrams, examples ଓ exercise ପାଇଁ Textbook Reference ଖୋଲନ୍ତୁ।
+</div>
+
+<a class="back" href="class-x-mathematics.html">🔙 ପଛକୁ – Class X Mathematics</a>
+<button class="print" onclick="window.print()">🖨️ Print / Save as PDF</button>
+<footer>Class X Mathematics • Geometry Chapter 04 • ତ୍ରିକୋଣମିତି • Quick Revision</footer>
+</div>
+</body>
+</html>
