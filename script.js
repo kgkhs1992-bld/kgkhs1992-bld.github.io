@@ -54,6 +54,64 @@ document.querySelectorAll('.gallery figure img').forEach(img => {
 // ===============================
 // STUDENT RESULT CHECK
 // ===============================
+// ===============================
+// STUDENT RESULT ACCESS CONTROL
+// ===============================
+
+async function checkResultAccess(studentClass, assessment) {
+
+  const now = new Date();
+
+  // Check the latest published result
+  const tableName =
+    `class_${studentClass.toLowerCase()}_results`;
+
+  const { data: publishedRows, error: publishedError } =
+    await supabaseClient
+      .from(tableName)
+      .select("result_publication_date")
+      .eq("assessment", assessment)
+      .not("result_publication_date", "is", null)
+      .order("id", { ascending: false })
+      .limit(1);
+
+  if (publishedError) {
+    console.error(publishedError);
+    return false;
+  }
+
+  if (!publishedRows || !publishedRows.length) {
+    return false;
+  }
+
+  // Result is automatically OPEN for 7 days after publication
+  const publicationDate =
+    new Date(publishedRows[0].result_publication_date);
+
+  const automaticOpenUntil =
+    new Date(publicationDate.getTime() + (7 * 24 * 60 * 60 * 1000));
+
+  // Check admin reopening
+  const { data: accessData, error: accessError } =
+    await supabaseClient
+      .from("result_access_control")
+      .select("manual_unlock_until")
+      .eq("id", 1)
+      .single();
+
+  if (!accessError && accessData && accessData.manual_unlock_until) {
+
+    const manualOpenUntil =
+      new Date(accessData.manual_unlock_until);
+
+    if (manualOpenUntil > now) {
+      return true;
+    }
+  }
+
+  // Automatic 7-day access
+  return now <= automaticOpenUntil;
+}
 function initStudentResultForm() {
 
   const form = document.getElementById("resultForm");
@@ -126,6 +184,7 @@ function updateResultTypes() {
 
     resultTypeSelect.value = "";
 }
+  
 
 if (classSelect) classSelect.addEventListener("change", updateResultTypes);
 if (classSelect && resultTypeSelect) updateResultTypes();
@@ -183,7 +242,15 @@ if (!/^471CA\d{2,3}$/.test(pin)) {
   "<p>❌ Invalid PIN. Use 471CA01, 471CA02, ... 471CA100, 471CA123.</p>";
   return;
 }
+    // Check whether student results are currently OPEN
+    const resultAccessOpen =
+      await checkResultAccess(studentClass, assessment);
 
+    if (!resultAccessOpen) {
+      message.innerHTML =
+        "<p>🔒 Student results are currently locked.</p><p>Please check again when the result access is opened.</p>";
+      return;
+    }
     message.innerHTML =
       "<p>Checking result...</p>";
 
