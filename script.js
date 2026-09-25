@@ -112,6 +112,52 @@ async function checkResultAccess(studentClass, assessment) {
   // Automatic 7-day access
   return now <= automaticOpenUntil;
 }
+// ===============================
+// ADMIN REOPEN STUDENT RESULTS
+// ===============================
+
+async function openResultsAgain() {
+
+  const duration =
+    Number(document.getElementById("result-reopen-duration").value);
+
+  const openUntil =
+    new Date(Date.now() + duration * 60 * 60 * 1000);
+
+  const { error } = await supabaseClient
+    .from("result_access_control")
+    .update({
+      manual_unlock_until: openUntil.toISOString(),
+      updated_at: new Date().toISOString()
+    })
+    .eq("id", 1);
+
+  const status =
+    document.getElementById("result-access-status");
+
+  if (error) {
+    console.error(error);
+
+    if (status) {
+      status.innerHTML =
+        "❌ Unable to open student results.";
+    }
+
+    return;
+  }
+
+  if (status) {
+    status.innerHTML =
+      "🔓 Student Results OPEN until " +
+      openUntil.toLocaleString();
+  }
+
+  alert(
+    "Student Results are OPEN for " +
+    duration +
+    " hour(s)."
+  );
+}
 function initStudentResultForm() {
 
   const form = document.getElementById("resultForm");
