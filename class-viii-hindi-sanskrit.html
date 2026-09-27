@@ -1,876 +1,340 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
- <title>Class VIII Hindi & Sanskrit | KGKHS Beldandia</title>
+<title>Class VIII Hindi & Sanskrit | KGKHS Beldandia</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+<style>
+*{box-sizing:border-box}
 
-    body {
-      margin: 0;
-      font-family: Arial, "Noto Sans Devanagari", sans-serif;
-      background: linear-gradient(135deg, #fff7ed, #eff6ff);
-      color: #1f2937;
-    }
+body{
+  margin:0;
+  font-family:Arial,"Noto Sans Devanagari",sans-serif;
+  background:linear-gradient(135deg,#fff7ed,#eff6ff);
+  color:#1f2937;
+}
 
-    header {
-      background: linear-gradient(135deg, #7c2d12, #c2410c);
-      color: white;
-      text-align: center;
-      padding: 28px 15px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
-    }
+header{
+  background:linear-gradient(135deg,#7c2d12,#4338ca);
+  color:white;
+  text-align:center;
+  padding:30px 15px;
+  box-shadow:0 4px 12px rgba(0,0,0,.18);
+}
 
-    header h1 {
-      margin: 0;
-      font-size: 30px;
-    }
+header h1{
+  margin:0;
+  font-size:30px;
+}
 
-    header p {
-      margin: 10px 0 0;
-      font-size: 16px;
-    }
+header p{
+  margin:8px 0 0;
+  font-size:16px;
+}
 
-    .container {
-      width: 92%;
-      max-width: 1100px;
-      margin: 25px auto 40px;
-    }
+.container{
+  width:94%;
+  max-width:1150px;
+  margin:25px auto 45px;
+}
 
-    .back-button {
-      display: inline-block;
-      text-decoration: none;
-      background: #1d4ed8;
-      color: white;
-      padding: 12px 20px;
-      border-radius: 25px;
-      font-weight: bold;
-      margin-bottom: 25px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-      transition: 0.3s;
-    }
+.back{
+  display:inline-block;
+  text-decoration:none;
+  background:#1d4ed8;
+  color:white;
+  padding:12px 20px;
+  border-radius:25px;
+  font-weight:bold;
+  margin-bottom:22px;
+}
 
-    .back-button:hover {
-      background: #1e40af;
-      transform: translateY(-2px);
-    }
+.intro{
+  background:white;
+  padding:22px;
+  border-radius:18px;
+  text-align:center;
+  box-shadow:0 5px 15px rgba(0,0,0,.08);
+  margin-bottom:28px;
+}
 
-    .intro {
-      text-align: center;
-      background: white;
-      padding: 20px;
-      border-radius: 18px;
-      margin-bottom: 25px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    }
+.intro h2{
+  margin:0 0 10px;
+  color:#7c2d12;
+}
 
-    .intro h2 {
-      color: #9a3412;
-      margin-top: 0;
-    }
+.subject-title{
+  margin:35px 0 18px;
+  padding:15px;
+  border-radius:14px;
+  color:white;
+  text-align:center;
+  font-size:25px;
+}
 
-    .lesson-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 22px;
-    }
+.hindi-title{
+  background:linear-gradient(135deg,#ea580c,#9a3412);
+}
 
-    .lesson-card {
-      background: white;
-      border-radius: 20px;
-      padding: 22px;
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
-      border-top: 6px solid #ea580c;
-      transition: 0.3s;
-    }
+.sanskrit-title{
+  background:linear-gradient(135deg,#4f46e5,#6d28d9);
+}
 
-    .lesson-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.18);
-    }
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(270px,1fr));
+  gap:20px;
+}
 
-    .chapter {
-      color: #c2410c;
-      font-size: 15px;
-      font-weight: bold;
-      margin-bottom: 8px;
-    }
+.card{
+  background:white;
+  border-radius:18px;
+  padding:20px;
+  box-shadow:0 5px 15px rgba(0,0,0,.11);
+  transition:.25s;
+}
 
-    .lesson-card h3 {
-      margin: 0 0 8px;
-      font-size: 22px;
-      line-height: 1.5;
-      color: #7c2d12;
-    }
+.card:hover{
+  transform:translateY(-4px);
+}
 
-    .lesson-type {
-      display: inline-block;
-      background: #ffedd5;
-      color: #9a3412;
-      padding: 5px 12px;
-      border-radius: 20px;
-      font-size: 13px;
-      font-weight: bold;
-      margin-bottom: 18px;
-    }
+.hindi-card{
+  border-top:6px solid #ea580c;
+}
 
-    .lesson-links {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
+.sanskrit-card{
+  border-top:6px solid #6366f1;
+}
 
-    .lesson-links a {
-      text-decoration: none;
-      text-align: center;
-      padding: 12px 10px;
-      border-radius: 10px;
-      color: white;
-      font-weight: bold;
-      transition: 0.3s;
-    }
+.number{
+  font-weight:bold;
+  font-size:14px;
+  margin-bottom:8px;
+}
 
-    .study {
-      background: #2563eb;
-    }
+.hindi-card .number{
+  color:#c2410c;
+}
 
-    .study:hover {
-      background: #1d4ed8;
-    }
+.sanskrit-card .number{
+  color:#5b21b6;
+}
 
-    .qa {
-      background: #16a34a;
-    }
+.card h3{
+  margin:0 0 10px;
+  line-height:1.55;
+  font-size:20px;
+}
 
-    .qa:hover {
-      background: #15803d;
-    }
+.type{
+  display:inline-block;
+  padding:5px 11px;
+  border-radius:20px;
+  font-size:13px;
+  font-weight:bold;
+  margin-bottom:16px;
+}
 
-    .additional {
-      background: #9333ea;
-    }
+.hindi-card .type{
+  background:#ffedd5;
+  color:#9a3412;
+}
 
-    .additional:hover {
-      background: #7e22ce;
-    }
+.sanskrit-card .type{
+  background:#ede9fe;
+  color:#5b21b6;
+}
 
-    footer {
-      text-align: center;
-      background: #7c2d12;
-      color: white;
-      padding: 18px 12px;
-      font-size: 14px;
-    }
+.buttons{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
 
-    @media (max-width: 600px) {
-      header h1 {
-        font-size: 24px;
-      }
+.buttons a{
+  text-decoration:none;
+  color:white;
+  text-align:center;
+  padding:12px 10px;
+  border-radius:10px;
+  font-weight:bold;
+}
 
-      .lesson-card h3 {
-        font-size: 20px;
-      }
+.textbook{
+  background:#475569;
+}
 
-      .container {
-        width: 94%;
-      }
-    }
-  </style>
+.textbook:hover{
+  background:#334155;
+}
+
+.study{
+  background:#2563eb;
+}
+
+.study:hover{
+  background:#1d4ed8;
+}
+
+.note{
+  margin-top:28px;
+  padding:16px;
+  background:#fefce8;
+  border-left:5px solid #eab308;
+  border-radius:10px;
+  line-height:1.7;
+}
+
+footer{
+  background:#312e81;
+  color:white;
+  text-align:center;
+  padding:18px;
+}
+
+@media(max-width:600px){
+  header h1{font-size:24px}
+  .card h3{font-size:18px}
+}
+</style>
 </head>
 
 <body>
 
-  <header>
-    <h1>Class VIII Hindi – Kalika</h1>
-    <p>Study Materials, Book Questions & Answers</p>
-    <p>Karua Gadadhar Kar High School, Beldandia</p>
-  </header>
-
-  <main class="container">
-
-    <a class="back-button" href="learning.html">
-      ← Back to Learning
-    </a>
-
-    <section class="intro">
-      <h2>हिंदी – कलिका</h2>
-      <p>
-        Select a chapter below to open Study Material,
-        Book Questions & Answers, or Additional Questions.
-      </p>
-    </section>
-
-    <section class="lesson-grid">
-
-      <!-- Chapter 1 -->
-      <article class="lesson-card">
-        <div class="chapter">CHAPTER 1</div>
-
-        <h3>कबीर के दोहे</h3>
-
-        <span class="lesson-type">पद्य</span>
-
-        <div class="lesson-links">
-          <a
-            class="study"
-            href="https://withteachers.in/study/class-8/hindi-kalika-1/study-material/couplets-of-kabir"
-            target="_blank"
-            rel="noopener noreferrer">
-            📘 Study Material
-          </a>
-
-          <a
-            class="qa"
-            href="https://withteachers.in/study/class-8/hindi-kalika-1/book-q-a/couplets-of-kabir"
-            target="_blank"
-            rel="noopener noreferrer">
-            ✍️ Book Q &amp; A
-          </a>
-
-          <a
-            class="additional"
-            href="https://withteachers.in/study/class-8/hindi-kalika-1/additional-questions/couplets-of-kabir"
-            target="_blank"
-            rel="noopener noreferrer">
-            📝 Additional Questions
-          </a>
-        </div>
-      </article>
-
-      <!-- Chapter 2 -->
-      <article class="lesson-card">
-        <div class="chapter">CHAPTER 2</div>
-
-        <h3>एक टोकरी भर मिट्टी</h3>
-
-        <span class="lesson-type">गद्य</span>
-
-        <div class="lesson-links">
-          <a
-            class="study"
-            href="https://withteachers.in/study/class-8/hindi-kalika-1/study-material/ek-tokri-bhar-mitti-gadya"
-            target="_blank"
-            rel="noopener noreferrer">
-            📘 Study Material
-          </a>
-
-          <a
-            class="qa"
-            href="https://withteachers.in/study/class-8/hindi-kalika-1/book-q-a/ek-tokri-bhar-mitti-gadya"
-            target="_blank"
-            rel="noopener noreferrer">
-            ✍️ Book Q &amp; A
-          </a>
-
-          <a
-            class="additional"
-            href="https://withteachers.in/study/class-8/hindi-kalika-1/additional-questions/ek-tokri-bhar-mitti-gadya"
-            target="_blank"
-            rel="noopener noreferrer">
-            📝 Additional Questions
-          </a>
-        </div>
-      </article>
-
-      <!-- Chapter 3 -->
-      <article class="lesson-card">
-        <div class="chapter">CHAPTER 3</div>
-
-        <h3>बना दो मधुर मेरा जीवन</h3>
-
-        <span class="lesson-type">पद्य</span>
-
-        <div class="lesson-links">
-          <a
-            class="study"
-            href="https://withteachers.in/study/class-8/hindi-kalika-1/study-material/bana-do-madhur-mera-jeevan-padya"
-            target="_blank"
-            rel="noopener noreferrer">
-            📘 Study Material
-          </a>
-
-          <a
-            class="qa"
-            href="https://withteachers.in/study/class-8/hindi-kalika-1/book-q-a/bana-do-madhur-mera-jeevan-padya"
-            target="_blank"
-            rel="noopener noreferrer">
-            ✍️ Book Q &amp; A
-          </a>
-
-          <a
-            class="additional"
-            href="https://withteachers.in/study/class-8/hindi-kalika-1/additional-questions/bana-do-madhur-mera-jeevan-padya"
-            target="_blank"
-            rel="noopener noreferrer">
-            📝 Additional Questions
-          </a>
-        </div>
-      </article>
-
-      <!-- Chapter 4 -->
-      <article class="lesson-card">
-        <div class="chapter">CHAPTER 4</div>
-
-        <h3>तरुण के स्वप्न</h3>
-
-        <span class="lesson-type">गद्य</span>
-
-        <div class="lesson-links">
-          <a
-            class="study"
-            href="https://withteachers.in/study/class-8/hindi-kalika-1/study-material/tarun-ke-swapna-gadya"
-            target="_blank"
-            rel="noopener noreferrer">
-            📘 Study Material
-          </a>
-
-          <a
-            class="qa"
-            href="https://withteachers.in/study/class-8/hindi-kalika-1/book-q-a/tarun-ke-swapna-gadya"
-            target="_blank"
-            rel="noopener noreferrer">
-            ✍️ Book Q &amp; A
-          </a>
-
-          <a
-            class="additional"
-            href="https://withteachers.in/study/class-8/hindi-kalika-1/additional-questions/tarun-ke-swapna-gadya"
-            target="_blank"
-            rel="noopener noreferrer">
-            📝 Additional Questions
-          </a>
-        </div>
-      </article>
-
-    </section>
-
-    <br>
-
-    <a class="back-button" href="learning.html">
-      ← Back to Learning
-    </a>
-<!DOCTYPE html>
-<html lang="sa">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Class VIII Sanskrit | KGKHSS Beldandia</title>
-
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      font-family: Arial, "Noto Sans Devanagari", sans-serif;
-      background: linear-gradient(135deg, #eff6ff, #f5f3ff);
-      color: #1f2937;
-    }
-
-    header {
-      background: linear-gradient(135deg, #312e81, #4338ca, #6d28d9);
-      color: white;
-      text-align: center;
-      padding: 30px 15px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
-    }
-
-    header h1 {
-      margin: 0;
-      font-size: 30px;
-    }
-
-    header p {
-      margin: 10px 0 0;
-      font-size: 16px;
-    }
-
-    .container {
-      width: 92%;
-      max-width: 1150px;
-      margin: 25px auto 40px;
-    }
-
-    .back-button {
-      display: inline-block;
-      text-decoration: none;
-      background: #1d4ed8;
-      color: white;
-      padding: 12px 20px;
-      border-radius: 25px;
-      font-weight: bold;
-      margin-bottom: 25px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-      transition: 0.3s;
-    }
-
-    .back-button:hover {
-      background: #1e40af;
-      transform: translateY(-2px);
-    }
-
-    .intro {
-      background: white;
-      text-align: center;
-      padding: 22px;
-      border-radius: 18px;
-      margin-bottom: 28px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    }
-
-    .intro h2 {
-      color: #4338ca;
-      margin-top: 0;
-      font-size: 28px;
-    }
-
-    .intro p {
-      line-height: 1.7;
-    }
-
-    .lesson-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-      gap: 22px;
-    }
-
-    .lesson-card {
-      background: white;
-      border-radius: 20px;
-      padding: 22px;
-      border-top: 6px solid #6366f1;
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
-      transition: 0.3s;
-    }
-
-    .lesson-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.18);
-    }
-
-    .chapter {
-      color: #6d28d9;
-      font-size: 15px;
-      font-weight: bold;
-      margin-bottom: 8px;
-    }
-
-    .lesson-card h3 {
-      color: #312e81;
-      font-size: 21px;
-      line-height: 1.6;
-      margin: 0 0 12px;
-    }
-
-    .lesson-type {
-      display: inline-block;
-      background: #ede9fe;
-      color: #5b21b6;
-      padding: 5px 12px;
-      border-radius: 20px;
-      font-size: 13px;
-      font-weight: bold;
-      margin-bottom: 18px;
-    }
-
-    .lesson-links {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .lesson-links a {
-      display: block;
-      text-align: center;
-      text-decoration: none;
-      color: white;
-      padding: 12px 10px;
-      border-radius: 10px;
-      font-weight: bold;
-      transition: 0.3s;
-    }
-
-    .study {
-      background: #2563eb;
-    }
-
-    .study:hover {
-      background: #1d4ed8;
-    }
-
-    .qa {
-      background: #16a34a;
-    }
-
-    .qa:hover {
-      background: #15803d;
-    }
-
-    .additional {
-      background: #9333ea;
-    }
-
-    .additional:hover {
-      background: #7e22ce;
-    }
-
-    .disabled {
-      background: #9ca3af;
-      cursor: not-allowed;
-    }
-
-    .notice {
-      margin-top: 28px;
-      background: #fff7ed;
-      color: #9a3412;
-      border-left: 5px solid #f97316;
-      padding: 16px;
-      border-radius: 12px;
-      line-height: 1.7;
-    }
-
-    footer {
-      background: #312e81;
-      color: white;
-      text-align: center;
-      padding: 18px 12px;
-      font-size: 14px;
-    }
-
-    @media (max-width: 600px) {
-      header h1 {
-        font-size: 24px;
-      }
-
-      .container {
-        width: 94%;
-      }
-
-      .lesson-card h3 {
-        font-size: 19px;
-      }
-    }
-  </style>
-</head>
-
-<body>
-
-  <header>
-    <h1>Class VIII Sanskrit</h1>
-    <p>संस्कृत अध्ययन सामग्री</p>
-    <p>Karua Gadadhar Kar High School, Beldandia</p>
-  </header>
-
-  <main class="container">
-
-    <a class="back-button" href="learning.html">
-      ← Back to Learning
-    </a>
-
-    <section class="intro">
-      <h2>कक्षा अष्टमी — संस्कृतम्</h2>
-
-      <p>
-        Select a lesson to open Study Material,
-        Book Questions &amp; Answers, or Additional Questions.
-      </p>
-    </section>
-
-    <section class="lesson-grid">
-
-      <!-- Chapter 1 -->
-      <article class="lesson-card">
-        <div class="chapter">CHAPTER 1</div>
-        <h3>भेदभावो न कर्तव्यः</h3>
-        <span class="lesson-type">पाठः १</span>
-
-        <div class="lesson-links">
-          <a class="disabled" href="#" onclick="return false;">
-            📘 Study Material
-          </a>
-          <a class="disabled" href="#" onclick="return false;">
-            ✍️ Book Q &amp; A
-          </a>
-          <a class="disabled" href="#" onclick="return false;">
-            📝 Additional Questions
-          </a>
-        </div>
-      </article>
-
-      <!-- Chapter 2 -->
-      <article class="lesson-card">
-        <div class="chapter">CHAPTER 2</div>
-        <h3>यः क्रियावान् सः पण्डितः</h3>
-        <span class="lesson-type">पाठः २</span>
-
-        <div class="lesson-links">
-          <a class="disabled" href="#" onclick="return false;">
-            📘 Study Material
-          </a>
-          <a class="disabled" href="#" onclick="return false;">
-            ✍️ Book Q &amp; A
-          </a>
-          <a class="disabled" href="#" onclick="return false;">
-            📝 Additional Questions
-          </a>
-        </div>
-      </article>
-
-      <!-- Chapter 3 -->
-      <article class="lesson-card">
-        <div class="chapter">CHAPTER 3</div>
-        <h3>कोऽरुक्? कोऽरुक्? कोऽरुक्?</h3>
-        <span class="lesson-type">पाठः ३</span>
-
-        <div class="lesson-links">
-          <a class="disabled" href="#" onclick="return false;">
-            📘 Study Material
-          </a>
-          <a class="disabled" href="#" onclick="return false;">
-            ✍️ Book Q &amp; A
-          </a>
-          <a class="disabled" href="#" onclick="return false;">
-            📝 Additional Questions
-          </a>
-        </div>
-      </article>
-
-      <!-- Chapter 4 -->
-      <article class="lesson-card">
-        <div class="chapter">CHAPTER 4</div>
-        <h3>मृच्छकटं संवादम्</h3>
-        <span class="lesson-type">पाठः ४</span>
-
-        <div class="lesson-links">
-          <a class="disabled" href="#" onclick="return false;">
-            📘 Study Material
-          </a>
-          <a class="disabled" href="#" onclick="return false;">
-            ✍️ Book Q &amp; A
-          </a>
-          <a class="disabled" href="#" onclick="return false;">
-            📝 Additional Questions
-          </a>
-        </div>
-      </article>
-
-      <!-- Chapter 5 -->
-      <article class="lesson-card">
-        <div class="chapter">CHAPTER 5</div>
-        <h3>उत्कलमणिः गोपबन्धुः</h3>
-        <span class="lesson-type">पाठः ५</span>
-
-        <div class="lesson-links">
-          <a class="disabled" href="#" onclick="return false;">
-            📘 Study Material
-          </a>
-          <a class="disabled" href="#" onclick="return false;">
-            ✍️ Book Q &amp; A
-          </a>
-          <a class="disabled" href="#" onclick="return false;">
-            📝 Additional Questions
-          </a>
-        </div>
-      </article>
-
-      <!-- Chapter 6 -->
-      <article class="lesson-card">
-        <div class="chapter">CHAPTER 6</div>
-        <h3>वीराङ्गना शुकदेवी</h3>
-        <span class="lesson-type">पाठः ६</span>
-
-        <div class="lesson-links">
-          <a class="disabled" href="#" onclick="return false;">
-            📘 Study Material
-          </a>
-          <a class="disabled" href="#" onclick="return false;">
-            ✍️ Book Q &amp; A
-          </a>
-          <a class="disabled" href="#" onclick="return false;">
-            📝 Additional Questions
-          </a>
-        </div>
-      </article>
-
-      <!-- Chapter 7 -->
-      <article class="lesson-card">
-        <div class="chapter">CHAPTER 7</div>
-        <h3>गीता सुगीता कर्तव्या</h3>
-        <span class="lesson-type">पाठः ७</span>
-
-        <div class="lesson-links">
-          <a class="disabled" href="#" onclick="return false;">
-            📘 Study Material
-          </a>
-          <a class="disabled" href="#" onclick="return false;">
-            ✍️ Book Q &amp; A
-          </a>
-          <a class="disabled" href="#" onclick="return false;">
-            📝 Additional Questions
-          </a>
-        </div>
-      </article>
-
-      <!-- Chapter 8 -->
-      <article class="lesson-card">
-        <div class="chapter">CHAPTER 8</div>
-        <h3>कुष्माण्डभोजनालयः</h3>
-        <span class="lesson-type">पाठः ८</span>
-
-        <div class="lesson-links">
-          <a class="disabled" href="#" onclick="return false;">
-            📘 Study Material
-          </a>
-          <a class="disabled" href="#" onclick="return false;">
-            ✍️ Book Q &amp; A
-          </a>
-          <a class="disabled" href="#" onclick="return false;">
-            📝 Additional Questions
-          </a>
-        </div>
-      </article>
-
-      <!-- Chapter 9 -->
-      <article class="lesson-card">
-        <div class="chapter">CHAPTER 9</div>
-        <h3>डिजि-भारतम्</h3>
-        <span class="lesson-type">पाठः ९</span>
-
-        <div class="lesson-links">
-          <a class="disabled" href="#" onclick="return false;">
-            📘 Study Material
-          </a>
-          <a class="disabled" href="#" onclick="return false;">
-            ✍️ Book Q &amp; A
-          </a>
-          <a class="disabled" href="#" onclick="return false;">
-            📝 Additional Questions
-          </a>
-        </div>
-      </article>
-
-      <!-- Chapter 10 -->
-      <article class="lesson-card">
-        <div class="chapter">CHAPTER 10</div>
-        <h3>सुभाषितरसाः</h3>
-        <span class="lesson-type">पाठः १०</span>
-
-        <div class="lesson-links">
-          <a class="disabled" href="#" onclick="return false;">
-            📘 Study Material
-          </a>
-          <a class="disabled" href="#" onclick="return false;">
-            ✍️ Book Q &amp; A
-          </a>
-          <a class="disabled" href="#" onclick="return false;">
-            📝 Additional Questions
-          </a>
-        </div>
-      </article>
-
-      <!-- Chapter 11 -->
-      <article class="lesson-card">
-        <div class="chapter">CHAPTER 11</div>
-        <h3>प्रियं मे भारतवर्षम्</h3>
-        <span class="lesson-type">पाठः ११</span>
-
-        <div class="lesson-links">
-          <a class="disabled" href="#" onclick="return false;">
-            📘 Study Material
-          </a>
-          <a class="disabled" href="#" onclick="return false;">
-            ✍️ Book Q &amp; A
-          </a>
-          <a class="disabled" href="#" onclick="return false;">
-            📝 Additional Questions
-          </a>
-        </div>
-      </article>
-
-      <!-- Chapter 12 -->
-      <article class="lesson-card">
-        <div class="chapter">CHAPTER 12</div>
-        <h3>नववर्षं शुभमस्तु</h3>
-        <span class="lesson-type">पाठः १२</span>
-
-        <div class="lesson-links">
-          <a class="disabled" href="#" onclick="return false;">
-            📘 Study Material
-          </a>
-          <a class="disabled" href="#" onclick="return false;">
-            ✍️ Book Q &amp; A
-          </a>
-          <a class="disabled" href="#" onclick="return false;">
-            📝 Additional Questions
-          </a>
-        </div>
-      </article>
-
-      <!-- Chapter 13 -->
-      <article class="lesson-card">
-        <div class="chapter">CHAPTER 13</div>
-        <h3>पितामहस्य पत्रम्</h3>
-        <span class="lesson-type">पाठः १३</span>
-
-        <div class="lesson-links">
-          <a class="disabled" href="#" onclick="return false;">
-            📘 Study Material
-          </a>
-          <a class="disabled" href="#" onclick="return false;">
-            ✍️ Book Q &amp; A
-          </a>
-          <a class="disabled" href="#" onclick="return false;">
-            📝 Additional Questions
-          </a>
-        </div>
-      </article>
-
-      <!-- Chapter 14 -->
-      <article class="lesson-card">
-        <div class="chapter">CHAPTER 14</div>
-        <h3>भारतगीतिकाः</h3>
-        <span class="lesson-type">पाठः १४</span>
-
-        <div class="lesson-links">
-          <a class="disabled" href="#" onclick="return false;">
-            📘 Study Material
-          </a>
-          <a class="disabled" href="#" onclick="return false;">
-            ✍️ Book Q &amp; A
-          </a>
-          <a class="disabled" href="#" onclick="return false;">
-            📝 Additional Questions
-          </a>
-        </div>
-      </article>
-
-    </section>
-
-    <div class="notice">
-      <strong>सूचना:</strong>
-      Sanskrit lesson links will be activated after the Study Material,
-      Book Questions &amp; Answers, and Additional Questions pages are prepared.
-    </div>
-
-    <br>
-
-    <a class="back-button" href="learning.html">
-      ← Back to Learning
-    </a>
-
-
-  </main>
-
-  <footer>
-    © 2026 Karua Gadadhar Kar High School, Beldandia
-  </footer>
-
-</body>
-</html>
+<header>
+  <h1>Class VIII – Hindi & Sanskrit</h1>
+  <p>Study Material • Textbook Reference • My Practice Hub</p>
+  <p>Karua Gadadhar Kar High School, Beldandia</p>
+</header>
+
+<main class="container">
+
+<a class="back" href="learning.html">← Back to Learning</a>
+
+<section class="intro">
+  <h2>कक्षा VIII — हिंदी एवं संस्कृत</h2>
+  <p>
+    Select a chapter to open the original textbook reference
+    and the complete Study Material + My Practice Hub.
+  </p>
+</section>
+
+
+<!-- =========================
+     HINDI
+========================= -->
+
+<div class="subject-title hindi-title">
+  🇮🇳 हिंदी – कलिका
+</div>
+
+<section class="grid">
+
+<!-- Hindi 1 -->
+<article class="card hindi-card">
+<div class="number">HINDI – CHAPTER 1</div>
+<h3>कबीर के दोहे</h3>
+<span class="type">पद्य</span>
+<div class="buttons">
+<a class="textbook" href="Class-VIII-Sanskrit-Hindi-Textbooks/Class-VIII-Hindi-Kalika-Topic-01-Textbook.pdf" target="_blank">📚 Textbook PDF</a>
+<a class="study" href="class-viii-hindi-01.html">📖 Study Material + My Practice Hub</a>
+</div>
+</article>
+
+<!-- Hindi 2 -->
+<article class="card hindi-card">
+<div class="number">HINDI – CHAPTER 2</div>
+<h3>एक टोकरी भर मिट्टी</h3>
+<span class="type">गद्य</span>
+<div class="buttons">
+<a class="textbook" href="Class-VIII-Sanskrit-Hindi-Textbooks/Class-VIII-Hindi-Kalika-Topic-02-Textbook.pdf" target="_blank">📚 Textbook PDF</a>
+<a class="study" href="class-viii-hindi-02.html">📖 Study Material + My Practice Hub</a>
+</div>
+</article>
+
+<!-- Hindi 3 -->
+<article class="card hindi-card">
+<div class="number">HINDI – CHAPTER 3</div>
+<h3>बना दो मधुर मेरा जीवन</h3>
+<span class="type">पद्य</span>
+<div class="buttons">
+<a class="textbook" href="Class-VIII-Sanskrit-Hindi-Textbooks/Class-VIII-Hindi-Kalika-Topic-03-Textbook.pdf" target="_blank">📚 Textbook PDF</a>
+<a class="study" href="class-viii-hindi-03.html">📖 Study Material + My Practice Hub</a>
+</div>
+</article>
+
+<!-- Hindi 4 -->
+<article class="card hindi-card">
+<div class="number">HINDI – CHAPTER 4</div>
+<h3>तरुण के स्वप्न</h3>
+<span class="type">गद्य</span>
+<div class="buttons">
+<a class="textbook" href="Class-VIII-Sanskrit-Hindi-Textbooks/Class-VIII-Hindi-Kalika-Topic-04-Textbook.pdf" target="_blank">📚 Textbook PDF</a>
+<a class="study" href="class-viii-hindi-04.html">📖 Study Material + My Practice Hub</a>
+</div>
+</article>
+
+<!-- Hindi 5 -->
+<article class="card hindi-card">
+<div class="number">HINDI – CHAPTER 5</div>
+<h3>बेटी</h3>
+<span class="type">पद्य</span>
+<div class="buttons">
+<a class="textbook" href="Class-VIII-Sanskrit-Hindi-Textbooks/Class-VIII-Hindi-Kalika-Topic-05-Textbook.pdf" target="_blank">📚 Textbook PDF</a>
+<a class="study" href="class-viii-hindi-05.html">📖 Study Material + My Practice Hub</a>
+</div>
+</article>
+
+<!-- Hindi 6 -->
+<article class="card hindi-card">
+<div class="number">HINDI – CHAPTER 6</div>
+<h3>भक्त कवि बलराम दास</h3>
+<span class="type">गद्य</span>
+<div class="buttons">
+<a class="textbook" href="Class-VIII-Sanskrit-Hindi-Textbooks/Class-VIII-Hindi-Kalika-Topic-06-Textbook.pdf" target="_blank">📚 Textbook PDF</a>
+<a class="study" href="class-viii-hindi-06.html">📖 Study Material + My Practice Hub</a>
+</div>
+</article>
+
+<!-- Hindi 7 -->
+<article class="card hindi-card">
+<div class="number">HINDI – CHAPTER 7</div>
+<h3>स्वदेश</h3>
+<span class="type">पद्य</span>
+<div class="buttons">
+<a class="textbook" href="Class-VIII-Sanskrit-Hindi-Textbooks/Class-VIII-Hindi-Kalika-Topic-07-Textbook.pdf" target="_blank">📚 Textbook PDF</a>
+<a class="study" href="class-viii-hindi-07.html">📖 Study Material + My Practice Hub</a>
+</div>
+</article>
+
+<!-- Hindi 8 -->
+<article class="card hindi-card">
+<div class="number">HINDI – CHAPTER 8</div>
+<h3>मेरा बचपन</h3>
+<span class="type">गद्य</span>
+<div class="buttons">
+<a class="textbook" href="Class-VIII-Sanskrit-Hindi-Textbooks/Class-VIII-Hindi-Kalika-Topic-08-Textbook.pdf" target="_blank">📚 Textbook PDF</a>
+<a class="study" href="class-viii-hindi-08.html">📖 Study Material + My Practice Hub</a>
+</div>
+</article>
+
+<!-- Hindi 9 -->
+<article class="card hindi-card">
+<div class="number">HINDI – CHAPTER 9</div>
+<h3>मेरी कुटिया देखो</h3>
+<span class="type">गद्य</span>
+<div class="buttons">
+<a class="textbook" href="Class-VIII-Sanskrit-Hindi-Textbooks/Class-VIII-Hindi-Kalika-Topic-09-Textbook.pdf" target="_blank">📚 Textbook PDF</a>
+<a class="study" href="class-viii-hindi-09.html">📖 Study Material + My Practice Hub</a>
+</div>
+</article>
+
+<!-- Hindi 10 -->
+<article class="card hindi-card">
+<div class="number">HINDI – CHAPTER 10</div>
+<h3>कोणार्क</h3>
+<span class="type">गद्य</span>
+<div class="buttons">
+<a class="textbook" href="
