@@ -1,1050 +1,846 @@
-<!-- ================= HISTORY HEADER ================= -->
-<!-- ================= BACK BUTTON ================= -->
+<!DOCTYPE html>
+<html lang="or">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Class IX Social Science | KGKHS Beldandia</title>
+
+<style>
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  padding:0;
+  font-family:Arial,"Noto Sans Oriya",sans-serif;
+  background:linear-gradient(135deg,#f0f9ff,#f8fafc,#ecfdf5);
+  color:#183247;
+}
+
+.top-header{
+  background:linear-gradient(135deg,#064e3b,#0f766e,#0891b2);
+  color:white;
+  text-align:center;
+  padding:30px 15px;
+  border-bottom:6px solid #f59e0b;
+}
+
+.top-header h1{
+  margin:0;
+  font-size:30px;
+}
+
+.top-header p{
+  margin:8px 0 0;
+  font-size:18px;
+}
+
+.back-button{
+  display:inline-block;
+  margin:20px;
+  padding:12px 22px;
+  background:linear-gradient(135deg,#1d4ed8,#2563eb);
+  color:white;
+  text-decoration:none;
+  font-weight:bold;
+  border-radius:25px;
+  box-shadow:0 5px 12px rgba(0,0,0,.18);
+}
+
+.container{
+  width:94%;
+  max-width:1150px;
+  margin:auto;
+  padding-bottom:40px;
+}
+
+.subject-section{
+  margin:35px 0;
+}
+
+.subject-heading{
+  color:white;
+  padding:22px;
+  border-radius:20px;
+  margin-bottom:22px;
+  display:flex;
+  align-items:center;
+  gap:15px;
+  box-shadow:0 7px 18px rgba(0,0,0,.15);
+}
+
+.subject-icon{
+  font-size:42px;
+}
+
+.subject-heading h2{
+  margin:0;
+  font-size:28px;
+}
+
+.subject-heading p{
+  margin:5px 0 0;
+  font-size:19px;
+}
+
+.history-heading{
+  background:linear-gradient(135deg,#7f1d1d,#b45309,#d97706);
+}
+
+.political-heading{
+  background:linear-gradient(135deg,#312e81,#4338ca,#6366f1);
+}
+
+.geography-heading{
+  background:linear-gradient(135deg,#064e3b,#0f766e,#14b8a6);
+}
+
+.economics-heading{
+  background:linear-gradient(135deg,#78350f,#b45309,#f59e0b);
+}
+
+.topic-card{
+  background:white;
+  margin:22px 0;
+  padding:22px;
+  border-radius:20px;
+  box-shadow:0 6px 18px rgba(0,0,0,.12);
+}
+
+.history-card{
+  border-left:7px solid #b45309;
+  background:linear-gradient(135deg,#fff7ed,#fffbeb,#fef2f2);
+}
+
+.political-card{
+  border-left:7px solid #4338ca;
+  background:linear-gradient(135deg,#eef2ff,#f5f3ff,#faf5ff);
+}
+
+.geography-card{
+  border-left:7px solid #0f766e;
+  background:linear-gradient(135deg,#f0fdfa,#ecfeff,#f0fdf4);
+}
+
+.economics-card{
+  border-left:7px solid #b45309;
+  background:linear-gradient(135deg,#fffbeb,#fff7ed,#fef3c7);
+}
+
+.topic-card h3{
+  margin:0 0 7px;
+  font-size:22px;
+}
+
+.topic-card h4{
+  margin:0 0 18px;
+  font-size:19px;
+}
+
+.history-card h3,
+.history-card h4{
+  color:#9a3412;
+}
+
+.political-card h3,
+.political-card h4{
+  color:#3730a3;
+}
+
+.geography-card h3,
+.geography-card h4{
+  color:#115e59;
+}
+
+.economics-card h3,
+.economics-card h4{
+  color:#92400e;
+}
+
+.resource-boxes{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px;
+}
+
+.resource-box{
+  min-height:125px;
+  padding:18px 10px;
+  border-radius:16px;
+  color:white;
+  text-decoration:none;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  transition:.25s;
+  box-shadow:0 4px 10px rgba(0,0,0,.12);
+}
+
+.resource-box:hover{
+  transform:translateY(-5px);
+  box-shadow:0 8px 18px rgba(0,0,0,.20);
+}
+
+.resource-box span{
+  font-size:31px;
+  margin-bottom:8px;
+}
+
+.resource-box strong{
+  font-size:16px;
+}
+
+.resource-box small{
+  margin-top:6px;
+  font-size:13px;
+}
+
+.textbook-box{
+  background:linear-gradient(135deg,#1d4ed8,#3b82f6);
+}
+
+.study-box{
+  background:linear-gradient(135deg,#047857,#10b981);
+}
+
+.practice-box{
+  background:linear-gradient(135deg,#7e22ce,#c026d3);
+}
+
+.footer{
+  margin-top:40px;
+  padding:30px 15px;
+  text-align:center;
+  color:white;
+  background:linear-gradient(135deg,#1e293b,#334155,#475569);
+}
+
+.footer h3{
+  margin:0 0 8px;
+}
+
+.footer p{
+  margin:5px 0;
+}
+
+@media(max-width:700px){
+
+  .top-header h1{
+    font-size:24px;
+  }
+
+  .subject-heading h2{
+    font-size:23px;
+  }
+
+  .topic-card h3{
+    font-size:20px;
+  }
+
+  .topic-card h4{
+    font-size:17px;
+  }
+
+  .resource-boxes{
+    grid-template-columns:1fr;
+  }
+
+  .resource-box{
+    min-height:105px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header class="top-header">
+  <h1>📚 Class IX – Social Science</h1>
+  <p>ଇତିହାସ • ରାଜନୀତି ବିଜ୍ଞାନ • ଭୂଗୋଳ • ଅର୍ଥନୀତି</p>
+  <p>Karua Gadadhar Kar High School, Beldandia</p>
+</header>
 
 <a href="learning.html" class="back-button">
   ← Back to Class IX Subjects
 </a>
 
-<style>
-  .back-button {
-    display: inline-block;
-    margin: 18px 20px 5px;
-    padding: 12px 20px;
-    background: linear-gradient(135deg, #1d4ed8, #2563eb);
-    color: white;
-    text-decoration: none;
-    font-size: 16px;
-    font-weight: bold;
-    border-radius: 12px;
-    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.18);
-  }
+<div class="container">
 
-  .back-button:hover {
-    background: linear-gradient(135deg, #1e40af, #1d4ed8);
-    transform: translateY(-2px);
-  }
-</style>
+<!-- =====================================================
+     HISTORY
+===================================================== -->
 
-<!-- ================= END BACK BUTTON ================= -->
-<section class="subject-section history-section" id="class-ix-history">
+<section class="subject-section">
 
-  <div class="subject-heading history-heading">
-    <span class="subject-icon">📜</span>
-
-    <div>
-      <h2>Class IX – History</h2>
-      <p>ଇତିହାସ</p>
-    </div>
+<div class="subject-heading history-heading">
+  <span class="subject-icon">📜</span>
+  <div>
+    <h2>Class IX – History</h2>
+    <p>ଇତିହାସ</p>
   </div>
+</div>
 
-<!-- ================= END HISTORY HEADER ================= -->
+<!-- HISTORY 01 -->
+<div class="topic-card history-card">
+<h3>ପ୍ରଥମ ଅଧ୍ୟାୟ</h3>
+<h4>ବିଶ୍ୱର କେତେକ ଗୁରୁତ୍ୱପୂର୍ଣ୍ଣ ଘଟଣା</h4>
 
+<div class="resource-boxes">
 
-  <!-- History Lesson 1 -->
-  <div class="lesson-card history-card">
-    <h3>ପ୍ରଥମ ଅଧ୍ୟାୟ</h3>
-    <h4>ବିଶ୍ୱର କେତେକ ଗୁରୁତ୍ୱପୂର୍ଣ୍ଣ ଘଟଣା</h4>
+<a class="resource-box textbook-box"
+href="Class-IX-Social-Science-Textbooks/Class-IX-History-Topic-01-World-Some-Major-Developments-Textbook.pdf">
+<span>📖</span>
+<strong>Textbook</strong>
+<small>ପାଠ୍ୟପୁସ୍ତକ</small>
+</a>
 
-    <div class="learning-boxes">
-      <a href="class-ix-history-lesson-1-textbook.html"
-         class="learning-box textbook-box">
-        <span>📘</span>
-        <strong>Text Book</strong>
-        <small>ପାଠ୍ୟପୁସ୍ତକ</small>
-      </a>
+<a class="resource-box study-box"
+href="class-ix-history-01.html">
+<span>📝</span>
+<strong>Study Material</strong>
+<small>ଅଧ୍ୟୟନ ସାମଗ୍ରୀ</small>
+</a>
 
-      <a href="class-ix-history-lesson-1-short-questions.html"
-         class="learning-box short-box">
-        <span>❓</span>
-        <strong>Short Question / Answer</strong>
-        <small>ସଂକ୍ଷିପ୍ତ ପ୍ରଶ୍ନୋତ୍ତର</small>
-      </a>
+<a class="resource-box practice-box"
+href="class-ix-history-01.html">
+<span>🧠</span>
+<strong>My Practice Hub</strong>
+<small>MCQ & Q/A</small>
+</a>
 
-      <a href="class-ix-history-lesson-1-long-questions.html"
-         class="learning-box long-box">
-        <span>📝</span>
-        <strong>Long Question / Answer</strong>
-        <small>ଦୀର୍ଘ ପ୍ରଶ୍ନୋତ୍ତର</small>
-      </a>
-    </div>
-  </div>
+</div>
+</div>
 
-  <!-- History Lesson 2 -->
-  <div class="lesson-card history-card">
-    <h3>ଦ୍ୱିତୀୟ ଅଧ୍ୟାୟ</h3>
-    <h4>ଏକ ନୂତନ ବିଶ୍ୱ ଅଭିମୁଖେ</h4>
+<!-- HISTORY 02 -->
+<div class="topic-card history-card">
+<h3>ଦ୍ୱିତୀୟ ଅଧ୍ୟାୟ</h3>
+<h4>ଏକ ନୂତନ ବିଶ୍ୱ ଅଭିମୁଖେ</h4>
 
-    <div class="learning-boxes">
-      <a href="class-ix-history-lesson-2-textbook.html"
-         class="learning-box textbook-box">
-        <span>📘</span>
-        <strong>Text Book</strong>
-        <small>ପାଠ୍ୟପୁସ୍ତକ</small>
-      </a>
+<div class="resource-boxes">
 
-      <a href="class-ix-history-lesson-2-short-questions.html"
-         class="learning-box short-box">
-        <span>❓</span>
-        <strong>Short Question / Answer</strong>
-        <small>ସଂକ୍ଷିପ୍ତ ପ୍ରଶ୍ନୋତ୍ତର</small>
-      </a>
+<a class="resource-box textbook-box"
+href="Class-IX-Social-Science-Textbooks/Class-IX-History-Topic-02-A-New-World-Ahead-Textbook.pdf">
+<span>📖</span>
+<strong>Textbook</strong>
+<small>ପାଠ୍ୟପୁସ୍ତକ</small>
+</a>
 
-      <a href="class-ix-history-lesson-2-long-questions.html"
-         class="learning-box long-box">
-        <span>📝</span>
-        <strong>Long Question / Answer</strong>
-        <small>ଦୀର୍ଘ ପ୍ରଶ୍ନୋତ୍ତର</small>
-      </a>
-    </div>
-  </div>
+<a class="resource-box study-box"
+href="class-ix-history-02.html">
+<span>📝</span>
+<strong>Study Material</strong>
+<small>ଅଧ୍ୟୟନ ସାମଗ୍ରୀ</small>
+</a>
 
-  <!-- History Lesson 3 -->
-  <div class="lesson-card history-card">
-    <h3>ତୃତୀୟ ଅଧ୍ୟାୟ</h3>
-    <h4>୧୯୪୪ ପରବର୍ତ୍ତୀ ପ୍ରମୁଖ ଘଟଣା</h4>
+<a class="resource-box practice-box"
+href="class-ix-history-02.html">
+<span>🧠</span>
+<strong>My Practice Hub</strong>
+<small>MCQ & Q/A</small>
+</a>
 
-    <div class="learning-boxes">
-      <a href="class-ix-history-lesson-3-textbook.html"
-         class="learning-box textbook-box">
-        <span>📘</span>
-        <strong>Text Book</strong>
-        <small>ପାଠ୍ୟପୁସ୍ତକ</small>
-      </a>
+</div>
+</div>
 
-      <a href="class-ix-history-lesson-3-short-questions.html"
-         class="learning-box short-box">
-        <span>❓</span>
-        <strong>Short Question / Answer</strong>
-        <small>ସଂକ୍ଷିପ୍ତ ପ୍ରଶ୍ନୋତ୍ତର</small>
-      </a>
+<!-- HISTORY 03 -->
+<div class="topic-card history-card">
+<h3>ତୃତୀୟ ଅଧ୍ୟାୟ</h3>
+<h4>୧୯୪୫ ପରବର୍ତ୍ତୀ ବିଶ୍ୱର ପ୍ରମୁଖ ଘଟଣା</h4>
 
-      <a href="class-ix-history-lesson-3-long-questions.html"
-         class="learning-box long-box">
-        <span>📝</span>
-        <strong>Long Question / Answer</strong>
-        <small>ଦୀର୍ଘ ପ୍ରଶ୍ନୋତ୍ତର</small>
-      </a>
-    </div>
-  </div>
+<div class="resource-boxes">
 
-  <!-- History Lesson 4 -->
-  <div class="lesson-card history-card">
-    <h3>ଚତୁର୍ଥ ଅଧ୍ୟାୟ</h3>
-    <h4>ଭାରତର ଐତିହ୍ୟ</h4>
+<a class="resource-box textbook-box"
+href="Class-IX-Social-Science-Textbooks/Class-IX-History-Topic-03-Post-1945-World-Major-Events-Textbook.pdf">
+<span>📖</span>
+<strong>Textbook</strong>
+<small>ପାଠ୍ୟପୁସ୍ତକ</small>
+</a>
 
-    <div class="learning-boxes">
-      <a href="class-ix-history-lesson-4-textbook.html"
-         class="learning-box textbook-box">
-        <span>📘</span>
-        <strong>Text Book</strong>
-        <small>ପାଠ୍ୟପୁସ୍ତକ</small>
-      </a>
+<a class="resource-box study-box"
+href="class-ix-history-03.html">
+<span>📝</span>
+<strong>Study Material</strong>
+<small>ଅଧ୍ୟୟନ ସାମଗ୍ରୀ</small>
+</a>
 
-      <a href="class-ix-history-lesson-4-short-questions.html"
-         class="learning-box short-box">
-        <span>❓</span>
-        <strong>Short Question / Answer</strong>
-        <small>ସଂକ୍ଷିପ୍ତ ପ୍ରଶ୍ନୋତ୍ତର</small>
-      </a>
+<a class="resource-box practice-box"
+href="class-ix-history-03.html">
+<span>🧠</span>
+<strong>My Practice Hub</strong>
+<small>MCQ & Q/A</small>
+</a>
 
-      <a href="class-ix-history-lesson-4-long-questions.html"
-         class="learning-box long-box">
-        <span>📝</span>
-        <strong>Long Question / Answer</strong>
-        <small>ଦୀର୍ଘ ପ୍ରଶ୍ନୋତ୍ତର</small>
-      </a>
-    </div>
-  </div>
+</div>
+</div>
+
+<!-- HISTORY 04 -->
+<div class="topic-card history-card">
+<h3>ଚତୁର୍ଥ ଅଧ୍ୟାୟ</h3>
+<h4>ଭାରତର ଐତିହ୍ୟ</h4>
+
+<div class="resource-boxes">
+
+<a class="resource-box textbook-box"
+href="Class-IX-Social-Science-Textbooks/Class-IX-History-Topic-04-Heritage-of-India-Textbook.pdf">
+<span>📖</span>
+<strong>Textbook</strong>
+<small>ପାଠ୍ୟପୁସ୍ତକ</small>
+</a>
+
+<a class="resource-box study-box"
+href="class-ix-history-04.html">
+<span>📝</span>
+<strong>Study Material</strong>
+<small>ଅଧ୍ୟୟନ ସାମଗ୍ରୀ</small>
+</a>
+
+<a class="resource-box practice-box"
+href="class-ix-history-04.html">
+<span>🧠</span>
+<strong>My Practice Hub</strong>
+<small>MCQ & Q/A</small>
+</a>
+
+</div>
+</div>
 
 </section>
 
-<style>
-  .history-section {
-    max-width: 1100px;
-    margin: 35px auto;
-    padding: 20px;
-  }
 
-  .history-heading {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    margin-bottom: 25px;
-    padding: 22px;
-    border-radius: 20px;
-    color: white;
-    background: linear-gradient(135deg, #7f1d1d, #b45309, #d97706);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
-  }
+<!-- =====================================================
+     POLITICAL SCIENCE
+===================================================== -->
 
-  .history-heading .subject-icon {
-    font-size: 42px;
-  }
+<section class="subject-section">
 
-  .history-heading h2 {
-    margin: 0;
-    font-size: 28px;
-  }
-
-  .history-heading p {
-    margin: 5px 0 0;
-    font-size: 21px;
-  }
-
-  .history-card {
-    margin: 25px 0;
-    padding: 22px;
-    border-left: 7px solid #b45309;
-    border-radius: 20px;
-    background: linear-gradient(135deg, #fff7ed, #fffbeb, #fef2f2);
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
-  }
-
-  .history-card h3 {
-    margin: 0 0 8px;
-    color: #9a3412;
-    font-size: 23px;
-  }
-
-  .history-card h4 {
-    margin: 0 0 18px;
-    color: #7c2d12;
-    font-size: 20px;
-  }
-
-  .learning-boxes {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
-  }
-
-  .learning-box {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-height: 125px;
-    padding: 20px 12px;
-    border-radius: 16px;
-    color: white;
-    text-align: center;
-    text-decoration: none;
-    transition: transform 0.25s, box-shadow 0.25s;
-  }
-
-  .learning-box:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
-  }
-
-  .learning-box span {
-    margin-bottom: 8px;
-    font-size: 30px;
-  }
-
-  .learning-box strong {
-    font-size: 16px;
-  }
-
-  .learning-box small {
-    margin-top: 7px;
-    font-size: 14px;
-  }
-
-  .textbook-box {
-    background: linear-gradient(135deg, #1d4ed8, #3b82f6);
-  }
-
-  .short-box {
-    background: linear-gradient(135deg, #b45309, #f59e0b);
-  }
-
-  .long-box {
-    background: linear-gradient(135deg, #7e22ce, #c026d3);
-  }
-
-  @media (max-width: 700px) {
-    .learning-boxes {
-      grid-template-columns: 1fr;
-    }
-
-    .history-heading h2 {
-      font-size: 23px;
-    }
-
-    .history-card h3 {
-      font-size: 20px;
-    }
-
-    .history-card h4 {
-      font-size: 18px;
-    }
-  }
-</style>
-
-<!-- ================= END CLASS IX HISTORY ================= -->
-  <!-- ================= CLASS IX POLITICAL SCIENCE ================= -->
-
-<section class="subject-section political-science-section" id="class-ix-political-science">
-
-  <!-- Political Science Lesson 1 -->
-  <div class="lesson-card political-card">
-    <h3>ପ୍ରଥମ ଅଧ୍ୟାୟ</h3>
-    <h4>ମୌଳିକ ଅଧିକାର, ମୌଳିକ କର୍ତ୍ତବ୍ୟ ଓ ରାଷ୍ଟ୍ରନୀତି ନିର୍ଦ୍ଦେଶାବଳୀ</h4>
-
-    <div class="learning-boxes">
-      <a href="class-ix-political-science-lesson-1-textbook.html"
-         class="learning-box textbook-box">
-        <span>📘</span>
-        <strong>Text Book</strong>
-        <small>ପାଠ୍ୟପୁସ୍ତକ</small>
-      </a>
-
-      <a href="class-ix-political-science-lesson-1-short-questions.html"
-         class="learning-box short-box">
-        <span>❓</span>
-        <strong>Short Question / Answer</strong>
-        <small>ସଂକ୍ଷିପ୍ତ ପ୍ରଶ୍ନୋତ୍ତର</small>
-      </a>
-
-      <a href="class-ix-political-science-lesson-1-long-questions.html"
-         class="learning-box long-box">
-        <span>📝</span>
-        <strong>Long Question / Answer</strong>
-        <small>ଦୀର୍ଘ ପ୍ରଶ୍ନୋତ୍ତର</small>
-      </a>
-    </div>
+<div class="subject-heading political-heading">
+  <span class="subject-icon">⚖️</span>
+  <div>
+    <h2>Class IX – Political Science</h2>
+    <p>ରାଜନୀତି ବିଜ୍ଞାନ</p>
   </div>
+</div>
 
-  <!-- Political Science Lesson 2 -->
-  <div class="lesson-card political-card">
-    <h3>ଦ୍ୱିତୀୟ ଅଧ୍ୟାୟ</h3>
-    <h4>ମାନବାଧିକାର, ସୂଚନା ଅଧିକାର, ଭାରତର ସୂଚନା ଅଧିକାର ଆଇନ</h4>
+<!-- POLITICAL 01 -->
+<div class="topic-card political-card">
+<h3>ପ୍ରଥମ ଅଧ୍ୟାୟ</h3>
+<h4>ମୌଳିକ ଅଧିକାର, ମୌଳିକ କର୍ତ୍ତବ୍ୟ ଓ ରାଷ୍ଟ୍ରନୀତି ନିର୍ଦ୍ଦେଶାବଳୀ</h4>
 
-    <div class="learning-boxes">
-      <a href="class-ix-political-science-lesson-2-textbook.html"
-         class="learning-box textbook-box">
-        <span>📘</span>
-        <strong>Text Book</strong>
-        <small>ପାଠ୍ୟପୁସ୍ତକ</small>
-      </a>
+<div class="resource-boxes">
 
-      <a href="class-ix-political-science-lesson-2-short-questions.html"
-         class="learning-box short-box">
-        <span>❓</span>
-        <strong>Short Question / Answer</strong>
-        <small>ସଂକ୍ଷିପ୍ତ ପ୍ରଶ୍ନୋତ୍ତର</small>
-      </a>
+<a class="resource-box textbook-box"
+href="Class-IX-Social-Science-Textbooks/Class-IX-Political-Science-Topic-01-Fundamental-Rights-Duties-and-Directive-Principles-Textbook.pdf">
+<span>📖</span>
+<strong>Textbook</strong>
+<small>ପାଠ୍ୟପୁସ୍ତକ</small>
+</a>
 
-      <a href="class-ix-political-science-lesson-2-long-questions.html"
-         class="learning-box long-box">
-        <span>📝</span>
-        <strong>Long Question / Answer</strong>
-        <small>ଦୀର୍ଘ ପ୍ରଶ୍ନୋତ୍ତର</small>
-      </a>
-    </div>
+<a class="resource-box study-box"
+href="class-ix-political-science-01.html">
+<span>📝</span>
+<strong>Study Material</strong>
+<small>ଅଧ୍ୟୟନ ସାମଗ୍ରୀ</small>
+</a>
+
+<a class="resource-box practice-box"
+href="class-ix-political-science-01.html">
+<span>🧠</span>
+<strong>My Practice Hub</strong>
+<small>MCQ & Q/A</small>
+</a>
+
+</div>
+</div>
+
+<!-- POLITICAL 02 -->
+<div class="topic-card political-card">
+<h3>ଦ୍ୱିତୀୟ ଅଧ୍ୟାୟ</h3>
+<h4>ମାନବାଧିକାର, ସୂଚନା ଅଧିକାର ଓ ଭାରତର ସୂଚନା ଅଧିକାର ଆଇନ</h4>
+
+<div class="resource-boxes">
+
+<a class="resource-box textbook-box"
+href="Class-IX-Social-Science-Textbooks/Class-IX-Political-Science-Topic-02-Human-Rights-and-Right-to-Information-Textbook.pdf">
+<span>📖</span>
+<strong>Textbook</strong>
+<small>ପାଠ୍ୟପୁସ୍ତକ</small>
+</a>
+
+<a class="resource-box study-box"
+href="class-ix-political-science-02.html">
+<span>📝</span>
+<strong>Study Material</strong>
+<small>ଅଧ୍ୟୟନ ସାମଗ୍ରୀ</small>
+</a>
+
+<a class="resource-box practice-box"
+href="class-ix-political-science-02.html">
+<span>🧠</span>
+<strong>My Practice Hub</strong>
+<small>MCQ & Q/A</small>
+</a>
+
+</div>
+</div>
+
+<!-- POLITICAL 03 -->
+<div class="topic-card political-card">
+<h3>ତୃତୀୟ ଅଧ୍ୟାୟ</h3>
+<h4>ଭାରତୀୟ ଜାତୀୟତାବାଦ, ଜାତୀୟ ସଂହତି ଏବଂ ଗଣତାନ୍ତ୍ରିକ ମୂଲ୍ୟବୋଧ</h4>
+
+<div class="resource-boxes">
+
+<a class="resource-box textbook-box"
+href="Class-IX-Social-Science-Textbooks/Class-IX-Political-Science-Topic-03-Indian-Nationalism-National-Integration-and-Democratic-Values-Textbook.pdf">
+<span>📖</span>
+<strong>Textbook</strong>
+<small>ପାଠ୍ୟପୁସ୍ତକ</small>
+</a>
+
+<a class="resource-box study-box"
+href="class-ix-political-science-03.html">
+<span>📝</span>
+<strong>Study Material</strong>
+<small>ଅଧ୍ୟୟନ ସାମଗ୍ରୀ</small>
+</a>
+
+<a class="resource-box practice-box"
+href="class-ix-political-science-03.html">
+<span>🧠</span>
+<strong>My Practice Hub</strong>
+<small>MCQ & Q/A</small>
+</a>
+
+</div>
+</div>
+
+<!-- POLITICAL 04 -->
+<div class="topic-card political-card">
+<h3>ଚତୁର୍ଥ ଅଧ୍ୟାୟ</h3>
+<h4>ସଂଯୁକ୍ତ ରାଷ୍ଟ୍ର ସଂଘ – ଗଠନ ଓ କାର୍ଯ୍ୟ</h4>
+
+<div class="resource-boxes">
+
+<a class="resource-box textbook-box"
+href="Class-IX-Social-Science-Textbooks/Class-IX-Political-Science-Topic-04-United-Nations-Structure-and-Functions-Textbook.pdf">
+<span>📖</span>
+<strong>Textbook</strong>
+<small>ପାଠ୍ୟପୁସ୍ତକ</small>
+</a>
+
+<a class="resource-box study-box"
+href="class-ix-political-science-04.html">
+<span>📝</span>
+<strong>Study Material</strong>
+<small>ଅଧ୍ୟୟନ ସାମଗ୍ରୀ</small>
+</a>
+
+<a class="resource-box practice-box"
+href="class-ix-political-science-04.html">
+<span>🧠</span>
+<strong>My Practice Hub</strong>
+<small>MCQ & Q/A</small>
+</a>
+
+</div>
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     GEOGRAPHY
+===================================================== -->
+
+<section class="subject-section">
+
+<div class="subject-heading geography-heading">
+  <span class="subject-icon">🌍</span>
+  <div>
+    <h2>Class IX – Geography</h2>
+    <p>ଭୂଗୋଳ</p>
   </div>
+</div>
 
-  <!-- Political Science Lesson 3 -->
-  <div class="lesson-card political-card">
-    <h3>ତୃତୀୟ ଅଧ୍ୟାୟ</h3>
-    <h4>ଭାରତୀୟ ଜାତୀୟତାବାଦ, ଜାତୀୟ ସଂହତି ଏବଂ ଗଣତାନ୍ତ୍ରିକ ମୂଲ୍ୟବୋଧ</h4>
+<!-- GEOGRAPHY 01 -->
+<div class="topic-card geography-card">
+<h3>ପ୍ରଥମ ଅଧ୍ୟାୟ</h3>
+<h4>ଭାରତ – ଆକାର ଓ ଅବସ୍ଥିତି</h4>
 
-    <div class="learning-boxes">
-      <a href="class-ix-political-science-lesson-3-textbook.html"
-         class="learning-box textbook-box">
-        <span>📘</span>
-        <strong>Text Book</strong>
-        <small>ପାଠ୍ୟପୁସ୍ତକ</small>
-      </a>
+<div class="resource-boxes">
 
-      <a href="class-ix-political-science-lesson-3-short-questions.html"
-         class="learning-box short-box">
-        <span>❓</span>
-        <strong>Short Question / Answer</strong>
-        <small>ସଂକ୍ଷିପ୍ତ ପ୍ରଶ୍ନୋତ୍ତର</small>
-      </a>
+<a class="resource-box textbook-box"
+href="Class-IX-Social-Science-Textbooks/Class-IX-Geography-Topic-01-India-Size-and-Location-Textbook.pdf">
+<span>📖</span>
+<strong>Textbook</strong>
+<small>ପାଠ୍ୟପୁସ୍ତକ</small>
+</a>
 
-      <a href="class-ix-political-science-lesson-3-long-questions.html"
-         class="learning-box long-box">
-        <span>📝</span>
-        <strong>Long Question / Answer</strong>
-        <small>ଦୀର୍ଘ ପ୍ରଶ୍ନୋତ୍ତର</small>
-      </a>
-    </div>
+<a class="resource-box study-box"
+href="class-ix-geography-01.html">
+<span>📝</span>
+<strong>Study Material</strong>
+<small>ଅଧ୍ୟୟନ ସାମଗ୍ରୀ</small>
+</a>
+
+<a class="resource-box practice-box"
+href="class-ix-geography-01.html">
+<span>🧠</span>
+<strong>My Practice Hub</strong>
+<small>MCQ & Q/A</small>
+</a>
+
+</div>
+</div>
+
+<!-- GEOGRAPHY 02 -->
+<div class="topic-card geography-card">
+<h3>ଦ୍ୱିତୀୟ ଅଧ୍ୟାୟ</h3>
+<h4>ଭାରତର ନଦୀଗୁଡ଼ିକ</h4>
+
+<div class="resource-boxes">
+
+<a class="resource-box textbook-box"
+href="Class-IX-Social-Science-Textbooks/Class-IX-Geography-Topic-02-Rivers-of-India-Textbook.pdf">
+<span>📖</span>
+<strong>Textbook</strong>
+<small>ପାଠ୍ୟପୁସ୍ତକ</small>
+</a>
+
+<a class="resource-box study-box"
+href="class-ix-geography-02.html">
+<span>📝</span>
+<strong>Study Material</strong>
+<small>ଅଧ୍ୟୟନ ସାମଗ୍ରୀ</small>
+</a>
+
+<a class="resource-box practice-box"
+href="class-ix-geography-02.html">
+<span>🧠</span>
+<strong>My Practice Hub</strong>
+<small>MCQ & Q/A</small>
+</a>
+
+</div>
+</div>
+
+<!-- GEOGRAPHY 03 -->
+<div class="topic-card geography-card">
+<h3>ତୃତୀୟ ଅଧ୍ୟାୟ</h3>
+<h4>ଭାରତର ଜଳବାୟୁ</h4>
+
+<div class="resource-boxes">
+
+<a class="resource-box textbook-box"
+href="Class-IX-Social-Science-Textbooks/Class-IX-Geography-Topic-03-Climate-of-India-Textbook.pdf">
+<span>📖</span>
+<strong>Textbook</strong>
+<small>ପାଠ୍ୟପୁସ୍ତକ</small>
+</a>
+
+<a class="resource-box study-box"
+href="class-ix-geography-03.html">
+<span>📝</span>
+<strong>Study Material</strong>
+<small>ଅଧ୍ୟୟନ ସାମଗ୍ରୀ</small>
+</a>
+
+<a class="resource-box practice-box"
+href="class-ix-geography-03.html">
+<span>🧠</span>
+<strong>My Practice Hub</strong>
+<small>MCQ & Q/A</small>
+</a>
+
+</div>
+</div>
+
+<!-- GEOGRAPHY 04 -->
+<div class="topic-card geography-card">
+<h3>ଚତୁର୍ଥ ଅଧ୍ୟାୟ</h3>
+<h4>ଭାରତର ପ୍ରାକୃତିକ ଉଦ୍ଭିଦ ଓ ବନ୍ୟଜୀବ</h4>
+
+<div class="resource-boxes">
+
+<a class="resource-box textbook-box"
+href="Class-IX-Social-Science-Textbooks/Class-IX-Geography-Topic-04-Natural-Vegetation-and-Wildlife-Textbook.pdf">
+<span>📖</span>
+<strong>Textbook</strong>
+<small>ପାଠ୍ୟପୁସ୍ତକ</small>
+</a>
+
+<a class="resource-box study-box"
+href="class-ix-geography-04.html">
+<span>📝</span>
+<strong>Study Material</strong>
+<small>ଅଧ୍ୟୟନ ସାମଗ୍ରୀ</small>
+</a>
+
+<a class="resource-box practice-box"
+href="class-ix-geography-04.html">
+<span>🧠</span>
+<strong>My Practice Hub</strong>
+<small>MCQ & Q/A</small>
+</a>
+
+</div>
+</div>
+
+<!-- GEOGRAPHY 05 -->
+<div class="topic-card geography-card">
+<h3>ପଞ୍ଚମ ଅଧ୍ୟାୟ</h3>
+<h4>ଭାରତର ଜନସଂଖ୍ୟା</h4>
+
+<div class="resource-boxes">
+
+<a class="resource-box textbook-box"
+href="Class-IX-Social-Science-Textbooks/Class-IX-Geography-Topic-05-Population-of-India-Textbook.pdf">
+<span>📖</span>
+<strong>Textbook</strong>
+<small>ପାଠ୍ୟପୁସ୍ତକ</small>
+</a>
+
+<a class="resource-box study-box"
+href="class-ix-geography-05.html">
+<span>📝</span>
+<strong>Study Material</strong>
+<small>ଅଧ୍ୟୟନ ସାମଗ୍ରୀ</small>
+</a>
+
+<a class="resource-box practice-box"
+href="class-ix-geography-05.html">
+<span>🧠</span>
+<strong>My Practice Hub</strong>
+<small>MCQ & Q/A</small>
+</a>
+
+</div>
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     ECONOMICS
+===================================================== -->
+
+<section class="subject-section">
+
+<div class="subject-heading economics-heading">
+  <span class="subject-icon">💰</span>
+  <div>
+    <h2>Class IX – Economics</h2>
+    <p>ଅର୍ଥନୀତି</p>
   </div>
-
-  <!-- Political Science Lesson 4 -->
-  <div class="lesson-card political-card">
-    <h3>ଚତୁର୍ଥ ଅଧ୍ୟାୟ</h3>
-    <h4>ସଂଘୀୟ ରାଷ୍ଟ୍ରବ୍ୟବସ୍ଥା: ଗଠନ ଓ କାର୍ଯ୍ୟପ୍ରଣାଳୀ, ଭାରତ ଓ ସଂଘୀୟ ରାଷ୍ଟ୍ରବ୍ୟବସ୍ଥା</h4>
-
-    <div class="learning-boxes">
-      <a href="class-ix-political-science-lesson-4-textbook.html"
-         class="learning-box textbook-box">
-        <span>
-          <!-- ================= CLASS IX GEOGRAPHY ================= -->
-
-<!-- =========================================================
-     GEOGRAPHY + ECONOMICS SECTION
-========================================================= -->
-
-<div class="social-science-grid">
-
-  <!-- ================= GEOGRAPHY ================= -->
-
-  <div class="subject-column">
-
-    <section class="subject-section geography-section" id="class-ix-geography">
-
-      <div class="subject-heading geography-heading">
-        <span class="subject-icon">🌍</span>
-
-        <div>
-          <h2>Class IX – Geography</h2>
-          <p>ଭୂଗୋଳ</p>
-        </div>
-      </div>
-
-      <!-- Geography Lesson 1 -->
-      <div class="lesson-card geography-card">
-
-        <h3>ପ୍ରଥମ ଅଧ୍ୟାୟ</h3>
-        <h4>ଭୂମି – ଭାରତର ଭୂଗୋଳ</h4>
-
-        <div class="learning-boxes">
-
-          <a href="class-ix-geography-lesson-1-textbook.html"
-             class="learning-box textbook-box">
-            <span>📘</span>
-            <strong>Text Book</strong>
-            <small>ପାଠ୍ୟପୁସ୍ତକ</small>
-          </a>
-
-          <a href="class-ix-geography-lesson-1-short-questions.html"
-             class="learning-box short-box">
-            <span>❓</span>
-            <strong>Short Question / Answer</strong>
-            <small>ସଂକ୍ଷିପ୍ତ ପ୍ରଶ୍ନୋତ୍ତର</small>
-          </a>
-
-          <a href="class-ix-geography-lesson-1-long-questions.html"
-             class="learning-box long-box">
-            <span>📝</span>
-            <strong>Long Question / Answer</strong>
-            <small>ଦୀର୍ଘ ପ୍ରଶ୍ନୋତ୍ତର</small>
-          </a>
-
-        </div>
-      </div>
-
-      <!-- Geography Lesson 2 -->
-      <div class="lesson-card geography-card">
-
-        <h3>ଦ୍ୱିତୀୟ ପାଠ</h3>
-        <h4>ଭୂ-ଆକୃତି : ପ୍ରକ୍ରିୟା ଓ ବିକାଶ</h4>
-
-        <div class="learning-boxes">
-
-          <a href="class-ix-geography-lesson-2-textbook.html"
-             class="learning-box textbook-box">
-            <span>📘</span>
-            <strong>Text Book</strong>
-            <small>ପାଠ୍ୟପୁସ୍ତକ</small>
-          </a>
-
-          <a href="class-ix-geography-lesson-2-short-questions.html"
-             class="learning-box short-box">
-            <span>❓</span>
-            <strong>Short Question / Answer</strong>
-            <small>ସଂକ୍ଷିପ୍ତ ପ୍ରଶ୍ନୋତ୍ତର</small>
-          </a>
-
-          <a href="class-ix-geography-lesson-2-long-questions.html"
-             class="learning-box long-box">
-            <span>📝</span>
-            <strong>Long Question / Answer</strong>
-            <small>ଦୀର୍ଘ ପ୍ରଶ୍ନୋତ୍ତର</small>
-          </a>
-
-        </div>
-      </div>
-
-      <!-- Geography Lesson 3 -->
-      <div class="lesson-card geography-card">
-
-        <h3>ତୃତୀୟ ଅଧ୍ୟାୟ</h3>
-        <h4>ଭାରତର ଜଳବାୟୁ</h4>
-
-        <div class="learning-boxes">
-
-          <a href="class-ix-geography-lesson-3-textbook.html"
-             class="learning-box textbook-box">
-            <span>📘</span>
-            <strong>Text Book</strong>
-            <small>ପାଠ୍ୟପୁସ୍ତକ</small>
-          </a>
-
-          <a href="class-ix-geography-lesson-3-short-questions.html"
-             class="learning-box short-box">
-            <span>❓</span>
-            <strong>Short Question / Answer</strong>
-            <small>ସଂକ୍ଷିପ୍ତ ପ୍ରଶ୍ନୋତ୍ତର</small>
-          </a>
-
-          <a href="class-ix-geography-lesson-3-long-questions.html"
-             class="learning-box long-box">
-            <span>📝</span>
-            <strong>Long Question / Answer</strong>
-            <small>ଦୀର୍ଘ ପ୍ରଶ୍ନୋତ୍ତର</small>
-          </a>
-
-        </div>
-      </div>
-
-      <!-- Geography Lesson 4 -->
-      <div class="lesson-card geography-card">
-
-        <h3>ଚତୁର୍ଥ ଅଧ୍ୟାୟ</h3>
-        <h4>ଭାରତର ପ୍ରାକୃତିକ ସମ୍ପଦ</h4>
-
-        <div class="learning-boxes">
-
-          <a href="class-ix-geography-lesson-4-textbook.html"
-             class="learning-box textbook-box">
-            <span>📘</span>
-            <strong>Text Book</strong>
-            <small>ପାଠ୍ୟପୁସ୍ତକ</small>
-          </a>
-
-          <a href="class-ix-geography-lesson-4-short-questions.html"
-             class="learning-box short-box">
-            <span>❓</span>
-            <strong>Short Question / Answer</strong>
-            <small>ସଂକ୍ଷିପ୍ତ ପ୍ରଶ୍ନୋତ୍ତର</small>
-          </a>
-
-          <a href="class-ix-geography-lesson-4-long-questions.html"
-             class="learning-box long-box">
-            <span>📝</span>
-            <strong>Long Question / Answer</strong>
-            <small>ଦୀର୍ଘ ପ୍ରଶ୍ନୋତ୍ତର</small>
-          </a>
-
-        </div>
-      </div>
-
-    </section>
-  </div>
-
-
-  <!-- ================= ECONOMICS ================= -->
-
-  <div class="subject-column">
-
-    <section class="subject-section economics-section" id="class-ix-economics">
-
-      <div class="subject-heading economics-heading">
-        <span class="subject-icon">💰</span>
-
-        <div>
-          <h2>Class IX – Economics</h2>
-          <p>ଅର୍ଥନୀତି</p>
-        </div>
-      </div>
-
-      <!-- Economics Lesson 1 -->
-      <div class="lesson-card economics-card">
-
-        <h3>ପ୍ରଥମ ଅଧ୍ୟାୟ</h3>
-        <h4>ଆର୍ଥିକ ବିକାଶ</h4>
-
-        <div class="learning-boxes">
-
-          <a href="class-ix-economics-lesson-1-textbook.html"
-             class="learning-box textbook-box">
-            <span>📘</span>
-            <strong>Text Book</strong>
-            <small>ପାଠ୍ୟପୁସ୍ତକ</small>
-          </a>
-
-          <a href="class-ix-economics-lesson-1-short-questions.html"
-             class="learning-box short-box">
-            <span>❓</span>
-            <strong>Short Question / Answer</strong>
-            <small>ସଂକ୍ଷିପ୍ତ ପ୍ରଶ୍ନୋତ୍ତର</small>
-          </a>
-
-          <a href="class-ix-economics-lesson-1-long-questions.html"
-             class="learning-box long-box">
-            <span>📝</span>
-            <strong>Long Question / Answer</strong>
-            <small>ଦୀର୍ଘ ପ୍ରଶ୍ନୋତ୍ତର</small>
-          </a>
-
-        </div>
-      </div>
-
-      <!-- Economics Lesson 2 -->
-      <div class="lesson-card economics-card">
-
-        <h3>ଦ୍ୱିତୀୟ ପାଠ</h3>
-        <h4>ମୁଦ୍ରା ଓ ବ୍ୟାଙ୍କ</h4>
-
-        <div class="learning-boxes">
-
-          <a href="class-ix-economics-lesson-2-textbook.html"
-             class="learning-box textbook-box">
-            <span>📘</span>
-            <strong>Text Book</strong>
-            <small>ପାଠ୍ୟପୁସ୍ତକ</small>
-          </a>
-
-          <a href="class-ix-economics-lesson-2-short-questions.html"
-             class="learning-box short-box">
-            <span>❓</span>
-            <strong>Short Question / Answer</strong>
-            <small>ସଂକ୍ଷିପ୍ତ ପ୍ରଶ୍ନୋତ୍ତର</small>
-          </a>
-
-          <a href="class-ix-economics-lesson-2-long-questions.html"
-             class="learning-box long-box">
-            <span>📝</span>
-            <strong>Long Question / Answer</strong>
-            <small>ଦୀର୍ଘ ପ୍ରଶ୍ନୋତ୍ତର</small>
-          </a>
-
-        </div>
-      </div>
-
-      <!-- Economics Lesson 3 -->
-      <div class="lesson-card economics-card">
-
-        <h3>ତୃତୀୟ ଅଧ୍ୟାୟ</h3>
-        <h4>ଧନ ଓ ଆର୍ଥିକ ବ୍ୟବସ୍ଥା</h4>
-
-        <div class="learning-boxes">
-
-          <a href="class-ix-economics-lesson-3-textbook.html"
-             class="learning-box textbook-box">
-            <span>📘</span>
-            <strong>Text Book</strong>
-            <small>ପାଠ୍ୟପୁସ୍ତକ</small>
-          </a>
-
-          <a href="class-ix-economics-lesson-3-short-questions.html"
-             class="learning-box short-box">
-            <span>❓</span>
-            <strong>Short Question / Answer</strong>
-            <small>ସଂକ୍ଷିପ୍ତ ପ୍ରଶ୍ନୋତ୍ତର</small>
-          </a>
-
-          <a href="class-ix-economics-lesson-3-long-questions.html"
-             class="learning-box long-box">
-            <span>📝</span>
-            <strong>Long Question / Answer</strong>
-            <small>ଦୀର୍ଘ ପ୍ରଶ୍ନୋତ୍ତର</small>
-          </a>
-
-        </div>
-      </div>
-
-    </section>
-  </div>
+</div>
+
+<!-- ECONOMICS 01 -->
+<div class="topic-card economics-card">
+<h3>ପ୍ରଥମ ଅଧ୍ୟାୟ</h3>
+<h4>ଆର୍ଥିକ ବିକାଶ, ମୁଦ୍ରା, ବ୍ୟାଙ୍କିଂ ଓ ଋଣ</h4>
+
+<div class="resource-boxes">
+
+<a class="resource-box textbook-box"
+href="Class-IX-Social-Science-Textbooks/Class-IX-Economics-Topic-01-Economic-Development-Money-Banking-and-Credit-Textbook.pdf">
+<span>📖</span>
+<strong>Textbook</strong>
+<small>ପାଠ୍ୟପୁସ୍ତକ</small>
+</a>
+
+<a class="resource-box study-box"
+href="class-ix-economics-01.html">
+<span>📝</span>
+<strong>Study Material</strong>
+<small>ଅଧ୍ୟୟନ ସାମଗ୍ରୀ</small>
+</a>
+
+<a class="resource-box practice-box"
+href="class-ix-economics-01.html">
+<span>🧠</span>
+<strong>My Practice Hub</strong>
+<small>MCQ & Q/A</small>
+</a>
+
+</div>
+</div>
+
+<!-- ECONOMICS 02 -->
+<div class="topic-card economics-card">
+<h3>ଦ୍ୱିତୀୟ ଅଧ୍ୟାୟ</h3>
+<h4>ଆଞ୍ଚଳିକ ବିକାଶ</h4>
+
+<div class="resource-boxes">
+
+<a class="resource-box textbook-box"
+href="Class-IX-Social-Science-Textbooks/Class-IX-Economics-Topic-02-Regional-Development-Textbook.pdf">
+<span>📖</span>
+<strong>Textbook</strong>
+<small>ପାଠ୍ୟପୁସ୍ତକ</small>
+</a>
+
+<a class="resource-box study-box"
+href="class-ix-economics-02.html">
+<span>📝</span>
+<strong>Study Material</strong>
+<small>ଅଧ୍ୟୟନ ସାମଗ୍ରୀ</small>
+</a>
+
+<a class="resource-box practice-box"
+href="class-ix-economics-02.html">
+<span>🧠</span>
+<strong>My Practice Hub</strong>
+<small>MCQ & Q/A</small>
+</a>
+
+</div>
+</div>
+
+<!-- ECONOMICS 03 -->
+<div class="topic-card economics-card">
+<h3>ତୃତୀୟ ଅଧ୍ୟାୟ</h3>
+<h4>ମାନବସୃଷ୍ଟ ବିପର୍ଯ୍ୟୟ ଓ ପରିଚାଳନା</h4>
+
+<div class="resource-boxes">
+
+<a class="resource-box textbook-box"
+href="Class-IX-Social-Science-Textbooks/Class-IX-Economics-Topic-03-Human-Made-Disasters-and-Management-Textbook.pdf">
+<span>📖</span>
+<strong>Textbook</strong>
+<small>ପାଠ୍ୟପୁସ୍ତକ</small>
+</a>
+
+<a class="resource-box study-box"
+href="class-ix-economics-03.html">
+<span>📝</span>
+<strong>Study Material</strong>
+<small>ଅଧ୍ୟୟନ ସାମଗ୍ରୀ</small>
+</a>
+
+<a class="resource-box practice-box"
+href="class-ix-economics-03.html">
+<span>🧠</span>
+<strong>My Practice Hub</strong>
+<small>MCQ & Q/A</small>
+</a>
+
+</div>
+</div>
+
+</section>
 
 </div>
 
-<!-- =========================================================
-     END GEOGRAPHY + ECONOMICS SECTION
-========================================================= -->
 
-  
-    
-    
-        
-        
-<style>
-  .geography-section {
-    max-width: 1100px;
-    margin: 35px auto;
-    padding: 20px;
-  }
-
-  .geography-heading {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    margin-bottom: 25px;
-    padding: 22px;
-    border-radius: 20px;
-    color: white;
-    background: linear-gradient(135deg, #064e3b, #0f766e, #14b8a6);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
-  }
-
-  .geography-heading .subject-icon {
-    font-size: 42px;
-  }
-
-  .geography-heading h2 {
-    margin: 0;
-    font-size: 28px;
-  }
-
-  .geography-heading p {
-    margin: 5px 0 0;
-    font-size: 21px;
-  }
-
-  .geography-card {
-    margin: 25px 0;
-    padding: 22px;
-    border-left: 7px solid #0f766e;
-    border-radius: 20px;
-    background: linear-gradient(135deg, #f0fdfa, #ecfeff, #f0fdf4);
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
-  }
-
-  .geography-card h3 {
-    margin: 0 0 8px;
-    color: #115e59;
-    font-size: 23px;
-  }
-
-  .geography-card h4 {
-    margin: 0 0 18px;
-    color: #134e4a;
-    font-size: 20px;
-  }
-
-  .geography-card .learning-boxes {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
-  }
-
-  .geography-card .learning-box {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-height: 125px;
-    padding: 20px 12px;
-    border-radius: 16px;
-    color: white;
-    text-align: center;
-    text-decoration: none;
-    transition: transform 0.25s, box-shadow 0.25s;
-  }
-
-  .geography-card .learning-box:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
-  }
-
-  .geography-card .learning-box span {
-    margin-bottom: 8px;
-    font-size: 30px;
-  }
-
-  .geography-card .learning-box strong {
-    font-size: 16px;
-  }
-
-  .geography-card .learning-box small {
-    margin-top: 7px;
-    font-size: 14px;
-  }
-
-  .geography-card .textbook-box {
-    background: linear-gradient(135deg, #1d4ed8, #3b82f6);
-  }
-
-  .geography-card .short-box {
-    background: linear-gradient(135deg, #b45309, #f59e0b);
-  }
-
-  .geography-card .long-box {
-    background: linear-gradient(135deg, #7e22ce, #c026d3);
-  }
-
-  @media (max-width: 700px) {
-    .geography-card .learning-boxes {
-      grid-template-columns: 1fr;
-    }
-
-    .geography-heading h2 {
-      font-size: 23px;
-    }
-
-    .geography-card h3 {
-      font-size: 20px;
-    }
-
-    .geography-card h4 {
-      font-size: 18px;
-    }
-  }
-</style>
-
-<!-- ================= END CLASS IX GEOGRAPHY ================= -->
-          <!-- ================= CLASS IX ECONOMICS ================= -->
-
-<section class="subject-section economics-section" id="class-ix-economics">
-
-  <div class="subject-heading economics-heading">
-    <span class="subject-icon">💰</span>
-
-    <div>
-      <h2>Class IX – Economics</h2>
-      <p>ଅର୍ଥନୀତି</p>
-    </div>
-  </div>
-
-  <!-- Economics Lesson 1 -->
-  <div class="lesson-card economics-card">
-    <h3>ପ୍ରଥମ ଅଧ୍ୟାୟ</h3>
-    <h4>ଆର୍ଥିକ ବିକାଶ</h4>
-
-    <div class="learning-boxes">
-      <a href="class-ix-economics-lesson-1-textbook.html"
-         class="learning-box textbook-box">
-        <span>📘</span>
-        <strong>Text Book</strong>
-        <small>ପାଠ୍ୟପୁସ୍ତକ</small>
-      </a>
-
-      <a href="class-ix-economics-lesson-1-short-questions.html"
-         class="learning-box short-box">
-        <span>❓</span>
-        <strong>Short Question / Answer</strong>
-        <small>ସଂକ୍ଷିପ୍ତ ପ୍ରଶ୍ନୋତ୍ତର</small>
-      </a>
-
-      <a href="class-ix-economics-lesson-1-long-questions.html"
-         class="learning-box long-box">
-        <span>📝</span>
-        <strong>Long Question / Answer</strong>
-        <small>ଦୀର୍ଘ ପ୍ରଶ୍ନୋତ୍ତର</small>
-      </a>
-    </div>
-  </div>
-
-  <!-- Economics Lesson 2 -->
-  <div class="lesson-card economics-card">
-    <h3>ଦ୍ୱିତୀୟ ପାଠ</h3>
-    <h4>ମୁଦ୍ରା ଓ ବ୍ୟାଙ୍କ</h4>
-
-    <div class="learning-boxes">
-      <a href="class-ix-economics-lesson-2-textbook.html"
-         class="learning-box textbook-box">
-        <span>📘</span>
-        <strong>Text Book</strong>
-        <small>ପାଠ୍ୟପୁସ୍ତକ</small>
-      </a>
-
-      <a href="class-ix-economics-lesson-2-short-questions.html"
-         class="learning-box short-box">
-        <span>❓</span>
-        <strong>Short Question / Answer</strong>
-        <small>ସଂକ୍ଷିପ୍ତ ପ୍ରଶ୍ନୋତ୍ତର</small>
-      </a>
-
-      <a href="class-ix-economics-lesson-2-long-questions.html"
-         class="learning-box long-box">
-        <span>📝</span>
-        <strong>Long Question / Answer</strong>
-        <small>ଦୀର୍ଘ ପ୍ରଶ୍ନୋତ୍ତର</small>
-      </a>
-    </div>
-  </div>
-
-  <!-- Economics Lesson 3 -->
-  <div class="lesson-card economics-card">
-    <h3>ଦ୍ୱିତୀୟ ଅଧ୍ୟାୟ</h3>
-    <h4>ଧାରଣାର ବିକାଶ</h4>
-
-    <div class="learning-boxes">
-      <a href="class-ix-economics-lesson-3-textbook.html"
-         class="learning-box textbook-box">
-        <span>📘</span>
-        <strong>Text Book</strong>
-        <small>ପାଠ୍ୟପୁସ୍ତକ</small>
-      </a>
-
-      <a href="class-ix-economics-lesson-3-short-questions.html"
-         class="learning-box short-box">
-        <span>❓</span>
-        <strong>Short Question / Answer</strong>
-        <small>ସଂକ୍ଷିପ୍ତ ପ୍ରଶ୍ନୋତ୍ତର</small>
-      </a>
-
-      <a href="class-ix-economics-lesson-3-long-questions.html"
-         class="learning-box long-box">
-        <span>📝</span>
-        <strong>Long Question / Answer</strong>
-        <small>ଦୀର୍ଘ ପ୍ରଶ୍ନୋତ୍ତର</small>
-      </a>
-    </div>
-  </div>
-
-</section>
-
-<style>
-  .economics-section {
-    max-width: 1100px;
-    margin: 35px auto;
-    padding: 20px;
-  }
-
-  .economics-heading {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    margin-bottom: 25px;
-    padding: 22px;
-    border-radius: 20px;
-    color: white;
-    background: linear-gradient(135deg, #78350f, #b45309, #f59e0b);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
-  }
-
-  .economics-heading .subject-icon {
-    font-size: 42px;
-  }
-
-  .economics-heading h2 {
-    margin: 0;
-    font-size: 28px;
-  }
-
-  .economics-heading p {
-    margin: 5px 0 0;
-    font-size: 21px;
-  }
-
-  .economics-card {
-    margin: 25px 0;
-    padding: 22px;
-    border-left: 7px solid #b45309;
-    border-radius: 20px;
-    background: linear-gradient(135deg, #fffbeb, #fff7ed, #fef3c7);
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
-  }
-
-  .economics-card h3 {
-    margin: 0 0 8px;
-    color: #92400e;
-    font-size: 23px;
-  }
-
-  .economics-card h4 {
-    margin: 0 0 18px;
-    color: #78350f;
-    font-size: 20px;
-  }
-
-  .economics-card .learning-boxes {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
-  }
-
-  .economics-card .learning-box {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-height: 125px;
-    padding: 20px 12px;
-    border-radius: 16px;
-    color: white;
-    text-align: center;
-    text-decoration: none;
-    transition: transform 0.25s, box-shadow 0.25s;
-  }
-
-  .economics-card .learning-box:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
-  }
-
-  .economics-card .learning-box span {
-    margin-bottom: 8px;
-    font-size: 30px;
-  }
-
-  .economics-card .learning-box strong {
-    font-size: 16px;
-  }
-
-  .economics-card .learning-box small {
-    margin-top: 7px;
-    font-size: 14px;
-  }
-
-  .economics-card .textbook-box {
-    background: linear-gradient(135deg, #1d4ed8, #3b82f6);
-  }
-
-  .economics-card .short-box {
-    background: linear-gradient(135deg, #b45309, #f59e0b);
-  }
-
-  .economics-card .long-box {
-    background: linear-gradient(135deg, #7e22ce, #c026d3);
-  }
-
-  @media (max-width: 700px) {
-    .economics-card .learning-boxes {
-      grid-template-columns: 1fr;
-    }
-
-    .economics-heading h2 {
-      font-size: 23px;
-    }
-
-    .economics-card h3 {
-      font-size: 20px;
-    }
-
-    .economics-card h4 {
-      font-size: 18px;
-    }
-  }
-</style>
-
-<!-- ================= END CLASS IX ECONOMICS ================= -->
-
-
-<!-- ================= FOOTER ================= -->
-
-<footer class="site-footer">
-  <div class="footer-content">
-    <h3>Karua Gadadhar Kar High School, Beldandia</h3>
-    <p>Class IX Social Science Learning Materials</p>
-    <p>© 2026 KGKHS Beldandia. All Rights Reserved.</p>
-  </div>
+<footer class="footer">
+<h3>Karua Gadadhar Kar High School, Beldandia</h3>
+<p>Class IX Social Science Digital Learning</p>
+<p>© 2026 KGKHS Beldandia. All Rights Reserved.</p>
 </footer>
 
-<style>
-  .site-footer {
-    margin-top: 40px;
-    padding: 30px 20px;
-    text-align: center;
-    color: white;
-    background: linear-gradient(135deg, #1e293b, #334155, #475569);
-  }
-
-  .footer-content h3 {
-    margin: 0 0 10px;
-    font-size: 20px;
-  }
-
-  .footer-content p {
-    margin: 6px 0;
-    font-size: 14px;
-  }
-</style>
-
-<!-- ================= END FOOTER ================= -->
+</body>
+</html>
