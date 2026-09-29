@@ -889,7 +889,7 @@ const message = document.getElementById("upload-message");
       Date.now() + "_" + file.name.replace(/\s+/g, "_");
 
     const filePath =
-      category + "/" + fileName;
+      "admin/assets/" + category + "/" + fileName;
 
     const { error } = await supabaseClient.storage
       .from("school-files")
