@@ -869,8 +869,9 @@ if (document.readyState === "loading") {
 async function uploadSchoolFile() {
 
   const fileInput = document.getElementById("school-file");
- const categorySelect = document.getElementById("file-category");
-const message = document.getElementById("upload-message");
+  const categorySelect = document.getElementById("file-category");
+  const message = document.getElementById("upload-message");
+
   if (!fileInput || !fileInput.files.length) {
     if (message) message.textContent = "❌ Please choose a file first.";
     return;
@@ -883,39 +884,105 @@ const message = document.getElementById("upload-message");
     if (message) message.textContent = "⏳ Uploading...";
 
     const category =
-      categorySelect ? categorySelect.value : "Gallery";
+      categorySelect && categorySelect.value
+        ? categorySelect.value
+        : "notices";
 
-    const fileName =
-      Date.now() + "_" + file.name.replace(/\s+/g, "_");
+    const cleanName = file.name.replace(/\s+/g, "_");
+
+    const fileName = Date.now() + "_" + cleanName;
 
     const filePath =
       "admin/assets/" + category + "/" + fileName;
 
-    const { error } = await supabaseClient.storage
-      .from("school-files")
-      .upload(filePath, file, {
-        upsert: true
-      });
+    // 1. Upload file to Supabase Storage
+    const { error: uploadError } =
+      await supabaseClient.storage
+        .from("school-files")
+        .upload(filePath, file, {
+          upsert: true,
+          contentType: file.type || "application/octet-stream"
+        });
 
-    if (error) {
-      console.error(error);
+    if (uploadError) {
+      console.error("Storage upload error:", uploadError);
+
       if (message) {
         message.textContent =
-          "❌ Upload failed: " + error.message;
+          "❌ Upload failed: " + uploadError.message;
       }
+
       return;
     }
 
+    // 2. Get public URL
+    const { data: publicData } =
+      supabaseClient.storage
+        .from("school-files")
+        .getPublicUrl(filePath);
+
+    const fileUrl =
+      publicData && publicData.publicUrl
+        ? publicData.publicUrl
+        : "";
+
+    // 3. Get currently logged-in admin
+    const { data: userData, error: userError } =
+      await supabaseClient.auth.getUser();
+
+    if (userError || !userData || !userData.user) {
+      console.error("User error:", userError);
+
+      if (message) {
+        message.textContent =
+          "❌ Upload completed, but administrator information could not be verified.";
+      }
+
+      return;
+    }
+
+    const adminUser = userData.user;
+
+    // 4. Save file information permanently in school_files
+    const { error: dbError } =
+      await supabaseClient
+        .from("school_files")
+        .insert({
+          title: cleanName.replace(/\.[^/.]+$/, ""),
+          description: "File uploaded from School Admin",
+          category: category,
+          file_name: fileName,
+          file_path: filePath,
+          file_url: fileUrl,
+          file_type: file.type || "application/octet-stream",
+          mime_type: file.type || "application/octet-stream",
+          is_published: true,
+          uploaded_by: adminUser.id
+        });
+
+    if (dbError) {
+      console.error("Database save error:", dbError);
+
+      if (message) {
+        message.textContent =
+          "⚠️ File uploaded, but database record failed: " +
+          dbError.message;
+      }
+
+      return;
+    }
+
+    // 5. Success
     if (message) {
       message.textContent =
-        "✅ File uploaded successfully.";
+        "✅ File uploaded and published successfully.";
     }
 
     fileInput.value = "";
 
   } catch (error) {
 
-    console.error(error);
+    console.error("School file upload error:", error);
 
     if (message) {
       message.textContent =
@@ -923,6 +990,7 @@ const message = document.getElementById("upload-message");
     }
   }
 }
+
 
 // ===============================
 // ADMIN RESULT UPLOAD
