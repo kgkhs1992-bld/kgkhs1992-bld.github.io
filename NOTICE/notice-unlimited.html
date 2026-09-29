@@ -20,22 +20,263 @@
 <div id="status" class="status hidden"></div><div class="footer">School Notices • Automatically updated from the School Admin upload system</div>
 </main>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <script>
 const SUPABASE_URL='https://tpnsjuajpsrclzbyqldt.supabase.co';
 const SUPABASE_KEY='sb_publishable_BJJsT6hN4F1wHIrncc-mFw_YaAvaPZx';
-const db=supabase.createClient(SUPABASE_URL,SUPABASE_KEY),BUCKET='school-files',FOLDER='admin/assets/notices';
-const list=document.getElementById('noticeList'),search=document.getElementById('searchBox'),count=document.getElementById('count'),status=document.getElementById('status');
-function esc(v){return String(v).replace(/[&<>\"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',"'":'&#39;'}[c]))}
-function title(n){return n.replace(/^\d{10,16}_/,'').replace(/\.[^.]+$/,'').replace(/[_-]+/g,' ').replace(/\s+/g,' ').trim()||'School Notice'}
-function date(v){let d=new Date(v);return isNaN(d)?'School notice':d.toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'})}
-function type(n,m){let x=(m&&m.mimetype)||'',e=(n.split('.').pop()||'').toLowerCase();if(x.startsWith('image/')||['jpg','jpeg','png','gif','webp','svg'].includes(e))return'image';if(x.startsWith('video/')||['mp4','webm','mov','m4v'].includes(e))return'video';if(x.startsWith('audio/')||['mp3','wav','ogg','m4a'].includes(e))return'audio';if(x==='application/pdf'||e==='pdf')return'pdf';return'file'}
-function icon(t){return{image:'🖼️ IMAGE',video:'🎬 VIDEO',audio:'🎵 AUDIO',pdf:'📄 PDF',file:'📎 FILE'}[t]}
-function url(n){return SUPABASE_URL+'/storage/v1/object/public/'+BUCKET+'/'+FOLDER.split('/').map(encodeURIComponent).join('/')+'/'+encodeURIComponent(n)}
-function add(f,i){let n=f.name,t=type(n,f.metadata||{}),u=url(n),c=document.createElement('article');c.className='notice-card dynamic-notice';c.dataset.search=(title(n)+' '+t+' '+n).toLowerCase();let p='';if(t==='image')p='<div class="preview"><img src="'+u+'" alt="'+esc(title(n))+'" loading="lazy"></div>';if(t==='video')p='<div class="preview"><video controls preload="metadata" src="'+u+'"></video></div>';if(t==='audio')p='<div class="preview"><audio controls preload="metadata" src="'+u+'"></audio></div>';c.innerHTML='<div class="number">'+String(i).padStart(2,'0')+'</div><div class="content"><span class="badge">'+icon(t)+'</span><h2>'+esc(title(n))+'</h2><div class="date">Published: '+date(f.created_at||f.updated_at)+'</div><p class="desc">School notice uploaded by the authorised school administrator.</p>'+p+'<div class="actions"><a class="btn primary" href="'+u+'" target="_blank" rel="noopener">'+(t==='pdf'?'📄 OPEN PDF':'🔗 OPEN FILE')+'</a></div></div>';list.appendChild(c)}
-async function files(){let a=[],o=0;while(true){let r=await db.storage.from(BUCKET).list(FOLDER,{limit:100,offset:o,sortBy:{column:'created_at',order:'desc'}});if(r.error)throw r.error;if(!r.data||!r.data.length)break;a.push(...r.data.filter(x=>x&&x.name));if(r.data.length<100)break;o+=100}return a}
-async function load(){document.querySelectorAll('.dynamic-notice').forEach(x=>x.remove());status.classList.add('hidden');count.textContent='Loading notices...';try{let a=await files();a.forEach((f,i)=>add(f,i+4));filter();if(!a.length){status.textContent='No additional notices have been uploaded yet.';status.classList.remove('hidden')}}catch(e){console.error(e);status.textContent='Unable to load uploaded notices. Please try again.';status.classList.remove('hidden')}}
-function filter(){let q=search.value.trim().toLowerCase(),n=0;document.querySelectorAll('.notice-card').forEach(c=>{let ok=!q||(c.dataset.search||'').includes(q);c.classList.toggle('hidden',!ok);if(ok)n++});count.textContent='Showing '+n+' notice'+(n===1?'':'s')}
-search.addEventListener('input',filter);document.getElementById('refreshBtn').addEventListener('click',load);load();
+
+const db=supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
+
+const list=document.getElementById('noticeList');
+const search=document.getElementById('searchBox');
+const status=document.getElementById('status');
+
+function esc(v){
+  return String(v ?? '').replace(/[&<>"']/g,c=>({
+    '&':'&amp;',
+    '<':'&lt;',
+    '>':'&gt;',
+    '"':'&quot;',
+    "'":'&#39;'
+  }[c]));
+}
+
+function niceName(name){
+  return String(name || 'School Notice')
+    .replace(/^\d{10,16}_/,'')
+    .replace(/\.[^.]+$/,'')
+    .replace(/[_-]+/g,' ')
+    .replace(/\s+/g,' ')
+    .trim();
+}
+
+function niceDate(v){
+  const d=new Date(v);
+  if(isNaN(d)) return 'School Notice';
+
+  return d.toLocaleDateString('en-IN',{
+    day:'2-digit',
+    month:'short',
+    year:'numeric'
+  });
+}
+
+function getType(name,mime){
+  const n=String(name||'').toLowerCase();
+  const m=String(mime||'').toLowerCase();
+
+  if(m.startsWith('image/') ||
+     /\.(jpg|jpeg|png|gif|webp|svg)$/i.test(n))
+    return 'image';
+
+  if(m.startsWith('video/') ||
+     /\.(mp4|webm|mov|m4v)$/i.test(n))
+    return 'video';
+
+  if(m.startsWith('audio/') ||
+     /\.(mp3|wav|ogg|m4a)$/i.test(n))
+    return 'audio';
+
+  if(m==='application/pdf' ||
+     /\.pdf$/i.test(n))
+    return 'pdf';
+
+  return 'file';
+}
+
+function getIcon(type){
+  if(type==='image') return '🖼️ IMAGE';
+  if(type==='video') return '🎬 VIDEO';
+  if(type==='audio') return '🎵 AUDIO';
+  if(type==='pdf') return '📄 PDF';
+  return '📎 FILE';
+}
+
+function getUrl(row){
+
+  if(row.file_url)
+    return row.file_url;
+
+  return SUPABASE_URL +
+    '/storage/v1/object/public/school-files/' +
+    String(row.file_path||'')
+      .split('/')
+      .map(encodeURIComponent)
+      .join('/');
+}
+
+function addNotice(row,index){
+
+  const name=row.file_name || '';
+  const type=getType(
+    name,
+    row.mime_type || row.file_type
+  );
+
+  const url=getUrl(row);
+
+  const article=document.createElement('article');
+
+  article.className='notice-card dynamic-notice';
+
+  article.dataset.search=(
+    (row.title||'')+' '+
+    (row.description||'')+' '+
+    (row.category||'')+' '+
+    name+' '+type
+  ).toLowerCase();
+
+  let preview='';
+
+  if(type==='image'){
+    preview=
+      '<div style="margin-top:12px;">'+
+      '<img src="'+esc(url)+'" '+
+      'alt="'+esc(row.title||niceName(name))+'" '+
+      'style="width:100%;max-height:420px;object-fit:contain;border-radius:12px;" '+
+      'loading="lazy">'+
+      '</div>';
+  }
+
+  if(type==='video'){
+    preview=
+      '<div style="margin-top:12px;">'+
+      '<video controls preload="metadata" '+
+      'src="'+esc(url)+'" '+
+      'style="width:100%;max-height:420px;border-radius:12px;"></video>'+
+      '</div>';
+  }
+
+  if(type==='audio'){
+    preview=
+      '<div style="margin-top:12px;">'+
+      '<audio controls style="width:100%;" src="'+esc(url)+'"></audio>'+
+      '</div>';
+  }
+
+  article.innerHTML=
+    '<div class="number">'+
+      String(index).padStart(2,'0')+
+    '</div>'+
+
+    '<div class="content">'+
+
+      '<span class="badge">'+
+        getIcon(type)+' • '+
+        esc(row.category||'NOTICE')+
+      '</span>'+
+
+      '<h2>'+
+        esc(row.title||niceName(name))+
+      '</h2>'+
+
+      '<div class="date">'+
+        'Published: '+
+        niceDate(row.created_at||row.updated_at)+
+      '</div>'+
+
+      '<p class="desc">'+
+        esc(
+          row.description||
+          'School notice uploaded by the school administrator.'
+        )+
+      '</p>'+
+
+      preview+
+
+      '<div class="actions">'+
+        '<a class="btn primary" '+
+        'href="'+esc(url)+'" '+
+        'target="_blank" rel="noopener">'+
+        (type==='pdf' ? '📄 OPEN PDF' : '🔗 OPEN FILE')+
+        '</a>'+
+      '</div>'+
+
+    '</div>';
+
+  list.appendChild(article);
+}
+
+async function loadSchoolFiles(){
+
+  document
+    .querySelectorAll('.dynamic-notice')
+    .forEach(el=>el.remove());
+
+  status.classList.add('hidden');
+
+  try{
+
+    const {data,error}=await db
+      .from('school_files')
+      .select(
+        'id,title,description,category,file_name,file_path,file_url,file_type,mime_type,is_published,created_at,updated_at'
+      )
+      .eq('is_published',true)
+      .order('created_at',{
+        ascending:false
+      });
+
+    if(error)
+      throw error;
+
+    const rows=data||[];
+
+    rows.forEach((row,i)=>{
+      addNotice(row,i+4);
+    });
+
+    if(rows.length===0){
+
+      status.textContent=
+        'No additional school notices have been published yet.';
+
+      status.classList.remove('hidden');
+    }
+
+  }catch(error){
+
+    console.error(
+      'School files loading error:',
+      error
+    );
+
+    status.textContent=
+      'Unable to load uploaded school files.';
+
+    status.classList.remove('hidden');
+  }
+}
+
+function filterNotices(){
+
+  const q=
+    search.value.trim().toLowerCase();
+
+  document
+    .querySelectorAll('.notice-card')
+    .forEach(card=>{
+
+      const text=
+        card.dataset.search ||
+        card.textContent.toLowerCase();
+
+      card.classList.toggle(
+        'hidden',
+        q && !text.includes(q)
+      );
+    });
+}
+
+search.addEventListener(
+  'input',
+  filterNotices
+);
+
+loadSchoolFiles();
 </script>
 </body>
 </html>
