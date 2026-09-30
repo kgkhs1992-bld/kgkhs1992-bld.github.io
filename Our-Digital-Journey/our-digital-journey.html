@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Digital Journey | KGKHS Beldandia</title>
+<meta name="description" content="The digital journey of Karua Gadadhar Kar High School, Beldandia — from 4 September 2026 to 30 September 2026.">
+<style>
+:root{
+  --primary:#075985;
+  --secondary:#0ea5e9;
+  --accent:#f59e0b;
+  --dark:#0f172a;
+  --text:#334155;
+  --light:#f8fafc;
+  --white:#ffffff;
+  --line:#dbeafe;
+  --shadow:0 12px 35px rgba(15,23,42,.10);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  color:var(--text);
+  background:linear-gradient(180deg,#eff8ff 0%,#fff 42%,#f8fafc 100%);
+  line-height:1.7;
+}
+.hero{
+  position:relative;
+  overflow:hidden;
+  padding:72px 20px 62px;
+  text-align:center;
+  color:white;
+  background:linear-gradient(135deg,#075985,#0ea5e9 58%,#38bdf8);
+}
+.hero:before,.hero:after{
+  content:"";
+  position:absolute;
+  border-radius:50%;
+  background:rgba(255,255,255,.10);
+}
+.hero:before{width:260px;height:260px;top:-110px;left:-80px}
+.hero:after{width:340px;height:340px;right:-130px;bottom:-180px}
+.hero-inner{position:relative;z-index:1;max-width:950px;margin:auto}
+.badge{
+  display:inline-block;
+  padding:7px 15px;
+  border:1px solid rgba(255,255,255,.35);
+  border-radius:999px;
+  background:rgba(255,255,255,.13);
+  font-size:.86rem;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+h1{
+  margin:18px 0 8px;
+  font-size:clamp(2.2rem,7vw,4.4rem);
+  line-height:1.05;
+}
+.hero p{max-width:760px;margin:14px auto 0;font-size:1.08rem}
+.dates{
+  margin:28px auto 0;
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:10px;
+}
+.date-pill{
+  padding:9px 16px;
+  border-radius:12px;
+  background:rgba(255,255,255,.16);
+  border:1px solid rgba(255,255,255,.28);
+  font-weight:700;
+}
+.container{max-width:1050px;margin:auto;padding:0 18px}
+.quote{
+  max-width:900px;
+  margin:-28px auto 42px;
+  position:relative;
+  z-index:2;
+  background:white;
+  border-left:6px solid var(--accent);
+  border-radius:18px;
+  padding:27px 28px;
+  box-shadow:var(--shadow);
+  font-size:1.08rem;
+  text-align:center;
+  font-weight:700;
+}
+.section{padding:18px 0 45px}
+.section-title{
+  text-align:center;
+  color:var(--dark);
+  font-size:clamp(1.6rem,4vw,2.25rem);
+  margin:0 0 10px;
+}
+.section-intro{
+  max-width:760px;
+  margin:0 auto 28px;
+  text-align:center;
+}
+.timeline{
+  position:relative;
+  max-width:850px;
+  margin:auto;
+}
+.timeline:before{
+  content:"";
+  position:absolute;
+  left:20px;
+  top:0;
+  bottom:0;
+  width:3px;
+  background:linear-gradient(var(--secondary),var(--accent));
+}
+.event{
+  position:relative;
+  margin:0 0 22px 0;
+  padding-left:60px;
+}
+.dot{
+  position:absolute;
+  left:9px;
+  top:22px;
+  width:25px;
+  height:25px;
+  border-radius:50%;
+  background:white;
+  border:6px solid var(--secondary);
+  box-shadow:0 0 0 4px #e0f2fe;
+}
+.event-card{
+  background:white;
+  border-radius:18px;
+  padding:21px 22px;
+  box-shadow:var(--shadow);
+  border:1px solid #e2e8f0;
+}
+.event-card h3{margin:0 0 5px;color:var(--primary)}
+.event-card .date{font-size:.82rem;color:#64748b;font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:16px;
+}
+.info-card{
+  background:white;
+  border-radius:18px;
+  padding:22px;
+  box-shadow:var(--shadow);
+  border:1px solid #e2e8f0;
+}
+.info-card .icon{font-size:2rem}
+.info-card h3{margin:8px 0;color:var(--dark)}
+.memory{
+  background:linear-gradient(135deg,#0f172a,#1e3a8a);
+  color:white;
+  border-radius:24px;
+  padding:38px 25px;
+  text-align:center;
+  box-shadow:var(--shadow);
+}
+.memory h2{font-size:2rem;margin:0 0 12px}
+.memory p{max-width:780px;margin:10px auto}
+.btns{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;margin-top:24px}
+.btn{
+  display:inline-block;
+  text-decoration:none;
+  padding:12px 20px;
+  border-radius:12px;
+  font-weight:700;
+  transition:.2s;
+}
+.btn-primary{background:white;color:var(--primary)}
+.btn-secondary{background:rgba(255,255,255,.13);color:white;border:1px solid rgba(255,255,255,.35)}
+.btn:hover{transform:translateY(-2px)}
+.website{
+  margin-top:28px;
+  text-align:center;
+  background:#e0f2fe;
+  border:1px solid #bae6fd;
+  border-radius:18px;
+  padding:22px;
+}
+.website a{color:var(--primary);font-weight:800;word-break:break-all}
+footer{
+  text-align:center;
+  padding:35px 18px;
+  color:#64748b;
+  font-size:.92rem;
+}
+@media(max-width:600px){
+  .hero{padding:55px 16px 48px}
+  .quote{margin:-22px 12px 30px;padding:22px 18px}
+  .event{padding-left:50px}
+  .timeline:before{left:17px}
+  .dot{left:6px}
+}
+</style>
+</head>
+
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <span class="badge">KGKHS Beldandia • A Special Memory</span>
+    <h1>🌐 Our Digital Journey</h1>
+    <p>The making of the Karua Gadadhar Kar High School, Beldandia website — a journey of learning, persistence, testing and never giving up.</p>
+    <div class="dates">
+      <span class="date-pill">🌱 04 September 2026 — Beginning</span>
+      <span class="date-pill">🏆 30 September 2026 — Milestone</span>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+
+  <div class="quote">
+    “The website was not built only with code. It was built with countless hours of dedication,
+    determination and never giving up.”
+  </div>
+
+  <section class="section">
+    <h2 class="section-title">How the Journey Unfolded</h2>
+    <p class="section-intro">It was not completed in one day. It grew one problem, one page, one test and one successful attempt at a time.</p>
+
+    <div class="timeline">
+
+      <div class="event">
+        <span class="dot"></span>
+        <div class="event-card">
+          <div class="date">04 September 2026</div>
+          <h3>🌱 The Beginning</h3>
+          <p>The journey of building the KGKHS Beldandia digital presence began. The aim was to create a useful, informative and living website for the school.</p>
+        </div>
+      </div>
+
+      <div class="event">
+        <span class="dot"></span>
+        <div class="event-card">
+          <div class="date">Building the Foundation</div>
+          <h3>💻 Pages, Design & Structure</h3>
+          <p>Home, About, Academics, Staff, Gallery, Notices and other sections were developed, tested and refined.</p>
+        </div>
+      </div>
+
+      <div class="event">
+        <span class="dot"></span>
+        <div class="event-card">
+          <div class="date">Learning Resources</div>
+          <h3>📚 More Content → More Learning</h3>
+          <p>Learning materials, textbook references, study resources, questions, answers and practice sections were gradually added for students.</p>
+        </div>
+      </div>
+
+      <div class="event">
+        <span class="dot"></span>
+        <div class="event-card">
+          <div class="date">Student Results</div>
+          <h3>📝 Results & Assessments</h3>
+          <p>Student assessment data, Excel uploads, result processing and PDF result generation became part of the school's digital system.</p>
+        </div>
+      </div>
+
+      <div class="event">
+        <span class="dot"></span>
+        <div class="event-card">
+          <div class="date">Admin & School Files</div>
+          <h3>☁️ A Living School Website</h3>
+          <p>The Admin Login and Supabase-powered file system made it possible to publish school files such as notices, PDFs, images, videos and audio from the administration side.</p>
+        </div>
+      </div>
+
+      <div class="event">
+        <span class="dot"></span>
+        <div class="event-card">
+          <div class="date">The Sleepless Nights</div>
+          <h3>🌙 When Night Became Morning</h3>
+          <p>Some of the hardest problems were solved after hours of repeated testing. There were attempts that continued until nearly <strong>5:00 AM</strong>, while the rest of the world was asleep.</p>
+        </div>
+      </div>
+
+      <div class="event">
+        <span class="dot"></span>
+        <div class="event-card">
+          <div class="date">30 September 2026</div>
+          <h3>🏆 A Major Milestone</h3>
+          <p>The successful Admin → Supabase → Website file-upload test became another memorable milestone in the journey.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">🏫 Why Does a School Need a Website?</h2>
+    <p class="section-intro">A school website can become a digital window through which students, parents, teachers, alumni and the wider community can connect with the school.</p>
+
+    <div class="grid">
+      <div class="info-card"><div class="icon">📢</div><h3>School Information</h3><p>Provide important information about the school and keep the community connected.</p></div>
+      <div class="info-card"><div class="icon">📝</div><h3>Notices & Updates</h3><p>Publish notices, examination information and important announcements in one place.</p></div>
+      <div class="info-card"><div class="icon">📚</div><h3>Learning Resources</h3><p>Give students access to study materials, textbook references and practice resources beyond the classroom.</p></div>
+      <div class="info-card"><div class="icon">🏆</div><h3>Achievements</h3><p>Share school activities, achievements, events and memorable moments.</p></div>
+      <div class="info-card"><div class="icon">📊</div><h3>Student Results</h3><p>Provide appropriate access to student assessment and result information.</p></div>
+      <div class="info-card"><div class="icon">🕰️</div><h3>Preserve History</h3><p>Create a lasting digital record of the school's journey, people, activities and achievements.</p></div>
+    </div>
+
+    <div class="website">
+      <strong>🌐 KGKHS Beldandia Official Website</strong><br>
+      <a href="https://kgkhs1992-bld.github.io" target="_blank" rel="noopener">https://kgkhs1992-bld.github.io</a>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="memory">
+      <h2>❤️ A Memory Worth Keeping</h2>
+      <p><strong>4 September 2026 → 30 September 2026</strong></p>
+      <p>Built with patience. Built with persistence. Built through countless attempts and many sleepless nights. Built with a dream for the school.</p>
+      <p>Those sleepless nights were not wasted. They became part of the history of KGKHS Beldandia.</p>
+      <p><strong>🌅 The nights finally became mornings.<br>
+      The attempts finally became achievements.<br>
+      And the dream finally became a website.</strong></p>
+
+      <div class="btns">
+        <a class="btn btn-primary" href="KGKHS_Beldandia_Website_Memory_FINAL_Adjusted.pdf" target="_blank">📖 Read Full Memory PDF</a>
+        <a class="btn btn-secondary" href="https://kgkhs1992-bld.github.io" target="_blank" rel="noopener">🌐 Visit School Website</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <strong>Karua Gadadhar Kar High School, Beldandia</strong><br>
+  Our Digital Journey • September 2026
+</footer>
+
+</body>
+</html>
