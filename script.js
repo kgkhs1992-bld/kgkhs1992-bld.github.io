@@ -1861,3 +1861,44 @@ pendingStudentResults = pendingStudentResults.map(row => ({
 } 
 
 setupResultUploadOptions();
+// ==========================================
+// OUR DIGITAL JOURNEY - OPEN / CLOSE
+// ==========================================
+
+function openDigitalJourney() {
+    const card = document.getElementById("digitalJourneyCard");
+    const content = document.getElementById("digitalJourneyContent");
+
+    if (!card || !content) return;
+
+    content.style.display = "block";
+    card.classList.add("journey-open");
+
+    setTimeout(function () {
+        content.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+    }, 150);
+}
+
+function closeDigitalJourney(event) {
+    if (event) {
+        event.stopPropagation();
+    }
+
+    const card = document.getElementById("digitalJourneyCard");
+    const content = document.getElementById("digitalJourneyContent");
+
+    if (!card || !content) return;
+
+    content.style.display = "none";
+    card.classList.remove("journey-open");
+
+    setTimeout(function () {
+        card.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+        });
+    }, 100);
+}
