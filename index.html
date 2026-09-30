@@ -489,59 +489,120 @@
 
 
 <script>
-(function () {
+document.addEventListener("DOMContentLoaded", function () {
 
-  const card = document.getElementById("digitalJourneyCard");
-  const content = document.getElementById("digitalJourneyContentFinal");
-  const closeButton = document.getElementById("digitalJourneyClose");
+    const card = document.getElementById("digitalJourneyCard");
+    const content = document.getElementById("digitalJourneyContentFinal");
+    const closeButton = document.getElementById("digitalJourneyClose");
 
-  if (!card || !content || !closeButton) return;
+    if (!card || !content || !closeButton) {
+        console.error("Digital Journey elements not found.");
+        return;
+    }
 
-  function openJourney() {
-    content.classList.add("djf-open");
-    content.setAttribute("aria-hidden", "false");
-    card.setAttribute("aria-expanded", "true");
+    /* ================================
+       INITIAL STATE
+       ================================ */
 
-    setTimeout(function () {
-      content.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-      });
-    }, 80);
-  }
-
-  function closeJourney() {
-    content.classList.remove("djf-open");
+    content.style.display = "none";
     content.setAttribute("aria-hidden", "true");
     card.setAttribute("aria-expanded", "false");
 
-    setTimeout(function () {
-      card.scrollIntoView({
-        behavior: "smooth",
-        block: "center"
-      });
-    }, 80);
-  }
+    /* ================================
+       OPEN DIGITAL JOURNEY
+       ================================ */
 
-  card.addEventListener("click", openJourney);
+    function openDigitalJourney(event) {
 
-  card.addEventListener("keydown", function (event) {
-    if (event.key === "Enter" || event.key === " ") {
-      event.preventDefault();
-      openJourney();
+        if (event) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
+
+        content.style.display = "block";
+        content.setAttribute("aria-hidden", "false");
+        card.setAttribute("aria-expanded", "true");
+
+        setTimeout(function () {
+            content.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+        }, 100);
     }
-  });
 
-  closeButton.addEventListener("click", function (event) {
-    event.preventDefault();
-    event.stopPropagation();
-    closeJourney();
-  });
+    /* ================================
+       CLOSE DIGITAL JOURNEY
+       ================================ */
 
-})();
-</script>
+    function closeDigitalJourney(event) {
 
-<!-- END OF DIGITAL JOURNEY -->
+        if (event) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
+
+        content.style.display = "none";
+        content.setAttribute("aria-hidden", "true");
+        card.setAttribute("aria-expanded", "false");
+
+        setTimeout(function () {
+            card.scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+        }, 100);
+    }
+
+    /* ================================
+       CARD CLICK
+       ================================ */
+
+    card.addEventListener("click", function (event) {
+        openDigitalJourney(event);
+    });
+
+    /* ================================
+       KEYBOARD ACCESS
+       ================================ */
+
+    card.addEventListener("keydown", function (event) {
+
+        if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            openDigitalJourney(event);
+        }
+
+    });
+
+    /* ================================
+       CLOSE BUTTON
+       ================================ */
+
+    closeButton.addEventListener("click", function (event) {
+        closeDigitalJourney(event);
+    });
+
+    /* ================================
+       ESC KEY
+       ================================ */
+
+    document.addEventListener("keydown", function (event) {
+
+        if (event.key === "Escape") {
+
+            const isOpen =
+                card.getAttribute("aria-expanded") === "true";
+
+            if (isOpen) {
+                closeDigitalJourney(event);
+            }
+        }
+
+    });
+
+});
+</script><!-- END OF DIGITAL JOURNEY -->
 
 <section id="ex-headmaster" class="section light">
 <div class="container two-col">
