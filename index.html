@@ -125,63 +125,188 @@
     in one day. It happens step by step — through learning,
     testing, correcting and never giving up.
   </p>
+<!-- OUR DIGITAL JOURNEY MEMORY CARD -->
 
-  <p>
-    <strong>More contents → More learning.</strong>
-  </p>
-<!-- MEMORY PDF CARD -->
-<div class="memory-pdf-card">
+<section class="digital-memory-section">
 
-    <div class="memory-pdf-icon">📖</div>
+  <!-- BIG CARD — TAP TO OPEN -->
+  <div
+    class="digital-memory-card"
+    id="digitalJourneyCard"
+    onclick="openDigitalJourney()"
+  >
 
-    <h3>Read Full Memory PDF</h3>
+    <div class="digital-memory-glow"></div>
 
-    <p>
-        Read the complete story of the KGKHS Beldandia
-        Digital Journey in a beautifully prepared PDF.
-    </p>
+    <div class="digital-memory-content">
 
-    <a href="Digital-Journey-Memory.pdf"
-       target="_blank"
-       class="memory-pdf-button">
-        📖 Read Full Memory PDF →
-    </a>
+      <div class="digital-memory-badge">
+        💙 KGKHS BELDANDIA • A SPECIAL MEMORY
+      </div>
 
-</div>
-  <button type="button"
-          class="digital-close-button"
-          onclick="toggleDigitalJourney()">
-    🔙 Close Digital Journey
-  </button>
+      <div class="digital-memory-icon">
+        🌐
+      </div>
 
-</div>
+      <h2>Our Digital Journey</h2>
 
-  </div></section><script>
-function toggleDigitalJourney() {
+      <p class="digital-memory-subtitle">
+        The making of the Karua Gadadhar Kar High School website —
+        a journey of learning, dedication, testing and never giving up.
+      </p>
 
-  const content = document.getElementById("digitalJourneyContent");
+      <div class="digital-memory-dates">
+        <span>📅 04 September 2026 — Beginning</span>
+        <span>🏆 30 September 2026 — Milestone</span>
+      </div>
 
-  if (content.style.display === "block") {
-    content.style.display = "none";
+      <div class="digital-memory-quote">
+        “The website was not built with only code.<br>
+        It was built with countless hours of dedication,
+        determination and never giving up.”
+      </div>
 
-    document.getElementById("digitalJourneyCard")
-      .scrollIntoView({
-        behavior: "smooth",
-        block: "center"
-      });
+      <div class="digital-memory-tap">
+        👆 TAP TO OPEN THE COMPLETE MEMORY
+      </div>
 
-  } else {
-    content.style.display = "block";
+    </div>
 
-    setTimeout(function () {
-      content.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-      });
-    }, 100);
-  }
-}
-  </script>
+  </div>
+
+
+  <!-- COMPLETE MEMORY — HIDDEN UNTIL BIG CARD IS TAPPED -->
+
+  <div
+    id="digitalJourneyContent"
+    class="digital-journey-content"
+  >
+
+    <span class="eyebrow">
+      OUR DIGITAL JOURNEY
+    </span>
+
+    <h2>
+      How Our School Website Was Built
+    </h2>
+
+
+    <div class="info-box">
+
+      <h3>🌱 A Journey of Learning</h3>
+
+      <p>
+        The KGKHS Beldandia website is more than just a website.
+        It represents the learning, effort, patience and dedication
+        behind bringing our school into the digital world.
+      </p>
+
+
+      <h3>💻 From an Idea to a Website</h3>
+
+      <p>
+        The journey began with a simple idea — to create a digital
+        platform for Karua Gadadhar Kar High School, Beldandia,
+        where students, parents, teachers and visitors could learn
+        about our school and its activities.
+      </p>
+
+
+      <h3>📚 Learning Through Every Step</h3>
+
+      <p>
+        Building the website involved learning HTML, CSS, JavaScript,
+        file management, PDF organisation, student results and many
+        other digital skills.
+      </p>
+
+
+      <h3>🛠️ Testing, Mistakes and Improvements</h3>
+
+      <p>
+        The journey was not always easy. There were broken pages,
+        missing files, 404 errors, design problems and many things
+        that had to be corrected. Every mistake became another
+        opportunity to learn.
+      </p>
+
+
+      <h3>🎓 A Digital Learning Platform</h3>
+
+      <p>
+        Today, the website is developing into a learning platform
+        containing textbooks, study materials, practice questions,
+        MCQs, student results, school information, notices and
+        educational resources.
+      </p>
+
+
+      <h3>🤝 A Journey of Dedication</h3>
+
+      <p>
+        Every page, every correction and every improvement reflects
+        the belief that technology can support education and give
+        students better access to learning resources.
+      </p>
+
+
+      <h3>❤️ Our Message</h3>
+
+      <p>
+        This digital journey reminds us that progress does not happen
+        in one day. It happens step by step — through learning,
+        testing, correcting and never giving up.
+      </p>
+
+
+      <p>
+        <strong>More contents → More learning.</strong>
+      </p>
+
+
+      <!-- MEMORY PDF CARD -->
+
+      <div class="memory-pdf-card">
+
+        <div class="memory-pdf-icon">
+          📖
+        </div>
+
+        <h3>
+          Read Full Memory PDF
+        </h3>
+
+        <p>
+          Read the complete story of the KGKHS Beldandia
+          Digital Journey in a beautifully prepared PDF.
+        </p>
+
+        <a
+          href="Digital-Journey-Memory.pdf"
+          target="_blank"
+          class="memory-pdf-button"
+        >
+          📖 Read Full Memory PDF →
+        </a>
+
+      </div>
+
+
+      <!-- CLOSE BUTTON -->
+
+      <button
+        type="button"
+        class="digital-close-button"
+        onclick="closeDigitalJourney(event)"
+      >
+        ↩️ Close Digital Journey
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
 
 <style>
 .digital-memory-card {
