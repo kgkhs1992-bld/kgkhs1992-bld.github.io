@@ -66,19 +66,27 @@ th{background:#edf3f8;color:#12355b;position:sticky;top:0;z-index:3}td:first-chi
 
 <script>
 let supabaseClient=null, ADMIN_UID=null, existingRows=new Map(), roster=[];
-const patterns={
-VIII:{
-SA1:{label:"Summative Assessment 01",max:400,fields:[["mil_odia","MIL (Odia)"],["english","English"],["hindi_sanskrit","Hindi / Sanskrit"],["mathematics","Mathematics"],["science","Science"],["history","History"],["geography","Geography"],["drawing","Drawing"]],per:50},
-SA2:{label:"Summative Assessment 02",max:400,fields:[["mil_odia","MIL (Odia)"],["english","English"],["hindi_sanskrit","Hindi / Sanskrit"],["mathematics","Mathematics"],["science","Science"],["history","History"],["geography","Geography"],["drawing","Drawing"]],per:50},
-UT1:{label:"Unit Test 01",max:120,fields:[["mil_odia","MIL (Odia)"],["english","English"],["hindi_sanskrit","Hindi / Sanskrit"],["mathematics","Mathematics"],["science","Science"],["history","History"],["geography","Geography"],["drawing","Drawing"]],per:15},
-UT2:{label:"Unit Test 02",max:120,fields:[["mil_odia","MIL (Odia)"],["english","English"],["hindi_sanskrit","Hindi / Sanskrit"],["mathematics","Mathematics"],["science","Science"],["history","History"],["geography","Geography"],["drawing","Drawing"]],per:15},
-UT3:{label:"Unit Test 03",max:120,fields:[["mil_odia","MIL (Odia)"],["english","English"],["hindi_sanskrit","Hindi / Sanskrit"],["mathematics","Mathematics"],["science","Science"],["history","History"],["geography","Geography"],["drawing","Drawing"]],per:15},
-UT4:{label:"Unit Test 04",max:120,fields:[["mil_odia","MIL (Odia)"],["english","English"],["hindi_sanskrit","Hindi / Sanskrit"],["mathematics","Mathematics"],["science","Science"],["history","History"],["geography","Geography"],["drawing","Drawing"]],per:15}
-},
-IX:{},X:{}};
-const base=[["mil_odia","MIL (Odia)"],["english","English"],["hindi_sanskrit","Hindi / Sanskrit"],["mathematics","Mathematics"],["science","Science"],["social_science","Social Science"]];
-["IX","X"].forEach(c=>{patterns[c]={FA1:{label:"Formative Assessment 1",max:300,fields:base,per:50},FA2:{label:"Formative Assessment 2",max:300,fields:base,per:50},FA3:{label:"Formative Assessment 3",max:300,fields:base,per:50},FA4:{label:"Formative Assessment 4",max:300,fields:base,per:50},HALF_YEARLY:{label:"Half Yearly",max:600,half:true},ANNUAL:{label:"Annual",max:600,half:true}}});
-
+["IX","X"].forEach(c=>{
+  patterns[c]={
+    FA1:{label:"Formative Assessment 1",max:300,fields:base,per:50},
+    FA2:{label:"Formative Assessment 2",max:300,fields:base,per:50},
+    FA3:{label:"Formative Assessment 3",max:300,fields:base,per:50},
+    FA4:{label:"Formative Assessment 4",max:300,fields:base,per:50},
+    HALF_YEARLY:{label:"Half Yearly",max:600,half:true},
+    ANNUAL:{label:"Annual",max:600,half:true},
+    ASPIRATIONAL:{
+      label:"Aspirational Components",
+      max:100,
+      fields:[
+        ["sahitya_srujani","Sahitya Srujani"],
+        ["jigyansa","Jigyansa"],
+        ["kridangan","Kridangan"],
+        ["kaushali","Kaushali"]
+      ],
+      per:25
+    }
+  };
+});
 const loginCard=document.getElementById("loginCard"),app=document.getElementById("app"),loginMsg=document.getElementById("loginMsg"),appMsg=document.getElementById("appMsg"),classSelect=document.getElementById("classSelect"),examSelect=document.getElementById("examSelect"),search=document.getElementById("search"),fullMarks=document.getElementById("fullMarks"),marksTable=document.getElementById("marksTable"),tableCard=document.getElementById("tableCard"),loadBtn=document.getElementById("loadBtn"),saveBtn=document.getElementById("saveBtn"),publishBtn=document.getElementById("publishBtn"),clearBtn=document.getElementById("clearBtn");
 
 function show(el,text,type){el.className="msg show "+type;el.textContent=text}
