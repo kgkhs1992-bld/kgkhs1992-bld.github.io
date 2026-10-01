@@ -607,7 +607,14 @@ if (className === "VIII") {
     }
 
 } else if (className === "IX" || className === "X") {
+
     if (
+        assessmentName.includes("ASPIRATIONAL") ||
+        assessmentName === "ASPIRATIONAL"
+    ) {
+        maxMarks = 100;
+
+    } else if (
         assessmentName.includes("FORMATIVE") ||
         assessmentName === "FA1" ||
         assessmentName === "FA2" ||
@@ -615,14 +622,14 @@ if (className === "VIII") {
         assessmentName === "FA4"
     ) {
         maxMarks = 300;
-    } 
-    else if (
+
+    } else if (
         assessmentName.includes("HALF YEARLY") ||
         assessmentName.includes("ANNUAL")
     ) {
         maxMarks = 600;
-    } 
-    else if (
+
+    } else if (
         assessmentName.includes("UNIT TEST") ||
         assessmentName.includes("UT1") ||
         assessmentName.includes("UT2") ||
