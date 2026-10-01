@@ -252,15 +252,13 @@ function render(){
 .map(r=>{
 
   const existing = existingRows.get(r.roll) || {};
-  let html = `
+   let html = `
     <tr data-roll="${esc(r.roll)}">
       <td class="roll">${esc(r.roll)}</td>
       <td class="student">${esc(r.name)}</td>
   `;
-         
-      `;
-
-      fields.forEach(f=>{
+    
+    fields.forEach(f=>{
         const value =
           existing[f] !== null &&
           existing[f] !== undefined &&
