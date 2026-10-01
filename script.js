@@ -1216,7 +1216,16 @@ function resultNumber(value) {
   const n = Number(value);
   return Number.isFinite(n) ? n : value;
 }
-
+function grade100(total) {
+  if (total >= 91) return "A1";
+  if (total >= 81) return "A2";
+  if (total >= 71) return "B1";
+  if (total >= 61) return "B2";
+  if (total >= 51) return "C";
+  if (total >= 41) return "D";
+  if (total >= 33) return "E";
+  return "F";
+}
 // ===============================
 // NEW ADMIN RESULT UPLOAD WORKFLOW
 // ===============================
