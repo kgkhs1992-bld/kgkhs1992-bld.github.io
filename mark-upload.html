@@ -244,18 +244,20 @@ function render(){
     : (pat.fields || []).map(x=>x[0]);
 
   const rows = roster
-    .filter(r=>{
-      if(!search) return true;
-      return String(r.roll_no).includes(search) ||
-             String(r.name).toLowerCase().includes(search);
-    })
-    .map(r=>{
+ .filter(r=>{
+  if(!search) return true;
+  return String(r.roll).includes(search) ||
+         String(r.name).toLowerCase().includes(search);
+})
+.map(r=>{
 
-      const existing = existingRows.get(r.roll_no) || {};
-      let html = `
-        <tr data-roll="${esc(r.roll_no)}">
-          <td class="roll">${esc(r.roll_no)}</td>
-          <td class="student">${esc(r.name)}</td>
+  const existing = existingRows.get(r.roll) || {};
+  let html = `
+    <tr data-roll="${esc(r.roll)}">
+      <td class="roll">${esc(r.roll)}</td>
+      <td class="student">${esc(r.name)}</td>
+  `;
+         
       `;
 
       fields.forEach(f=>{
