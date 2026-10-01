@@ -306,44 +306,57 @@ function render(){
     </tbody>
   `;
 
-  /* CALCULATE TOTAL + GRADE */
-  marksTable.querySelectorAll("tbody tr").forEach(tr=>{
+/* CALCULATE TOTAL + GRADE */
+marksTable.querySelectorAll("tbody tr").forEach(tr=>{
 
-    const inputs = tr.querySelectorAll(".mark");
+  const inputs = tr.querySelectorAll(".mark");
 
-    const calculateRow = ()=>{
+  const calculateRow = ()=>{
 
-      let total = 0;
+    let total = 0;
 
-      inputs.forEach(input=>{
-        const value = Number(input.value);
-        if(Number.isFinite(value)){
-          total += value;
-        }
-      });
+    inputs.forEach(input=>{
+      const value = Number(input.value);
 
-      tr.querySelector(".row-total").textContent = total;
+      if(Number.isFinite(value)){
+        total += value;
+      }
+    });
 
-      /*
-       * Grade calculation
-       * Same grading scale already used in the result system.
-       */
-      const fullMarks = Number(pat.max || 100) * inputs.length;
+    /* SHOW TOTAL */
+    tr.querySelector(".row-total").textContent = total;
 
-      const percentage =
-        fullMarks > 0
-          ? (total / fullMarks) * 100
-          : 0;
+    /* CALCULATE PERCENTAGE USING ASSESSMENT FULL MARKS */
+    const fullMarks = Number(pat.max || 100);
 
-      let grade = "";
+    const percentage =
+      fullMarks > 0
+        ? (total / fullMarks) * 100
+        : 0;
 
-      if(percentage >= 90) grade = "A1";
-      else if(percentage >= 80) grade = "A2";
-      else if(percentage >= 70) grade = "B1";
-      else if(percentage >= 60) grade = "B2";
-      else if(percentage >= 50) grade = "C";
-      else if(percentage >= 40) grade = "D";
-      else grade = "E";
+    /* EXISTING SCHOOL GRADING SCALE */
+    let grade = "";
+
+    if(percentage >= 90) grade = "A1";
+    else if(percentage >= 80) grade = "A2";
+    else if(percentage >= 70) grade = "B1";
+    else if(percentage >= 60) grade = "B2";
+    else if(percentage >= 50) grade = "C";
+    else grade = "";
+
+    tr.querySelector(".row-grade").textContent = grade;
+  };
+
+  /* UPDATE TOTAL + GRADE WHEN MARKS ARE ENTERED */
+  inputs.forEach(input=>{
+    input.addEventListener("input", calculateRow);
+  });
+
+  /* CALCULATE INITIAL VALUES */
+  calculateRow();
+
+});
+  
 
       tr.querySelector(".row-grade").textContent = grade;
     };
