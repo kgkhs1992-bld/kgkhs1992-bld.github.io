@@ -249,18 +249,19 @@ if (classSelect && resultTypeSelect) updateResultTypes();
     const selectedAssessment = resultTypeSelect.value.trim();
 
 const assessmentMap = {
-  FA1: "Formative Assessment 1",
-  FA2: "Formative Assessment 2",
-  FA3: "Formative Assessment 3",
-  FA4: "Formative Assessment 4",
-  HALF_YEARLY: "Half Yearly",
-  ANNUAL: "Annual",
-  SA1: "SA1",
-  SA2: "SA2",
-  UT1: "UT1",
-  UT2: "UT2",
-  UT3: "UT3",
-  UT4: "UT4"
+    FA1: "Formative Assessment 1",
+    FA2: "Formative Assessment 2",
+    FA3: "Formative Assessment 3",
+    FA4: "Formative Assessment 4",
+    HALF_YEARLY: "Half Yearly",
+    ANNUAL: "Annual",
+    ASPIRATIONAL: "Aspirational Components",
+    SA1: "SA1",
+    SA2: "SA2",
+    UT1: "UT1",
+    UT2: "UT2",
+    UT3: "UT3",
+    UT4: "UT4"
 };
 
 const assessment =
