@@ -861,6 +861,13 @@ else grade = "F";
     doc.setFontSize(11);
 
     
+const isAspirational =
+  (className === "IX" || className === "X") &&
+  (
+    assessmentName.includes("ASPIRATIONAL") ||
+    assessmentName === "ASPIRATIONAL"
+  );
+
 const isHalfAnnual =
   (className === "IX" || className === "X") &&
   (
@@ -868,7 +875,62 @@ const isHalfAnnual =
     assessmentName.includes("ANNUAL")
   );
 
-if (isHalfAnnual) {
+if (isAspirational) {
+
+  doc.setFontSize(11);
+
+  doc.text("Club / Component", 15, y);
+  doc.text("Q1", 105, y);
+  doc.text("Q2", 125, y);
+  doc.text("Q3", 145, y);
+  doc.text("Q4", 165, y);
+
+  y += 8;
+
+  const aspirationalClubs = [
+    [
+      "Sahitya Srujani",
+      data.sahitya_srujani_q1,
+      data.sahitya_srujani_q2,
+      data.sahitya_srujani_q3,
+      data.sahitya_srujani_q4
+    ],
+    [
+      "Jigyansa",
+      data.jigyansa_q1,
+      data.jigyansa_q2,
+      data.jigyansa_q3,
+      data.jigyansa_q4
+    ],
+    [
+      "Kridangan",
+      data.kridangan_q1,
+      data.kridangan_q2,
+      data.kridangan_q3,
+      data.kridangan_q4
+    ],
+    [
+      "Kaushali",
+      data.kaushali_q1,
+      data.kaushali_q2,
+      data.kaushali_q3,
+      data.kaushali_q4
+    ]
+  ];
+
+  aspirationalClubs.forEach(item => {
+
+    doc.text(item[0], 15, y);
+
+    doc.text(String(item[1] ?? "—"), 105, y);
+    doc.text(String(item[2] ?? "—"), 125, y);
+    doc.text(String(item[3] ?? "—"), 145, y);
+    doc.text(String(item[4] ?? "—"), 165, y);
+
+    y += 8;
+  });
+
+} else if (isHalfAnnual) {
 
   doc.text("Subject", 20, y);
   doc.text("Subjective", 95, y);
@@ -942,6 +1004,7 @@ if (isHalfAnnual) {
 
   });
 }
+  marks.forEach(item =
   // RESULT SUMMARY - UPDATED
   y += 10;
 
