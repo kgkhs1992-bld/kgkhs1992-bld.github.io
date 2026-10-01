@@ -306,67 +306,87 @@ function render(){
     </tbody>
   `;
 
-/* CALCULATE TOTAL + GRADE */
-marksTable.querySelectorAll("tbody tr").forEach(tr=>{
+ /* CALCULATE TOTAL + GRADE */
 
-  const inputs = tr.querySelectorAll(".mark");
+marksTable.querySelectorAll("tbody tr").forEach(tr => {
 
-  const calculateRow = ()=>{
+    const inputs = tr.querySelectorAll(".mark");
 
-    let total = 0;
+    const calculateRow = () => {
 
-    inputs.forEach(input=>{
-      const value = Number(input.value);
+        let total = 0;
+        let hasMarks = false;
 
-      if(Number.isFinite(value)){
-        total += value;
-      }
-    });
+        inputs.forEach(input => {
 
-    /* SHOW TOTAL */
-    tr.querySelector(".row-total").textContent = total;
+            const value = input.value.trim();
 
-    /* CALCULATE PERCENTAGE USING ASSESSMENT FULL MARKS */
-    const fullMarks = Number(pat.max || 100);
+            if (value !== "" && Number.isFinite(Number(value))) {
+                total += Number(value);
+                hasMarks = true;
+            }
 
-    const percentage =
-      fullMarks > 0
-        ? (total / fullMarks) * 100
-        : 0;
+        });
 
-    /* EXISTING SCHOOL GRADING SCALE */
-    let grade = "";
+        const totalCell = tr.querySelector(".row-total");
+        const gradeCell = tr.querySelector(".row-grade");
 
-    if(percentage >= 90) grade = "A1";
-    else if(percentage >= 80) grade = "A2";
-    else if(percentage >= 70) grade = "B1";
-    else if(percentage >= 60) grade = "B2";
-    else if(percentage >= 50) grade = "C";
-    else grade = "";
+        /* KEEP TOTAL AND GRADE BLANK WHEN NO MARKS ARE ENTERED */
 
-    tr.querySelector(".row-grade").textContent = grade;
-  };
+        if (!hasMarks) {
+            totalCell.textContent = "";
+            gradeCell.textContent = "";
+            return;
+        }
 
-  /* UPDATE TOTAL + GRADE WHEN MARKS ARE ENTERED */
-  inputs.forEach(input=>{
-    input.addEventListener("input", calculateRow);
-  });
+        /* SHOW TOTAL */
 
-  /* CALCULATE INITIAL VALUES */
-  calculateRow();
+        totalCell.textContent = total;
 
-});
-  
+        /* CALCULATE PERCENTAGE */
 
-      tr.querySelector(".row-grade").textContent = grade;
+        const fullMarks =
+            Number(pat.max || 100) * inputs.length;
+
+        const percentage =
+            fullMarks > 0
+                ? (total / fullMarks) * 100
+                : 0;
+
+        /* EXISTING SCHOOL GRADING SCALE */
+
+        let grade = "";
+
+        if (percentage >= 90) {
+            grade = "A1";
+        } else if (percentage >= 80) {
+            grade = "A2";
+        } else if (percentage >= 70) {
+            grade = "B1";
+        } else if (percentage >= 60) {
+            grade = "B2";
+        } else if (percentage >= 50) {
+            grade = "C";
+        } else if (percentage >= 40) {
+            grade = "D";
+        } else {
+            grade = "E";
+        }
+
+        gradeCell.textContent = grade;
     };
 
-    inputs.forEach(input=>{
-      input.addEventListener("input", calculateRow);
+    /* UPDATE WHEN MARKS ARE TYPED */
+
+    inputs.forEach(input => {
+        input.addEventListener("input", calculateRow);
     });
 
+    /* INITIAL CALCULATION */
+
     calculateRow();
-  });
+
+});
 
   tableCard.classList.remove("hidden");
 
