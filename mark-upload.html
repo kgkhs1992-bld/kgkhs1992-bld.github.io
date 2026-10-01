@@ -97,17 +97,31 @@ const base=[
     FA4:{label:"Formative Assessment 4",max:300,fields:base,per:50},
     HALF_YEARLY:{label:"Half Yearly",max:600,half:true},
     ANNUAL:{label:"Annual",max:600,half:true},
-    ASPIRATIONAL:{
-      label:"Aspirational Components",
-      max:100,
-      fields:[
-        ["sahitya_srujani","Sahitya Srujani"],
-        ["jigyansa","Jigyansa"],
-        ["kridangan","Kridangan"],
-        ["kaushali","Kaushali"]
-      ],
-      per:25
-    }
+  ASPIRATIONAL:{
+    label:"Aspirational Components",
+    max:100,
+    fields:[
+        ["sahitya_srujani_q1","Sahitya Srujani – 1st Quarter",5],
+        ["sahitya_srujani_q2","Sahitya Srujani – 2nd Quarter",5],
+        ["sahitya_srujani_q3","Sahitya Srujani – 3rd Quarter",5],
+        ["sahitya_srujani_q4","Sahitya Srujani – 4th Quarter",10],
+
+        ["jigyansa_q1","Jigyansa – 1st Quarter",5],
+        ["jigyansa_q2","Jigyansa – 2nd Quarter",5],
+        ["jigyansa_q3","Jigyansa – 3rd Quarter",5],
+        ["jigyansa_q4","Jigyansa – 4th Quarter",10],
+
+        ["kridangan_q1","Kridangan – 1st Quarter",5],
+        ["kridangan_q2","Kridangan – 2nd Quarter",5],
+        ["kridangan_q3","Kridangan – 3rd Quarter",5],
+        ["kridangan_q4","Kridangan – 4th Quarter",10],
+
+        ["kaushali_q1","Kaushali – 1st Quarter",5],
+        ["kaushali_q2","Kaushali – 2nd Quarter",5],
+        ["kaushali_q3","Kaushali – 3rd Quarter",5],
+        ["kaushali_q4","Kaushali – 4th Quarter",10]
+    ]
+}
   };
 });
 const loginCard=document.getElementById("loginCard"),app=document.getElementById("app"),loginMsg=document.getElementById("loginMsg"),appMsg=document.getElementById("appMsg"),classSelect=document.getElementById("classSelect"),examSelect=document.getElementById("examSelect"),search=document.getElementById("search"),fullMarks=document.getElementById("fullMarks"),marksTable=document.getElementById("marksTable"),tableCard=document.getElementById("tableCard"),loadBtn=document.getElementById("loadBtn"),saveBtn=document.getElementById("saveBtn"),publishBtn=document.getElementById("publishBtn"),clearBtn=document.getElementById("clearBtn");
