@@ -1004,7 +1004,7 @@ if (isAspirational) {
 
   });
 }
-  marks.forEach(item =
+  
   // RESULT SUMMARY - UPDATED
   y += 10;
 
