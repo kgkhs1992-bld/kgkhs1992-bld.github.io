@@ -399,49 +399,7 @@ marksTable.querySelectorAll("tbody tr").forEach(tr => {
     calculateRow();
 
 });
-        const fullMarks =
-            Number(pat.max || 100) * inputs.length;
-
-        const percentage =
-            fullMarks > 0
-                ? (total / fullMarks) * 100
-                : 0;
-
-        /* EXISTING SCHOOL GRADING SCALE */
-
-        let grade = "";
-
-        if (percentage >= 90) {
-            grade = "A1";
-        } else if (percentage >= 80) {
-            grade = "A2";
-        } else if (percentage >= 70) {
-            grade = "B1";
-        } else if (percentage >= 60) {
-            grade = "B2";
-        } else if (percentage >= 50) {
-            grade = "C";
-        } else if (percentage >= 40) {
-            grade = "D";
-        } else {
-            grade = "E";
-        }
-
-        gradeCell.textContent = grade;
-    };
-
-    /* UPDATE WHEN MARKS ARE TYPED */
-
-    inputs.forEach(input => {
-        input.addEventListener("input", calculateRow);
-    });
-
-    /* INITIAL CALCULATION */
-
-    calculateRow();
-
-});
-
+        
   tableCard.classList.remove("hidden");
 
   document.getElementById("tableTitle").innerHTML =
