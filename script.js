@@ -310,15 +310,13 @@ if (
 ) {
 
     const { data: aspRows, error: aspError } = await supabaseClient
-        .from("aspirational_components")
-        .select("*")
-        .eq("class", studentClass)
-        .eq("roll_no", Number(rollNo))
-        .order("id", { ascending: false })
-        .limit(1);
-
-    if (aspError) throw aspError;
-
+        ..from("class_ix_results")
+.select("*")
+.eq("roll_no", Number(rollNo))
+.eq("pin", pin)
+.eq("assessment", "Aspirational Components")
+.order("id", { ascending: false })
+.limit(1);
     if (!aspRows || !aspRows.length) {
         message.innerHTML =
             "<p>❌ Aspirational Components result not found.</p>";
