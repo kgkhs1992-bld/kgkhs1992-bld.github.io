@@ -301,10 +301,11 @@ if (!/^471CA\d{2,3}$/.test(pin)) {
     message.innerHTML =
       "<p>Checking result...</p>";
 
-      // ===============================
+         // ===============================
       // ASPIRATIONAL COMPONENTS RESULT
       // ===============================
- if (selectedAssessment === 'ASPIRATIONAL' || assessment === 'Aspirational Components') {
+      if (selectedAssessment === 'ASPIRATIONAL' || assessment === 'Aspirational Components') {
+
         const { data: aspRows, error: aspError } = await supabaseClient
           .from('aspirational_components')
           .select('*')
@@ -316,78 +317,172 @@ if (!/^471CA\d{2,3}$/.test(pin)) {
         if (aspError) throw aspError;
 
         if (!aspRows || !aspRows.length) {
-          message.innerHTML='<p>❌ Aspirational Components result not found.</p>';
+          message.innerHTML = '<p>❌ Aspirational Components result not found.</p>';
           return;
         }
+
         const asp = aspRows[0];
 
-        const sahitya = resultNumber(asp.sahitya_srujani);
-        const jigyansa = resultNumber(asp.jigyansa);
-        const cca = resultNumber(asp.cca);
-        const kaushali = resultNumber(asp.kaushali);
+        // Calculate each component from all four quarters
+        const sahitya =
+          (resultNumber(asp.sahitya_srujani_q1) || 0) +
+          (resultNumber(asp.sahitya_srujani_q2) || 0) +
+          (resultNumber(asp.sahitya_srujani_q3) || 0) +
+          (resultNumber(asp.sahitya_srujani_q4) || 0);
 
-        const total = resultNumber(asp.total_marks) ??
-          ((sahitya || 0) + (jigyansa || 0) + (cca || 0) + (kaushali || 0));
+        const jigyansa =
+          (resultNumber(asp.jigyansa_q1) || 0) +
+          (resultNumber(asp.jigyansa_q2) || 0) +
+          (resultNumber(asp.jigyansa_q3) || 0) +
+          (resultNumber(asp.jigyansa_q4) || 0);
 
-        const grade = asp.final_grade || '';
-        const percentage = total !== null ? total : 0;
+        const kridangan =
+          (resultNumber(asp.kridangan_q1) || 0) +
+          (resultNumber(asp.kridangan_q2) || 0) +
+          (resultNumber(asp.kridangan_q3) || 0) +
+          (resultNumber(asp.kridangan_q4) || 0);
 
-        message.innerHTML='<p>✅ Result found successfully.</p>';
+        const kaushali =
+          (resultNumber(asp.kaushali_q1) || 0) +
+          (resultNumber(asp.kaushali_q2) || 0) +
+          (resultNumber(asp.kaushali_q3) || 0) +
+          (resultNumber(asp.kaushali_q4) || 0);
+
+        const total = sahitya + jigyansa + kridangan + kaushali;
+
+        const percentage = total;
+
+        const grade =
+          asp.final_grade ||
+          asp.grade ||
+          '—';
+
+        message.innerHTML =
+          '<p>✅ Result found successfully.</p>';
 
         details.innerHTML = `
-          <div class="info-box">
+          <div style="margin-top:15px">
+
             <p><strong>Class:</strong> ${studentClass}</p>
+
             <p><strong>Roll No.:</strong> ${asp.roll_no}</p>
-            <p><strong>Name:</strong> ${asp.student_name || '—'}</p>
+
+            <p><strong>Name:</strong> ${asp.student_name || asp.name || '—'}</p>
+
             <p><strong>Assessment:</strong> Aspirational Components</p>
+
             <hr>
 
-            <div style="overflow:auto">
-              <table style="width:100%;border-collapse:collapse;margin-top:15px">
-                <thead>
-                  <tr>
-                    <th style="padding:8px;border:1px solid #ccc">Component</th>
-                    <th style="padding:8px;border:1px solid #ccc">Marks</th>
-                    <th style="padding:8px;border:1px solid #ccc">Full Marks</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td style="padding:8px;border:1px solid #ccc"><strong>Sahitya Srujani</strong></td>
-                    <td style="padding:8px;border:1px solid #ccc">${sahitya ?? '—'}</td>
-                    <td style="padding:8px;border:1px solid #ccc">25</td>
-                  </tr>
-                  <tr>
-                    <td style="padding:8px;border:1px solid #ccc"><strong>Jigyansa</strong></td>
-                    <td style="padding:8px;border:1px solid #ccc">${jigyansa ?? '—'}</td>
-                    <td style="padding:8px;border:1px solid #ccc">25</td>
-                  </tr>
-                  <tr>
-                    <td style="padding:8px;border:1px solid #ccc"><strong>CCA</strong></td>
-                    <td style="padding:8px;border:1px solid #ccc">${cca ?? '—'}</td>
-                    <td style="padding:8px;border:1px solid #ccc">25</td>
-                  </tr>
-                  <tr>
-                    <td style="padding:8px;border:1px solid #ccc"><strong>Kaushali</strong></td>
-                    <td style="padding:8px;border:1px solid #ccc">${kaushali ?? '—'}</td>
-                    <td style="padding:8px;border:1px solid #ccc">25</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+            <table style="width:100%;border-collapse:collapse;margin-top:15px">
+
+              <thead>
+                <tr>
+                  <th style="padding:8px;border:1px solid #ccc">
+                    Component
+                  </th>
+
+                  <th style="padding:8px;border:1px solid #ccc">
+                    Marks
+                  </th>
+
+                  <th style="padding:8px;border:1px solid #ccc">
+                    Full Marks
+                  </th>
+                </tr>
+              </thead>
+
+              <tbody>
+
+                <tr>
+                  <td style="padding:8px;border:1px solid #ccc">
+                    <strong>Sahitya Srujani</strong>
+                  </td>
+
+                  <td style="padding:8px;border:1px solid #ccc">
+                    ${sahitya}
+                  </td>
+
+                  <td style="padding:8px;border:1px solid #ccc">
+                    25
+                  </td>
+                </tr>
+
+                <tr>
+                  <td style="padding:8px;border:1px solid #ccc">
+                    <strong>Jigyansa</strong>
+                  </td>
+
+                  <td style="padding:8px;border:1px solid #ccc">
+                    ${jigyansa}
+                  </td>
+
+                  <td style="padding:8px;border:1px solid #ccc">
+                    25
+                  </td>
+                </tr>
+
+                <tr>
+                  <td style="padding:8px;border:1px solid #ccc">
+                    <strong>Kridangan</strong>
+                  </td>
+
+                  <td style="padding:8px;border:1px solid #ccc">
+                    ${kridangan}
+                  </td>
+
+                  <td style="padding:8px;border:1px solid #ccc">
+                    25
+                  </td>
+                </tr>
+
+                <tr>
+                  <td style="padding:8px;border:1px solid #ccc">
+                    <strong>Kaushali</strong>
+                  </td>
+
+                  <td style="padding:8px;border:1px solid #ccc">
+                    ${kaushali}
+                  </td>
+
+                  <td style="padding:8px;border:1px solid #ccc">
+                    25
+                  </td>
+                </tr>
+
+              </tbody>
+
+            </table>
 
             <div style="margin-top:15px">
-              <p><strong>SECURED MARKS:</strong> ${total ?? '—'}</p>
-              <p><strong>FULL MARKS:</strong> 100</p>
-              <p><strong>PERCENTAGE:</strong> ${percentage}%</p>
-              <p><strong>GRADE:</strong> ${grade || '—'}</p>
+
+              <p>
+                <strong>SECURED MARKS:</strong>
+                ${total}
+              </p>
+
+              <p>
+                <strong>FULL MARKS:</strong>
+                100
+              </p>
+
+              <p>
+                <strong>PERCENTAGE:</strong>
+                ${percentage}%
+              </p>
+
+              <p>
+                <strong>GRADE:</strong>
+                ${grade}
+              </p>
+
             </div>
+
           </div>
         `;
 
         return;
-      }
-    try {
+   }
+try {
 
       // Table name
       const tableName =
