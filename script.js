@@ -1044,24 +1044,26 @@ const RESULT_ASSESSMENTS = {
     ["UT4", "Unit Test 4", "VIII UT-4"]
     ],
 
-  IX: [
-    ["FA1", "Formative Assessment 1", "IX FA-1"],
-    ["FA2", "Formative Assessment 2", "IX FA-2"],
-    ["FA3", "Formative Assessment 3", "IX FA-3"],
-    ["FA4", "Formative Assessment 4", "IX FA-4"],
-    ["HALF_YEARLY", "Half Yearly", "IX Half-Yearly"],
-    ["ANNUAL", "Annual", "IX Annual"]
-  ],
+IX: [
+  ["FA1", "Formative Assessment 1", "IX FA-1"],
+  ["FA2", "Formative Assessment 2", "IX FA-2"],
+  ["FA3", "Formative Assessment 3", "IX FA-3"],
+  ["FA4", "Formative Assessment 4", "IX FA-4"],
+  ["HALF_YEARLY", "Half Yearly", "IX Half-Yearly"],
+  ["ANNUAL", "Annual", "IX Annual"],
+  ["ASPIRATIONAL", "Aspirational Components", "IX Aspirational Components"]
+],
 
-  X: [
-    ["FA1", "Formative Assessment 1", "X FA-1"],
-    ["FA2", "Formative Assessment 2", "X FA-2"],
-    ["FA3", "Formative Assessment 3", "X FA-3"],
-    ["FA4", "Formative Assessment 4", "X FA-4"],
-    ["HALF_YEARLY", "Half Yearly", "X Half-Yearly"],
-    ["ANNUAL", "Annual", "X Annual"]
-  ]
-};
+X: [
+  ["FA1", "Formative Assessment 1", "X FA-1"],
+  ["FA2", "Formative Assessment 2", "X FA-2"],
+  ["FA3", "Formative Assessment 3", "X FA-3"],
+  ["FA4", "Formative Assessment 4", "X FA-4"],
+  ["HALF_YEARLY", "Half Yearly", "X Half-Yearly"],
+  ["ANNUAL", "Annual", "X Annual"],
+  ["ASPIRATIONAL", "Aspirational Components", "X Aspirational Components"]
+]
+  };
 
 
 // Populate assessment list according to class
