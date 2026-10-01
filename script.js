@@ -480,7 +480,20 @@ if (
 
         </div>
     `;
+    // PDF BUTTON FOR ASPIRATIONAL COMPONENTS
+    const pdfButton = document.createElement("button");
 
+    pdfButton.type = "button";
+    pdfButton.className = "btn primary";
+    pdfButton.style.marginTop = "18px";
+    pdfButton.textContent =
+        "📥 DOWNLOAD / SAVE RESULT AS PDF";
+
+    details.appendChild(pdfButton);
+
+    pdfButton.onclick = async function () {
+        alert("PDF button is working.");
+    };
     return;
 }               
 
