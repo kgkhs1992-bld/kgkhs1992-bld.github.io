@@ -1714,33 +1714,60 @@ async function previewStudentResults() {
       meta;
 
 
-    // Preview columns
+// Preview columns
 const columns =
-  meta.classValue === "VIII"
-    ? [
-        ["roll_no", "Roll No."],
-        ["student_name", "Student Name"],
-        ["mil_odia", "MIL (Odia)"],
-        ["english", "English"],
-        ["hindi_sanskrit", "Hindi/Sanskrit"],
-        ["mathematics", "Mathematics"],
-        ["science", "Science"],
-        ["history", "History"],
-        ["geography", "Geography"],
-        ["drawing", "Drawing"],
-        ["total", "Grand Total"]
-      ]
-    : [
-        ["roll_no", "Roll No."],
-        ["student_name", "Student Name"],
-        ["mil_odia", "MIL (Odia)"],
-        ["english", "English"],
-        ["hindi_sanskrit", "Hindi/Sanskrit"],
-        ["mathematics", "Mathematics"],
-        ["science", "Science"],
-        ["social_science", "Social Science"],
-        ["total", "Grand Total"]
-      ];
+    meta.assessmentValue === "ASPIRATIONAL"
+        ? [
+            ["roll_no", "Roll No."],
+            ["student_name", "Student Name"],
+
+            ["sahitya_srujani_q1", "Sahitya Srujani Q1"],
+            ["sahitya_srujani_q2", "Sahitya Srujani Q2"],
+            ["sahitya_srujani_q3", "Sahitya Srujani Q3"],
+            ["sahitya_srujani_q4", "Sahitya Srujani Q4"],
+
+            ["jigyansa_q1", "Jigyansa Q1"],
+            ["jigyansa_q2", "Jigyansa Q2"],
+            ["jigyansa_q3", "Jigyansa Q3"],
+            ["jigyansa_q4", "Jigyansa Q4"],
+
+            ["kridangan_q1", "Kridangan Q1"],
+            ["kridangan_q2", "Kridangan Q2"],
+            ["kridangan_q3", "Kridangan Q3"],
+            ["kridangan_q4", "Kridangan Q4"],
+
+            ["kaushali_q1", "Kaushali Q1"],
+            ["kaushali_q2", "Kaushali Q2"],
+            ["kaushali_q3", "Kaushali Q3"],
+            ["kaushali_q4", "Kaushali Q4"],
+
+            ["total", "Grand Total"]
+        ]
+        : meta.classValue === "VIII"
+        ? [
+            ["roll_no", "Roll No."],
+            ["student_name", "Student Name"],
+            ["mil_odia", "MIL (Odia)"],
+            ["english", "English"],
+            ["hindi_sanskrit", "Hindi/Sanskrit"],
+            ["mathematics", "Mathematics"],
+            ["science", "Science"],
+            ["history", "History"],
+            ["geography", "Geography"],
+            ["drawing", "Drawing"],
+            ["total", "Grand Total"]
+        ]
+        : [
+            ["roll_no", "Roll No."],
+            ["student_name", "Student Name"],
+            ["mil_odia", "MIL (Odia)"],
+            ["english", "English"],
+            ["hindi_sanskrit", "Hindi/Sanskrit"],
+            ["mathematics", "Mathematics"],
+            ["science", "Science"],
+            ["social_science", "Social Science"],
+            ["total", "Grand Total"]
+        ];
 
 
     const header =
