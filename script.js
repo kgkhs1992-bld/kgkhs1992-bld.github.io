@@ -304,7 +304,7 @@ if (!/^471CA\d{2,3}$/.test(pin)) {
       // ===============================
       // ASPIRATIONAL COMPONENTS RESULT
       // ===============================
-      if (selected === 'ASPIRATIONAL_COMPONENTS' || assessment === 'Aspirational Components') {
+ if (selectedAssessment === 'ASPIRATIONAL' || assessment === 'Aspirational Components') {
         const { data: aspRows, error: aspError } = await supabaseClient
           .from('aspirational_components')
           .select('*')
@@ -319,7 +319,6 @@ if (!/^471CA\d{2,3}$/.test(pin)) {
           message.innerHTML='<p>❌ Aspirational Components result not found.</p>';
           return;
         }
-
         const asp = aspRows[0];
 
         const sahitya = resultNumber(asp.sahitya_srujani);
