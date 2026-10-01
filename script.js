@@ -1283,54 +1283,53 @@ function makeStudentResultPayload(
     "";
 
 
-  if (
+ if (
     roll === undefined ||
     roll === "" ||
     !name
-  ) {
+) {
     return null;
-  }
+}
 
-
-  const payload = {
+const payload = {
 
     roll_no: Number(roll),
 
     pin:
-      String(
-        r.pin ||
-        (
-          "471CA" +
-          String(roll)
-            .trim()
-            .padStart(2, "0")
+        String(
+            r.pin ||
+            (
+                "471CA" +
+                String(roll)
+                    .trim()
+                    .padStart(2, "0")
+            )
         )
-      )
-      .trim()
-      .toUpperCase(),
+        .trim()
+        .toUpperCase(),
 
     student_name:
-      String(name).trim(),
+        String(name).trim(),
 
-  assessment:
-  meta.classValue === "VIII"
-    ? meta.assessmentValue
-    : meta.assessmentLabel
-  };
+    assessment:
+        meta.classValue === "VIII"
+            ? meta.assessmentValue
+            : meta.assessmentLabel
+};
 
 
-  // Normal single-mark subjects
-// ============================================================
-// MARK FIELDS AND TOTAL CALCULATION
-// ============================================================
 
+// =====================================================
 // ASPIRATIONAL COMPONENTS — CLASS IX / X
+// =====================================================
+
 if (
     (meta.classValue === "IX" || meta.classValue === "X") &&
     meta.assessmentValue === "ASPIRATIONAL"
 ) {
 
     const aspirationalFields = [
+
         "sahitya_srujani_q1",
         "sahitya_srujani_q2",
         "sahitya_srujani_q3",
@@ -1353,25 +1352,24 @@ if (
     ];
 
     let aspirationalTotal = 0;
-    let hasAspirationalMarks = false;
 
     aspirationalFields.forEach(field => {
 
         if (
             r[field] !== undefined &&
+            r[field] !== null &&
             r[field] !== ""
         ) {
-            const mark = resultMark(r[field]);
 
-            if (mark !== null) {
-                payload[field] = mark;
-                aspirationalTotal += mark;
-                hasAspirationalMarks = true;
-            }
+            payload[field] =
+                resultMark(r[field]);
+
+            aspirationalTotal +=
+                resultMark(r[field]) ?? 0;
         }
+
     });
 
-    // Club totals
     payload.sahitya_srujani =
         (payload.sahitya_srujani_q1 ?? 0) +
         (payload.sahitya_srujani_q2 ?? 0) +
@@ -1403,9 +1401,10 @@ if (
 }
 
 
-// ============================================================
+
+// =====================================================
 // NORMAL MARKS — CLASS VIII / IX / X
-// ============================================================
+// =====================================================
 
 const fields = [
     "mil_odia",
@@ -1425,15 +1424,19 @@ fields.forEach(field => {
         r[field] !== undefined &&
         r[field] !== ""
     ) {
-        payload[field] = resultMark(r[field]);
+
+        payload[field] =
+            resultMark(r[field]);
+
     }
 
 });
 
 
-// ============================================================
+
+// =====================================================
 // CLASS VIII TOTAL
-// ============================================================
+// =====================================================
 
 if (meta.classValue === "VIII") {
 
@@ -1448,6 +1451,165 @@ if (meta.classValue === "VIII") {
         "drawing"
     ];
 
+    payload.total =
+        totalSubjects.reduce(
+            (sum, field) =>
+                sum + (payload[field] ?? 0),
+            0
+        );
+
+}
+
+
+
+// =====================================================
+// CLASS IX / X FORMATIVE ASSESSMENTS
+// =====================================================
+
+else if (
+    (meta.classValue === "IX" ||
+     meta.classValue === "X") &&
+    ["FA1", "FA2", "FA3", "FA4"]
+        .includes(meta.assessmentValue)
+) {
+
+    const totalSubjects = [
+        "mil_odia",
+        "english",
+        "hindi_sanskrit",
+        "mathematics",
+        "science",
+        "social_science"
+    ];
+
+    payload.total =
+        totalSubjects.reduce(
+            (sum, field) =>
+                sum + (payload[field] ?? 0),
+            0
+        );
+
+}
+
+
+
+// =====================================================
+// CLASS IX / X HALF-YEARLY / ANNUAL
+// SUBJECTIVE + OBJECTIVE
+// =====================================================
+
+else if (
+    (meta.classValue === "IX" ||
+     meta.classValue === "X") &&
+    ["HALF_YEARLY", "ANNUAL"]
+        .includes(meta.assessmentValue)
+) {
+
+    const subjectPairs = [
+
+        [
+            "mil_odia",
+            "mil_odia_sub",
+            "mil_odia_obj"
+        ],
+
+        [
+            "english",
+            "english_sub",
+            "english_obj"
+        ],
+
+        [
+            "hindi_sanskrit",
+            "hindi_sanskrit_sub",
+            "hindi_sanskrit_obj"
+        ],
+
+        [
+            "mathematics",
+            "mathematics_sub",
+            "mathematics_obj"
+        ],
+
+        [
+            "science",
+            "science_sub",
+            "science_obj"
+        ],
+
+        [
+            "social_science",
+            "social_science_sub",
+            "social_science_obj"
+        ]
+
+    ];
+
+    let calculatedTotal = 0;
+    let hasMarks = false;
+
+    subjectPairs.forEach(pair => {
+
+        const subject =
+            pair[0];
+
+        const sub =
+            resultMark(r[pair[1]]);
+
+        const obj =
+            resultMark(r[pair[2]]);
+
+        if (
+            sub !== null ||
+            obj !== null
+        ) {
+
+            const total =
+                (sub || 0) +
+                (obj || 0);
+
+            payload[subject] =
+                total;
+
+            if (sub !== null) {
+                payload[pair[1]] =
+                    sub;
+            }
+
+            if (obj !== null) {
+                payload[pair[2]] =
+                    obj;
+            }
+
+            calculatedTotal +=
+                total;
+
+            hasMarks = true;
+        }
+
+    });
+
+    if (
+        hasMarks &&
+        (
+            payload.total === undefined ||
+            payload.total === null
+        )
+    ) {
+
+        payload.total =
+            calculatedTotal;
+
+    }
+
+    payload.total =
+        calculatedTotal;
+
+    payload.full_marks =
+        600;
+}
+
+return payload;
     payload.total = totalSubjects.reduce(
         (sum, field) => sum + (payload[field] ?? 0),
         0
