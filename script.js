@@ -482,7 +482,7 @@ if (
     `;
 
     return;
-}               try {
+}               
 
       // Table name
       const tableName =
