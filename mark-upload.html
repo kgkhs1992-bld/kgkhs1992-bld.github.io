@@ -307,7 +307,6 @@ function render(){
   `;
 
  /* CALCULATE TOTAL + GRADE */
-
 marksTable.querySelectorAll("tbody tr").forEach(tr => {
 
     const inputs = tr.querySelectorAll(".mark");
@@ -315,36 +314,91 @@ marksTable.querySelectorAll("tbody tr").forEach(tr => {
     const calculateRow = () => {
 
         let total = 0;
-        let hasMarks = false;
+        let hasAnyMarks = false;
 
         inputs.forEach(input => {
 
-            const value = input.value.trim();
+            if (input.value !== "") {
+                const value = Number(input.value);
 
-            if (value !== "" && Number.isFinite(Number(value))) {
-                total += Number(value);
-                hasMarks = true;
+                if (Number.isFinite(value)) {
+                    total += value;
+                    hasAnyMarks = true;
+                }
             }
 
         });
 
-        const totalCell = tr.querySelector(".row-total");
-        const gradeCell = tr.querySelector(".row-grade");
-
-        /* KEEP TOTAL AND GRADE BLANK WHEN NO MARKS ARE ENTERED */
-
-        if (!hasMarks) {
-            totalCell.textContent = "";
-            gradeCell.textContent = "";
-            return;
-        }
-
         /* SHOW TOTAL */
+        tr.querySelector(".row-total").textContent = total;
 
-        totalCell.textContent = total;
+        /*
+         * ASPIRATIONAL COMPONENTS
+         * 4 clubs × 25 marks = 100 marks
+         */
+        const isAspirational =
+            pat.label === "Aspirational Components";
+
+        /*
+         * For Aspirational:
+         * Maximum = 100
+         *
+         * For normal examinations:
+         * Maximum = per-subject/full-mark × number of subjects
+         */
+        const fullMarks = isAspirational
+            ? 100
+            : Number(pat.max || 100) * inputs.length;
 
         /* CALCULATE PERCENTAGE */
+        const percentage = fullMarks > 0
+            ? (total / fullMarks) * 100
+            : 0;
 
+        /* EXISTING SCHOOL / BOARD GRADING SCALE */
+        let grade = "";
+
+        if (hasAnyMarks) {
+
+            if (percentage >= 90) {
+                grade = "A1";
+            }
+            else if (percentage >= 80) {
+                grade = "A2";
+            }
+            else if (percentage >= 70) {
+                grade = "B1";
+            }
+            else if (percentage >= 60) {
+                grade = "B2";
+            }
+            else if (percentage >= 50) {
+                grade = "C";
+            }
+            else if (percentage >= 40) {
+                grade = "D";
+            }
+            else if (percentage >= 33) {
+                grade = "E";
+            }
+            else {
+                grade = "F";
+            }
+
+        }
+
+        tr.querySelector(".row-grade").textContent = grade;
+    };
+
+    /* UPDATE TOTAL + GRADE WHEN MARKS ARE ENTERED */
+    inputs.forEach(input => {
+        input.addEventListener("input", calculateRow);
+    });
+
+    /* CALCULATE INITIAL VALUES */
+    calculateRow();
+
+});
         const fullMarks =
             Number(pat.max || 100) * inputs.length;
 
