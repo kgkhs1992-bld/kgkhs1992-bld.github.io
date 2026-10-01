@@ -210,18 +210,155 @@ function hasExistingMarks(r){
 
 
 function render(){
-  const p=pat();if(!p)return;const d=draft(),q=search.value.trim().toLowerCase();
-  let fields=p.half?[["mil_odia_sub","MIL Sub"],["mil_odia_obj","MIL Obj"],["english_sub","English Sub"],["english_obj","English Obj"],["hindi_sanskrit_sub","Hindi/Skt Sub"],["hindi_sanskrit_obj","Hindi/Skt Obj"],["mathematics_sub","Math Sub"],["mathematics_obj","Math Obj"],["science_sub","Science Sub"],["science_obj","Science Obj"],["social_science_sub","Social Sub"],["social_science_obj","Social Obj"]]:p.fields;
-  let h="<thead><tr><th>Roll</th><th>Student Name</th>"+fields.map(x=>"<th>"+x[1]+"</th>").join("")+(p.half?"":"<th>Total</th>")+"</tr></thead><tbody>";
-  roster.filter(r=>!q||String(r.roll).includes(q)||r.name.toLowerCase().includes(q)).forEach(r=>{
-    const e=existingRows.get(r.roll)||{},z=d[r.roll]||{};h+=`<tr data-roll="${r.roll}"><td>${r.roll}</td><td class="student">${esc(r.name)}</td>`;
-    fields.forEach(([f])=>{const v=z[f]??(e[f]??"");h+=`<td><input class="mark" type="number" min="0" max="${p.half?50:p.per}" step="1" data-field="${f}" value="${v}"></td>`});
-    if(!p.half){let t=0;fields.forEach(([f])=>{const v=z[f]??(e[f]??"");if(v!=="")t+=Number(v)||0});h+=`<td class="total">${t||""}</td>`}h+="</tr>";
-  });marksTable.innerHTML=h+"</tbody>";
-  marksTable.querySelectorAll(".mark").forEach(i=>i.addEventListener("input",()=>{let n=Number(i.value);if(i.value!==""&&Number.isFinite(n)){n=Math.max(0,Math.min(Number(i.max),Math.round(n)));i.value=String(n)}
-    if(!p.half){let t=0;i.closest("tr").querySelectorAll(".mark").forEach(m=>{if(m.value!=="")t+=Number(m.value)||0});i.closest("tr").querySelector(".total").textContent=t||""}
-  }));
-  tableCard.classList.remove("hidden");document.getElementById("tableTitle").innerHTML="<h2>"+esc(p.label)+" — Class "+classSelect.value+"</h2><p class='small'>Enter marks in the sheet. Save Draft before submitting when needed.</p>";
+
+  const q=(p)=>{if(p)return;const d=qDraft();return d};
+  const search=(document.getElementById("search")?.value||"").trim().toLowerCase();
+
+  const pat=patterns[classSelect.value]?.[examSelect.value];
+  if(!pat) return;
+
+  const fields = pat.half
+    ? [
+        "mil_odia_sub","mil_odia_obj",
+        "english_sub","english_obj",
+        "hindi_sanskrit_sub","hindi_sanskrit_obj",
+        "math_sub","math_obj",
+        "science_sub","science_obj",
+        "history_sub","history_obj",
+        "geography_sub","geography_obj"
+      ]
+    : (pat.fields || []).map(x=>x[0]);
+
+  const rows = roster
+    .filter(r=>{
+      if(!search) return true;
+      return String(r.roll_no).includes(search) ||
+             String(r.name).toLowerCase().includes(search);
+    })
+    .map(r=>{
+
+      const existing = existingRows.get(r.roll_no) || {};
+      let html = `
+        <tr data-roll="${esc(r.roll_no)}">
+          <td class="roll">${esc(r.roll_no)}</td>
+          <td class="student">${esc(r.name)}</td>
+      `;
+
+      fields.forEach(f=>{
+        const value =
+          existing[f] !== null &&
+          existing[f] !== undefined &&
+          existing[f] !== ""
+            ? existing[f]
+            : "";
+
+        html += `
+          <td>
+            <input
+              class="mark"
+              type="number"
+              min="0"
+              max="${pat.max || 100}"
+              data-field="${f}"
+              value="${value}"
+            >
+          </td>
+        `;
+      });
+
+      /* TOTAL */
+      html += `
+        <td class="total-cell">
+          <strong class="row-total">0</strong>
+        </td>
+      `;
+
+      /* GRADE */
+      html += `
+        <td class="grade-cell">
+          <strong class="row-grade">-</strong>
+        </td>
+      `;
+
+      html += `</tr>`;
+
+      return html;
+    })
+    .join("");
+
+  marksTable.innerHTML = `
+    <thead>
+      <tr>
+        <th>Roll</th>
+        <th>Student Name</th>
+        ${fields.map(f=>{
+          const label =
+            (pat.fields || []).find(x=>x[0]===f)?.[1] || f;
+          return `<th>${esc(label)}</th>`;
+        }).join("")}
+        <th>Total</th>
+        <th>Grade</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      ${rows}
+    </tbody>
+  `;
+
+  /* CALCULATE TOTAL + GRADE */
+  marksTable.querySelectorAll("tbody tr").forEach(tr=>{
+
+    const inputs = tr.querySelectorAll(".mark");
+
+    const calculateRow = ()=>{
+
+      let total = 0;
+
+      inputs.forEach(input=>{
+        const value = Number(input.value);
+        if(Number.isFinite(value)){
+          total += value;
+        }
+      });
+
+      tr.querySelector(".row-total").textContent = total;
+
+      /*
+       * Grade calculation
+       * Same grading scale already used in the result system.
+       */
+      const fullMarks = Number(pat.max || 100) * inputs.length;
+
+      const percentage =
+        fullMarks > 0
+          ? (total / fullMarks) * 100
+          : 0;
+
+      let grade = "";
+
+      if(percentage >= 90) grade = "A1";
+      else if(percentage >= 80) grade = "A2";
+      else if(percentage >= 70) grade = "B1";
+      else if(percentage >= 60) grade = "B2";
+      else if(percentage >= 50) grade = "C";
+      else if(percentage >= 40) grade = "D";
+      else grade = "E";
+
+      tr.querySelector(".row-grade").textContent = grade;
+    };
+
+    inputs.forEach(input=>{
+      input.addEventListener("input", calculateRow);
+    });
+
+    calculateRow();
+  });
+
+  tableCard.classList.remove("hidden");
+
+  document.getElementById("tableTitle").innerHTML =
+    `<h2>${esc(pat.label)} — ${esc(classSelect.value)}</h2>`;
 }
 function current(){
   const d=draft();
