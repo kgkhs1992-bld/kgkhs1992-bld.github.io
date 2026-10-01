@@ -1628,7 +1628,6 @@ function escapeResultHtml(value) {
 
 }
 
-
 // =====================================
 // STEP 1 — READ EXCEL AND PREVIEW
 // =====================================
