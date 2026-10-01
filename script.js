@@ -1147,11 +1147,13 @@ function getSelectedResultAssessment() {
 function normalizeResultKey(value) {
   const key = String(value ?? "")
     .trim()
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "_")
-    .replace(/^_+|_+$/g, "");
+ 
+.toLowerCase()
+.replace(/[^a-z0-9]+/g, "_")
+.replace(/^_+|_+$/g, "");
 
- const aliases = {
+const aliases = {
+
   "mil_odia_total": "mil_odia",
   "mil_odia_marks": "mil_odia",
   "mil_odia_subj": "mil_odia_sub",
@@ -1186,24 +1188,55 @@ function normalizeResultKey(value) {
 
   "english_total": "english",
   "english_marks": "english",
+
   "hindi_sanskrit_total": "hindi_sanskrit",
   "hindi_sanskrit_marks": "hindi_sanskrit",
+
   "mathematics_total": "mathematics",
   "mathematics_marks": "mathematics",
+
   "science_total": "science",
   "science_marks": "science",
+
   "history_total": "history",
   "history_marks": "history",
+
   "geography_total": "geography",
   "geography_marks": "geography",
+
   "drawing_total": "drawing",
   "drawing_marks": "drawing",
-  "social_science_total": "social_science",
-  "social_science_marks": "social_science"
-};
-  return aliases[key] || key;
-}
 
+  "social_science_total": "social_science",
+  "social_science_marks": "social_science",
+
+  // ================================
+  // ASPIRATIONAL COMPONENTS
+  // ================================
+
+  "sahitya_srujani_q1": "sahitya_srujani_q1",
+  "sahitya_srujani_q2": "sahitya_srujani_q2",
+  "sahitya_srujani_q3": "sahitya_srujani_q3",
+  "sahitya_srujani_q4": "sahitya_srujani_q4",
+
+  "jigyansa_q1": "jigyansa_q1",
+  "jigyansa_q2": "jigyansa_q2",
+  "jigyansa_q3": "jigyansa_q3",
+  "jigyansa_q4": "jigyansa_q4",
+
+  "kridangan_q1": "kridangan_q1",
+  "kridangan_q2": "kridangan_q2",
+  "kridangan_q3": "kridangan_q3",
+  "kridangan_q4": "kridangan_q4",
+
+  "kaushali_q1": "kaushali_q1",
+  "kaushali_q2": "kaushali_q2",
+  "kaushali_q3": "kaushali_q3",
+  "kaushali_q4": "kaushali_q4"
+};
+
+return aliases[key] || key;
+}
 
 // Convert marks to number
 function resultMark(value) {
@@ -1287,8 +1320,94 @@ function makeStudentResultPayload(
 
 
   // Normal single-mark subjects
-  const fields = [
+// ============================================================
+// MARK FIELDS AND TOTAL CALCULATION
+// ============================================================
 
+// ASPIRATIONAL COMPONENTS — CLASS IX / X
+if (
+    (meta.classValue === "IX" || meta.classValue === "X") &&
+    meta.assessmentValue === "ASPIRATIONAL"
+) {
+
+    const aspirationalFields = [
+        "sahitya_srujani_q1",
+        "sahitya_srujani_q2",
+        "sahitya_srujani_q3",
+        "sahitya_srujani_q4",
+
+        "jigyansa_q1",
+        "jigyansa_q2",
+        "jigyansa_q3",
+        "jigyansa_q4",
+
+        "kridangan_q1",
+        "kridangan_q2",
+        "kridangan_q3",
+        "kridangan_q4",
+
+        "kaushali_q1",
+        "kaushali_q2",
+        "kaushali_q3",
+        "kaushali_q4"
+    ];
+
+    let aspirationalTotal = 0;
+    let hasAspirationalMarks = false;
+
+    aspirationalFields.forEach(field => {
+
+        if (
+            r[field] !== undefined &&
+            r[field] !== ""
+        ) {
+            const mark = resultMark(r[field]);
+
+            if (mark !== null) {
+                payload[field] = mark;
+                aspirationalTotal += mark;
+                hasAspirationalMarks = true;
+            }
+        }
+    });
+
+    // Club totals
+    payload.sahitya_srujani =
+        (payload.sahitya_srujani_q1 ?? 0) +
+        (payload.sahitya_srujani_q2 ?? 0) +
+        (payload.sahitya_srujani_q3 ?? 0) +
+        (payload.sahitya_srujani_q4 ?? 0);
+
+    payload.jigyansa =
+        (payload.jigyansa_q1 ?? 0) +
+        (payload.jigyansa_q2 ?? 0) +
+        (payload.jigyansa_q3 ?? 0) +
+        (payload.jigyansa_q4 ?? 0);
+
+    payload.kridangan =
+        (payload.kridangan_q1 ?? 0) +
+        (payload.kridangan_q2 ?? 0) +
+        (payload.kridangan_q3 ?? 0) +
+        (payload.kridangan_q4 ?? 0);
+
+    payload.kaushali =
+        (payload.kaushali_q1 ?? 0) +
+        (payload.kaushali_q2 ?? 0) +
+        (payload.kaushali_q3 ?? 0) +
+        (payload.kaushali_q4 ?? 0);
+
+    payload.total = aspirationalTotal;
+    payload.full_marks = 100;
+
+    return payload;
+}
+
+
+// ============================================================
+// NORMAL MARKS — CLASS VIII / IX / X
+// ============================================================
+
+const fields = [
     "mil_odia",
     "english",
     "hindi_sanskrit",
@@ -1297,154 +1416,141 @@ function makeStudentResultPayload(
     "history",
     "geography",
     "drawing",
-    "social_science",
-    
+    "social_science"
+];
 
-  ];
-
-
-  fields.forEach(field => {
+fields.forEach(field => {
 
     if (
-      r[field] !== undefined &&
-      r[field] !== ""
+        r[field] !== undefined &&
+        r[field] !== ""
     ) {
-
-      payload[field] =
-        resultMark(r[field]);
-
+        payload[field] = resultMark(r[field]);
     }
 
-  });
-// Automatically calculate totals
+});
+
+
+// ============================================================
+// CLASS VIII TOTAL
+// ============================================================
+
 if (meta.classValue === "VIII") {
 
-  const totalSubjects = [
-    "mil_odia",
-    "english",
-    "hindi_sanskrit",
-    "mathematics",
-    "science",
-    "history",
-    "geography",
-    "drawing"
-  ];
+    const totalSubjects = [
+        "mil_odia",
+        "english",
+        "hindi_sanskrit",
+        "mathematics",
+        "science",
+        "history",
+        "geography",
+        "drawing"
+    ];
 
-  payload.total = totalSubjects.reduce(
-    (sum, field) => sum + (payload[field] ?? 0),
-    0
-  );
-
-} else if (
-  (meta.classValue === "IX" || meta.classValue === "X") &&
-  ["FA1", "FA2", "FA3", "FA4"].includes(meta.assessmentValue)
-) {
-
-  const totalSubjects = [
-    "mil_odia",
-    "english",
-    "hindi_sanskrit",
-    "mathematics",
-    "science",
-    "social_science"
-  ];
-
-  payload.total = totalSubjects.reduce(
-    (sum, field) => sum + (payload[field] ?? 0),
-    0
-  );
+    payload.total = totalSubjects.reduce(
+        (sum, field) => sum + (payload[field] ?? 0),
+        0
+    );
 }
 
-  // Half-Yearly / Annual:
-  // combine Subjective + Objective
-  const subjectPairs = [
+
+// ============================================================
+// CLASS IX / X FORMATIVE ASSESSMENTS
+// ============================================================
+
+else if (
+    (meta.classValue === "IX" || meta.classValue === "X") &&
+    ["FA1", "FA2", "FA3", "FA4"].includes(meta.assessmentValue)
+) {
+
+    const totalSubjects = [
+        "mil_odia",
+        "english",
+        "hindi_sanskrit",
+        "mathematics",
+        "science",
+        "social_science"
+    ];
+
+    payload.total = totalSubjects.reduce(
+        (sum, field) => sum + (payload[field] ?? 0),
+        0
+    );
+
+    payload.full_marks = 300;
+}
+
+
+// ============================================================
+// CLASS IX / X HALF YEARLY / ANNUAL
+// SUBJECTIVE + OBJECTIVE
+// ============================================================
+
+const subjectPairs = [
 
     ["mil_odia", "mil_odia_sub", "mil_odia_obj"],
 
     ["english", "english_sub", "english_obj"],
 
-    [
-      "hindi_sanskrit",
-      "hindi_sanskrit_sub",
-      "hindi_sanskrit_obj"
-    ],
+    ["hindi_sanskrit", "hindi_sanskrit_sub", "hindi_sanskrit_obj"],
 
-    [
-      "mathematics",
-      "mathematics_sub",
-      "mathematics_obj"
-    ],
+    ["mathematics", "mathematics_sub", "mathematics_obj"],
 
-    [
-      "science",
-      "science_sub",
-      "science_obj"
-    ],
+    ["science", "science_sub", "science_obj"],
 
-    [
-      "social_science",
-      "social_science_sub",
-      "social_science_obj"
-    ]
+    ["social_science", "social_science_sub", "social_science_obj"]
 
-  ];
+];
 
+let calculatedTotal = 0;
+let hasMarks = false;
 
-  let calculatedTotal = 0;
-  let hasMarks = false;
-
-
-  subjectPairs.forEach(pair => {
+subjectPairs.forEach(pair => {
 
     const subject = pair[0];
+
     const sub = resultMark(r[pair[1]]);
     const obj = resultMark(r[pair[2]]);
 
-
     if (sub !== null || obj !== null) {
 
-      const total =
-        (sub || 0) +
-        (obj || 0);
+        const total =
+            (sub ?? 0) +
+            (obj ?? 0);
 
-      payload[subject] =
-        total;
-payload[pair[1]] = sub;
-payload[pair[2]] = obj;
-      calculatedTotal +=
-        total;
+        payload[subject] = total;
 
-      hasMarks = true;
+        if (sub !== null) {
+            payload[pair[1]] = sub;
+        }
 
+        if (obj !== null) {
+            payload[pair[2]] = obj;
+        }
+
+        calculatedTotal += total;
+        hasMarks = true;
     }
 
-  });
+});
 
 
-  if (
-    hasMarks &&
-    (
-      payload.total === undefined ||
-      payload.total === null
-    )
-  ) {
+// ============================================================
+// HALF YEARLY / ANNUAL
+// ============================================================
 
-    payload.total =
-      calculatedTotal;
-
-  }
-
-// Class IX/X Half-Yearly and Annual Full Marks
 if (
-  (meta.classValue === "IX" ||
-   meta.classValue === "X") &&
-  ["HALF_YEARLY", "ANNUAL"].includes(meta.assessmentValue) &&
-  hasMarks
+    (meta.classValue === "IX" || meta.classValue === "X") &&
+    ["HALF_YEARLY", "ANNUAL"].includes(meta.assessmentValue) &&
+    hasMarks
 ) {
-  payload.total = calculatedTotal;
-  payload.full_marks = 600;
+
+    payload.total = calculatedTotal;
+    payload.full_marks = 600;
 }
-  return payload;
+
+return payload;
 }
 
 
