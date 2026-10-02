@@ -1730,13 +1730,207 @@ Headmaster · Since 31 May 2026
 
 <section id="admin" class="section light">
   <div class="container">
-    <div class="section-heading">
-      <span class="eyebrow">🔐 SCHOOL ADMIN</span>
-      <h2>Administrator Login</h2>
-      <p>Authorized school administrator only.</p>
+    <div id="admin-cover" style="
+  text-align:center;
+  padding:30px 15px;
+">
+
+  <div style="
+    max-width:850px;
+    margin:auto;
+    background:linear-gradient(135deg,#fff8d9,#e4f8ff);
+    border-radius:28px;
+    padding:35px 25px;
+    box-shadow:0 10px 30px rgba(0,0,0,.12);
+  ">
+
+    <div style="
+      font-size:30px;
+      font-weight:bold;
+      line-height:1.5;
+      color:#123b55;
+    ">
+      ❤️ More contents → More learning → More progress
+      → A full life of success. 🌱📚✨
     </div>
 
-    <div class="admin-box">
+    <p style="
+      font-size:18px;
+      margin:20px 0;
+      color:#234;
+    ">
+      🏫 KGKHS Beldandia — Learning today,
+      building success for tomorrow. ❤️
+    </p>
+
+    <input
+      type="text"
+      id="admin-access-phrase"
+      placeholder="Type access phrase"
+      autocomplete="off"
+      style="
+        width:min(90%,380px);
+        padding:14px 16px;
+        border:2px solid #b8cbd5;
+        border-radius:12px;
+        font-size:16px;
+        text-align:center;
+        outline:none;
+      "
+    >
+
+  </div>
+
+</div>
+<section id="admin" class="section light">
+
+  <div class="container">
+
+    <!-- ADMIN COVER -->
+    <div id="admin-cover"
+         style="
+           max-width:900px;
+           margin:0 auto;
+           padding:40px 22px;
+           text-align:center;
+           border-radius:30px;
+           background:linear-gradient(135deg,#061b4f,#075a96,#08b9eb);
+           color:white;
+           box-shadow:0 15px 40px rgba(0,50,100,.25);
+           transition:opacity .7s ease, transform .7s ease;
+         ">
+
+      <div style="
+        font-size:55px;
+        margin-bottom:10px;
+      ">
+        🔐
+      </div>
+
+      <h2 style="
+        margin:8px 0;
+        color:white;
+        font-size:clamp(28px,6vw,44px);
+      ">
+        SCHOOL ADMIN
+      </h2>
+
+      <p style="
+        font-size:18px;
+        line-height:1.6;
+        margin:12px auto 22px;
+        max-width:650px;
+      ">
+        Authorized school administration area
+      </p>
+
+      <div style="
+        background:rgba(255,255,255,.14);
+        border:1px solid rgba(255,255,255,.3);
+        border-radius:22px;
+        padding:22px 18px;
+        max-width:520px;
+        margin:0 auto;
+      ">
+
+        <strong style="
+          display:block;
+          font-size:20px;
+          margin-bottom:12px;
+        ">
+          🌟 SCHOOL ADMINISTRATION 🌟
+        </strong>
+
+        <p style="
+          font-size:14px;
+          margin:0 0 15px;
+          opacity:.9;
+        ">
+          This area is restricted to authorized school administration.
+        </p>
+
+        <input
+          type="text"
+          id="admin-access-phrase"
+          placeholder="Type access phrase"
+          autocomplete="off"
+          style="
+            width:min(90%,380px);
+            padding:14px 16px;
+            border:2px solid #ffffff;
+            border-radius:12px;
+            font-size:16px;
+            text-align:center;
+            outline:none;
+            box-sizing:border-box;
+          "
+        >
+
+        <p style="
+          margin:12px 0 0;
+          font-size:13px;
+          opacity:.8;
+        ">
+          🔒 Authorized access only
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <!-- SECRET PHRASE ACTIVATION -->
+    <script>
+    (function () {
+
+      const phraseBox =
+        document.getElementById("admin-access-phrase");
+
+      const adminCover =
+        document.getElementById("admin-cover");
+
+      const adminLoginArea =
+        document.getElementById("admin-login-area");
+
+      if (phraseBox && adminCover && adminLoginArea) {
+
+        phraseBox.addEventListener("input", function () {
+
+          if (this.value.trim() === "kgkhs_beldandia") {
+
+            adminCover.style.opacity = "0";
+            adminCover.style.transform = "scale(.96)";
+
+            setTimeout(function () {
+
+              adminCover.style.display = "none";
+
+              adminLoginArea.style.display = "block";
+              adminLoginArea.style.opacity = "0";
+              adminLoginArea.style.transform = "translateY(15px)";
+
+              requestAnimationFrame(function () {
+                adminLoginArea.style.transition =
+                  "opacity .6s ease, transform .6s ease";
+
+                adminLoginArea.style.opacity = "1";
+                adminLoginArea.style.transform = "translateY(0)";
+              });
+
+            }, 700);
+
+          }
+
+        });
+
+      }
+
+    })();
+    </script>
+
+
+    <!-- KEEP YOUR EXISTING ADMIN LOGIN FROM LINE 1786 -->
+<div class="admin-box" id="admin-login-area" style="display:none;">
 
       <div id="login-box">
         <input type="email" id="admin-email" placeholder="Admin Email">
