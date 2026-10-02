@@ -798,12 +798,13 @@ pdfButton.onclick = async function () {
 
     // SAVE PDF
     doc.save(
-        "KGKHS_Aspirational_Result_" +
-        (data.student_name || "Student") +
-        "_" +
-        data.roll_no +
-        ".pdf"
-    );
+    doc.save(
+    "KGKHS_Aspirational_Result_" +
+    (asp.student_name || "Student") +
+    "_" +
+    asp.roll_no +
+    ".pdf"
+);
 };
 
 return;
