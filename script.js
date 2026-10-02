@@ -686,9 +686,9 @@ pdfButton.onclick = async function () {
     doc.text(
         "Result Published on : " +
         (
-            data.result_publication_date
+             asp.result_publication_date
                 ? new Date(
-                    data.result_publication_date
+                    asp.result_publication_date
                   ).toLocaleDateString("en-IN")
                 : "Not available"
         ),
