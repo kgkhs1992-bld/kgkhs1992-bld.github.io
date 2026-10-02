@@ -310,7 +310,7 @@ if (
 ) {
 
     const { data: aspRows, error: aspError } = await supabaseClient
-        .from("class_ix_results")
+        .from(`class_${studentClass.toLowerCase()}_results`)
 .select("*")
 .eq("roll_no", Number(rollNo))
 .eq("pin", pin)
