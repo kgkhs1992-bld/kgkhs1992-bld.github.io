@@ -1108,11 +1108,7 @@ doc.text("Sign of HM", 150, y);
 document.head.appendChild(script);
   
      };
-    } catch (err) {
-
-      message.innerHTML =
-        "<p>⚠️ Something went wrong. Please try again.</p>";
-    }
+ 
 
   });
 
