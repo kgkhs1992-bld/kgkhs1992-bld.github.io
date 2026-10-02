@@ -797,7 +797,7 @@ pdfButton.onclick = async function () {
     }
 
     // SAVE PDF
-    doc.save(
+   
     doc.save(
     "KGKHS_Aspirational_Result_" +
     (asp.student_name || "Student") +
