@@ -551,7 +551,7 @@ pdfButton.onclick = async function () {
     y += 7;
 
     doc.text(
-        "Class : " + (data.class || studentClass || "IX"),
+       "Class : " + (studentClass || "IX"),
         15,
         y
     );
