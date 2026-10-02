@@ -543,7 +543,7 @@ pdfButton.onclick = async function () {
 
     // STUDENT DETAILS
     doc.text(
-        "Student Name : " + (data.student_name || "—"),
+        "Student Name : " + (asp.student_name || "—"),
         15,
         y
     );
@@ -559,7 +559,7 @@ pdfButton.onclick = async function () {
     y += 7;
 
     doc.text(
-        "Roll No. : " + (data.roll_no || rollNo),
+        "Roll No. : " + (asp.roll_no|| rollNo),
         15,
         y
     );
