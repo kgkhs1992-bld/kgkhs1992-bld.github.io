@@ -480,21 +480,7 @@ if (
 
         </div>
     `;
-    // PDF BUTTON FOR ASPIRATIONAL COMPONENTS
-    const pdfButton = document.createElement("button");
 
-    pdfButton.type = "button";
-    pdfButton.className = "btn primary";
-    pdfButton.style.marginTop = "18px";
-    pdfButton.textContent =
-        "📥 DOWNLOAD / SAVE RESULT AS PDF";
-
-    details.appendChild(pdfButton);
-
-    pdfButton.onclick = async function () {
-        alert("PDF button is working.");
-    };
-    return;
 }               
 
       // Table name
@@ -503,16 +489,26 @@ if (
 
 
       // Search result table
-      const { data: rows, error } = await supabaseClient
+const searchPin = String(pin || "").trim();
+const searchAssessment = String(assessment || "").trim();
+
+const { data: rows, error } = await supabaseClient
   .from(tableName)
   .select("*")
   .eq("roll_no", Number(rollNo))
-  .eq("pin", pin)
-.eq("assessment", assessment)
-.order("id", { ascending: false })
-.limit(1);
+  .eq("pin", searchPin)
+  .order("id", { ascending: false });
+
+console.log("RESULT SEARCH:", {
+  tableName,
+  rollNo,
+  searchPin,
+  searchAssessment,
+  rows
+});
+
 if (error) {
-  console.error(error);
+  console.error("RESULT SEARCH ERROR:", error);
   message.innerHTML =
     "<p>⚠️ Unable to check result. Please try again.</p>";
   return;
