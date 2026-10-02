@@ -480,9 +480,334 @@ if (
 
         </div>
       `;
+// =============================
+// ASPIRATIONAL PDF BUTTON
+// =============================
 
-    return;
-}               
+const pdfButton = document.createElement("button");
+
+pdfButton.type = "button";
+pdfButton.className = "btn primary";
+pdfButton.style.marginTop = "18px";
+pdfButton.textContent = "📥 DOWNLOAD / SAVE ASPIRATIONAL RESULT AS PDF";
+
+details.appendChild(pdfButton);
+
+pdfButton.onclick = async function () {
+
+    // Load jsPDF if not already loaded
+    if (!window.jspdf) {
+        const script = document.createElement("script");
+
+        script.src =
+            "https://unpkg.com/jspdf@4.2.1/dist/jspdf.umd.min.js";
+
+        document.head.appendChild(script);
+
+        await new Promise((resolve, reject) => {
+            script.onload = resolve;
+            script.onerror = reject;
+        });
+    }
+
+    const jsPDF = window.jspdf.jsPDF;
+    const doc = new jsPDF();
+
+    let y = 20;
+
+    // SCHOOL NAME
+    doc.setFontSize(16);
+
+    doc.text(
+        "KARUA GADADHAR KAR HIGH SCHOOL, BELDANDIA",
+        105,
+        y,
+        { align: "center" }
+    );
+
+    y += 12;
+
+    // TITLE
+    doc.setFontSize(14);
+
+    doc.text(
+        "ASPIRATIONAL COMPONENTS RESULT",
+        105,
+        y,
+        { align: "center" }
+    );
+
+    y += 15;
+
+    doc.setFontSize(11);
+
+    // STUDENT DETAILS
+    doc.text(
+        "Student Name : " + (data.student_name || "—"),
+        15,
+        y
+    );
+
+    y += 7;
+
+    doc.text(
+        "Class : " + (data.class || studentClass || "IX"),
+        15,
+        y
+    );
+
+    y += 7;
+
+    doc.text(
+        "Roll No. : " + (data.roll_no || rollNo),
+        15,
+        y
+    );
+
+    y += 7;
+
+    doc.text(
+        "Assessment : Aspirational Components",
+        15,
+        y
+    );
+
+    y += 12;
+
+    // TABLE HEADER
+    doc.setFontSize(10);
+
+    doc.text("Club / Component", 15, y);
+    doc.text("Term 1", 75, y);
+    doc.text("Term 2", 100, y);
+    doc.text("Term 3", 125, y);
+    doc.text("Term 4", 150, y);
+    doc.text("Total", 180, y);
+
+    y += 5;
+
+    doc.line(15, y, 195, y);
+
+    y += 8;
+
+    // CLUB DATA
+    const clubs = [
+        [
+            "Sahitya Srujani",
+            data.sahitya_srujani_q1,
+            data.sahitya_srujani_q2,
+            data.sahitya_srujani_q3,
+            data.sahitya_srujani_q4
+        ],
+        [
+            "Jigyansa",
+            data.jigyansa_q1,
+            data.jigyansa_q2,
+            data.jigyansa_q3,
+            data.jigyansa_q4
+        ],
+        [
+            "Kridangan",
+            data.kridangan_q1,
+            data.kridangan_q2,
+            data.kridangan_q3,
+            data.kridangan_q4
+        ],
+        [
+            "Kaushali",
+            data.kaushali_q1,
+            data.kaushali_q2,
+            data.kaushali_q3,
+            data.kaushali_q4
+        ]
+    ];
+
+    let grandTotal = 0;
+
+    clubs.forEach(club => {
+
+        const q1 = Number(club[1] ?? 0);
+        const q2 = Number(club[2] ?? 0);
+        const q3 = Number(club[3] ?? 0);
+        const q4 = Number(club[4] ?? 0);
+
+        const clubTotal = q1 + q2 + q3 + q4;
+
+        grandTotal += clubTotal;
+
+        doc.text(club[0], 15, y);
+        doc.text(String(club[1] ?? "—"), 75, y);
+        doc.text(String(club[2] ?? "—"), 100, y);
+        doc.text(String(club[3] ?? "—"), 125, y);
+        doc.text(String(club[4] ?? "—"), 150, y);
+        doc.text(String(clubTotal), 180, y);
+
+        y += 8;
+    });
+
+    y += 5;
+
+    doc.line(15, y, 195, y);
+
+    y += 10;
+
+    // GRAND TOTAL
+    doc.setFontSize(12);
+
+    doc.text(
+        "GRAND TOTAL : " + grandTotal + " / 100",
+        15,
+        y
+    );
+
+    y += 8;
+
+    // PERCENTAGE
+    doc.text(
+        "PERCENTAGE : " + grandTotal.toFixed(2) + "%",
+        15,
+        y
+    );
+
+    y += 8;
+
+    // GRADE
+    const aspirationalGrade = grade100(grandTotal);
+
+    doc.text(
+        "GRADE : " + aspirationalGrade,
+        15,
+        y
+    );
+
+    y += 10;
+
+    // PUBLISH DATE
+    doc.text(
+        "Result Published on : " +
+        (
+            data.result_publication_date
+                ? new Date(
+                    data.result_publication_date
+                  ).toLocaleDateString("en-IN")
+                : "Not available"
+        ),
+        15,
+        y
+    );
+
+    y += 8;
+
+    // DOWNLOAD DATE
+    doc.text(
+        "Downloaded on : " +
+        new Date().toLocaleDateString("en-IN"),
+        15,
+        y
+    );
+
+    y += 18;
+
+    // HM SIGNATURE
+    const signatureUrl = supabaseClient.storage
+        .from("school-files")
+        .getPublicUrl(
+            "admin/assets/exams/hm-signature.jpg"
+        ).data.publicUrl;
+
+    try {
+
+        const response = await fetch(
+            signatureUrl,
+            { cache: "no-store" }
+        );
+
+        if (!response.ok) {
+            throw new Error(
+                "Unable to load HM signature"
+            );
+        }
+
+        const blob = await response.blob();
+
+        const signatureData =
+            await new Promise((resolve, reject) => {
+
+                const reader =
+                    new FileReader();
+
+                reader.onload = () =>
+                    resolve(reader.result);
+
+                reader.onerror = () =>
+                    reject(
+                        new Error(
+                            "Unable to read HM signature"
+                        )
+                    );
+
+                reader.readAsDataURL(blob);
+            });
+
+        doc.addImage(
+            signatureData,
+            "JPEG",
+            150,
+            y - 8,
+            35,
+            18
+        );
+
+        y += 15;
+
+        doc.text(
+            "Trilochan Panda",
+            150,
+            y
+        );
+
+        y += 8;
+
+        doc.text(
+            "Sign of HM",
+            150,
+            y
+        );
+
+    } catch (signatureError) {
+
+        console.error(
+            "Signature error:",
+            signatureError
+        );
+
+        doc.text(
+            "Trilochan Panda",
+            150,
+            y
+        );
+
+        y += 8;
+
+        doc.text(
+            "Sign of HM",
+            150,
+            y
+        );
+    }
+
+    // SAVE PDF
+    doc.save(
+        "KGKHS_Aspirational_Result_" +
+        (data.student_name || "Student") +
+        "_" +
+        data.roll_no +
+        ".pdf"
+    );
+};
+
+return;
+} 
       
 // Table name
       const tableName =
