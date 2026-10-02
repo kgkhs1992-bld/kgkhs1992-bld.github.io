@@ -824,8 +824,8 @@ const { data: rows, error } = await supabaseClient
   .select("*")
   .eq("roll_no", Number(rollNo))
   .eq("pin", searchPin)
+  .eq("assessment", searchAssessment)
   .order("id", { ascending: false });
-
 console.log("RESULT SEARCH:", {
   tableName,
   rollNo,
