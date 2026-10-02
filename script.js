@@ -889,11 +889,11 @@ if (isAspirational) {
 
   doc.setFontSize(11);
 
-  doc.text("Club / Component", 15, y);
-  doc.text("Q1", 105, y);
-  doc.text("Q2", 125, y);
-  doc.text("Q3", 145, y);
-  doc.text("Q4", 165, y);
+ doc.text("Club / Component", 15, y);
+doc.text("Term 1", 105, y);
+doc.text("Term 2", 125, y);
+doc.text("Term 3", 145, y);
+doc.text("Term 4", 165, y);
 
   y += 8;
 
