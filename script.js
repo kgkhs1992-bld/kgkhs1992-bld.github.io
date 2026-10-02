@@ -479,11 +479,12 @@ if (
             </div>
 
         </div>
-    `;
+      `;
 
+    return;
 }               
-
-      // Table name
+      
+// Table name
       const tableName =
         `class_${studentClass.toLowerCase()}_results`;
 
