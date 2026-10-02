@@ -594,31 +594,31 @@ pdfButton.onclick = async function () {
     const clubs = [
         [
             "Sahitya Srujani",
-            data.sahitya_srujani_q1,
-            data.sahitya_srujani_q2,
-            data.sahitya_srujani_q3,
-            data.sahitya_srujani_q4
+    asp.sahitya_srujani_q1,
+    asp.sahitya_srujani_q2,
+    asp.sahitya_srujani_q3,
+    asp.sahitya_srujani_q4
         ],
         [
             "Jigyansa",
-            data.jigyansa_q1,
-            data.jigyansa_q2,
-            data.jigyansa_q3,
-            data.jigyansa_q4
+    asp.jigyansa_q1, 
+    asp.jigyansa_q2, 
+    asp.jigyansa_q3, 
+    asp.jigyansa_q4
         ],
         [
             "Kridangan",
-            data.kridangan_q1,
-            data.kridangan_q2,
-            data.kridangan_q3,
-            data.kridangan_q4
+   asp.kridangan_q1,
+   asp.kridangan_q2,
+   asp.kridangan_q3,
+   asp.kridangan_q4
         ],
         [
             "Kaushali",
-            data.kaushali_q1,
-            data.kaushali_q2,
-            data.kaushali_q3,
-            data.kaushali_q4
+    asp.kaushali_q1,
+    asp.kaushali_q2,
+    asp.kaushali_q3,
+    asp.kaushali_q4
         ]
     ];
 
