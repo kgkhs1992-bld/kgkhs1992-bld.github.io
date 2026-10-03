@@ -1777,7 +1777,16 @@ return true;
 
         const url =
           publicUrl(folder,item.name);
-
+const uploadDate = item.created_at
+  ? new Date(item.created_at).toLocaleString("en-IN", {
+      day: "2-digit",
+      month: "short",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: true
+    })
+  : "Date not available";
 
         const card =
           document.createElement("div");
@@ -1812,7 +1821,14 @@ return true;
               item.name.replace(/\.[^.]+$/,"")
             )}
           </div>
-
+<div style="
+    font-size:13px;
+    color:#607d8b;
+    margin-bottom:12px;
+    font-weight:600;
+">
+    📅 Uploaded: ${uploadDate}
+</div>
           <a
             href="${url}"
             target="_blank"
