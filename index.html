@@ -1261,7 +1261,7 @@ NEVER MISS TO KNOW
         .toUpperCase()
         .includes("TAP HERE TO OPEN SCHOOL UPDATES")
     );
-    if (!details || details.dataset.dynamicNmk === "1") return;
+   if (!details) return;
     details.dataset.dynamicNmk = "1";
 
     const oldGrid = [...details.querySelectorAll("div")].find(el => {
