@@ -1729,7 +1729,10 @@ return true;
     categories.style.display = "none";
 
     files.style.display = "block";
-
+files.scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+});
     fileGrid.innerHTML = "";
 
     folderTitle.textContent =
