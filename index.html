@@ -1725,7 +1725,8 @@ return true;
      ===================================================== */
 
   async function loadFiles(folder) {
-
+const schoolUpdatesTop =
+  panel.getBoundingClientRect().top + window.scrollY;
     categories.style.display = "none";
 
     files.style.display = "block";
@@ -1852,7 +1853,10 @@ const uploadDate = item.created_at
         fileGrid.appendChild(card);
 
       });
-
+window.scrollTo({
+  top: schoolUpdatesTop,
+  behavior: "instant"
+});
     }
 
     catch (error) {
