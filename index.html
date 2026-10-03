@@ -1548,13 +1548,15 @@ target="_blank">
     }
 
     return (result.data || [])
-      .filter(function (item) {
+  .filter(function (item) {
 
-        return item &&
-               item.name &&
-               item.id !== null;
+    if (!item || !item.name) return false;
+    if (item.id === null) return false;
+    if (item.name === ".emptyFolderPlaceholder") return false;
+    if (!item.metadata) return false;
 
-      });
+    return true;
+  });
 
   }
 
