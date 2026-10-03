@@ -1725,13 +1725,21 @@ return true;
      ===================================================== */
 
   async function loadFiles(folder) {
-const schoolUpdatesTop =
-  panel.getBoundingClientRect().top + window.scrollY;
-    categories.style.display = "none";
 
-    files.style.display = "block";
+  const schoolUpdatesTop =
+    panel.getBoundingClientRect().top + window.scrollY;
 
-    fileGrid.innerHTML = "";
+  categories.style.display = "none";
+
+  files.style.display = "block";
+
+  window.scrollTo({
+    top: schoolUpdatesTop,
+    behavior: "instant"
+  });
+
+  fileGrid.innerHTML = "";
+    
 
     folderTitle.textContent =
       getIcon(folder) + " " + cleanName(folder);
