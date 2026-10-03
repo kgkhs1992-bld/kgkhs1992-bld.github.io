@@ -1554,8 +1554,9 @@ target="_blank">
     if (item.id === null) return false;
     if (item.name === ".emptyFolderPlaceholder") return false;
     if (!item.metadata) return false;
+if (!item.metadata.size || Number(item.metadata.size) <= 0) return false;
 
-    return true;
+return true;
   });
 
   }
