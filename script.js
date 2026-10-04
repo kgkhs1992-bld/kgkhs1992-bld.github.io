@@ -1485,27 +1485,8 @@ async function loadUploadCategories() {
         // Clear existing dropdown
         categorySelect.innerHTML = "";
 
-        // Icon map for familiar folders
-        const folderIcons = {
-            "notices": "📢",
-            "examinations": "📝",
-            "exam-messages": "✉️",
-            "programs": "🎉",
-            "events": "📅",
-            "upcoming-events": "🔔",
-            "celebrations": "🎊",
-            "holidays": "🏖️",
-            "sports": "🏆",
-            "drill": "🚶",
-            "functions": "🎪",
-            "games": "🎮",
-            "dances": "💃",
-            "gallery": "🖼️",
-            "admission": "📋",
-            "other-documents": "📄",
-            "students-creations": "👨‍🎓",
-            "teachers-creations": "👩‍🏫"
-        };
+      // Use the common KGKHS automatic icon engine
+const folderIcons = window.KGKHSFolderIcons;
 
         // Convert folder name into nice display name
         function formatFolderName(name) {
@@ -1529,7 +1510,9 @@ async function loadUploadCategories() {
                 document.createElement("option");
 
             const icon =
-                folderIcons[folderName] || "📁";
+    folderIcons && folderIcons.getIcon
+        ? folderIcons.getIcon(folderName)
+        : "📁";
 
             option.value = folderName;
 
