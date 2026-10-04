@@ -422,7 +422,25 @@
                UNKNOWN FOLDER
                ----------------------------------------- */
 
-            return "📁";
+           // Smart icon for completely new folders
+const smartIcons = [
+    "📂",
+    "🗂️",
+    "📁",
+    "🗃️",
+    "🗄️",
+    "📚",
+    "🧰",
+    "🧾"
+];
+
+let iconIndex = 0;
+
+for (let i = 0; i < key.length; i++) {
+    iconIndex = (iconIndex + key.charCodeAt(i)) % smartIcons.length;
+}
+
+return smartIcons[iconIndex];
         },
 
 
