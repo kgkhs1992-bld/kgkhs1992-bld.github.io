@@ -28,7 +28,17 @@
     "linear-gradient(135deg,#f472b6,#c084fc)"
   ];
 
-  function start() {
+async function start() {
+    // Load the central folder icon engine first
+    if (!window.KGKHSFolderIcons) {
+        await new Promise((resolve, reject) => {
+            const iconScript = document.createElement("script");
+            iconScript.src = "folder-icons.js";
+            iconScript.onload = resolve;
+            iconScript.onerror = reject;
+            document.head.appendChild(iconScript);
+        });
+    }
     const details = [...document.querySelectorAll("details")].find(d =>
       (d.querySelector("summary")?.textContent || "")
         .toUpperCase()
