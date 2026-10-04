@@ -1454,7 +1454,7 @@ if (document.readyState === "loading") {
 
 async function loadUploadCategories() {
     // Automatically load the central folder icon engine
-    if (!window.KGKHFolderIcons) {
+   if (!window.KGKHSFolderIcons) {
         await new Promise((resolve, reject) => {
             const iconScript = document.createElement("script");
             iconScript.src = "folder-icons.js";
