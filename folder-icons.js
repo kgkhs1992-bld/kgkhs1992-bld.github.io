@@ -121,7 +121,21 @@
                 "contributions": "🤝",
                 "wantings": "🙏",
                 "donor-contributions": "❤️",
-
+        "school-kitchen": "🍳",
+     "kitchen": "🍳",
+     "garden": "🌳",
+     "school-garden": "🌳",
+     "batika": "🧵",
+     "playground": "⚽",
+    "school-playground": "⚽",
+    "common-room": "🏠",
+    "common-room-bcr": "🏠",
+    "bcr": "🏠",
+    "gcr": "🏠",
+    "hm-office": "🏢",
+    "hm-office-room": "🏢",
+     "yoga": "🧘",
+       "yoga-room": "🧘",
                 "important-documents": "📂",
                 "other-documents": "📄"
             };
