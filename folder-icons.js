@@ -431,7 +431,21 @@
                 }
             }
 
+    // =====================================================
+// SCHOOL FACILITIES / SCHOOL ROOMS
+// =====================================================
 
+rules.unshift(
+    { words: ["school-kitchen", "school kitchen", "kitchen"], icon: "🍳" },
+    { words: ["school-garden", "school garden", "garden"], icon: "🌳" },
+    { words: ["batika", "baatika", "ବାଟିକା"], icon: "🌺" },
+    { words: ["playground", "school-playground", "school playground"], icon: "🏞️" },
+    { words: ["common-room", "common room"], icon: "🛋️" },
+    { words: ["bcr", "boys common room"], icon: "👦" },
+    { words: ["gcr", "girls common room"], icon: "👧" },
+    { words: ["hm-office", "hm office", "headmaster office"], icon: "🏫" },
+    { words: ["yoga", "yoga-room", "yoga room"], icon: "🧘" }
+);
             /* -----------------------------------------
                UNKNOWN FOLDER
                ----------------------------------------- */
