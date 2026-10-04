@@ -1448,6 +1448,130 @@ if (document.readyState === "loading") {
 // ===============================
 // SCHOOL FILE UPLOAD
 // ===============================
+// ==========================================
+// AUTOMATIC UPLOAD FOLDER DROPDOWN
+// ==========================================
+
+async function loadUploadCategories() {
+
+    const categorySelect =
+        document.getElementById("file-category");
+
+    if (!categorySelect) return;
+
+    try {
+
+        // Get folders/files inside admin/assets
+        const { data, error } =
+            await supabaseClient
+                .storage
+                .from("school-files")
+                .list("admin/assets", {
+                    limit: 1000,
+                    sortBy: {
+                        column: "name",
+                        order: "asc"
+                    }
+                });
+
+        if (error) {
+            console.error(
+                "Unable to load upload folders:",
+                error
+            );
+            return;
+        }
+
+        // Clear existing dropdown
+        categorySelect.innerHTML = "";
+
+        // Icon map for familiar folders
+        const folderIcons = {
+            "notices": "📢",
+            "examinations": "📝",
+            "exam-messages": "✉️",
+            "programs": "🎉",
+            "events": "📅",
+            "upcoming-events": "🔔",
+            "celebrations": "🎊",
+            "holidays": "🏖️",
+            "sports": "🏆",
+            "drill": "🚶",
+            "functions": "🎪",
+            "games": "🎮",
+            "dances": "💃",
+            "gallery": "🖼️",
+            "admission": "📋",
+            "other-documents": "📄",
+            "students-creations": "👨‍🎓",
+            "teachers-creations": "👩‍🏫"
+        };
+
+        // Convert folder name into nice display name
+        function formatFolderName(name) {
+
+            return name
+                .replace(/[-_]+/g, " ")
+                .replace(/\b\w/g, function(letter) {
+                    return letter.toUpperCase();
+                });
+        }
+
+        // Add folders automatically
+        data.forEach(function(item) {
+
+            // Ignore files; only use folders
+            if (item.id !== null) return;
+
+            const folderName = item.name;
+
+            const option =
+                document.createElement("option");
+
+            const icon =
+                folderIcons[folderName] || "📁";
+
+            option.value = folderName;
+
+            option.textContent =
+                icon + " " + formatFolderName(folderName);
+
+            categorySelect.appendChild(option);
+        });
+
+        console.log(
+            "Upload folders loaded automatically:",
+            data
+        );
+
+    } catch (error) {
+
+        console.error(
+            "Automatic folder loading error:",
+            error
+        );
+    }
+}
+
+
+// Load folders when the page is ready
+if (document.readyState === "loading") {
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        loadUploadCategories
+    );
+
+} else {
+
+    loadUploadCategories();
+
+}
+
+
+// ==========================================
+// SCHOOL FILE UPLOAD
+// ==========================================
 
 async function uploadSchoolFile() {
 
