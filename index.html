@@ -1456,8 +1456,9 @@ target="_blank">
         .toLowerCase()
         .trim();
 
-    return ICONS[key] || "📁";
-
+    return window.KGKHSFolderIcons
+  ? window.KGKHSFolderIcons.getIcon(name)
+  : "📁";
   }
 
 
