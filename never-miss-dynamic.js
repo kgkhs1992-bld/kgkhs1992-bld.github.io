@@ -180,7 +180,7 @@ display:flex;align-items:center;justify-content:center;padding:20px;cursor:point
           b.type="button";
           b.className="nmk-folder";
           b.style.background=GRADIENTS[i%GRADIENTS.length];
-          b.innerHTML=`<div class="nmk-icon">${icon(f.name)}</div>
+        b.innerHTML = `<div class="nmk-icon">${window.KGKHSFolderIcons.getIcon(f.name)}</div>
             <span class="nmk-name">${pretty(f.name)}</span>
             <span class="nmk-open">OPEN FOLDER →</span>`;
           b.onclick=()=>loadFolder(f.name);
@@ -195,7 +195,7 @@ display:flex;align-items:center;justify-content:center;padding:20px;cursor:point
 
     async function loadFolder(folder) {
       currentFolder=folder;
-      title.textContent=`${icon(folder)} ${pretty(folder)}`;
+   title.textContent = `${window.KGKHSFolderIcons.getIcon(folder)} ${pretty(folder)}`;
       foldersEl.style.display="none";
       status.style.display="none";
       filesEl.style.display="block";
