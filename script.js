@@ -1453,7 +1453,16 @@ if (document.readyState === "loading") {
 // ==========================================
 
 async function loadUploadCategories() {
-
+    // Automatically load the central folder icon engine
+    if (!window.KGKHFolderIcons) {
+        await new Promise((resolve, reject) => {
+            const iconScript = document.createElement("script");
+            iconScript.src = "folder-icons.js";
+            iconScript.onload = resolve;
+            iconScript.onerror = reject;
+            document.head.appendChild(iconScript);
+        });
+    }
     const categorySelect =
         document.getElementById("file-category");
 
