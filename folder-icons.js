@@ -6,7 +6,6 @@
    ========================================================= */
 
 (function () {
-
     window.KGKHSFolderIcons = {
 
         getIcon: function (folderName) {
