@@ -410,7 +410,44 @@
                     icon: "🎉"
                 }
             ];
-
+        rules.unshift(
+            {
+                words: ["school-kitchen", "kitchen"],
+                icon: "🍳"
+            },
+            {
+                words: ["school-garden", "garden"],
+                icon: "🌳"
+            },
+            {
+                words: ["batika"],
+                icon: "🧘"
+            },
+            {
+                words: ["school-playground", "playground"],
+                icon: "⚽"
+            },
+            {
+                words: ["common-room", "common room"],
+                icon: "🏠"
+            },
+            {
+                words: ["bcr"],
+                icon: "🏠"
+            },
+            {
+                words: ["gcr"],
+                icon: "🏠"
+            },
+            {
+                words: ["hm-office", "hm office"],
+                icon: "🏫"
+            },
+            {
+                words: ["yoga", "yoga-room", "yoga room"],
+                icon: "🧘"
+            }
+        );
 
             for (let i = 0; i < rules.length; i++) {
 
