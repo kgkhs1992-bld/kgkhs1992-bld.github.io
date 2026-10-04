@@ -130,7 +130,7 @@ display:flex;align-items:center;justify-content:center;padding:20px;cursor:point
     const pretty = s => String(s).replace(/[_-]+/g," ").replace(/\s+/g," ").trim()
       .replace(/\b\w/g,c=>c.toUpperCase());
 
-    const icon = name => ICONS[String(name).toLowerCase()] || "📁";
+   const icon = name => window.KGKHSFolderIcons.getIcon(name);
 
     const dateTime = value => {
       if (!value) return "Upload time unavailable";
