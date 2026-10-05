@@ -71,68 +71,48 @@ document.addEventListener("DOMContentLoaded", async function () {
 
       item.addEventListener("click", function () {
 
-        /* Direct URL, if supplied */
-        if (announcement.target_url) {
-          window.open(
-            announcement.target_url,
-            "_blank"
-          );
-          return;
-        }
-
-        /* RESULT SYSTEM */
-        if (
-          announcement.target_action === "result" ||
-          announcement.destination_area === "result-system"
-        ) {
-
-          const resultSection =
+    /* RESULT ONLY → open Result section */
+    if (
+        announcement.target_action === "result" ||
+        announcement.destination_area === "result-system"
+    ) {
+        const resultSection =
             document.getElementById("results");
 
-          if (resultSection) {
+        if (resultSection) {
             resultSection.scrollIntoView({
-              behavior: "smooth",
-              block: "start"
+                behavior: "smooth",
+                block: "start"
             });
-
-            resultSection.classList.add(
-              "kgkhs-notice-highlight"
-            );
-
-            setTimeout(() => {
-              resultSection.classList.remove(
-                "kgkhs-notice-highlight"
-              );
-            }, 3000);
-          }
-
-          return;
         }
 
-        /* NEVER MISS TO KNOW */
-        const neverMissSection =
-          document.getElementById("never-miss-section");
+        return;
+    }
 
-        if (neverMissSection) {
+    /* ALL OTHER NOTICES → NEVER MISS TO KNOW */
+    const neverMissSection =
+        document.getElementById("never-miss-section");
 
-          neverMissSection.scrollIntoView({
+    if (neverMissSection) {
+        neverMissSection.scrollIntoView({
             behavior: "smooth",
             block: "start"
-          });
+        });
 
-          neverMissSection.classList.add(
+        neverMissSection.classList.add(
             "kgkhs-notice-highlight"
-          );
+        );
 
-          setTimeout(() => {
+        setTimeout(() => {
             neverMissSection.classList.remove(
-              "kgkhs-notice-highlight"
+                "kgkhs-notice-highlight"
             );
-          }, 3000);
-        }
+        }, 3000);
+    }
 
-      });
+});
 
+        
       noticeContent.appendChild(item);
 
       /* Separator between announcements */
