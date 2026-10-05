@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
 
     
-
+announcements.forEach((announcement) => {
       const item = document.createElement("span");
 
       item.className = "kgkhs-notice-item";
