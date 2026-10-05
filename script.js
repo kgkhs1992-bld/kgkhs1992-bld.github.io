@@ -18,7 +18,147 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
 });
+// =====================================================
+// KGKHS AUTOMATIC RUNNING NOTICE BAR
+// Connected to Supabase: site_announcements
+// =====================================================
 
+document.addEventListener("DOMContentLoaded", async function () {
+
+  const noticeBar = document.getElementById("kgkhsNoticeBar");
+  const noticeContent = document.getElementById("kgkhsNoticeContent");
+
+  if (!noticeBar || !noticeContent) return;
+
+  try {
+
+    const now = new Date().toISOString();
+
+    const { data: announcements, error } = await supabaseClient
+      .from("site_announcements")
+      .select("*")
+      .eq("is_active", true)
+      .gt("expires_at", now)
+      .order("created_at", { ascending: false });
+
+    if (error) {
+      console.error("KGKHS Notice Bar Error:", error);
+      return;
+    }
+
+    if (!announcements || announcements.length === 0) {
+      noticeBar.style.display = "none";
+      return;
+    }
+
+    noticeContent.innerHTML = "";
+
+    announcements.forEach((announcement) => {
+
+      const item = document.createElement("span");
+
+      item.className = "kgkhs-notice-item";
+
+      item.innerHTML =
+        announcement.short_message ||
+        ("🆕 PLEASE CHECK — " +
+         (announcement.content_name || announcement.title || "New Update"));
+
+      item.title =
+        announcement.content_name ||
+        announcement.title ||
+        "Open update";
+
+      item.addEventListener("click", function () {
+
+        /* Direct URL, if supplied */
+        if (announcement.target_url) {
+          window.open(
+            announcement.target_url,
+            "_blank"
+          );
+          return;
+        }
+
+        /* RESULT SYSTEM */
+        if (
+          announcement.target_action === "result" ||
+          announcement.destination_area === "result-system"
+        ) {
+
+          const resultSection =
+            document.getElementById("results");
+
+          if (resultSection) {
+            resultSection.scrollIntoView({
+              behavior: "smooth",
+              block: "start"
+            });
+
+            resultSection.classList.add(
+              "kgkhs-notice-highlight"
+            );
+
+            setTimeout(() => {
+              resultSection.classList.remove(
+                "kgkhs-notice-highlight"
+              );
+            }, 3000);
+          }
+
+          return;
+        }
+
+        /* NEVER MISS TO KNOW */
+        const neverMissSection =
+          document.getElementById("never-miss-section");
+
+        if (neverMissSection) {
+
+          neverMissSection.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+          });
+
+          neverMissSection.classList.add(
+            "kgkhs-notice-highlight"
+          );
+
+          setTimeout(() => {
+            neverMissSection.classList.remove(
+              "kgkhs-notice-highlight"
+            );
+          }, 3000);
+        }
+
+      });
+
+      noticeContent.appendChild(item);
+
+      /* Separator between announcements */
+      const separator = document.createElement("span");
+
+      separator.className =
+        "kgkhs-notice-separator";
+
+      separator.textContent = "   ✦   ";
+
+      noticeContent.appendChild(separator);
+
+    });
+
+    noticeBar.style.display = "flex";
+
+  } catch (error) {
+
+    console.error(
+      "KGKHS Automatic Notice Error:",
+      error
+    );
+
+  }
+
+});
 // ===============================
 // GALLERY IMAGE VIEW
 // ===============================
