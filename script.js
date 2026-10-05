@@ -51,9 +51,13 @@ document.addEventListener("DOMContentLoaded", async function () {
       return;
     }
 
-    noticeContent.innerHTML = "";
-
-    announcements.forEach((announcement) => {
+    item.innerHTML =
+  "✔️ NEVER MISS TO KNOW — " +
+  "✅ " +
+  (announcement.content_name || announcement.title || "New Update") +
+  " — (" +
+  (announcement.source_section || "School Update") +
+  ")";
 
       const item = document.createElement("span");
 
