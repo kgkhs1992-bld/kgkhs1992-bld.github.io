@@ -51,22 +51,17 @@ document.addEventListener("DOMContentLoaded", async function () {
       return;
     }
 
-    item.innerHTML =
-  "✔️ NEVER MISS TO KNOW — " +
-  "✅ " +
-  (announcement.content_name || announcement.title || "New Update") +
-  " — (" +
-  (announcement.source_section || "School Update") +
-  ")";
+    
 
       const item = document.createElement("span");
 
       item.className = "kgkhs-notice-item";
 
       item.innerHTML =
-        announcement.short_message ||
-        ("🆕 PLEASE CHECK — " +
-         (announcement.content_name || announcement.title || "New Update"));
+  "✔️ NEVER MISS TO KNOW — 📁 " +
+  (announcement.content_name || announcement.title || "New Update") +
+  " — 📂 " +
+  (announcement.source_section || announcement.category || "School Update");
 
       item.title =
         announcement.content_name ||
