@@ -934,3 +934,130 @@ img {
         box-sizing: border-box;
     }
 }
+/* =====================================================
+   KGKHS AUTOMATIC RUNNING NOTICE BAR
+   ===================================================== */
+
+.kgkhs-notice-bar {
+  width: 100%;
+  min-height: 42px;
+  background: #b91c1c;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+  z-index: 1000;
+  border-bottom: 2px solid #facc15;
+}
+
+.kgkhs-notice-label {
+  flex: 0 0 auto;
+  background: #991b1b;
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 14px;
+  padding: 11px 18px;
+  white-space: nowrap;
+  position: relative;
+  z-index: 2;
+}
+
+.kgkhs-notice-track {
+  flex: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.kgkhs-notice-content {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  animation: kgkhsNoticeScroll 25s linear infinite;
+  padding-left: 100%;
+}
+
+.kgkhs-notice-content:hover {
+  animation-play-state: paused;
+}
+
+.kgkhs-notice-item {
+  display: inline-block;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 14px;
+  padding: 10px 8px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.kgkhs-notice-item:hover {
+  color: #ffe600;
+  text-decoration: underline;
+}
+
+.kgkhs-notice-separator {
+  display: inline-block;
+  color: #ffe600;
+  font-weight: 900;
+  padding: 0 12px;
+}
+
+@keyframes kgkhsNoticeScroll {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+/* Highlight the destination after tapping a notice */
+
+.kgkhs-notice-highlight {
+  animation: kgkhsNoticeHighlight 3s ease-in-out;
+}
+
+@keyframes kgkhsNoticeHighlight {
+  0% {
+    outline: 4px solid rgba(250, 204, 21, 0);
+    background-color: transparent;
+  }
+
+  25% {
+    outline: 4px solid rgba(250, 204, 21, 1);
+  }
+
+  75% {
+    outline: 4px solid rgba(250, 204, 21, 1);
+  }
+
+  100% {
+    outline: 4px solid rgba(250, 204, 21, 0);
+    background-color: transparent;
+  }
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+  .kgkhs-notice-bar {
+    min-height: 40px;
+  }
+
+  .kgkhs-notice-label {
+    font-size: 12px;
+    padding: 10px 10px;
+  }
+
+  .kgkhs-notice-item {
+    font-size: 12px;
+  }
+
+  .kgkhs-notice-content {
+    animation-duration: 20s;
+  }
+}
