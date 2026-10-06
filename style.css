@@ -974,7 +974,7 @@ img {
   display: inline-flex;
   align-items: center;
   white-space: nowrap;
-  animation: kgkhsNoticeScroll 25s linear infinite;
+animation: kgkhsNoticeScroll 60s linear infinite;
   padding-left: 100%;
 }
 
