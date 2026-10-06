@@ -1039,7 +1039,6 @@ animation: kgkhsNoticeScroll 220s linear infinite;
     background-color: transparent;
   }
 }
-
 /* Mobile */
 
 @media (max-width: 600px) {
