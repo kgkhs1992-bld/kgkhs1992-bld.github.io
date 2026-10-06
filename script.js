@@ -164,7 +164,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         noticeBar.style.display = "flex";
 noticeContent.style.animation = "none";
 void noticeContent.offsetWidth;
-noticeContent.style.animation = "kgkhsNoticeScroll 60s linear infinite";
+ noticeContent.style.animation = "kgkhsNoticeScroll 180s linear infinite";
     } catch (error) {
 
         console.error(
