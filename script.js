@@ -114,10 +114,8 @@ document.addEventListener("DOMContentLoaded", async function () {
     ) {
        destination = "results";
     } else {
-        // Other notices → NEVER MISS TO KNOW
-        destination =
-            announcement.destination_area ||
-            "never-miss-section";
+    // ALL OTHER NOTICES → NEVER MISS TO KNOW
+    destination = "never-miss-section";
     }
 
     const target =
