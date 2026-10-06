@@ -114,16 +114,42 @@ document.addEventListener("DOMContentLoaded", async function () {
                         details.open = true;
                     }
 
-                } else {
+       } else {
 
-            const resultSection =
-    document.getElementById("result-section");
+    const text =
+        (
+            (announcement.category || "") + " " +
+            (announcement.content_name || "") + " " +
+            (announcement.title || "") + " " +
+            (announcement.target_url || "")
+        ).toLowerCase();
 
-if (resultSection) {
-    resultSection.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-    });
+    let destination;
+
+    if (text.includes("result")) {
+        destination = "results";
+    } else {
+        destination =
+            announcement.destination_area ||
+            "never-miss-section";
+    }
+
+    const target =
+        document.getElementById(destination);
+
+    if (target) {
+        target.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+
+        const details =
+            target.querySelector("details");
+
+        if (details) {
+            details.open = true;
+        }
+    }
 }
 
             noticeContent.appendChild(item);
