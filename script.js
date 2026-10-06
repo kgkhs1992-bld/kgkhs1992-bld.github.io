@@ -116,22 +116,15 @@ document.addEventListener("DOMContentLoaded", async function () {
 
                 } else {
 
-                    // Safety fallback
-                    const neverMiss =
-                        document.getElementById(
-                            "never-miss-section"
-                        );
+            const resultSection =
+    document.getElementById("result-section");
 
-                    if (neverMiss) {
-                        neverMiss.scrollIntoView({
-                            behavior: "smooth",
-                            block: "start"
-                        });
-                    }
-
-                }
-
-            });
+if (resultSection) {
+    resultSection.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+}
 
             noticeContent.appendChild(item);
 
