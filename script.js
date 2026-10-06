@@ -18,7 +18,8 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
 });
-// =====================================================
+/announcement.title || "New Update") +
+/ =====================================================
 // KGKHS AUTOMATIC RUNNING NOTICE BAR
 // Connected to Supabase: site_announcements
 // =====================================================
@@ -58,86 +59,10 @@ announcements.forEach((announcement) => {
       item.className = "kgkhs-notice-item";
 
       item.innerHTML =
-  "✔️ NEVER MISS TO KNOW — 📁 " +
-  (announcement.content_name || announcement.title || "New Update") +
-  " — 📂 " +
-  (announcement.source_section || announcement.category || "School Update");
-
-      item.title =
-        announcement.content_name ||
-        announcement.title ||
-        "Open update";
-
-      item.addEventListener("click", function () {
-
-    /* RESULT ONLY → open Result section */
-    if (
-        announcement.target_action === "result" ||
-        announcement.destination_area === "result-system"
-    ) {
-        const resultSection =
-            document.getElementById("results");
-
-        if (resultSection) {
-            resultSection.scrollIntoView({
-                behavior: "smooth",
-                block: "start"
-            });
-        }
-
-        return;
-    }
-
-    /* ALL OTHER NOTICES → NEVER MISS TO KNOW */
-    const neverMissSection =
-        document.getElementById("never-miss-section");
-
-    if (neverMissSection) {
-        neverMissSection.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-        });
-
-        neverMissSection.classList.add(
-            "kgkhs-notice-highlight"
-        );
-
-        setTimeout(() => {
-            neverMissSection.classList.remove(
-                "kgkhs-notice-highlight"
-            );
-        }, 3000);
-    }
-
-});
-
-        
-      noticeContent.appendChild(item);
-
-      /* Separator between announcements */
-      const separator = document.createElement("span");
-
-      separator.className =
-        "kgkhs-notice-separator";
-
-      separator.textContent = "   ✦   ";
-
-      noticeContent.appendChild(separator);
-
-    });
-
-    noticeBar.style.display = "flex";
-
-  } catch (error) {
-
-    console.error(
-      "KGKHS Automatic Notice Error:",
-      error
-    );
-
-  }
-
-});
+"✔ NEVER MISS TO KNOW — 📁 " +
+(announcement.category || announcement.source_section || "School Update") +
+" — " +
+(announcement.title || announcement.content_name || "New Update");
 // ===============================
 // GALLERY IMAGE VIEW
 // ===============================
