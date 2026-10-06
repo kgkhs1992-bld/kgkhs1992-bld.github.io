@@ -1789,7 +1789,25 @@ async function uploadSchoolFile() {
 
       return;
     }
+    // 4B. SEND UPLOADED FILE TO NOTICE BAR
+    const { error: noticeError } = await supabaseClient
+        .from("site_announcements")
+        .insert({
+            title: cleanName,
+            content_name: cleanName,
+            source_section: category,
+            category: category,
+            target_action: "never-miss",
+            destination_area: "never-miss-section",
+            is_active: true,
+            expires_at: new Date(
+                Date.now() + 10 * 365 * 24 * 60 * 60 * 1000
+            ).toISOString()
+        });
 
+    if (noticeError) {
+        console.error("Notice Bar save error:", noticeError);
+    }
     // 5. Success
     if (message) {
       message.textContent =
