@@ -160,12 +160,22 @@ document.addEventListener("DOMContentLoaded", async function () {
 
         });
 
-        noticeBar.style.display = "flex";
-noticeContent.style.animation = "none";
-void noticeContent.offsetWidth;
- const scrollDistance = noticeContent.scrollWidth + noticeContent.parentElement.offsetWidth;
-const scrollDuration = scrollDistance / 40;
-noticeContent.style.animation = `kgkhsNoticeScroll ${scrollDuration}s linear infinite`;
+                noticeBar.style.display = "flex";
+
+        const scrollDistance =
+            noticeContent.scrollWidth +
+            noticeContent.parentElement.offsetWidth;
+
+        const scrollDuration = scrollDistance / 40;
+
+        noticeContent.style.setProperty(
+            "animation",
+            `kgkhsNoticeScroll ${scrollDuration}s linear infinite`,
+            "important"
+        );
+
+    } catch (error) {
+
         console.error(
             "KGKHS Automatic Notice Error:",
             error
