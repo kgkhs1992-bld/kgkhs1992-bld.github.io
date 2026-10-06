@@ -1077,3 +1077,22 @@ animation: kgkhsNoticeScroll 60s linear infinite;
     transform: translateX(-100%);
   }
 }
+/* FINAL NOTICE BAR FORCE */
+.kgkhs-notice-track {
+  overflow: hidden !important;
+  white-space: nowrap !important;
+}
+
+.kgkhs-notice-content {
+  display: inline-flex !important;
+  width: max-content !important;
+  white-space: nowrap !important;
+  animation: kgkhsNoticeScroll 25s linear infinite !important;
+  padding-left: 0 !important;
+}
+
+.kgkhs-notice-item,
+.kgkhs-notice-separator {
+  display: inline-block !important;
+  white-space: nowrap !important;
+}
