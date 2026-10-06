@@ -75,11 +75,11 @@ document.addEventListener("DOMContentLoaded", async function () {
 
             // DISPLAY:
             // NEVER MISS TO KNOW → CATEGORY → FILE NAME
-            item.textContent =
-                "✔ NEVER MISS TO KNOW – 📁 " +
-                category +
-                " – " +
-                fileName;
+           item.textContent =
+    "✓ NEVER MISS TO KNOW → Category: " +
+    category +
+    " → File: " +
+    fileName;
 
             // ------------------------------------------------
             // IMPORTANT:
