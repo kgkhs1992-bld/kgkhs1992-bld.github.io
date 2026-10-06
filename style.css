@@ -1061,3 +1061,22 @@ img {
     animation-duration: 20s;
   }
 }
+/* KGKHS NOTICE BAR SCROLL FIX */
+
+.kgkhs-notice-content {
+  display: inline-flex;
+  width: max-content;
+  white-space: nowrap;
+  animation: kgkhsNoticeScroll 25s linear infinite;
+  will-change: transform;
+}
+
+@keyframes kgkhsNoticeScroll {
+  0% {
+    transform: translateX(100%);
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
+}
