@@ -1064,11 +1064,8 @@ animation: kgkhsNoticeScroll 60s linear infinite;
 /* KGKHS NOTICE BAR SCROLL FIX */
 
 .kgkhs-notice-content {
-  display: inline-flex;
-  width: max-content;
-  white-space: nowrap;
-  animation: kgkhsNoticeScroll 25s linear infinite;
-  will-change: transform;
+    animation-duration: 25s;
+    will-change: transform;
 }
 
 @keyframes kgkhsNoticeScroll {
