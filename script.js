@@ -18,107 +18,118 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
 });
-// =====================================================
+// ==========================================================
 // KGKHS AUTOMATIC RUNNING NOTICE BAR
 // Connected to Supabase: site_announcements
-// =====================================================
+// Display format:
+// ✔ NEVER MISS TO KNOW – 📁 CATEGORY – FILE NAME
+// IMPORTANT: Notice bar itself DOES NOT open the file.
+// ==========================================================
 
 document.addEventListener("DOMContentLoaded", async function () {
 
-  const noticeBar =
-    document.getElementById("kgkhsNoticeBar");
+    const noticeBar =
+        document.getElementById("kgkhsNoticeBar");
 
-  const noticeContent =
-    document.getElementById("kgkhsNoticeContent");
+    const noticeContent =
+        document.getElementById("kgkhsNoticeContent");
 
-  if (!noticeBar || !noticeContent) return;
-
-  try {
-
-    const now = new Date().toISOString();
-
-    const { data: announcements, error } =
-      await supabaseClient
-        .from("site_announcements")
-        .select("*")
-        .eq("is_active", true)
-        .gt("expires_at", now)
-        .order("created_at", { ascending: false });
-
-    if (error) {
-      console.error(
-        "KGKHS Notice Bar Error:",
-        error
-      );
-      return;
+    if (!noticeBar || !noticeContent) {
+        return;
     }
 
-    if (
-      !announcements ||
-      announcements.length === 0
-    ) {
-      noticeBar.style.display = "none";
-      return;
+    try {
+
+        const now = new Date().toISOString();
+
+        const { data: announcements, error } =
+            await supabaseClient
+                .from("site_announcements")
+                .select("*")
+                .eq("is_active", true)
+                .or(`expires_at.is.null,expires_at.gt.${now}`)
+                .order("created_at", { ascending: false });
+
+        if (error) {
+            console.error(
+                "KGKHS Notice Bar Error:",
+                error
+            );
+
+            noticeBar.style.display = "none";
+            return;
+        }
+
+        // No active notices
+        if (!announcements || announcements.length === 0) {
+            noticeBar.style.display = "none";
+            return;
+        }
+
+        // Clear old notices
+        noticeContent.innerHTML = "";
+
+        // Create every notice
+        announcements.forEach(function (announcement) {
+
+            const item =
+                document.createElement("span");
+
+            item.className =
+                "kgkhs-notice-item";
+
+            // FILE NAME
+            const fileName =
+                announcement.file_name ||
+                announcement.content_name ||
+                announcement.title ||
+                "New Update";
+
+            // CATEGORY
+            const category =
+                announcement.category ||
+                announcement.source_section ||
+                "School Update";
+
+            // EXACT SCROLLING NOTICE FORMAT
+            item.textContent =
+                "✔ NEVER MISS TO KNOW – 📁 " +
+                category +
+                " – " +
+                fileName;
+
+            // IMPORTANT:
+            // NO click event here.
+            // The scrolling notice is only a teaser.
+            // Viewer must go to NEVER MISS TO KNOW
+            // section and tap the exact file there.
+
+            noticeContent.appendChild(item);
+
+            // Separator
+            const separator =
+                document.createElement("span");
+
+            separator.className =
+                "kgkhs-notice-separator";
+
+            separator.textContent = " ◆ ";
+
+            noticeContent.appendChild(separator);
+        });
+
+        // Show notice bar
+        noticeBar.style.display = "flex";
+
+    } catch (error) {
+
+        console.error(
+            "KGKHS Automatic Notice Error:",
+            error
+        );
+
+        noticeBar.style.display = "none";
     }
-
-    // Clear previous notice items
-    noticeContent.innerHTML = "";
-
-    announcements.forEach((announcement) => {
-
-      const item =
-        document.createElement("span");
-
-      item.className =
-        "kgkhs-notice-item";
-
-      // FILE NAME
-      const fileName =
-        announcement.content_name ||
-        announcement.file_name ||
-        announcement.title ||
-        "New Update";
-
-      // CATEGORY
-      const category =
-        announcement.category ||
-        announcement.source_section ||
-        "School Update";
-
-      item.innerHTML =
-        "✔ NEVER MISS TO KNOW – 📁 " +
-        fileName +
-        " — " +
-        category;
-
-      item.title =
-        fileName + " — " + category;
-
-      noticeContent.appendChild(item);
-
-      // Separator
-      const separator =
-        document.createElement("span");
-
-      separator.className =
-        "kgkhs-notice-separator";
-
-      separator.textContent = " ◆ ";
-
-      noticeContent.appendChild(separator);
-
-    });
-
-    noticeBar.style.display = "flex";
-
-  } catch (error) {
-
-    console.error(
-      "KGKHS Automatic Notice Error:",
-      error
-    );
-
-  }
 
 });
 // ===============================
