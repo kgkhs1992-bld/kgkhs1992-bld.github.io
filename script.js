@@ -106,35 +106,58 @@ document.addEventListener("DOMContentLoaded", async function () {
                         block: "start"
                     });
 
-                    // Open the NEVER MISS details area
-                    const details =
-                        target.querySelector("details");
+    // Decide where this notice should go
+const text = (
+    (announcement.category || "") + " " +
+    (announcement.content_name || "") + " " +
+    (announcement.title || "") + " " +
+    (announcement.target_url || "") + " " +
+    (announcement.target_action || "")
+).toLowerCase();
 
-                    if (details) {
-                        details.open = true;
-                    }
+let destination;
 
-       } else {
+// RESULT notice → STUDENT RESULT section
+if (
+    text.includes("result") ||
+    text.includes("marks") ||
+    text.includes("fa1") ||
+    text.includes("fa2") ||
+    text.includes("fa3") ||
+    text.includes("fa4") ||
+    text.includes("half yearly") ||
+    text.includes("annual")
+) {
+    destination = "result-section";
+} else {
+    // All other notices → NEVER MISS TO KNOW
+    destination =
+        announcement.destination_area ||
+        "never-miss-section";
+}
 
-    const text =
-        (
-            (announcement.category || "") + " " +
-            (announcement.content_name || "") + " " +
-            (announcement.title || "") + " " +
-            (announcement.target_url || "")
-        ).toLowerCase();
+const target =
+    document.getElementById(destination);
 
-    let destination;
+if (target) {
 
-    if (text.includes("result")) {
-        destination = "results";
-    } else {
-        destination =
-            announcement.destination_area ||
-            "never-miss-section";
+    target.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+
+    // Open NEVER MISS details only when destination is NEVER MISS
+    if (destination === "never-miss-section") {
+        const details =
+            target.querySelector("details");
+
+        if (details) {
+            details.open = true;
+        }
     }
+}
 
-    const target =
+   const target =
         document.getElementById(destination);
 
     if (target) {
