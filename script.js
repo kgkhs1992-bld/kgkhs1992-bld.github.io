@@ -18,16 +18,18 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
 });
-/announcement.title || "New Update") +
-/ =====================================================
+// =====================================================
 // KGKHS AUTOMATIC RUNNING NOTICE BAR
 // Connected to Supabase: site_announcements
 // =====================================================
 
 document.addEventListener("DOMContentLoaded", async function () {
 
-  const noticeBar = document.getElementById("kgkhsNoticeBar");
-  const noticeContent = document.getElementById("kgkhsNoticeContent");
+  const noticeBar =
+    document.getElementById("kgkhsNoticeBar");
+
+  const noticeContent =
+    document.getElementById("kgkhsNoticeContent");
 
   if (!noticeBar || !noticeContent) return;
 
@@ -35,34 +37,90 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     const now = new Date().toISOString();
 
-    const { data: announcements, error } = await supabaseClient
-      .from("site_announcements")
-      .select("*")
-      .eq("is_active", true)
-      .gt("expires_at", now)
-      .order("created_at", { ascending: false });
+    const { data: announcements, error } =
+      await supabaseClient
+        .from("site_announcements")
+        .select("*")
+        .eq("is_active", true)
+        .gt("expires_at", now)
+        .order("created_at", { ascending: false });
 
     if (error) {
-      console.error("KGKHS Notice Bar Error:", error);
+      console.error(
+        "KGKHS Notice Bar Error:",
+        error
+      );
       return;
     }
 
-    if (!announcements || announcements.length === 0) {
+    if (
+      !announcements ||
+      announcements.length === 0
+    ) {
       noticeBar.style.display = "none";
       return;
     }
 
-    
-announcements.forEach((announcement) => {
-      const item = document.createElement("span");
+    // Clear previous notice items
+    noticeContent.innerHTML = "";
 
-      item.className = "kgkhs-notice-item";
+    announcements.forEach((announcement) => {
+
+      const item =
+        document.createElement("span");
+
+      item.className =
+        "kgkhs-notice-item";
+
+      // FILE NAME
+      const fileName =
+        announcement.content_name ||
+        announcement.file_name ||
+        announcement.title ||
+        "New Update";
+
+      // CATEGORY
+      const category =
+        announcement.category ||
+        announcement.source_section ||
+        "School Update";
 
       item.innerHTML =
-"✔ NEVER MISS TO KNOW — 📁 " +
-(announcement.category || announcement.source_section || "School Update") +
-" — " +
-(announcement.title || announcement.content_name || "New Update");
+        "✔ NEVER MISS TO KNOW – 📁 " +
+        fileName +
+        " — " +
+        category;
+
+      item.title =
+        fileName + " — " + category;
+
+      noticeContent.appendChild(item);
+
+      // Separator
+      const separator =
+        document.createElement("span");
+
+      separator.className =
+        "kgkhs-notice-separator";
+
+      separator.textContent = " ◆ ";
+
+      noticeContent.appendChild(separator);
+
+    });
+
+    noticeBar.style.display = "flex";
+
+  } catch (error) {
+
+    console.error(
+      "KGKHS Automatic Notice Error:",
+      error
+    );
+
+  }
+
+});
 // ===============================
 // GALLERY IMAGE VIEW
 // ===============================
