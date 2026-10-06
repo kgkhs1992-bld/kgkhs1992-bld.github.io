@@ -1086,7 +1086,7 @@ animation: kgkhsNoticeScroll 20s linear infinite;
   display: inline-flex !important;
   width: max-content !important;
   white-space: nowrap !important;
-  animation: kgkhsNoticeScroll 20s linear infinite !important;
+  animation: none !important;
   padding-left: 0 !important;
 }
 
