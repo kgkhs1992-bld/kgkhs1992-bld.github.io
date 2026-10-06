@@ -20,10 +20,6 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 // ==========================================================
 // KGKHS AUTOMATIC RUNNING NOTICE BAR
-// Connected to Supabase: site_announcements
-// Display format:
-// ✔ NEVER MISS TO KNOW – 📁 CATEGORY – FILE NAME
-// IMPORTANT: Notice bar itself DOES NOT open the file.
 // ==========================================================
 
 document.addEventListener("DOMContentLoaded", async function () {
@@ -34,9 +30,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     const noticeContent =
         document.getElementById("kgkhsNoticeContent");
 
-    if (!noticeBar || !noticeContent) {
-        return;
-    }
+    if (!noticeBar || !noticeContent) return;
 
     try {
 
@@ -51,32 +45,27 @@ document.addEventListener("DOMContentLoaded", async function () {
                 .order("created_at", { ascending: false });
 
         if (error) {
-            console.error(
-                "KGKHS Notice Bar Error:",
-                error
-            );
-
+            console.error("KGKHS Notice Bar Error:", error);
             noticeBar.style.display = "none";
             return;
         }
 
-        // No active notices
         if (!announcements || announcements.length === 0) {
             noticeBar.style.display = "none";
             return;
         }
 
-        // Clear old notices
         noticeContent.innerHTML = "";
 
-        // Create every notice
         announcements.forEach(function (announcement) {
 
-            const item =
-                document.createElement("span");
+            const item = document.createElement("span");
 
-            item.className =
-                "kgkhs-notice-item";
+            item.className = "kgkhs-notice-item";
+
+            // CATEGORY — from the upload record
+            const category =
+                announcement.category || "";
 
             // FILE NAME
             const fileName =
@@ -85,28 +74,67 @@ document.addEventListener("DOMContentLoaded", async function () {
                 announcement.title ||
                 "New Update";
 
-            // CATEGORY
-            const category =
-                announcement.category ||
-                announcement.source_section ||
-                "School Update";
-
-            // EXACT SCROLLING NOTICE FORMAT
+            // DISPLAY:
+            // NEVER MISS TO KNOW → CATEGORY → FILE NAME
             item.textContent =
                 "✔ NEVER MISS TO KNOW – 📁 " +
                 category +
                 " – " +
                 fileName;
 
+            // ------------------------------------------------
             // IMPORTANT:
-            // NO click event here.
-            // The scrolling notice is only a teaser.
-            // Viewer must go to NEVER MISS TO KNOW
-            // section and tap the exact file there.
+            // Clicking the notice does NOT open the file.
+            // It takes the viewer to NEVER MISS TO KNOW.
+            // ------------------------------------------------
+
+            item.style.cursor = "pointer";
+
+            item.addEventListener("click", function () {
+
+                const destination =
+                    announcement.destination_area ||
+                    "never-miss-section";
+
+                const target =
+                    document.getElementById(destination);
+
+                if (target) {
+
+                    target.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start"
+                    });
+
+                    // Open the NEVER MISS details area
+                    const details =
+                        target.querySelector("details");
+
+                    if (details) {
+                        details.open = true;
+                    }
+
+                } else {
+
+                    // Safety fallback
+                    const neverMiss =
+                        document.getElementById(
+                            "never-miss-section"
+                        );
+
+                    if (neverMiss) {
+                        neverMiss.scrollIntoView({
+                            behavior: "smooth",
+                            block: "start"
+                        });
+                    }
+
+                }
+
+            });
 
             noticeContent.appendChild(item);
 
-            // Separator
             const separator =
                 document.createElement("span");
 
@@ -116,9 +144,9 @@ document.addEventListener("DOMContentLoaded", async function () {
             separator.textContent = " ◆ ";
 
             noticeContent.appendChild(separator);
+
         });
 
-        // Show notice bar
         noticeBar.style.display = "flex";
 
     } catch (error) {
