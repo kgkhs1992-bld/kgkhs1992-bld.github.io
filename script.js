@@ -123,24 +123,29 @@ document.addEventListener("DOMContentLoaded", async function () {
     const target =
         document.getElementById(destination);
 
-    if (target) {
+ if (target) {
+
+    // NEVER MISS TO KNOW notices
+    if (destination === "never-miss-section") {
+
+        const openButton =
+            document.getElementById("never-miss-open");
+
+        if (openButton) {
+            openButton.click();
+        }
+    }
+
+    // Go to NEVER MISS TO KNOW section
+    setTimeout(() => {
 
         target.scrollIntoView({
             behavior: "smooth",
             block: "start"
         });
 
-        // Open NEVER MISS details only for NEVER MISS notices
-        if (destination === "never-miss-section") {
-
-            const details =
-                target.querySelector("details");
-
-            if (details) {
-                details.open = true;
-            }
-        }
-    }
+    }, 100);
+}
 
 });
 
