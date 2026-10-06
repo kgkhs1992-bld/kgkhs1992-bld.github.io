@@ -163,9 +163,9 @@ document.addEventListener("DOMContentLoaded", async function () {
         noticeBar.style.display = "flex";
 noticeContent.style.animation = "none";
 void noticeContent.offsetWidth;
- noticeContent.style.animation = "kgkhsNoticeScroll 0s linear infinite";
-    } catch (error) {
-
+ const scrollDistance = noticeContent.scrollWidth + noticeContent.parentElement.offsetWidth;
+const scrollDuration = scrollDistance / 40;
+noticeContent.style.animation = `kgkhsNoticeScroll ${scrollDuration}s linear infinite`;
         console.error(
             "KGKHS Automatic Notice Error:",
             error
