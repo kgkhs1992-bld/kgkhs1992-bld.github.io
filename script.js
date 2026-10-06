@@ -49,7 +49,6 @@ document.addEventListener("DOMContentLoaded", async function () {
             noticeBar.style.display = "none";
             return;
         }
-
         if (!announcements || announcements.length === 0) {
             noticeBar.style.display = "none";
             return;
