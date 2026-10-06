@@ -147,7 +147,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
 });
 
-            noticeContent.appendChild(item);
+          noticeContent.appendChild(item);
 
             const separator =
                 document.createElement("span");
