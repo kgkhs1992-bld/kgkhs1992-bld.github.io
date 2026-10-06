@@ -113,7 +113,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         text.includes("half yearly") ||
         text.includes("annual")
     ) {
-        destination = "result-section";
+       destination = "results";
     } else {
         // Other notices → NEVER MISS TO KNOW
         destination =
