@@ -92,21 +92,58 @@ document.addEventListener("DOMContentLoaded", async function () {
 
             item.addEventListener("click", function () {
 
-                const destination =
-                    announcement.destination_area ||
-                    "never-miss-section";
+       const text = (
+        (announcement.category || "") + " " +
+        (announcement.content_name || "") + " " +
+        (announcement.title || "") + " " +
+        (announcement.target_url || "") + " " +
+        (announcement.target_action || "")
+    ).toLowerCase();
 
-                const target =
-                    document.getElementById(destination);
+    let destination;
 
-                if (target) {
+    // RESULT notices → STUDENT RESULT
+    if (
+        text.includes("result") ||
+        text.includes("marks") ||
+        text.includes("fa1") ||
+        text.includes("fa2") ||
+        text.includes("fa3") ||
+        text.includes("fa4") ||
+        text.includes("half yearly") ||
+        text.includes("annual")
+    ) {
+        destination = "result-section";
+    } else {
+        // Other notices → NEVER MISS TO KNOW
+        destination =
+            announcement.destination_area ||
+            "never-miss-section";
+    }
 
-                    target.scrollIntoView({
-                        behavior: "smooth",
-                        block: "start"
-                    });
+    const target =
+        document.getElementById(destination);
 
-    // Decide where this notice should go
+    if (target) {
+
+        target.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+
+        // Open NEVER MISS details only for NEVER MISS notices
+        if (destination === "never-miss-section") {
+
+            const details =
+                target.querySelector("details");
+
+            if (details) {
+                details.open = true;
+            }
+        }
+    }
+
+});
 const text = (
     (announcement.category || "") + " " +
     (announcement.content_name || "") + " " +
