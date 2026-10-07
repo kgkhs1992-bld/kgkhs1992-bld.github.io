@@ -257,7 +257,10 @@ function render(){
 })
 .map(r=>{
 
-  const existing = existingRows.get(r.roll) || {};
+  const existing = {
+  ...(existingRows.get(r.roll) || {}),
+  ...(draft()[r.roll] || {})
+};
    let html = `
     <tr data-roll="${esc(r.roll)}">
       <td class="roll">${esc(r.roll)}</td>
