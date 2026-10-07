@@ -316,11 +316,13 @@ function render(){
         <th>Roll</th>
         <th>Student Name</th>
         ${fields.map(f=>{
-          const label =
-  pat.half
-    ? (halfFields.find(x=>x[0]===f)?.[1] || f)
-    : ((pat.fields || []).find(x=>x[0]===f)?.[1] || f);
-        }).join("")}
+  const label =
+    pat.half
+      ? (halfFields.find(x=>x[0]===f)?.[1] || f)
+      : ((pat.fields || []).find(x=>x[0]===f)?.[1] || f);
+
+  return `<th>${esc(label)}</th>`;
+}).join("")}
         <th>Total</th>
         <th>Grade</th>
       </tr>
