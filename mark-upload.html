@@ -88,15 +88,30 @@ const base=[
 ["science","Science"],
 ["social_science","Social Science"]
 ];
-
+const halfFields=[
+["mil_odia_sub","MIL (Odia) – Subjective",50],
+["mil_odia_obj","MIL (Odia) – Objective",50],
+["english_sub","English – Subjective",50],
+["english_obj","English – Objective",50],
+["hindi_sanskrit_sub","Hindi / Sanskrit – Subjective",50],
+["hindi_sanskrit_obj","Hindi / Sanskrit – Objective",50],
+["mathematics_sub","Mathematics – Subjective",50],
+["mathematics_obj","Mathematics – Objective",50],
+["science_sub","Science – Subjective",50],
+["science_obj","Science – Objective",50],
+["social_science_sub","Social Science – Subjective",50],
+["social_science_obj","Social Science – Objective",50],
+["ia","IA",20],
+["ac","AC",20]
+];
 ["IX","X"].forEach(c=>{
   patterns[c]={
     FA1:{label:"Formative Assessment 1",max:300,fields:base,per:50},
     FA2:{label:"Formative Assessment 2",max:300,fields:base,per:50},
     FA3:{label:"Formative Assessment 3",max:300,fields:base,per:50},
     FA4:{label:"Formative Assessment 4",max:300,fields:base,per:50},
-    HALF_YEARLY:{label:"Half Yearly",max:600,half:true},
-    ANNUAL:{label:"Annual",max:600,half:true},
+    HALF_YEARLY:{label:"Half Yearly",max:640,half:true},
+    ANNUAL:{label:"Annual",max:640,half:true},
   ASPIRATIONAL:{
     label:"Aspirational Components",
     max:100,
@@ -232,17 +247,8 @@ function render(){
   if(!pat) return;
 
   const fields = pat.half
-    ? [
-        "mil_odia_sub","mil_odia_obj",
-        "english_sub","english_obj",
-        "hindi_sanskrit_sub","hindi_sanskrit_obj",
-        "math_sub","math_obj",
-        "science_sub","science_obj",
-        "history_sub","history_obj",
-        "geography_sub","geography_obj"
-      ]
+    ? halfFields.map(x=>x[0])
     : (pat.fields || []).map(x=>x[0]);
-
   const rows = roster
  .filter(r=>{
   if(!search) return true;
@@ -272,7 +278,11 @@ function render(){
               class="mark"
               type="number"
               min="0"
-              max="${pat.max || 100}"
+              max="${
+  pat.half
+    ? (f==="ia" || f==="ac" ? 20 : 50)
+    : (pat.per || 100)
+}"
               data-field="${f}"
               value="${value}"
             >
@@ -307,8 +317,9 @@ function render(){
         <th>Student Name</th>
         ${fields.map(f=>{
           const label =
-            (pat.fields || []).find(x=>x[0]===f)?.[1] || f;
-          return `<th>${esc(label)}</th>`;
+  pat.half
+    ? (halfFields.find(x=>x[0]===f)?.[1] || f)
+    : ((pat.fields || []).find(x=>x[0]===f)?.[1] || f);
         }).join("")}
         <th>Total</th>
         <th>Grade</th>
@@ -360,10 +371,9 @@ marksTable.querySelectorAll("tbody tr").forEach(tr => {
          * For normal examinations:
          * Maximum = per-subject/full-mark × number of subjects
          */
-        const fullMarks = isAspirational
-            ? 100
-            : Number(pat.max || 100) * inputs.length;
-
+        const fullMarks = pat.half
+    ? 640
+    : (isAspirational ? 100 : Number(pat.max || 100));
         /* CALCULATE PERCENTAGE */
         const percentage = fullMarks > 0
             ? (total / fullMarks) * 100
@@ -445,7 +455,45 @@ function current(){
 } 
 function save(){localStorage.setItem(key(),JSON.stringify(current()));show(appMsg,"✅ Draft saved on this device. Nothing has been published.","ok");render()}
 function clearDraft(){localStorage.removeItem(key());render();show(appMsg,"Draft cleared from this browser.","info")}
-function validate(){const d=current(),mx=half()?50:pat().per,errors=[],count=Object.values(d).filter(o=>Object.keys(o).length).length;Object.entries(d).forEach(([r,o])=>Object.values(o).forEach(v=>{if(!Number.isFinite(v)||v<0||v>mx)errors.push("Roll "+r+" has an invalid mark")}));if(!count)errors.push("No marks entered.");return{d,errors,count}}
+function validate(){
+
+  const d=current();
+  const errors=[];
+  const count=Object.values(d)
+    .filter(o=>Object.keys(o).length)
+    .length;
+
+  Object.entries(d).forEach(([r,o])=>{
+
+    Object.entries(o).forEach(([field,v])=>{
+
+      const max =
+        half()
+          ? (field==="ia" || field==="ac" ? 20 : 50)
+          : pat().per;
+
+      if(
+        !Number.isFinite(v) ||
+        v<0 ||
+        v>max
+      ){
+        errors.push(
+          "Roll "+r+
+          " has an invalid mark in "+
+          field
+        );
+      }
+
+    });
+
+  });
+
+  if(!count){
+    errors.push("No marks entered.");
+  }
+
+  return {d,errors,count};
+}
 
 async function publish(){
 
@@ -537,13 +585,28 @@ async function publish(){
 
       });
 
-      if(!has){
-        continue;
-      }
+      const ia=o.ia ?? null;
+const ac=o.ac ?? null;
 
-      pay.total=total;
-      pay.full_marks=600;
+pay.ia=ia;
+pay.ac=ac;
 
+if(ia!==null){
+  total+=Number(ia);
+  has=true;
+}
+
+if(ac!==null){
+  total+=Number(ac);
+  has=true;
+}
+
+if(!has){
+  continue;
+}
+
+pay.total=total;
+pay.full_marks=640;
     }else{
 
       let total=0;
