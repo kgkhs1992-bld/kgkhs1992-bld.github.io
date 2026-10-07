@@ -1095,3 +1095,45 @@ animation: kgkhsNoticeScroll 20s linear infinite;
   display: inline-block !important;
   white-space: nowrap !important;
 }
+/* =========================================
+   KGKHS AUTOMATIC RUNNING NOTICE BAR
+   ========================================= */
+
+#kgkhsNoticeBar {
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+}
+
+#kgkhsNoticeContent {
+    display: inline-flex;
+    width: max-content;
+    white-space: nowrap;
+    flex-shrink: 0;
+    will-change: transform;
+}
+
+.kgkhs-notice-item {
+    display: inline-block;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.kgkhs-notice-separator {
+    display: inline-block;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin: 0 18px;
+}
+
+/* THE MISSING ANIMATION */
+@keyframes kgkhsNoticeScroll {
+    from {
+        transform: translateX(100%);
+    }
+
+    to {
+        transform: translateX(-100%);
+    }
+}
