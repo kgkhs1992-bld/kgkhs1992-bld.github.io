@@ -162,11 +162,32 @@ document.addEventListener("DOMContentLoaded", async function () {
 
                 noticeBar.style.display = "flex";
 
-        noticeContent.style.setProperty(
-    "animation",
-    "kgkhsNoticeScroll 25s linear infinite",
-    "important"
-);
+     const track = noticeContent.parentElement;
+let position = track.offsetWidth;
+const speed = 20;
+let lastTime = performance.now();
+
+noticeContent.style.animation = "none";
+noticeContent.style.transform = `translateX(${position}px)`;
+
+function moveNotice(currentTime) {
+
+    const delta = (currentTime - lastTime) / 1000;
+    lastTime = currentTime;
+
+    position -= speed * delta;
+
+    if (position <= -noticeContent.scrollWidth) {
+        position = track.offsetWidth;
+    }
+
+    noticeContent.style.transform =
+        `translateX(${position}px)`;
+
+    requestAnimationFrame(moveNotice);
+}
+
+requestAnimationFrame(moveNotice);
 
     } catch (error) {
 
