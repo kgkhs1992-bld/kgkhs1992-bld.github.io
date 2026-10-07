@@ -976,7 +976,7 @@ img {
     align-items: center;
     white-space: nowrap;
     width: max-content;
-    padding-left: 100%;
+   padding-left: 0;
     will-change: transform;
 }
 @keyframes kgkhsNoticeScroll {
