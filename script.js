@@ -164,7 +164,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
      const track = noticeContent.parentElement;
 let position = track.offsetWidth;
-const speed = 20;
+const speed = 25;
 let lastTime = performance.now();
 
 noticeContent.style.animation = "none";
