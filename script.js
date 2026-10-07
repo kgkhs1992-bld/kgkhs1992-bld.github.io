@@ -162,17 +162,11 @@ document.addEventListener("DOMContentLoaded", async function () {
 
                 noticeBar.style.display = "flex";
 
-        const scrollDistance =
-            noticeContent.scrollWidth +
-            noticeContent.parentElement.offsetWidth;
-
-        const scrollDuration = scrollDistance / 40;
-
         noticeContent.style.setProperty(
-            "animation",
-            `kgkhsNoticeScroll ${scrollDuration}s linear infinite`,
-            "important"
-        );
+    "animation",
+    "kgkhsNoticeScroll 25s linear infinite",
+    "important"
+);
 
     } catch (error) {
 
