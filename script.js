@@ -2919,38 +2919,7 @@ pendingStudentResults = pendingStudentResults.map(row => ({
 
       return;
     }
-    // ==========================================
-    // PUBLISH RESULT TO NOTICE BAR
-    // ==========================================
-
-    const resultNoticeTitle =
-      "Class " +
-      pendingResultMeta.classValue +
-      " — " +
-      pendingResultMeta.assessmentLabel;
-
-    const { error: resultNoticeError } =
-      await supabaseClient
-        .from("site_announcements")
-        .insert({
-          title: resultNoticeTitle,
-          content_name: resultNoticeTitle,
-          source_section: "Student Results",
-          category: "Student Results",
-          target_action: "results",
-          destination_area: "results",
-          is_active: true,
-          expires_at: new Date(
-            Date.now() + 7 * 24 * 60 * 60 * 1000
-          ).toISOString()
-        });
-
-    if (resultNoticeError) {
-      console.error(
-        "Result Notice Bar save error:",
-        resultNoticeError
-      );
-    }
+   
     message.textContent =
       "✅ Successfully saved " +
       result.data.length +
