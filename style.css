@@ -979,15 +979,7 @@ img {
    padding-left: 0;
     will-change: transform;
 }
-@keyframes kgkhsNoticeScroll {
-    from {
-        transform: translateX(100%);
-    }
 
-    to {
-        transform: translateX(-100%);
-    }
-}
 .kgkhs-notice-item {
     display: inline-block;
     color: #ffffff;
