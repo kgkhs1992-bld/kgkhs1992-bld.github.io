@@ -710,13 +710,12 @@ if(!has){
   pay.ia=iaTotal;
   pay.ac=caTotal;
   pay.total=total;
-  pay.full_marks=p.max;
+pay.full_marks=p.max;
 }
-    }
 
     try{
-
-      const found=
+ 
+    const found=
         await supabaseClient
           .from(table)
           .select("id")
