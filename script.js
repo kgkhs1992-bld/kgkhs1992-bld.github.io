@@ -2489,7 +2489,59 @@ if (meta.classValue === "VIII") {
 }
 
 
+// =====================================================
+// CLASS IX / X IA & CA
+// =====================================================
 
+else if (
+    (meta.classValue === "IX" ||
+     meta.classValue === "X") &&
+    (
+        meta.assessmentValue === "IA_CA_HALF_YEARLY" ||
+        meta.assessmentValue === "IA_CA_ANNUAL"
+    )
+) {
+
+    const iaCaFields = [
+        "ia_mil_odia",
+        "ca_mil_odia",
+        "ia_english",
+        "ca_english",
+        "ia_hindi_sanskrit",
+        "ca_hindi_sanskrit",
+        "ia_mathematics",
+        "ca_mathematics",
+        "ia_science",
+        "ca_science",
+        "ia_social_science",
+        "ca_social_science"
+    ];
+
+    let calculatedTotal = 0;
+
+    iaCaFields.forEach(field => {
+
+        if (
+            r[field] !== undefined &&
+            r[field] !== null &&
+            r[field] !== ""
+        ) {
+
+            payload[field] =
+                resultMark(r[field]);
+
+            calculatedTotal +=
+                resultMark(r[field]) ?? 0;
+        }
+
+    });
+
+    payload.total =
+        calculatedTotal;
+
+    payload.full_marks =
+        240;
+}
 // =====================================================
 // CLASS IX / X FORMATIVE ASSESSMENTS
 // =====================================================
