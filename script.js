@@ -1051,8 +1051,14 @@ if (!data) {
 <hr>
 `;
 
-          
-      const isHalfAnnual =
+    const isIaCa =
+  (studentClass === "IX" || studentClass === "X") &&
+  (
+    assessment === "IA & CA – Half Yearly" ||
+    assessment === "IA & CA – Annual / Pre-Board"
+  );
+
+const isHalfAnnual =
   (studentClass === "IX" || studentClass === "X") &&
   (
     assessment === "Half Yearly" ||
@@ -1061,7 +1067,124 @@ if (!data) {
 
 let foundMarks = false;
 
-if (isHalfAnnual) {
+if (isIaCa) {
+
+  const iaSubjects = [
+    ["ia_mil_odia", "MIL (Odia)"],
+    ["ia_english", "English"],
+    ["ia_hindi_sanskrit", "Hindi / Sanskrit"],
+    ["ia_mathematics", "Mathematics"],
+    ["ia_science", "Science"],
+    ["ia_social_science", "Social Science"]
+  ];
+
+  const caSubjects = [
+    ["ca_mil_odia", "MIL (Odia)"],
+    ["ca_english", "English"],
+    ["ca_hindi_sanskrit", "Hindi / Sanskrit"],
+    ["ca_mathematics", "Mathematics"],
+    ["ca_science", "Science"],
+    ["ca_social_science", "Social Science"]
+  ];
+
+  let iaTotal = 0;
+  let caTotal = 0;
+
+  html += `
+    <div style="overflow:auto;">
+      <table style="width:100%;border-collapse:collapse;margin-top:15px;">
+        <thead>
+          <tr>
+            <th style="padding:8px;border:1px solid #ccc;">Subject</th>
+            <th style="padding:8px;border:1px solid #ccc;">IA</th>
+            <th style="padding:8px;border:1px solid #ccc;">CA</th>
+            <th style="padding:8px;border:1px solid #ccc;">Full Marks</th>
+          </tr>
+        </thead>
+        <tbody>
+  `;
+
+  iaSubjects.forEach(([iaField, subjectName], index) => {
+
+    const caField = caSubjects[index][0];
+
+    const ia = data[iaField];
+    const ca = data[caField];
+
+    if (
+      (ia !== null && ia !== undefined && ia !== "") ||
+      (ca !== null && ca !== undefined && ca !== "")
+    ) {
+      foundMarks = true;
+    }
+
+    iaTotal += Number(ia || 0);
+    caTotal += Number(ca || 0);
+
+    html += `
+      <tr>
+        <td style="padding:8px;border:1px solid #ccc;">
+          <strong>${subjectName}</strong>
+        </td>
+
+        <td style="padding:8px;border:1px solid #ccc;">
+          ${ia ?? "—"}
+        </td>
+
+        <td style="padding:8px;border:1px solid #ccc;">
+          ${ca ?? "—"}
+        </td>
+
+        <td style="padding:8px;border:1px solid #ccc;">
+          40
+        </td>
+      </tr>
+    `;
+  });
+
+  const overallTotal = iaTotal + caTotal;
+
+  html += `
+        </tbody>
+      </table>
+    </div>
+  `;
+
+  if (foundMarks) {
+
+    html += `
+      <div style="margin-top:18px;">
+
+        <p>
+          <strong>IA TOTAL:</strong>
+          ${iaTotal} / 120
+        </p>
+
+        <p>
+          <strong>CA TOTAL:</strong>
+          ${caTotal} / 120
+        </p>
+
+        <p>
+          <strong>OVERALL TOTAL:</strong>
+          ${overallTotal} / 240
+        </p>
+
+        <p>
+          <strong>PERCENTAGE:</strong>
+          ${((overallTotal / 240) * 100).toFixed(2)}%
+        </p>
+
+      </div>
+    `;
+
+  } else {
+
+    html +=
+      "<p>Marks have not been entered yet.</p>";
+  }
+
+} else if (isHalfAnnual) {
 
   const subjectPairs = [
     ["mil_odia_sub", "mil_odia_obj", "MIL (Odia)"],
@@ -1161,7 +1284,10 @@ if (isHalfAnnual) {
 
   subjects.forEach(([column, name]) => {
 
-    if (data[column] !== null && data[column] !== undefined) {
+    if (
+      data[column] !== null &&
+      data[column] !== undefined
+    ) {
 
       foundMarks = true;
 
@@ -1177,11 +1303,11 @@ if (isHalfAnnual) {
   });
 
   if (!foundMarks) {
-    html += "<p>Marks have not been entered yet.</p>";
+    html +=
+      "<p>Marks have not been entered yet.</p>";
   }
 
 }
-
 
       html += `
         </div>
