@@ -281,11 +281,11 @@ function render(){
               class="mark"
               type="number"
               min="0"
-              max="${
+max="${
   pat.half
-    ? (f==="ia" || f==="ac" ? 20 : 50)
-    : (pat.per || 100)
-}"
+    ? (f==="ia" || f==="ac" ? 120 : 50)
+    : ((pat.fields || []).find(x=>x[0]===f)?.[2] || pat.per || 100)
+}"              
               data-field="${f}"
               value="${value}"
             >
@@ -377,7 +377,7 @@ marksTable.querySelectorAll("tbody tr").forEach(tr => {
          * Maximum = per-subject/full-mark × number of subjects
          */
         const fullMarks = pat.half
-    ? 640
+    ? 840
     : (isAspirational ? 100 : Number(pat.max || 100));
         /* CALCULATE PERCENTAGE */
         const percentage = fullMarks > 0
@@ -496,9 +496,9 @@ function validate(){
     Object.entries(o).forEach(([field,v])=>{
 
       const max =
-        half()
-          ? (field==="ia" || field==="ac" ? 20 : 50)
-          : pat().per;
+  half()
+    ? (field==="ia" || field==="ac" ? 120 : 50)
+    : pat().per;
 
       if(
         !Number.isFinite(v) ||
@@ -634,7 +634,7 @@ if(!has){
 }
 
 pay.total=total;
-pay.full_marks=640;
+pay.full_marks=840;
     }else{
 
       let total=0;
