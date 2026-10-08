@@ -101,8 +101,8 @@ const halfFields=[
 ["science_obj","Science – Objective",50],
 ["social_science_sub","Social Science – Subjective",50],
 ["social_science_obj","Social Science – Objective",50],
-["ia","IA",20],
-["ac","AC",20]
+["ia","IA Total / 120",120],
+  ["ac","CA Total / 120",120]
 ];
 ["IX","X"].forEach(c=>{
   patterns[c]={
@@ -534,10 +534,12 @@ function validate(){
 
     Object.entries(o).forEach(([field,v])=>{
 
-      const max =
+     const fieldDef = (pat().fields || []).find(x => x[0] === field);
+
+const max =
   half()
     ? (field==="ia" || field==="ac" ? 120 : 50)
-    : pat().per;
+    : (fieldDef?.[2] ?? pat().per ?? 100);
 
       if(
         !Number.isFinite(v) ||
@@ -672,34 +674,44 @@ if(!has){
   continue;
 }
 
-pay.total=total;
-pay.full_marks=840;
-    }else{
+}else{
 
-      let total=0;
-      let has=false;
+  let total=0;
+  let iaTotal=0;
+  let caTotal=0;
+  let has=false;
 
-      p.fields.forEach(([f])=>{
+  p.fields.forEach(([f])=>{
 
-        const val=o[f];
+    const val=o[f];
 
-        if(val!==undefined){
+    if(val!==undefined){
 
-          pay[f]=val;
+      pay[f]=val;
 
-          total+=Number(val);
-
-          has=true;
-        }
-
-      });
-
-      if(!has){
-        continue;
+      if(f.startsWith("ia_")){
+        iaTotal+=Number(val);
       }
 
-      pay.total=total;
-      pay.full_marks=p.max;
+      if(f.startsWith("ca_")){
+        caTotal+=Number(val);
+      }
+
+      total+=Number(val);
+      has=true;
+    }
+
+  });
+
+  if(!has){
+    continue;
+  }
+
+  pay.ia=iaTotal;
+  pay.ac=caTotal;
+  pay.total=total;
+  pay.full_marks=p.max;
+}
     }
 
     try{
@@ -766,12 +778,12 @@ p.half
   ]
 : p.fields.map(x=>x[0]);
 
-        const verified=
-          verifyFields.some(f=>
-            saved[f]!==null &&
-            saved[f]!==undefined &&
-            saved[f]!==""
-          );
+const verified=
+  verifyFields.every(f=>
+    saved[f]!==null &&
+    saved[f]!==undefined &&
+    saved[f]!==""
+  );
 
         if(!verified){
 
@@ -780,32 +792,58 @@ p.half
           );
         }
 
-        ok++;
+ }else{
 
-      }else{
+  const ins=
+    await supabaseClient
+      .from(table)
+      .insert(pay)
+      .select("*");
 
-        const ins=
-          await supabaseClient
-            .from(table)
-            .insert(pay)
-            .select("*");
+  if(ins.error){
+    throw ins.error;
+  }
 
-        if(ins.error){
-          throw ins.error;
+  if(
+    !ins.data ||
+    ins.data.length===0
+  ){
+    throw new Error(
+      "Database did not confirm the insert."
+    );
+  }
+
+  const saved=ins.data[0];
+
+  const verifyFields=Object.keys(pay).filter(f=>
+    ![
+      "roll_no",
+      "pin",
+      "student_name",
+      "assessment",
+      "total",
+      "full_marks"
+    ].includes(f)
+  );
+
+  const verified=
+    verifyFields.length>0 &&
+    verifyFields.every(f=>
+      saved[f]!==null &&
+      saved[f]!==undefined &&
+      saved[f]!==""
+    );
+
+  if(!verified){
+    throw new Error(
+      "Inserted row returned, but marks were not saved."
+    );
+  }
+
+  ok++;
+}
         }
 
-        if(
-          !ins.data ||
-          ins.data.length===0
-        ){
-
-          throw new Error(
-            "Database did not confirm the insert."
-          );
-        }
-
-        ok++;
-      }
 
     }catch(e){
 
