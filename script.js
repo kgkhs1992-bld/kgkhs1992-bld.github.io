@@ -1431,6 +1431,12 @@ if (className === "VIII") {
 } else if (className === "IX" || className === "X") {
 
     if (
+        assessmentName.includes("IA & CA") ||
+        assessmentName.includes("IA AND CA")
+    ) {
+        maxMarks = 240;
+
+    } else if (
         assessmentName.includes("ASPIRATIONAL") ||
         assessmentName === "ASPIRATIONAL"
     ) {
@@ -1461,7 +1467,6 @@ if (className === "VIII") {
         maxMarks = 90;
     }
 }
-
         if (totalMarks !== "" && !isNaN(totalMarks) && maxMarks > 0) {
             const percentage = (totalMarks / maxMarks) * 100;
 
@@ -1572,6 +1577,40 @@ doc.text("Term 4", 165, y);
     y += 8;
   });
 
+} else if (
+  (className === "IX" || className === "X") &&
+  (
+    assessmentName.includes("IA & CA") ||
+    assessmentName.includes("IA AND CA")
+  )
+) {
+
+  doc.text("Subject", 20, y);
+  doc.text("IA", 105, y);
+  doc.text("CA", 135, y);
+  doc.text("Full Marks", 165, y);
+
+  y += 8;
+
+  const iaCaMarks = [
+    ["MIL (Odia)", data.ia_mil_odia, data.ca_mil_odia],
+    ["English", data.ia_english, data.ca_english],
+    ["Hindi / Sanskrit", data.ia_hindi_sanskrit, data.ca_hindi_sanskrit],
+    ["Mathematics", data.ia_mathematics, data.ca_mathematics],
+    ["Science", data.ia_science, data.ca_science],
+    ["Social Science", data.ia_social_science, data.ca_social_science]
+  ];
+
+  iaCaMarks.forEach(item => {
+
+    doc.text(item[0], 20, y);
+    doc.text(String(item[1] ?? "—"), 105, y);
+    doc.text(String(item[2] ?? "—"), 135, y);
+    doc.text("40", 165, y);
+
+    y += 8;
+  });
+
 } else if (isHalfAnnual) {
 
   doc.text("Subject", 20, y);
@@ -1604,7 +1643,7 @@ doc.text("Term 4", 165, y);
     }
 
   });
-
+  
 } else {
 
   const marks = className === "VIII"
