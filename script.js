@@ -2082,7 +2082,9 @@ IX: [
   ["FA4", "Formative Assessment 4", "IX FA-4"],
   ["HALF_YEARLY", "Half Yearly", "IX Half-Yearly"],
   ["ANNUAL", "Annual", "IX Annual"],
-  ["ASPIRATIONAL", "Aspirational Components", "IX Aspirational Components"]
+  ["ASPIRATIONAL", "Aspirational Components", "IX Aspirational Components"],
+  ["IA_CA_HALF_YEARLY", "IA & CA — Half Yearly", "IX IA & CA Half-Yearly"],
+  ["IA_CA_ANNUAL", "IA & CA — Annual / Pre-Board", "IX IA & CA Annual"]
 ],
 
 X: [
@@ -2092,7 +2094,9 @@ X: [
   ["FA4", "Formative Assessment 4", "X FA-4"],
   ["HALF_YEARLY", "Half Yearly", "X Half-Yearly"],
   ["ANNUAL", "Annual", "X Annual"],
-  ["ASPIRATIONAL", "Aspirational Components", "X Aspirational Components"]
+  ["ASPIRATIONAL", "Aspirational Components", "X Aspirational Components"],
+  ["IA_CA_HALF_YEARLY", "IA & CA — Half Yearly", "X IA & CA Half-Yearly"],
+  ["IA_CA_ANNUAL", "IA & CA — Annual / Pre-Board", "X IA & CA Annual"]
 ]
   };
 
