@@ -2851,6 +2851,7 @@ function cancelStudentResultsPreview() {
 }
 
 async function confirmStudentResults() {
+
   const message =
     document.getElementById("result-upload-message");
 
@@ -2874,62 +2875,175 @@ async function confirmStudentResults() {
 
   pendingResultMeta = meta;
 
-const publicationDate = new Date();
-
-const localPublicationDate =
-    publicationDate.getFullYear() + "-" +
-    String(publicationDate.getMonth() + 1).padStart(2, "0") + "-" +
-    String(publicationDate.getDate()).padStart(2, "0");
-
-pendingStudentResults = pendingStudentResults.map(row => ({
-    ...row,
-    result_publication_date: localPublicationDate
-}));
   const tableName =
     "class_" +
     meta.classValue.toLowerCase() +
     "_results";
 
   try {
-    message.textContent =
-      "⏳ Saving " +
-      pendingStudentResults.length +
-      " result(s) to Supabase...";
 
-    const result =
+    message.textContent =
+      "⏳ Checking existing result rows...";
+
+    /* =========================================
+       1. GET EXISTING ROWS FOR THIS ASSESSMENT
+       ========================================= */
+
+    const rollNumbers =
+      pendingStudentResults.map(row =>
+        Number(row.roll_no)
+      );
+
+    const { data: existingRows, error: existingError } =
       await supabaseClient
         .from(tableName)
-        .insert(pendingStudentResults)
-        .select("*");
+        .select("id, roll_no, assessment")
+        .eq("assessment", meta.assessmentLabel)
+        .in("roll_no", rollNumbers);
 
-    if (result.error) {
-      console.error("Supabase save error:", result.error);
+    if (existingError) {
+      console.error(
+        "Existing row check error:",
+        existingError
+      );
 
       message.textContent =
-        "❌ Save failed: " +
-        result.error.message;
+        "❌ Could not check existing result rows: " +
+        existingError.message;
 
       return;
     }
 
-    if (
-      !result.data ||
-      result.data.length === 0
-    ) {
-      message.textContent =
-        "❌ Supabase did not return the saved result rows.";
+    /* =========================================
+       2. MAP EXISTING ROWS BY ROLL NUMBER
+       ========================================= */
 
-      return;
+    const existingMap = {};
+
+    (existingRows || []).forEach(row => {
+
+      /*
+       * If duplicate rows already exist,
+       * keep the latest/highest ID.
+       */
+      if (
+        !existingMap[row.roll_no] ||
+        Number(row.id) > Number(existingMap[row.roll_no].id)
+      ) {
+        existingMap[row.roll_no] = row;
+      }
+
+    });
+
+    let inserted = 0;
+    let updated = 0;
+
+    /* =========================================
+       3. UPDATE EXISTING / INSERT NEW
+       ========================================= */
+
+    for (const student of pendingStudentResults) {
+
+      const roll =
+        Number(student.roll_no);
+
+      const existing =
+        existingMap[roll];
+
+      /*
+       * Every publication gets the current date.
+       */
+      const publicationDate =
+        new Date();
+
+      const localPublicationDate =
+        publicationDate.getFullYear() + "-" +
+        String(
+          publicationDate.getMonth() + 1
+        ).padStart(2, "0") + "-" +
+        String(
+          publicationDate.getDate()
+        ).padStart(2, "0");
+
+      const payload = {
+        ...student,
+        result_publication_date:
+          localPublicationDate
+      };
+
+      /* =====================================
+         EXISTING ROW → UPDATE
+         ===================================== */
+
+      if (existing) {
+
+        const { error: updateError } =
+          await supabaseClient
+            .from(tableName)
+            .update(payload)
+            .eq("id", existing.id);
+
+        if (updateError) {
+
+          console.error(
+            "Update error:",
+            updateError
+          );
+
+          message.textContent =
+            "❌ Failed updating Roll No. " +
+            roll +
+            ": " +
+            updateError.message;
+
+          return;
+        }
+
+        updated++;
+
+      }
+
+      /* =====================================
+         NO EXISTING ROW → INSERT
+         ===================================== */
+
+      else {
+
+        const { error: insertError } =
+          await supabaseClient
+            .from(tableName)
+            .insert(payload);
+
+        if (insertError) {
+
+          console.error(
+            "Insert error:",
+            insertError
+          );
+
+          message.textContent =
+            "❌ Failed inserting Roll No. " +
+            roll +
+            ": " +
+            insertError.message;
+
+          return;
+        }
+
+        inserted++;
+      }
     }
-   
+
+    /* =========================================
+       4. SUCCESS
+       ========================================= */
+
     message.textContent =
-      "✅ Successfully saved " +
-      result.data.length +
-      " result(s) for Class " +
-      pendingResultMeta.classValue +
-      " — " +
-      pendingResultMeta.assessmentLabel +
-      ".";
+      "✅ Upload completed — " +
+      updated +
+      " existing result(s) updated, " +
+      inserted +
+      " new result(s) inserted. No duplicate rows created.";
 
     const preview =
       document.getElementById(
@@ -2943,7 +3057,13 @@ pendingStudentResults = pendingStudentResults.map(row => ({
 
     if (preview) {
       preview.innerHTML =
-        "<p>✅ Results saved successfully to Supabase.</p>";
+        "<p>✅ Results saved successfully to Supabase.</p>" +
+        "<p><strong>Updated:</strong> " +
+        updated +
+        " &nbsp; | &nbsp; " +
+        "<strong>New:</strong> " +
+        inserted +
+        "</p>";
     }
 
     if (actions) {
@@ -2954,6 +3074,7 @@ pendingStudentResults = pendingStudentResults.map(row => ({
     pendingResultMeta = null;
 
   } catch (error) {
+
     console.error(
       "Unexpected result save error:",
       error
@@ -2963,9 +3084,7 @@ pendingStudentResults = pendingStudentResults.map(row => ({
       "❌ Save failed: " +
       (error.message || String(error));
   }
-} 
-
-setupResultUploadOptions();
+}setupResultUploadOptions();
 // ==========================================
 // OUR DIGITAL JOURNEY - OPEN / CLOSE
 // ==========================================
