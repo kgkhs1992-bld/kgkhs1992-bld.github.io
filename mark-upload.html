@@ -708,22 +708,24 @@ pay.full_marks=840;
         const saved=up.data[0];
 
         const verifyFields=
-          p.half
-          ? [
-              "mil_odia_sub",
-              "mil_odia_obj",
-              "english_sub",
-              "english_obj",
-              "hindi_sanskrit_sub",
-              "hindi_sanskrit_obj",
-              "mathematics_sub",
-              "mathematics_obj",
-              "science_sub",
-              "science_obj",
-              "social_science_sub",
-              "social_science_obj"
-            ]
-          : p.fields.map(x=>x[0]);
+p.half
+? [
+    "mil_odia_sub",
+    "mil_odia_obj",
+    "english_sub",
+    "english_obj",
+    "hindi_sanskrit_sub",
+    "hindi_sanskrit_obj",
+    "mathematics_sub",
+    "mathematics_obj",
+    "science_sub",
+    "science_obj",
+    "social_science_sub",
+    "social_science_obj",
+    "ia",
+    "ac"
+  ]
+: p.fields.map(x=>x[0]);
 
         const verified=
           verifyFields.some(f=>
