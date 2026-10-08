@@ -2735,23 +2735,45 @@ async function previewStudentResults() {
       );
 
 
-    const sheet =
-      workbook.Sheets[
-        meta.sheetName
-      ];
+   // Find Excel sheet — allow minor naming differences
+let sheet =
+  workbook.Sheets[meta.sheetName];
 
+if (!sheet) {
 
-    if (!sheet) {
+  const normalizeSheetName = name =>
+    String(name || "")
+      .toLowerCase()
+      .replace(/&/g, "")
+      .replace(/[-_]/g, " ")
+      .replace(/\s+/g, " ")
+      .trim();
 
-      message.textContent =
-        "❌ Excel sheet not found: " +
-        meta.sheetName;
+  const wantedSheet =
+    normalizeSheetName(meta.sheetName);
 
-      return;
-    }
+  const actualSheetName =
+    workbook.SheetNames.find(
+      name =>
+        normalizeSheetName(name) === wantedSheet
+    );
 
+  if (actualSheetName) {
+    sheet =
+      workbook.Sheets[actualSheetName];
+  }
+}
 
-    const rawRows =
+if (!sheet) {
+
+  message.textContent =
+    "❌ Excel sheet not found: " +
+    meta.sheetName;
+
+  return;
+}
+    
+   const rawRows =
       XLSX.utils.sheet_to_json(
         sheet,
         { defval: "" }
