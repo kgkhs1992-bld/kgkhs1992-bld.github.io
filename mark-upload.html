@@ -458,7 +458,30 @@ function current(){
 
   return d;
 } 
-function save(){localStorage.setItem(key(),JSON.stringify(current()));show(appMsg,"✅ Draft saved on this device. Nothing has been published.","ok");render()}
+function save(){
+  const data=current();
+  const storageKey=key();
+
+  localStorage.setItem(storageKey,JSON.stringify(data));
+
+  const check=localStorage.getItem(storageKey);
+
+  if(!check){
+    show(appMsg,"❌ Draft could not be stored in this browser.","err");
+    return;
+  }
+
+  const saved=JSON.parse(check);
+  const count=Object.keys(saved).length;
+
+  show(
+    appMsg,
+    `✅ Draft saved successfully — ${count} student(s). Nothing has been published.`,
+    "ok"
+  );
+
+  render();
+} 
 function clearDraft(){localStorage.removeItem(key());render();show(appMsg,"Draft cleared from this browser.","info")}
 function validate(){
 
