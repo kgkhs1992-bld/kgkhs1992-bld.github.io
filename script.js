@@ -1385,33 +1385,30 @@ script.onload = async function () {
       y
     );
 
-    y += 8;
-
-    doc.text(
-      "Assessment: " +
-      (data.assessment || assessment),
-      15,
-      y
-    
-  
-);
-
-y += 8;
-  
-
-    doc.text(
-      "Subjective: " +
-      (data.subjective ?? "—"),
-      15,
-y
-);
-      
 const className = String(data.class || studentClass || "").trim().toUpperCase();
 
 const assessmentName = String(data.assessment || assessment || "").trim().toUpperCase();
+
+const isIaCaPdf =
+  (className === "IX" || className === "X") &&
+  (
+    assessmentName.includes("IA & CA") ||
+    assessmentName.includes("IA AND CA")
+  );
+
+if (!isIaCaPdf) {
+  y += 8;
+
+  doc.text(
+    "Subjective: " +
+    (data.subjective ?? "—"),
+    15,
+    y
+  );
+}
+
 const totalMarks = Number(data.total);
 let maxMarks = 0;
-
 if (className === "VIII") {
 
     if (
