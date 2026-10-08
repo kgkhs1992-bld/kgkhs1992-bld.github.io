@@ -110,9 +110,48 @@ const halfFields=[
     FA2:{label:"Formative Assessment 2",max:300,fields:base,per:50},
     FA3:{label:"Formative Assessment 3",max:300,fields:base,per:50},
     FA4:{label:"Formative Assessment 4",max:300,fields:base,per:50},
-    HALF_YEARLY:{label:"Half Yearly",max:640,half:true},
-    ANNUAL:{label:"Annual",max:640,half:true},
-  ASPIRATIONAL:{
+HALF_YEARLY:{label:"Half Yearly",max:840,half:true},
+ANNUAL:{label:"Annual",max:840,half:true},
+
+IA_CA_HALF_YEARLY:{
+  label:"IA & CA – Half Yearly",
+  max:240,
+  fields:[
+    ["ia_mil_odia","IA – MIL (Odia)",20],
+    ["ia_english","IA – English",20],
+    ["ia_hindi_sanskrit","IA – Hindi / Sanskrit",20],
+    ["ia_mathematics","IA – Mathematics",20],
+    ["ia_science","IA – Science",20],
+    ["ia_social_science","IA – Social Science",20],
+    ["ca_mil_odia","CA – MIL (Odia)",20],
+    ["ca_english","CA – English",20],
+    ["ca_hindi_sanskrit","CA – Hindi / Sanskrit",20],
+    ["ca_mathematics","CA – Mathematics",20],
+    ["ca_science","CA – Science",20],
+    ["ca_social_science","CA – Social Science",20]
+  ]
+},
+
+IA_CA_ANNUAL:{
+  label:"IA & CA – Annual / Pre-Board",
+  max:240,
+  fields:[
+    ["ia_mil_odia","IA – MIL (Odia)",20],
+    ["ia_english","IA – English",20],
+    ["ia_hindi_sanskrit","IA – Hindi / Sanskrit",20],
+    ["ia_mathematics","IA – Mathematics",20],
+    ["ia_science","IA – Science",20],
+    ["ia_social_science","IA – Social Science",20],
+    ["ca_mil_odia","CA – MIL (Odia)",20],
+    ["ca_english","CA – English",20],
+    ["ca_hindi_sanskrit","CA – Hindi / Sanskrit",20],
+    ["ca_mathematics","CA – Mathematics",20],
+    ["ca_science","CA – Science",20],
+    ["ca_social_science","CA – Social Science",20]
+  ]
+},
+
+ASPIRATIONAL:{
     label:"Aspirational Components",
     max:100,
     fields:[
