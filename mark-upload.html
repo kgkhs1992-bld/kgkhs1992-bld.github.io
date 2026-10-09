@@ -534,13 +534,12 @@ function validate(){
 
     Object.entries(o).forEach(([field,v])=>{
 
-     const fieldDef = (pat().fields || []).find(x => x[0] === field);
+  const fieldDef = (pat().fields || []).find(x => x[0] === field);
 
 const max =
   half()
     ? (field==="ia" || field==="ac" ? 120 : 50)
     : (fieldDef?.[2] ?? pat().per ?? 100);
-
       if(
         !Number.isFinite(v) ||
         v<0 ||
