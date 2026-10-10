@@ -1646,7 +1646,26 @@ doc.text("Term 4", 165, y);
     }
 
   });
-  
+  y += 8;
+
+  const pdfSubjectTotal = marks.reduce(
+    (sum, item) =>
+      sum + Number(item[1] ?? 0) + Number(item[2] ?? 0),
+    0
+  );
+
+  const pdfIATotal = Number(data.ia ?? 0);
+  const pdfCATotal = Number(data.ac ?? 0);
+  const pdfGrandTotal = pdfSubjectTotal + pdfIATotal + pdfCATotal;
+
+  doc.text("SUBJECT MARKS: " + pdfSubjectTotal + " / 600", 15, y);
+  y += 8;
+  doc.text("IA TOTAL: " + pdfIATotal + " / 120", 15, y);
+  y += 8;
+  doc.text("CA TOTAL: " + pdfCATotal + " / 120", 15, y);
+  y += 8;
+  doc.text("GRAND TOTAL: " + pdfGrandTotal + " / 840", 15, y);
+  y += 8;  
 } else {
 
   const marks = className === "VIII"
