@@ -1243,23 +1243,26 @@ if (isIaCa) {
   `;
 
   if (foundMarks) {
+    const iaTotal = Number(data.ia ?? 0);
+    const caTotal = Number(data.ac ?? 0);
+    const subjectTotal = subjectPairs.reduce(
+      (sum, [subField, objField]) =>
+        sum +
+        Number(data[subField] ?? 0) +
+        Number(data[objField] ?? 0),
+      0
+    );
+    const grandTotal = subjectTotal + iaTotal + caTotal;
 
     html += `
       <div style="margin-top:15px;">
-        <p>
-          <strong>SECURED MARKS:</strong>
-          ${data.secured_marks ?? data.total ?? "—"}
-        </p>
-
-        <p>
-          <strong>FULL MARKS:</strong>
-          ${data.full_marks ?? 600}
-        </p>
+        <p><strong>SUBJECT MARKS:</strong> ${subjectTotal} / 600</p>
+        <p><strong>IA TOTAL:</strong> ${iaTotal} / 120</p>
+        <p><strong>CA TOTAL:</strong> ${caTotal} / 120</p>
+        <p><strong>GRAND TOTAL:</strong> ${grandTotal} / 840</p>
       </div>
     `;
-
   }
-
 } else {
 
   const subjects = studentClass === "VIII"
