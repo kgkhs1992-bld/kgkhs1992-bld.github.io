@@ -3174,7 +3174,7 @@ async function confirmStudentResults() {
 
     let inserted = 0;
     let updated = 0;
-
+const publicationTimestamp = new Date().toISOString();
     /* =========================================
        3. UPDATE EXISTING / INSERT NEW
        ========================================= */
@@ -3187,27 +3187,10 @@ async function confirmStudentResults() {
       const existing =
         existingMap[roll];
 
-      /*
-       * Every publication gets the current date.
-       */
-      const publicationDate =
-        new Date();
-
-      const localPublicationDate =
-        publicationDate.getFullYear() + "-" +
-        String(
-          publicationDate.getMonth() + 1
-        ).padStart(2, "0") + "-" +
-        String(
-          publicationDate.getDate()
-        ).padStart(2, "0");
-
-      const payload = {
-        ...student,
-        result_publication_date:
-          localPublicationDate
-      };
-
+ const payload = {
+  ...student,
+  result_publication_date: publicationTimestamp
+};
       /* =====================================
          EXISTING ROW → UPDATE
          ===================================== */
