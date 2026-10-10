@@ -1402,12 +1402,13 @@ const isIaCaPdf =
 if (!isIaCaPdf) {
   y += 8;
 
-  doc.text(
-    "Subjective: " +
-    (data.subjective ?? "—"),
-    15,
-    y
-  );
+        doc.text(
+          (assessmentName === "HALF YEARLY" && (className === "IX" || className === "X"))
+            ? "Subject - HALF YEARLY RESULT CLASS " + className
+            : "Subjective: " + (data.subjective ?? "—"),
+          15,
+          y
+        );
 }
 
 const totalMarks = Number(data.total);
