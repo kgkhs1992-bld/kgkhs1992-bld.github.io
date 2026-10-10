@@ -2708,31 +2708,23 @@ else if (
 
     });
 
-    if (
-        hasMarks &&
-        (
-            payload.total === undefined ||
-            payload.total === null
-        )
-    ) {
+    // Read IA and CA totals directly from Master Excel
+    const iaTotal = resultMark(r.ia_total);
+    const caTotal = resultMark(r.ca_total);
 
-        payload.total =
-            calculatedTotal;
+    payload.ia = iaTotal;
+    payload.ac = caTotal;
 
-    }
-
+    // Grand Total = Subject Marks + IA Total + CA Total
     payload.total =
-        calculatedTotal;
+        calculatedTotal +
+        (iaTotal ?? 0) +
+        (caTotal ?? 0);
 
-    payload.full_marks =
-        600;
-}
+    // 600 subject marks + 120 IA + 120 CA
+    payload.full_marks = 840;
 
-return payload;
-    payload.total = totalSubjects.reduce(
-        (sum, field) => sum + (payload[field] ?? 0),
-        0
-    );
+    return payload;
 }
 
 
