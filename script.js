@@ -253,7 +253,7 @@ async function checkResultAccess(studentClass, assessment) {
       .select("result_publication_date")
       .eq("assessment", assessment)
       .not("result_publication_date", "is", null)
-      .order("id", { ascending: false })
+          .order("result_publication_date", { ascending: false })
       .limit(1);
 
   if (publishedError) {
