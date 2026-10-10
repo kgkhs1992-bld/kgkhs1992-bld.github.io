@@ -2252,6 +2252,8 @@ const aliases = {
   "social_science_subjective": "social_science_sub",
   "social_science_obj": "social_science_obj",
   "social_science_objective": "social_science_obj",
+   "ia_total": "ia_total",
+  "ca_total": "ca_total",
 
   "english_total": "english",
   "english_marks": "english",
