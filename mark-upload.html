@@ -618,6 +618,7 @@ async function publish(){
       ).toUpperCase(),
       student_name:st.name,
       assessment:assessment
+      result_publication_date: new Date().toISOString()
     };
 
     if(p.half){
@@ -672,6 +673,9 @@ if(ac!==null){
 if(!has){
   continue;
 }
+
+pay.total = total;
+pay.full_marks = p.max;
 
 }else{
 
