@@ -2726,15 +2726,15 @@ else if (
         (iaTotal ?? 0) +
         (caTotal ?? 0);
 
-    // 600 subject marks + 120 IA + 120 CA
+       // 600 subject marks + 120 IA + 120 CA
     payload.full_marks = 840;
+}
 
-    return payload;
+return payload;
 }
 
 
 function escapeResultHtml(value) {
-
   return String(value ?? "")
     .replace(/&/g, "&amp;")
     .replace(/</g, "&lt;")
