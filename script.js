@@ -1266,15 +1266,17 @@ if (isIaCa) {
 } else {
 
   const subjects = studentClass === "VIII"
-    ? [
+       ? [
         ["mil_odia", "MIL (Odia)"],
         ["english", "English"],
         ["hindi_sanskrit", "Hindi / Sanskrit"],
         ["mathematics", "Mathematics"],
         ["science", "Science"],
-        ["history", "History"],
-        ["geography", "Geography"],
-        ["drawing", "Drawing"]
+        ["social_science", "Social Science"],
+        ["drawing", "Drawing"],
+        ["kalashikhya", "Kalashikhya"],
+        ["bruti", "Bruti"],
+        ["saririka_swathya", "Saririka Swathya"]
       ]
     : [
         ["mil_odia", "MIL (Odia)"],
@@ -1420,7 +1422,7 @@ if (className === "VIII") {
         assessmentName.includes("SA1") ||
         assessmentName.includes("SA2")
     ) {
-        maxMarks = 400;
+       maxMarks = 410;
     } 
     else if (
         assessmentName.includes("UNIT TEST") ||
@@ -1670,15 +1672,17 @@ doc.text("Term 4", 165, y);
 } else {
 
   const marks = className === "VIII"
-    ? [
+      ? [
         ["MIL (Odia)", data.mil_odia],
         ["English", data.english],
         ["Hindi / Sanskrit", data.hindi_sanskrit],
         ["Mathematics", data.mathematics],
         ["Science", data.science],
-        ["History", data.history],
-        ["Geography", data.geography],
-        ["Drawing", data.drawing]
+        ["Social Science", data.social_science],
+        ["Drawing", data.drawing],
+        ["Kalashikhya", data.kalashikhya],
+        ["Bruti", data.bruti],
+        ["Saririka Swathya", data.saririka_swathya]
       ]
     : [
         ["MIL (Odia)", data.mil_odia],
@@ -2534,16 +2538,19 @@ fields.forEach(field => {
 
 if (meta.classValue === "VIII") {
 
-    const totalSubjects = [
-        "mil_odia",
-        "english",
-        "hindi_sanskrit",
-        "mathematics",
-        "science",
-        "history",
-        "geography",
-        "drawing"
-    ];
+  const totalSubjects = [
+    "mil_odia",
+    "english",
+    "hindi_sanskrit",
+    "mathematics",
+    "science",
+    "social_science",
+    "drawing",
+    "kalashikhya",
+    "bruti",
+    "saririka_swathya"
+];
+    
 
     payload.total =
         totalSubjects.reduce(
