@@ -1404,13 +1404,31 @@ const isIaCaPdf =
 if (!isIaCaPdf) {
   y += 8;
 
-        doc.text(
-          (assessmentName === "HALF YEARLY" && (className === "IX" || className === "X"))
-            ? "Subject - HALF YEARLY RESULT CLASS " + className
+     
+doc.text(
+  className === "VIII"
+    ? "Subject: " + (
+        assessmentName.includes("SA1") ||
+        assessmentName.includes("SUMMATIVE ASSESSMENT 01") ||
+        assessmentName.includes("SUMMATIVE ASSESSMENT 1")
+          ? "Summative Assessment 1"
+          : assessmentName.includes("SA2") ||
+            assessmentName.includes("SUMMATIVE ASSESSMENT 02") ||
+            assessmentName.includes("SUMMATIVE ASSESSMENT 2")
+              ? "Summative Assessment 2"
+              : (data.assessment || assessment || "—")
+      )
+    : (className === "IX" || className === "X") &&
+      assessmentName.includes("HALF YEARLY")
+        ? "Subject - HALF YEARLY RESULT CLASS " + className
+        : (className === "IX" || className === "X") &&
+          assessmentName.includes("ANNUAL")
+            ? "Subject - ANNUAL RESULT CLASS " + className
             : "Subjective: " + (data.subjective ?? "—"),
-          15,
-          y
-        );
+  15,
+  y
+);
+
 }
 
 const totalMarks = Number(data.total);
