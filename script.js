@@ -2504,11 +2504,13 @@ const fields = [
     "hindi_sanskrit",
     "mathematics",
     "science",
-    "history",
-    "geography",
+    "social_science",
     "drawing",
-    "social_science"
+    "kalashikhya",
+    "bruti",
+    "saririka_swathya"
 ];
+
 
 fields.forEach(field => {
 
@@ -2964,6 +2966,7 @@ const columns =
         ]
         : meta.classValue === "VIII"
         ? [
+                
             ["roll_no", "Roll No."],
             ["student_name", "Student Name"],
             ["mil_odia", "MIL (Odia)"],
@@ -2971,11 +2974,14 @@ const columns =
             ["hindi_sanskrit", "Hindi/Sanskrit"],
             ["mathematics", "Mathematics"],
             ["science", "Science"],
-            ["history", "History"],
-            ["geography", "Geography"],
+            ["social_science", "Social Science"],
             ["drawing", "Drawing"],
+            ["kalashikhya", "Kalashikhya"],
+            ["bruti", "Bruti"],
+            ["saririka_swathya", "Saririka Swathya"],
             ["total", "Grand Total"]
         ]
+        
         : [
             ["roll_no", "Roll No."],
             ["student_name", "Student Name"],
