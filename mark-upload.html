@@ -886,22 +886,59 @@ const verified =
 
   }else{
 
-    localStorage.removeItem(key());
+// Create an automatic notice after successful marks publication.
+const noticeTitle =
+  "Class " + cls + " — " + p.label + " Result Published";
 
-    show(
-      appMsg,
-      "✅ Successfully saved and verified "+
-      ok+
-      " record(s) for Class "+
-      cls+
-      " — "+
-      p.label+
-      ".",
-      "ok"
-    );
+const noticeExpiry =
+  new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString();
 
-    await loadRosterAndMarks();
-  }
+const noticeResult = await supabaseClient
+  .from("site_announcements")
+  .insert({
+    title: noticeTitle,
+    short_message: noticeTitle,
+    content_name: noticeTitle,
+    category: "Result System",
+    is_active: true,
+    expires_at: noticeExpiry
+  });
+
+localStorage.removeItem(key());
+
+if(noticeResult.error){
+
+  console.error(
+    "Automatic result notice failed:",
+    noticeResult.error
+  );
+
+  show(
+    appMsg,
+    "✅ Marks saved successfully. ⚠️ Automatic notice failed: " +
+    noticeResult.error.message,
+    "err"
+  );
+
+}else{
+
+  show(
+    appMsg,
+    "✅ Successfully saved and verified " +
+    ok +
+    " record(s) for Class " +
+    cls +
+    " — " +
+    p.label +
+    ". Automatic result notice published for 7 days.",
+    "ok"
+  );
+
+}
+
+await loadRosterAndMarks();
+
+}
 
 }
 classSelect.addEventListener("change",()=>{examSelect.innerHTML='<option value="">Select Examination</option>';if(!classSelect.value){examSelect.disabled=true;fullMarks.value="";loadBtn.disabled=saveBtn.disabled=publishBtn.disabled=clearBtn.disabled=true;return}examSelect.disabled=false;Object.entries(patterns[classSelect.value]).forEach(([code,p])=>{const o=document.createElement("option");o.value=code;o.textContent=p.label;examSelect.appendChild(o)});fullMarks.value="";tableCard.classList.add("hidden");loadBtn.disabled=saveBtn.disabled=publishBtn.disabled=clearBtn.disabled=true});
