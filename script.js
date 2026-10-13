@@ -3021,68 +3021,205 @@ const columns =
         ];
 
 
-    const header =
-      columns
-        .map(
-          item =>
-            "<th style='padding:8px;border:1px solid #ccc;'>" +
-            item[1] +
-            "</th>"
-        )
-        .join("");
+    
+const header =
+  columns
+    .map(item =>
+      "<th style='padding:8px;border:1px solid #ccc;'>" +
+      escapeResultHtml(item[1]) +
+      "</th>"
+    )
+    .join("") +
+  "<th style='padding:8px;border:1px solid #ccc;'>Action</th>";
 
+const body = rows.map((row, index) => {
+  const cells = columns.map(item => {
+    const field = item[0];
+    const fixed = field === "roll_no" || field === "student_name" || field === "total";
 
-    const body =
-      rows
-        .map(row => {
+    if (fixed) {
+      return "<td style='padding:6px;border:1px solid #ccc;'>" +
+        escapeResultHtml(row[field] ?? "") +
+        "</td>";
+    }
 
-          return (
-            "<tr>" +
-            columns
-              .map(item => {
+    return "<td style='padding:4px;border:1px solid #ccc;'>" +
+      "<input class='excel-mark-input' data-index='" + index +
+      "' data-field='" + field +
+      "' type='number' min='0' step='any' value='" +
+      escapeResultHtml(row[field] ?? "") +
+      "' style='width:76px;box-sizing:border-box;padding:6px;'>" +
+      "</td>";
+  }).join("");
 
-                return (
-                  "<td style='padding:8px;border:1px solid #ccc;'>" +
-                  escapeResultHtml(
-                    row[item[0]] ?? ""
-                  ) +
-                  "</td>"
-                );
+  return "<tr data-index='" + index + "'>" +
+    cells +
+    "<td style='padding:6px;border:1px solid #ccc;white-space:nowrap;'>" +
+    "<button type='button' class='excel-edit-row' data-index='" + index + "'>Edit</button> " +
+    "<button type='button' class='excel-save-row' data-index='" + index + "'>Update &amp; Save</button>" +
+    "<div class='excel-row-status' data-index='" + index + "'></div>" +
+    "</td></tr>";
+}).join("");
 
-              })
-              .join("") +
-            "</tr>"
-          );
+preview.innerHTML =
+  "<div style='overflow:auto;max-height:420px;border:1px solid #ccc;border-radius:8px;'>" +
+  "<table style='width:100%;border-collapse:collapse;min-width:850px;'>" +
+  "<thead><tr>" + header + "</tr></thead>" +
+  "<tbody>" + body + "</tbody></table></div>" +
+  "<p><strong>Preview ready:</strong> " + rows.length +
+  " student result(s) from <strong>" +
+  escapeResultHtml(meta.sheetName) +
+  "</strong>.</p>" +
+  "<p>⚠️ Check the marks carefully before confirming.</p>";
 
-        })
-        .join("");
+// Keep edited preview values synchronized with the batch data.
+preview.querySelectorAll(".excel-mark-input").forEach(input => {
+  input.addEventListener("change", () => {
+    const index = Number(input.dataset.index);
+    const field = input.dataset.field;
+    const value = input.value === "" ? null : Number(input.value);
 
+    if (!pendingStudentResults[index]) return;
 
-    preview.innerHTML =
+    pendingStudentResults[index][field] = value;
 
-      "<div style='overflow:auto;max-height:420px;border:1px solid #ccc;border-radius:8px;'>" +
+    // Recalculate totals using the same assessment rules.
+    const student = pendingStudentResults[index];
+    const cls = meta.classValue;
+    let total = 0;
 
-      "<table style='width:100%;border-collapse:collapse;min-width:850px;'>" +
+    if (meta.assessmentValue === "HALF_YEARLY" ||
+        meta.assessmentValue === "ANNUAL") {
+      const subjects = [
+        "mil_odia", "english", "hindi_sanskrit",
+        "mathematics", "science", "social_science"
+      ];
 
-      "<thead><tr>" +
-      header +
-      "</tr></thead>" +
+      subjects.forEach(subject => {
+        const sub = student[subject + "_sub"];
+        const obj = student[subject + "_obj"];
 
-      "<tbody>" +
-      body +
-      "</tbody>" +
+        if (sub !== undefined || obj !== undefined) {
+          student[subject] = Number(sub || 0) + Number(obj || 0);
+        }
+        total += Number(student[subject] || 0);
+      });
 
-      "</table></div>" +
+      total += Number(student.ia || 0) + Number(student.ac || 0);
+    } else {
+      Object.keys(student).forEach(key => {
+        if (key === "total" || key === "roll_no" ||
+            key === "pin" || key === "student_name" ||
+            key === "assessment" || key === "full_marks" ||
+            key === "result_publication_date") return;
 
-      "<p><strong>Preview ready:</strong> " +
-      rows.length +
-      " student result(s) from <strong>" +
-      escapeResultHtml(
-        meta.sheetName
-      ) +
-      "</strong>.</p>" +
+        if (typeof student[key] === "number" && !key.endsWith("_sub") &&
+            !key.endsWith("_obj")) {
+          total += student[key];
+        }
+      });
+    }
 
-      "<p>⚠️ Check the marks carefully before confirming.</p>";
+    student.total = total;
+
+    const totalInput = preview.querySelector(
+      "tr[data-index='" + index + "']"
+    );
+
+    if (totalInput) {
+      const cells = totalInput.querySelectorAll("td");
+      const totalColumn = columns.findIndex(item => item[0] === "total");
+      if (totalColumn >= 0 && cells[totalColumn]) {
+        cells[totalColumn].textContent = String(total);
+      }
+    }
+  });
+});
+
+preview.querySelectorAll(".excel-edit-row").forEach(button => {
+  button.addEventListener("click", () => {
+    const index = Number(button.dataset.index);
+    const row = preview.querySelector("tr[data-index='" + index + "']");
+    if (!row) return;
+
+    row.querySelectorAll(".excel-mark-input").forEach(input => {
+      input.disabled = false;
+    });
+
+    const status = row.querySelector(".excel-row-status");
+    if (status) status.textContent = "Edit marks, then click Update & Save.";
+  });
+});
+
+preview.querySelectorAll(".excel-save-row").forEach(button => {
+  button.addEventListener("click", async () => {
+    const index = Number(button.dataset.index);
+    const student = pendingStudentResults[index];
+    const status = preview.querySelector(
+      ".excel-row-status[data-index='" + index + "']"
+    );
+
+    if (!student || !pendingResultMeta) {
+      if (status) status.textContent = "Preview data missing.";
+      return;
+    }
+
+    button.disabled = true;
+    if (status) status.textContent = "Saving...";
+
+    try {
+      const tableName =
+        "class_" + pendingResultMeta.classValue.toLowerCase() + "_results";
+
+      const payload = {
+        ...student,
+        result_publication_date: new Date().toISOString()
+      };
+
+      const found = await supabaseClient
+        .from(tableName)
+        .select("id")
+        .eq("roll_no", Number(student.roll_no))
+        .eq("pin", student.pin)
+        .eq("assessment", student.assessment)
+        .order("id", { ascending: false })
+        .limit(2);
+
+      if (found.error) throw found.error;
+
+      if (found.data && found.data.length > 1) {
+        throw new Error("Duplicate records found. Resolve them before saving.");
+      }
+
+      let result;
+
+      if (found.data && found.data.length === 1) {
+        result = await supabaseClient
+          .from(tableName)
+          .update(payload)
+          .eq("id", found.data[0].id)
+          .select("id");
+      } else {
+        result = await supabaseClient
+          .from(tableName)
+          .insert(payload)
+          .select("id");
+      }
+
+      if (result.error) throw result.error;
+      if (!result.data || !result.data.length) {
+        throw new Error("Supabase did not confirm the save.");
+      }
+
+      if (status) status.textContent = "Saved successfully ✓";
+    } catch (error) {
+      console.error("Excel preview individual save failed:", error);
+      if (status) status.textContent = "Failed: " + error.message;
+    } finally {
+      button.disabled = false;
+    }
+  });
+});
 
 
     actions.style.display =
