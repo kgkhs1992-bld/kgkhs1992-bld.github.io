@@ -750,13 +750,17 @@ pay.total = total;
           throw up.error;
         }
 
-        if(
-          !up.data ||
-          up.data.length===0
-        ){
+        if (!up.data || up.data.length === 0) {
+          console.error("UPDATE RESPONSE:", {
+            error: up.error,
+            data: up.data,
+            rowId: rowId,
+            assessment: assessment,
+            roll: roll
+          });
 
           throw new Error(
-            "Database did not confirm the update."
+            "Update returned no row. Check UPDATE policy and matching row."
           );
         }
 
