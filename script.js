@@ -1742,7 +1742,6 @@ doc.text("Term 4", 165, y);
         : 0;
 
   doc.text("Total = " + (data.total ?? "—"), 15, y);
-
   y += 8;
 
   doc.text(
