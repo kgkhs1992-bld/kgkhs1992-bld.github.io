@@ -3073,68 +3073,104 @@ preview.innerHTML =
   "<p>⚠️ Check the marks carefully before confirming.</p>";
 
 // Keep edited preview values synchronized with the batch data.
+
 preview.querySelectorAll(".excel-mark-input").forEach(input => {
   input.addEventListener("change", () => {
     const index = Number(input.dataset.index);
     const field = input.dataset.field;
+    const student = pendingStudentResults[index];
+
+    if (!student) return;
+
     const value = input.value === "" ? null : Number(input.value);
 
-    if (!pendingStudentResults[index]) return;
+    if (value !== null && (!Number.isFinite(value) || value < 0)) {
+      alert("Enter a valid non-negative mark.");
+      input.value = student[field] ?? "";
+      return;
+    }
 
-    pendingStudentResults[index][field] = value;
+    const isHalfAnnual =
+      meta.assessmentValue === "HALF_YEARLY" ||
+      meta.assessmentValue === "ANNUAL";
 
-    // Recalculate totals using the same assessment rules.
-    const student = pendingStudentResults[index];
-    const cls = meta.classValue;
+    const subjects = [
+      "mil_odia", "english", "hindi_sanskrit",
+      "mathematics", "science", "social_science"
+    ];
+
+    // For Half-Yearly/Annual, keep Subjective + Objective
+    // consistent with the edited combined subject mark.
+    if (isHalfAnnual && subjects.includes(field)) {
+      const subField = field + "_sub";
+      const objField = field + "_obj";
+      const oldSub = Number(student[subField] || 0);
+      const oldObj = Number(student[objField] || 0);
+      const newCombined = Number(value || 0);
+      const delta = newCombined - oldSub - oldObj;
+
+      // Keep Objective unchanged first; apply the difference to Subjective.
+      let newSub = oldSub + delta;
+      let newObj = oldObj;
+
+      if (newSub < 0 || newSub > 50) {
+        newSub = oldSub;
+        newObj = oldObj + delta;
+      }
+
+      if (newSub < 0 || newSub > 50 || newObj < 0 || newObj > 50) {
+        alert("This total cannot be represented by valid Subjective and Objective marks (0–50 each).");
+        input.value = student[field] ?? "";
+        return;
+      }
+
+      student[subField] = newSub;
+      student[objField] = newObj;
+      student[field] = newSub + newObj;
+      input.value = student[field];
+    } else {
+      student[field] = value;
+    }
+
+    // Recalculate the grand total.
     let total = 0;
 
-    if (meta.assessmentValue === "HALF_YEARLY" ||
-        meta.assessmentValue === "ANNUAL") {
-      const subjects = [
-        "mil_odia", "english", "hindi_sanskrit",
-        "mathematics", "science", "social_science"
-      ];
-
+    if (isHalfAnnual) {
       subjects.forEach(subject => {
-        const sub = student[subject + "_sub"];
-        const obj = student[subject + "_obj"];
+        student[subject] =
+          Number(student[subject + "_sub"] || 0) +
+          Number(student[subject + "_obj"] || 0);
 
-        if (sub !== undefined || obj !== undefined) {
-          student[subject] = Number(sub || 0) + Number(obj || 0);
-        }
-        total += Number(student[subject] || 0);
+        total += student[subject];
       });
 
       total += Number(student.ia || 0) + Number(student.ac || 0);
     } else {
       Object.keys(student).forEach(key => {
-        if (key === "total" || key === "roll_no" ||
-            key === "pin" || key === "student_name" ||
-            key === "assessment" || key === "full_marks" ||
-            key === "result_publication_date") return;
+        if (
+          ["total", "roll_no", "pin", "student_name",
+           "assessment", "full_marks", "result_publication_date"].includes(key) ||
+          key.endsWith("_sub") || key.endsWith("_obj")
+        ) return;
 
-        if (typeof student[key] === "number" && !key.endsWith("_sub") &&
-            !key.endsWith("_obj")) {
-          total += student[key];
-        }
+        if (typeof student[key] === "number") total += student[key];
       });
     }
 
     student.total = total;
 
-    const totalInput = preview.querySelector(
-      "tr[data-index='" + index + "']"
-    );
-
-    if (totalInput) {
-      const cells = totalInput.querySelectorAll("td");
+    const row = preview.querySelector("tr[data-index='" + index + "']");
+    if (row) {
+      const cells = row.querySelectorAll("td");
       const totalColumn = columns.findIndex(item => item[0] === "total");
+
       if (totalColumn >= 0 && cells[totalColumn]) {
         cells[totalColumn].textContent = String(total);
       }
     }
   });
 });
+
 
 preview.querySelectorAll(".excel-edit-row").forEach(button => {
   button.addEventListener("click", () => {
