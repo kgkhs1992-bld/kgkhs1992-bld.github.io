@@ -3187,6 +3187,7 @@ preview.querySelectorAll(".excel-edit-row").forEach(button => {
   });
 });
 
+
 preview.querySelectorAll(".excel-save-row").forEach(button => {
   button.addEventListener("click", async () => {
     const index = Number(button.dataset.index);
@@ -3212,6 +3213,41 @@ preview.querySelectorAll(".excel-save-row").forEach(button => {
         result_publication_date: new Date().toISOString()
       };
 
+      const isHalfAnnual =
+        student.assessment === "Half Yearly" ||
+        student.assessment === "Annual";
+
+      if (
+        isHalfAnnual &&
+        pendingResultMeta.classValue !== "VIII"
+      ) {
+        const subjects = [
+          "mil_odia",
+          "english",
+          "hindi_sanskrit",
+          "mathematics",
+          "science",
+          "social_science"
+        ];
+
+        let subjectTotal = 0;
+
+        subjects.forEach(subject => {
+          const subField = subject + "_sub";
+          const objField = subject + "_obj";
+
+          const sub = Number(payload[subField] || 0);
+          const obj = Number(payload[objField] || 0);
+
+          payload[subject] = sub + obj;
+          subjectTotal += sub + obj;
+        });
+
+        payload.ia = Number(payload.ia || 0);
+        payload.ac = Number(payload.ac || 0);
+        payload.total = subjectTotal + payload.ia + payload.ac;
+      }
+
       const found = await supabaseClient
         .from(tableName)
         .select("id")
@@ -3223,42 +3259,44 @@ preview.querySelectorAll(".excel-save-row").forEach(button => {
 
       if (found.error) throw found.error;
 
-      if (found.data && found.data.length > 1) {
-        throw new Error("Duplicate records found. Resolve them before saving.");
+      if (!found.data || found.data.length === 0) {
+        throw new Error("No existing result found. Use the main publish option for new results.");
       }
 
-      let result;
-
-      if (found.data && found.data.length === 1) {
-        result = await supabaseClient
-          .from(tableName)
-          .update(payload)
-          .eq("id", found.data[0].id)
-          .select("id");
-      } else {
-        result = await supabaseClient
-          .from(tableName)
-          .insert(payload)
-          .select("id");
+      if (found.data.length > 1) {
+        throw new Error("Duplicate records remain. Stop and resolve duplicates first.");
       }
+
+      const result = await supabaseClient
+        .from(tableName)
+        .update(payload)
+        .eq("id", found.data[0].id)
+        .select("id");
 
       if (result.error) throw result.error;
       if (!result.data || !result.data.length) {
-        throw new Error("Supabase did not confirm the save.");
+        throw new Error("Supabase did not confirm the update.");
       }
 
-      if (status) status.textContent = "Saved successfully ✓";
+      Object.assign(student, payload);
+
+      if (status) {
+        status.textContent = "Updated successfully ✓";
+        status.style.color = "green";
+      }
     } catch (error) {
       console.error("Excel preview individual save failed:", error);
-      if (status) status.textContent = "Failed: " + error.message;
+      if (status) {
+        status.textContent = "Failed: " + error.message;
+        status.style.color = "red";
+      }
     } finally {
       button.disabled = false;
     }
   });
 });
 
-
-    actions.style.display =
+   actions.style.display =
       "block";
 
 
