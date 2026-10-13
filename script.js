@@ -2962,63 +2962,82 @@ if (!sheet) {
 
 
 // Preview columns
+
+const isHalfAnnualPreview =
+  (meta.classValue === "IX" || meta.classValue === "X") &&
+  ["HALF_YEARLY", "ANNUAL"].includes(meta.assessmentValue);
+
 const columns =
-    meta.assessmentValue === "ASPIRATIONAL"
-        ? [
-            ["roll_no", "Roll No."],
-            ["student_name", "Student Name"],
+  meta.assessmentValue === "ASPIRATIONAL"
+    ? [
+        ["roll_no", "Roll No."],
+        ["student_name", "Student Name"],
+        ["sahitya_srujani_q1", "Sahitya Srujani Q1"],
+        ["sahitya_srujani_q2", "Sahitya Srujani Q2"],
+        ["sahitya_srujani_q3", "Sahitya Srujani Q3"],
+        ["sahitya_srujani_q4", "Sahitya Srujani Q4"],
+        ["jigyansa_q1", "Jigyansa Q1"],
+        ["jigyansa_q2", "Jigyansa Q2"],
+        ["jigyansa_q3", "Jigyansa Q3"],
+        ["jigyansa_q4", "Jigyansa Q4"],
+        ["kridangan_q1", "Kridangan Q1"],
+        ["kridangan_q2", "Kridangan Q2"],
+        ["kridangan_q3", "Kridangan Q3"],
+        ["kridangan_q4", "Kridangan Q4"],
+        ["kaushali_q1", "Kaushali Q1"],
+        ["kaushali_q2", "Kaushali Q2"],
+        ["kaushali_q3", "Kaushali Q3"],
+        ["kaushali_q4", "Kaushali Q4"],
+        ["total", "Grand Total"]
+      ]
+    : isHalfAnnualPreview
+    ? [
+        ["roll_no", "Roll No."],
+        ["student_name", "Student Name"],
+        ["mil_odia_sub", "MIL Subjective"],
+        ["mil_odia_obj", "MIL Objective"],
+        ["english_sub", "English Subjective"],
+        ["english_obj", "English Objective"],
+        ["hindi_sanskrit_sub", "Hindi/Sanskrit Subjective"],
+        ["hindi_sanskrit_obj", "Hindi/Sanskrit Objective"],
+        ["mathematics_sub", "Math Subjective"],
+        ["mathematics_obj", "Math Objective"],
+        ["science_sub", "Science Subjective"],
+        ["science_obj", "Science Objective"],
+        ["social_science_sub", "Social Science Subjective"],
+        ["social_science_obj", "Social Science Objective"],
+        ["ia", "IA Total"],
+        ["ac", "CA Total"],
+        ["total", "Grand Total"]
+      ]
+    : meta.classValue === "VIII"
+    ? [
+        ["roll_no", "Roll No."],
+        ["student_name", "Student Name"],
+        ["mil_odia", "MIL (Odia)"],
+        ["english", "English"],
+        ["hindi_sanskrit", "Hindi/Sanskrit"],
+        ["mathematics", "Mathematics"],
+        ["science", "Science"],
+        ["social_science", "Social Science"],
+        ["drawing", "Drawing"],
+        ["kalashikhya", "Kalashikhya"],
+        ["bruti", "Bruti"],
+        ["saririka_swathya", "Saririka Swathya"],
+        ["total", "Grand Total"]
+      ]
+    : [
+        ["roll_no", "Roll No."],
+        ["student_name", "Student Name"],
+        ["mil_odia", "MIL (Odia)"],
+        ["english", "English"],
+        ["hindi_sanskrit", "Hindi/Sanskrit"],
+        ["mathematics", "Mathematics"],
+        ["science", "Science"],
+        ["social_science", "Social Science"],
+        ["total", "Grand Total"]
+      ];
 
-            ["sahitya_srujani_q1", "Sahitya Srujani Q1"],
-            ["sahitya_srujani_q2", "Sahitya Srujani Q2"],
-            ["sahitya_srujani_q3", "Sahitya Srujani Q3"],
-            ["sahitya_srujani_q4", "Sahitya Srujani Q4"],
-
-            ["jigyansa_q1", "Jigyansa Q1"],
-            ["jigyansa_q2", "Jigyansa Q2"],
-            ["jigyansa_q3", "Jigyansa Q3"],
-            ["jigyansa_q4", "Jigyansa Q4"],
-
-            ["kridangan_q1", "Kridangan Q1"],
-            ["kridangan_q2", "Kridangan Q2"],
-            ["kridangan_q3", "Kridangan Q3"],
-            ["kridangan_q4", "Kridangan Q4"],
-
-            ["kaushali_q1", "Kaushali Q1"],
-            ["kaushali_q2", "Kaushali Q2"],
-            ["kaushali_q3", "Kaushali Q3"],
-            ["kaushali_q4", "Kaushali Q4"],
-
-            ["total", "Grand Total"]
-        ]
-        : meta.classValue === "VIII"
-        ? [
-                
-            ["roll_no", "Roll No."],
-            ["student_name", "Student Name"],
-            ["mil_odia", "MIL (Odia)"],
-            ["english", "English"],
-            ["hindi_sanskrit", "Hindi/Sanskrit"],
-            ["mathematics", "Mathematics"],
-            ["science", "Science"],
-            ["social_science", "Social Science"],
-            ["drawing", "Drawing"],
-            ["kalashikhya", "Kalashikhya"],
-            ["bruti", "Bruti"],
-            ["saririka_swathya", "Saririka Swathya"],
-            ["total", "Grand Total"]
-        ]
-        
-        : [
-            ["roll_no", "Roll No."],
-            ["student_name", "Student Name"],
-            ["mil_odia", "MIL (Odia)"],
-            ["english", "English"],
-            ["hindi_sanskrit", "Hindi/Sanskrit"],
-            ["mathematics", "Mathematics"],
-            ["science", "Science"],
-            ["social_science", "Social Science"],
-            ["total", "Grand Total"]
-        ];
 
 
     
@@ -3072,8 +3091,6 @@ preview.innerHTML =
   "</strong>.</p>" +
   "<p>⚠️ Check the marks carefully before confirming.</p>";
 
-// Keep edited preview values synchronized with the batch data.
-
 preview.querySelectorAll(".excel-mark-input").forEach(input => {
   input.addEventListener("change", () => {
     const index = Number(input.dataset.index);
@@ -3091,86 +3108,68 @@ preview.querySelectorAll(".excel-mark-input").forEach(input => {
     }
 
     const isHalfAnnual =
-      meta.assessmentValue === "HALF_YEARLY" ||
-      meta.assessmentValue === "ANNUAL";
+      (pendingResultMeta.classValue === "IX" ||
+       pendingResultMeta.classValue === "X") &&
+      ["HALF_YEARLY", "ANNUAL"].includes(
+        pendingResultMeta.assessmentValue
+      );
 
     const subjects = [
       "mil_odia", "english", "hindi_sanskrit",
       "mathematics", "science", "social_science"
     ];
 
-    // For Half-Yearly/Annual, keep Subjective + Objective
-    // consistent with the edited combined subject mark.
-    if (isHalfAnnual && subjects.includes(field)) {
-      const subField = field + "_sub";
-      const objField = field + "_obj";
-      const oldSub = Number(student[subField] || 0);
-      const oldObj = Number(student[objField] || 0);
-      const newCombined = Number(value || 0);
-      const delta = newCombined - oldSub - oldObj;
+    if (isHalfAnnual) {
+      const isSubjectMark = subjects.some(subject =>
+        field === subject + "_sub" ||
+        field === subject + "_obj"
+      );
 
-      // Keep Objective unchanged first; apply the difference to Subjective.
-      let newSub = oldSub + delta;
-      let newObj = oldObj;
-
-      if (newSub < 0 || newSub > 50) {
-        newSub = oldSub;
-        newObj = oldObj + delta;
-      }
-
-      if (newSub < 0 || newSub > 50 || newObj < 0 || newObj > 50) {
-        alert("This total cannot be represented by valid Subjective and Objective marks (0–50 each).");
+      if (isSubjectMark && value !== null && value > 50) {
+        alert("Subjective and Objective marks must each be between 0 and 50.");
         input.value = student[field] ?? "";
         return;
       }
 
-      student[subField] = newSub;
-      student[objField] = newObj;
-      student[field] = newSub + newObj;
-      input.value = student[field];
-    } else {
       student[field] = value;
-    }
 
-    // Recalculate the grand total.
-    let total = 0;
-
-    if (isHalfAnnual) {
       subjects.forEach(subject => {
         student[subject] =
-          Number(student[subject + "_sub"] || 0) +
-          Number(student[subject + "_obj"] || 0);
-
-        total += student[subject];
+          (student[subject + "_sub"] == null ? 0 : Number(student[subject + "_sub"])) +
+          (student[subject + "_obj"] == null ? 0 : Number(student[subject + "_obj"]));
       });
 
-      total += Number(student.ia || 0) + Number(student.ac || 0);
+      student.total = subjects.reduce(
+        (sum, subject) => sum + Number(student[subject] || 0), 0
+      ) + Number(student.ia || 0) + Number(student.ac || 0);
     } else {
+      student[field] = value;
+
+      let total = 0;
       Object.keys(student).forEach(key => {
         if (
-          ["total", "roll_no", "pin", "student_name",
-           "assessment", "full_marks", "result_publication_date"].includes(key) ||
+          ["total", "roll_no", "pin", "student_name", "assessment",
+           "full_marks", "result_publication_date"].includes(key) ||
           key.endsWith("_sub") || key.endsWith("_obj")
         ) return;
 
         if (typeof student[key] === "number") total += student[key];
       });
-    }
 
-    student.total = total;
+      student.total = total;
+    }
 
     const row = preview.querySelector("tr[data-index='" + index + "']");
     if (row) {
-      const cells = row.querySelectorAll("td");
       const totalColumn = columns.findIndex(item => item[0] === "total");
+      const cells = row.querySelectorAll("td");
 
       if (totalColumn >= 0 && cells[totalColumn]) {
-        cells[totalColumn].textContent = String(total);
+        cells[totalColumn].textContent = String(student.total);
       }
     }
   });
 });
-
 
 preview.querySelectorAll(".excel-edit-row").forEach(button => {
   button.addEventListener("click", () => {
