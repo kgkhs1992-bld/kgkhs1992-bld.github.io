@@ -1737,7 +1737,9 @@ doc.text("Term 4", 165, y);
   doc.setFontSize(11);
 
   const pdfPercentage =
-    maxMarks > 0 ? (Number(data.total) / maxMarks) * 100 : 0;
+    maxMarks > 0
+        ? (pdfSubjectTotal / maxMarks) * 100
+        : 0;
 
   doc.text("Total = " + (data.total ?? "—"), 15, y);
 
