@@ -340,14 +340,20 @@ max="${
         </td>
       `;
 
-      /* GRADE */
-      html += `
-        <td class="grade-cell">
-          <strong class="row-grade">-</strong>
-        </td>
-      `;
+  
+/* GRADE */
+html += `
+  <td class="grade-cell">
+    <strong class="row-grade">-</strong>
+  </td>
+  <td class="action-cell">
+    <button type="button" class="edit-row">Edit</button>
+    <button type="button" class="save-row">Update &amp; Save</button>
+    <span class="row-save-status"></span>
+  </td>
+`;
 
-      html += `</tr>`;
+html += `</tr>`;
 
       return html;
     })
@@ -366,8 +372,9 @@ max="${
 
   return `<th>${esc(label)}</th>`;
 }).join("")}
-        <th>Total</th>
-        <th>Grade</th>
+       <th>Total</th>
+<th>Grade</th>
+<th>Action</th>
       </tr>
     </thead>
 
@@ -378,6 +385,19 @@ max="${
 
  /* CALCULATE TOTAL + GRADE */
 marksTable.querySelectorAll("tbody tr").forEach(tr => {
+
+    tr.querySelector(".edit-row").addEventListener("click", () => {
+      const firstInput = tr.querySelector(".mark");
+
+      if (firstInput) firstInput.focus();
+
+      tr.querySelector(".row-save-status").textContent =
+        "Edit marks, then click Update & Save.";
+    });
+
+    tr.querySelector(".save-row").addEventListener("click", async () => {
+      await saveStudentRow(tr);
+    });
 
     const inputs = tr.querySelectorAll(".mark");
 
@@ -498,7 +518,157 @@ function current(){
 
   return d;
 } 
-function save(){
+
+async function saveStudentRow(tr) {
+  const status = tr.querySelector(".row-save-status");
+  const buttons = tr.querySelectorAll("button");
+
+  buttons.forEach(b => b.disabled = true);
+  status.textContent = "Saving...";
+
+  try {
+    const cls = classSelect.value;
+    const p = patterns[cls]?.[examSelect.value];
+
+    if (!p) throw new Error("Select class and assessment first.");
+
+    const roll = Number(tr.dataset.roll);
+    const student = roster.find(r => Number(r.roll) === roll);
+
+    if (!student) throw new Error("Student not found.");
+
+    const assessment = cls === "VIII"
+      ? examSelect.value
+      : p.label;
+
+    const table = "class_" + cls.toLowerCase() + "_results";
+    const pin = ("471CA" + String(roll).padStart(2, "0")).toUpperCase();
+
+    const pay = {
+      roll_no: roll,
+      pin,
+      student_name: student.name,
+      assessment,
+      result_publication_date: new Date().toISOString()
+    };
+
+    let total = 0;
+    let hasMarks = false;
+
+    tr.querySelectorAll(".mark").forEach(input => {
+      const field = input.dataset.field;
+
+      if (input.value === "") {
+        delete pay[field];
+        return;
+      }
+
+      const value = Number(input.value);
+      const max = Number(input.max);
+
+      if (
+        !Number.isFinite(value) ||
+        value < 0 ||
+        (Number.isFinite(max) && value > max)
+      ) {
+        throw new Error("Invalid mark in " + field);
+      }
+
+      pay[field] = value;
+      total += value;
+      hasMarks = true;
+    });
+
+    if (!hasMarks) {
+      throw new Error("Enter marks before saving.");
+    }
+
+    if (p.half) {
+      const pairs = [
+        ["mil_odia", "mil_odia_sub", "mil_odia_obj"],
+        ["english", "english_sub", "english_obj"],
+        ["hindi_sanskrit", "hindi_sanskrit_sub", "hindi_sanskrit_obj"],
+        ["mathematics", "mathematics_sub", "mathematics_obj"],
+        ["science", "science_sub", "science_obj"],
+        ["social_science", "social_science_sub", "social_science_obj"]
+      ];
+
+      total = 0;
+
+      pairs.forEach(([subject, sub, obj]) => {
+        const a = pay[sub] ?? null;
+        const b = pay[obj] ?? null;
+
+        if (a !== null || b !== null) {
+          pay[subject] = Number(a || 0) + Number(b || 0);
+          total += pay[subject];
+        }
+      });
+
+      if (cls !== "VIII") {
+        total += Number(pay.ia || 0) + Number(pay.ac || 0);
+      }
+    }
+
+    pay.total = total;
+    pay.full_marks = Number(p.max || (p.half ? 840 : 100));
+
+    const found = await supabaseClient
+      .from(table)
+      .select("*")
+      .eq("roll_no", roll)
+      .eq("assessment", assessment)
+      .limit(2);
+
+    if (found.error) throw found.error;
+
+    if (found.data.length > 1) {
+      throw new Error(
+        "Multiple records found for this student and assessment. Resolve duplicates first."
+      );
+    }
+
+    let result;
+
+    if (found.data.length === 1) {
+      result = await supabaseClient
+        .from(table)
+        .update(pay)
+        .eq("roll_no", roll)
+        .eq("assessment", assessment)
+        .select("*");
+    } else {
+      result = await supabaseClient
+        .from(table)
+        .insert(pay)
+        .select("*");
+    }
+
+    if (result.error) throw result.error;
+
+    if (!result.data?.length) {
+      throw new Error("Supabase did not confirm the save.");
+    }
+
+    status.textContent = "Saved successfully ✓";
+    status.style.color = "green";
+
+    existingRows.set(roll, {
+      ...(existingRows.get(roll) || {}),
+      ...pay,
+      ...result.data[0]
+    });
+
+  } catch (error) {
+    console.error("Individual student save failed:", error);
+    status.textContent = "Failed: " + error.message;
+    status.style.color = "red";
+  } finally {
+    buttons.forEach(b => b.disabled = false);
+  }
+}
+
+  function save(){
   const data=current();
   const storageKey=key();
 
