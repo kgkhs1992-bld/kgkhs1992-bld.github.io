@@ -519,6 +519,7 @@ function current(){
   return d;
 } 
 
+
 async function saveStudentRow(tr) {
   const status = tr.querySelector(".row-save-status");
   const buttons = tr.querySelectorAll("button");
@@ -534,13 +535,9 @@ async function saveStudentRow(tr) {
 
     const roll = Number(tr.dataset.roll);
     const student = roster.find(r => Number(r.roll) === roll);
-
     if (!student) throw new Error("Student not found.");
 
-    const assessment = cls === "VIII"
-      ? examSelect.value
-      : p.label;
-
+    const assessment = cls === "VIII" ? examSelect.value : p.label;
     const table = "class_" + cls.toLowerCase() + "_results";
     const pin = ("471CA" + String(roll).padStart(2, "0")).toUpperCase();
 
@@ -552,14 +549,15 @@ async function saveStudentRow(tr) {
       result_publication_date: new Date().toISOString()
     };
 
-    let total = 0;
+    const entered = {};
     let hasMarks = false;
+    let total = 0;
 
     tr.querySelectorAll(".mark").forEach(input => {
       const field = input.dataset.field;
 
       if (input.value === "") {
-        delete pay[field];
+        entered[field] = null;
         return;
       }
 
@@ -574,13 +572,12 @@ async function saveStudentRow(tr) {
         throw new Error("Invalid mark in " + field);
       }
 
-      pay[field] = value;
-      total += value;
+      entered[field] = value;
       hasMarks = true;
     });
 
     if (!hasMarks) {
-      throw new Error("Enter marks before saving.");
+      throw new Error("Enter at least one mark before saving.");
     }
 
     if (p.half) {
@@ -593,49 +590,74 @@ async function saveStudentRow(tr) {
         ["social_science", "social_science_sub", "social_science_obj"]
       ];
 
-      total = 0;
+      for (const [subject, sub, obj] of pairs) {
+        const sv = entered[sub] ?? null;
+        const ov = entered[obj] ?? null;
 
-      pairs.forEach(([subject, sub, obj]) => {
-        const a = pay[sub] ?? null;
-        const b = pay[obj] ?? null;
+        pay[sub] = sv;
+        pay[obj] = ov;
 
-        if (a !== null || b !== null) {
-          pay[subject] = Number(a || 0) + Number(b || 0);
+        if (sv !== null || ov !== null) {
+          pay[subject] = Number(sv || 0) + Number(ov || 0);
           total += pay[subject];
         }
-      });
+      }
 
       if (cls !== "VIII") {
+        pay.ia = entered.ia ?? null;
+        pay.ac = entered.ac ?? null;
         total += Number(pay.ia || 0) + Number(pay.ac || 0);
+      }
+    } else {
+      let iaTotal = 0;
+      let caTotal = 0;
+
+      for (const [field] of (p.fields || [])) {
+        if (!(field in entered)) continue;
+
+        const value = entered[field];
+        pay[field] = value;
+
+        if (value !== null) {
+          total += Number(value);
+
+          if (field.startsWith("ia_")) iaTotal += Number(value);
+          if (field.startsWith("ca_")) caTotal += Number(value);
+        }
+      }
+
+      if (cls !== "VIII") {
+        pay.ia = iaTotal;
+        pay.ac = caTotal;
       }
     }
 
     pay.total = total;
-    pay.full_marks = Number(p.max || (p.half ? 840 : 100));
 
     const found = await supabaseClient
       .from(table)
-      .select("*")
+      .select("id")
       .eq("roll_no", roll)
+      .eq("pin", pin)
       .eq("assessment", assessment)
+      .order("id", { ascending: false })
       .limit(2);
 
     if (found.error) throw found.error;
 
-    if (found.data.length > 1) {
+    if (found.data?.length > 1) {
       throw new Error(
-        "Multiple records found for this student and assessment. Resolve duplicates first."
+        "Duplicate records found. Resolve duplicates before saving."
       );
     }
 
     let result;
 
-    if (found.data.length === 1) {
+    if (found.data?.length === 1) {
       result = await supabaseClient
         .from(table)
         .update(pay)
-        .eq("roll_no", roll)
-        .eq("assessment", assessment)
+        .eq("id", found.data[0].id)
         .select("*");
     } else {
       result = await supabaseClient
@@ -650,14 +672,14 @@ async function saveStudentRow(tr) {
       throw new Error("Supabase did not confirm the save.");
     }
 
-    status.textContent = "Saved successfully ✓";
-    status.style.color = "green";
-
     existingRows.set(roll, {
       ...(existingRows.get(roll) || {}),
       ...pay,
       ...result.data[0]
     });
+
+    status.textContent = "Saved successfully ✓";
+    status.style.color = "green";
 
   } catch (error) {
     console.error("Individual student save failed:", error);
