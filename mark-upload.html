@@ -653,21 +653,22 @@ async function publish(){
         }
 
       });
-
-      const ia=o.ia ?? null;
-const ac=o.ac ?? null;
-
-pay.ia=ia;
-pay.ac=ac;
-
-if(ia!==null){
-  total+=Number(ia);
-  has=true;
+if(cls !== "VIII"){
+  const ia=o.ia ?? null;
+  const ac=o.ac ?? null;
+  pay.ia=ia;
+  pay.ac=ac;
 }
+if(cls !== "VIII"){
+  if(ia !== null){
+    total += Number(ia);
+    has = true;
+  }
 
-if(ac!==null){
-  total+=Number(ac);
-  has=true;
+  if(ac !== null){
+    total += Number(ac);
+    has = true;
+  }
 }
 
 if(!has){
