@@ -710,10 +710,11 @@ pay.total = total;
     continue;
   }
 
-  pay.ia=iaTotal;
-  pay.ac=caTotal;
-  pay.total=total;
-
+if(cls !== "VIII"){
+  pay.ia = iaTotal;
+  pay.ac = caTotal;
+}
+pay.total = total;
 }
 
     try{
