@@ -666,16 +666,34 @@ async function saveStudentRow(tr) {
         .select("*");
     }
 
-    if (result.error) throw result.error;
+if (result.error) throw result.error;
 
-    if (!result.data?.length) {
-      throw new Error("Supabase did not confirm the save.");
-    }
+let savedRow = result.data?.[0] || null;
 
+if (!savedRow) {
+  const verify = await supabaseClient
+    .from(table)
+    .select("*")
+    .eq("roll_no", roll)
+    .eq("pin", pin)
+    .eq("assessment", assessment)
+    .order("id", { ascending: false })
+    .limit(2);
+
+  if (verify.error) throw verify.error;
+
+  if (!verify.data || verify.data.length !== 1) {
+    throw new Error(
+      "Save could not be verified. Check permissions and duplicate records."
+    );
+  }
+
+  savedRow = verify.data[0];
+}
     existingRows.set(roll, {
       ...(existingRows.get(roll) || {}),
       ...pay,
-      ...result.data[0]
+     ...savedRow
     });
 
     status.textContent = "Saved successfully ✓";
