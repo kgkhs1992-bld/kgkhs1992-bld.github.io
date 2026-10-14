@@ -3285,9 +3285,19 @@ preview.querySelectorAll(".excel-save-row").forEach(button => {
       if (result.error) throw result.error;
 
       if (!result.data || result.data.length !== 1) {
-        throw new Error(
-          "Supabase did not confirm the save. Check the table policies."
-        );
+  const operation =
+    found.data && found.data.length === 1
+      ? "UPDATE"
+      : "INSERT";
+
+  throw new Error(
+    operation +
+    " returned no saved row. Roll=" +
+    student.roll_no +
+    ", Assessment=" +
+    student.assessment +
+    ". Check the browser console for Supabase details."
+  );
       }
 
       // Verify the saved row.
