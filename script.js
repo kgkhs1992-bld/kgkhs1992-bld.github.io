@@ -3267,45 +3267,31 @@ preview.querySelectorAll(".excel-save-row").forEach(button => {
 
       if (found.data && found.data.length === 1) {
         // Update existing marks and preserve the publication date.
-                const { data: sessionData } =
+              const { data: sessionData } =
           await supabaseClient.auth.getSession();
 
         console.log(
           "Marks-save auth role:",
           sessionData.session ? "authenticated" : "anon"
         );
-            result = await supabaseClient
+
+        result = await supabaseClient
           .from(tableName)
           .update(payload)
-          .eq("id", found.data[0].id);
+          .eq("id", found.data[0].id)
+          .select("id");
 
         if (result.error) {
           throw result.error;
         }
 
-        const savedCheck = await supabaseClient
-          .from(tableName)
-          .select("id")
-          .eq("id", found.data[0].id)
-          .maybeSingle();
-
-        if (savedCheck.error) {
-          throw savedCheck.error;
-        }
-
-        if (!savedCheck.data) {
+        if (!result.data || result.data.length !== 1) {
           throw new Error(
-            "Update did not affect row ID " +
-            found.data[0].id +
-            ". Check database permissions."
+            "UPDATE affected no row. Check the auth role and UPDATE policy."
           );
         }
-
-        result = {
-          data: [{ id: found.data[0].id }],
-          error: null
-        };
-      } else {
+       
+        } else {
         // Insert a new result with its publication date.
         payload.result_publication_date = new Date().toISOString();
 
