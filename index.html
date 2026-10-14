@@ -2249,7 +2249,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <button
       type="button"
       class="btn primary"
-      onclick="previewStudentResults()"
+      onclick="try { if (typeof previewStudentResults !== 'function') { alert('Preview handler not loaded. Refresh the page.'); } else { previewStudentResults().catch(e => alert('Preview failed: ' + e.message)); } } catch(e) { alert('Preview error: ' + e.message); }"
     >
       👁️ Read Excel & Preview
     </button>
