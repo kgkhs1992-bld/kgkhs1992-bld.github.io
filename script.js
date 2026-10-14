@@ -3204,14 +3204,12 @@ preview.querySelectorAll(".excel-save-row").forEach(button => {
     button.disabled = true;
     if (status) status.textContent = "Saving...";
 
-    try {
+
       const tableName =
         "class_" + pendingResultMeta.classValue.toLowerCase() + "_results";
 
-      const payload = {
-        ...student,
-        result_publication_date: new Date().toISOString()
-      };
+      const payload = { ...student };
+      delete payload.result_publication_date;
 
       const isHalfAnnual =
         ["IX", "X"].includes(pendingResultMeta.classValue) &&
@@ -3231,10 +3229,7 @@ preview.querySelectorAll(".excel-save-row").forEach(button => {
           const sub = Number(payload[subject + "_sub"] || 0);
           const obj = Number(payload[subject + "_obj"] || 0);
 
-          payload[subject + "_sub"] = student[subject + "_sub"] ?? null;
-          payload[subject + "_obj"] = student[subject + "_obj"] ?? null;
           payload[subject] = sub + obj;
-
           subjectTotal += sub + obj;
         });
 
@@ -3260,24 +3255,53 @@ preview.querySelectorAll(".excel-save-row").forEach(button => {
         );
       }
 
-      let result;
-
       if (found.data && found.data.length === 1) {
-        result = await supabaseClient
+        // Update existing marks without changing the publication date.
+        const result = await supabaseClient
           .from(tableName)
           .update(payload)
-          .eq("id", found.data[0].id)
-          .select("id");
+          .eq("id", found.data[0].id);
+
+        if (result.error) throw result.error;
       } else {
-        result = await supabaseClient
+        // Only a new record gets a new publication date.
+        payload.result_publication_date = new Date().toISOString();
+
+        const result = await supabaseClient
           .from(tableName)
-          .insert(payload)
-          .select("id");
+          .insert(payload);
+
+        if (result.error) throw result.error;
       }
 
-      if (result.error) throw result.error;
-      if (!result.data || !result.data.length) {
-        throw new Error("Supabase did not confirm the save.");
+      // Verify the record actually stored in Supabase.
+      const verify = await supabaseClient
+        .from(tableName)
+        .select("*")
+        .eq("roll_no", Number(student.roll_no))
+        .eq("pin", student.pin)
+        .eq("assessment", student.assessment)
+        .order("id", { ascending: false })
+        .limit(2);
+
+      if (verify.error) throw verify.error;
+
+      if (!verify.data || verify.data.length !== 1) {
+        throw new Error(
+          "Save verification failed. Check the database record."
+        );
+      }
+
+      const saved = verify.data[0];
+
+      const mismatches = Object.keys(payload).filter(key =>
+        String(saved[key] ?? "") !== String(payload[key] ?? "")
+      );
+
+      if (mismatches.length) {
+        throw new Error(
+          "Saved values differ for: " + mismatches.join(", ")
+        );
       }
 
       if (status) {
