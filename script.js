@@ -3343,7 +3343,7 @@ preview.querySelectorAll(".excel-save-row").forEach(button => {
         status.textContent = "Saved successfully ✓";
         status.style.color = "green";
       }
-
+    
     } catch (error) {
       console.error("Excel preview individual save failed:", error);
 
