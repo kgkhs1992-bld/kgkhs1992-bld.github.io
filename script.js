@@ -3267,6 +3267,13 @@ preview.querySelectorAll(".excel-save-row").forEach(button => {
 
       if (found.data && found.data.length === 1) {
         // Update existing marks and preserve the publication date.
+                const { data: sessionData } =
+          await supabaseClient.auth.getSession();
+
+        console.log(
+          "Marks-save auth role:",
+          sessionData.session ? "authenticated" : "anon"
+        );
             result = await supabaseClient
           .from(tableName)
           .update(payload)
