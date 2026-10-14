@@ -3267,11 +3267,37 @@ preview.querySelectorAll(".excel-save-row").forEach(button => {
 
       if (found.data && found.data.length === 1) {
         // Update existing marks and preserve the publication date.
-        result = await supabaseClient
+            result = await supabaseClient
           .from(tableName)
           .update(payload)
+          .eq("id", found.data[0].id);
+
+        if (result.error) {
+          throw result.error;
+        }
+
+        const savedCheck = await supabaseClient
+          .from(tableName)
+          .select("id")
           .eq("id", found.data[0].id)
-          .select("*");
+          .maybeSingle();
+
+        if (savedCheck.error) {
+          throw savedCheck.error;
+        }
+
+        if (!savedCheck.data) {
+          throw new Error(
+            "Update did not affect row ID " +
+            found.data[0].id +
+            ". Check database permissions."
+          );
+        }
+
+        result = {
+          data: [{ id: found.data[0].id }],
+          error: null
+        };
       } else {
         // Insert a new result with its publication date.
         payload.result_publication_date = new Date().toISOString();
