@@ -3291,17 +3291,36 @@ if (!result.data || result.data.length !== 1) {
 
       const saved = verify.data[0];
 
-      const mismatches = Object.keys(payload).filter(key =>
-        String(saved[key] ?? "") !== String(payload[key] ?? "")
-      );
+   const checkFields = [
+  "roll_no",
+  "pin",
+  "student_name",
+  "assessment",
+  "mil_odia",
+  "english",
+  "hindi_sanskrit",
+  "mathematics",
+  "science",
+  "social_science",
+  "drawing",
+  "kalashikhya",
+  "bruti",
+  "saririka_swathya",
+  "total"
+];
 
-      if (mismatches.length) {
-        throw new Error(
-          "Saved values differ for: " + mismatches.join(", ")
-        );
-      }
+const mismatches = checkFields.filter(key =>
+  Object.prototype.hasOwnProperty.call(payload, key) &&
+  String(saved[key] ?? "") !== String(payload[key] ?? "")
+);
 
-      if (status) {
+if (mismatches.length) {
+  throw new Error(
+    "Saved values differ for: " + mismatches.join(", ")
+  );
+}
+
+   if (status) {
         status.textContent = "Saved successfully ✓";
         status.style.color = "green";
       }
