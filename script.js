@@ -1,4 +1,4 @@
-
+7
 // ===============================
 // PAGE INITIALIZATION
 // ===============================
@@ -3188,12 +3188,13 @@ preview.querySelectorAll(".excel-edit-row").forEach(button => {
   });
 });
 
+
 preview.querySelectorAll(".excel-save-row").forEach(button => {
   button.addEventListener("click", async () => {
     const index = Number(button.dataset.index);
     const student = pendingStudentResults[index];
     const status = preview.querySelector(
-      ".excel-row-status[data-index='" + index + "']"
+      '.excel-row-status[data-index="' + index + '"]'
     );
 
     if (!student || !pendingResultMeta) {
@@ -3201,12 +3202,14 @@ preview.querySelectorAll(".excel-save-row").forEach(button => {
       return;
     }
 
-   button.disabled = true;
-if (status) status.textContent = "Saving...";
+    button.disabled = true;
+    if (status) status.textContent = "Saving...";
 
-try {
-  const tableName =
-        "class_" + pendingResultMeta.classValue.toLowerCase() + "_results";
+    try {
+      const tableName =
+        "class_" +
+        pendingResultMeta.classValue.toLowerCase() +
+        "_results";
 
       const payload = { ...student };
       delete payload.result_publication_date;
@@ -3219,8 +3222,12 @@ try {
 
       if (isHalfAnnual) {
         const subjects = [
-          "mil_odia", "english", "hindi_sanskrit",
-          "mathematics", "science", "social_science"
+          "mil_odia",
+          "english",
+          "hindi_sanskrit",
+          "mathematics",
+          "science",
+          "social_science"
         ];
 
         let subjectTotal = 0;
@@ -3236,6 +3243,7 @@ try {
         payload.ia = Number(payload.ia || 0);
         payload.ac = Number(payload.ac || 0);
         payload.total = subjectTotal + payload.ia + payload.ac;
+        payload.full_marks = 840;
       }
 
       const found = await supabaseClient
@@ -3251,99 +3259,104 @@ try {
 
       if (found.data && found.data.length > 1) {
         throw new Error(
-          "Duplicate records found. Resolve them before saving."
+          "Duplicate records found. Resolve duplicates before saving."
         );
       }
 
+      let result;
+
       if (found.data && found.data.length === 1) {
-        // Update existing marks without changing the publication date.
-       const result = await supabaseClient
-  .from(tableName)
-  .update(payload)
-  .eq("id", found.data[0].id)
-  .select("*");
+        // Update existing marks and preserve the publication date.
+        result = await supabaseClient
+          .from(tableName)
+          .update(payload)
+          .eq("id", found.data[0].id)
+          .select("*");
+      } else {
+        // Insert a new result with its publication date.
+        payload.result_publication_date = new Date().toISOString();
 
-if (result.error) throw result.error;
+        result = await supabaseClient
+          .from(tableName)
+          .insert(payload)
+          .select("*");
+      }
 
-if (!result.data || result.data.length !== 1) {
-  throw new Error(
-    "Update affected no row. Check the Supabase UPDATE policy."
-  );
-}
-      
-    // Verify the record actually stored in Supabase.
+      if (result.error) throw result.error;
+
+      if (!result.data || result.data.length !== 1) {
+        throw new Error(
+          "Supabase did not confirm the save. Check the table policies."
+        );
+      }
+
+      // Verify the saved row.
       const verify = await supabaseClient
         .from(tableName)
         .select("*")
-        .eq("roll_no", Number(student.roll_no))
-        .eq("pin", student.pin)
-        .eq("assessment", student.assessment)
-        .order("id", { ascending: false })
-        .limit(2);
+        .eq("id", result.data[0].id);
 
       if (verify.error) throw verify.error;
 
       if (!verify.data || verify.data.length !== 1) {
-        throw new Error(
-          "Save verification failed. Check the database record."
-        );
+        throw new Error("Save verification failed.");
       }
 
       const saved = verify.data[0];
 
-   const checkFields = [
-  "roll_no",
-  "pin",
-  "student_name",
-  "assessment",
-  "mil_odia",
-  "english",
-  "hindi_sanskrit",
-  "mathematics",
-  "science",
-  "social_science",
-  "drawing",
-  "kalashikhya",
-  "bruti",
-  "saririka_swathya",
-  "total"
-];
+      const checkFields = [
+        "roll_no",
+        "pin",
+        "student_name",
+        "assessment",
+        "mil_odia",
+        "english",
+        "hindi_sanskrit",
+        "mathematics",
+        "science",
+        "social_science",
+        "drawing",
+        "kalashikhya",
+        "bruti",
+        "saririka_swathya",
+        "total"
+      ];
 
-const mismatches = checkFields.filter(key =>
-  Object.prototype.hasOwnProperty.call(payload, key) &&
-  String(saved[key] ?? "") !== String(payload[key] ?? "")
-);
+      const mismatches = checkFields.filter(key =>
+        Object.prototype.hasOwnProperty.call(payload, key) &&
+        String(saved[key] ?? "") !== String(payload[key] ?? "")
+      );
 
-if (mismatches.length) {
-  throw new Error(
-    "Saved values differ for: " + mismatches.join(", ")
-  );
-}
+      if (mismatches.length) {
+        throw new Error(
+          "Saved values differ for: " + mismatches.join(", ")
+        );
+      }
 
-   if (status) {
+      // Keep the preview data synchronized.
+      pendingStudentResults[index] = {
+        ...student,
+        ...saved
+      };
+
+      if (status) {
         status.textContent = "Saved successfully ✓";
         status.style.color = "green";
       }
- catch (error) {
+
+    } catch (error) {
       console.error("Excel preview individual save failed:", error);
+
       if (status) {
         status.textContent = "Failed: " + error.message;
         status.style.color = "red";
       }
+
     } finally {
       button.disabled = false;
     }
   });
 });
-
-
-   actions.style.display =
-      "block";
-
-
-    message.textContent =
-      "✅ Excel read successfully. Please review the preview.";
-
   } catch (error) {
 
     console.error(error);
