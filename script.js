@@ -3324,7 +3324,7 @@ if (mismatches.length) {
         status.textContent = "Saved successfully ✓";
         status.style.color = "green";
       }
-    } catch (error) {
+ catch (error) {
       console.error("Excel preview individual save failed:", error);
       if (status) {
         status.textContent = "Failed: " + error.message;
