@@ -3201,11 +3201,11 @@ preview.querySelectorAll(".excel-save-row").forEach(button => {
       return;
     }
 
-    button.disabled = true;
-    if (status) status.textContent = "Saving...";
+   button.disabled = true;
+if (status) status.textContent = "Saving...";
 
-
-      const tableName =
+try {
+  const tableName =
         "class_" + pendingResultMeta.classValue.toLowerCase() + "_results";
 
       const payload = { ...student };
