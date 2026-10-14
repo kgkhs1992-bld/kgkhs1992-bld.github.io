@@ -3257,24 +3257,21 @@ try {
 
       if (found.data && found.data.length === 1) {
         // Update existing marks without changing the publication date.
-        const result = await supabaseClient
-          .from(tableName)
-          .update(payload)
-          .eq("id", found.data[0].id);
+       const result = await supabaseClient
+  .from(tableName)
+  .update(payload)
+  .eq("id", found.data[0].id)
+  .select("*");
 
-        if (result.error) throw result.error;
-      } else {
-        // Only a new record gets a new publication date.
-        payload.result_publication_date = new Date().toISOString();
+if (result.error) throw result.error;
 
-        const result = await supabaseClient
-          .from(tableName)
-          .insert(payload);
-
-        if (result.error) throw result.error;
-      }
-
-      // Verify the record actually stored in Supabase.
+if (!result.data || result.data.length !== 1) {
+  throw new Error(
+    "Update affected no row. Check the Supabase UPDATE policy."
+  );
+}
+      
+    // Verify the record actually stored in Supabase.
       const verify = await supabaseClient
         .from(tableName)
         .select("*")
