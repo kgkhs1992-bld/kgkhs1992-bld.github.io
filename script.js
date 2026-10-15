@@ -1681,7 +1681,7 @@ doc.text("Term 4", 165, y);
   
 
 
-    } else if (isHalfAnnual) {
+  } else if (isHalfAnnual) {  
 
   doc.setFont("helvetica", "bold");
   doc.setFontSize(8.5);
@@ -1740,7 +1740,7 @@ doc.text("Term 4", 165, y);
 
         
 
-
+} else {
   const marks = className === "VIII"
       ? [
         ["MIL (Odia)", data.mil_odia],
