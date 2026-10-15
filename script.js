@@ -1679,16 +1679,7 @@ doc.text("Term 4", 165, y);
   ];
 
   
-} else if (isHalfAnnual) {
 
-    const marks = [
-        ["MIL (Odia)", data.mil_odia_sub, data.mil_odia_obj],
-        ["English", data.english_sub, data.english_obj],
-        ["Hindi / Sanskrit", data.hindi_sanskrit_sub, data.hindi_sanskrit_obj],
-        ["Mathematics", data.mathematics_sub, data.mathematics_obj],
-        ["Science", data.science_sub, data.science_obj],
-        ["Social Science", data.social_science_sub, data.social_science_obj]
-    ];
 
     } else if (isHalfAnnual) {
 
@@ -1747,33 +1738,7 @@ doc.text("Term 4", 165, y);
   doc.text("GRAND TOTAL: " + pdfGrandTotal + " / 840", 15, y);
   y += 8;
 
-        let subjectGrade = "F";
-        if (percentage >= 90) subjectGrade = "A1";
-        else if (percentage >= 80) subjectGrade = "A2";
-        else if (percentage >= 70) subjectGrade = "B1";
-        else if (percentage >= 60) subjectGrade = "B2";
-        else if (percentage >= 50) subjectGrade = "C";
-        else if (percentage >= 40) subjectGrade = "D";
-        else if (percentage >= 33) subjectGrade = "E";
-
-        doc.setFillColor(
-            index % 2 === 0 ? 235 : 246,
-            index % 2 === 0 ? 248 : 251,
-            255
-        );
-        doc.rect(12, y - 5, pageWidth - 24, 9, "F");
-
-        doc.setTextColor(35, 48, 68);
-        doc.text(item[0], colSubject, y);
-        doc.text(String(item[1] ?? "—"), colSub, y);
-        doc.text(String(item[2] ?? "—"), colObj, y);
-        doc.text(String(fullMarks), colFull, y);
-        doc.text(subjectGrade, colGrade, y);
-
-        y += 9;
-    });
-
-    y += 4;
+        
 
 
   const marks = className === "VIII"
