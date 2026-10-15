@@ -1678,21 +1678,27 @@ doc.text("Term 4", 165, y);
     ["Social Science", data.ia_social_science, data.ca_social_science]
   ];
 
-  iaCaMarks.forEach(item => {
-
-    doc.text(item[0], 20, y);
-    doc.text(String(item[1] ?? "—"), 105, y);
-    doc.text(String(item[2] ?? "—"), 135, y);
-    doc.text("40", 165, y);
-
-    y += 8;
-  });
-
+  
 } else if (isHalfAnnual) {
 
+    const marks = [
+        ["MIL (Odia)", data.mil_odia_sub, data.mil_odia_obj],
+        ["English", data.english_sub, data.english_obj],
+        ["Hindi / Sanskrit", data.hindi_sanskrit_sub, data.hindi_sanskrit_obj],
+        ["Mathematics", data.mathematics_sub, data.mathematics_obj],
+        ["Science", data.science_sub, data.science_obj],
+        ["Social Science", data.social_science_sub, data.social_science_obj]
+    ];
+
+    } else if (isHalfAnnual) {
+
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(8.5);
+
   doc.text("Subject", 20, y);
-  doc.text("Subjective", 95, y);
-  doc.text("Objective", 135, y);
+  doc.text("Subjective", 83, y);
+  doc.text("Objective", 115, y);
+  doc.text("Full Marks", 151, y);
 
   y += 8;
 
@@ -1705,21 +1711,21 @@ doc.text("Term 4", 165, y);
     ["Social Science", data.social_science_sub, data.social_science_obj]
   ];
 
-  marks.forEach(item => {
+  doc.setFont("helvetica", "normal");
 
+  marks.forEach(item => {
     if (
       (item[1] !== null && item[1] !== undefined && item[1] !== "") ||
       (item[2] !== null && item[2] !== undefined && item[2] !== "")
     ) {
-
       doc.text(item[0], 20, y);
-      doc.text(String(item[1] ?? "—"), 95, y);
-      doc.text(String(item[2] ?? "—"), 135, y);
-
+      doc.text(String(item[1] ?? "—"), 83, y);
+      doc.text(String(item[2] ?? "—"), 115, y);
+      doc.text("100", 151, y);
       y += 8;
     }
-
   });
+
   y += 8;
 
   const pdfSubjectTotal = marks.reduce(
@@ -1739,8 +1745,36 @@ doc.text("Term 4", 165, y);
   doc.text("CA TOTAL: " + pdfCATotal + " / 120", 15, y);
   y += 8;
   doc.text("GRAND TOTAL: " + pdfGrandTotal + " / 840", 15, y);
-  y += 8;  
-} else {
+  y += 8;
+
+        let subjectGrade = "F";
+        if (percentage >= 90) subjectGrade = "A1";
+        else if (percentage >= 80) subjectGrade = "A2";
+        else if (percentage >= 70) subjectGrade = "B1";
+        else if (percentage >= 60) subjectGrade = "B2";
+        else if (percentage >= 50) subjectGrade = "C";
+        else if (percentage >= 40) subjectGrade = "D";
+        else if (percentage >= 33) subjectGrade = "E";
+
+        doc.setFillColor(
+            index % 2 === 0 ? 235 : 246,
+            index % 2 === 0 ? 248 : 251,
+            255
+        );
+        doc.rect(12, y - 5, pageWidth - 24, 9, "F");
+
+        doc.setTextColor(35, 48, 68);
+        doc.text(item[0], colSubject, y);
+        doc.text(String(item[1] ?? "—"), colSub, y);
+        doc.text(String(item[2] ?? "—"), colObj, y);
+        doc.text(String(fullMarks), colFull, y);
+        doc.text(subjectGrade, colGrade, y);
+
+        y += 9;
+    });
+
+    y += 4;
+
 
   const marks = className === "VIII"
       ? [
@@ -1866,15 +1900,15 @@ doc.text("Term 4", 165, y);
         const signatureX = pageWidth - 62;
 
         doc.addImage(
-          signatureData,
-          "JPEG",
-          signatureX + 8,
-          y - 8,
-          35,
-          18
-        );
-
-        y += 15;
+  signatureData,
+  "JPEG",
+  signatureX + 8,
+  signatureY,
+  35,
+  18
+);
+        
+   y += 15;
 
         doc.setFont("helvetica", "bold");
         doc.setFontSize(10);
