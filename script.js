@@ -1669,6 +1669,7 @@ doc.text("Term 4", 165, y);
 
   y += 8;
 
+  
   const iaCaMarks = [
     ["MIL (Odia)", data.ia_mil_odia, data.ca_mil_odia],
     ["English", data.ia_english, data.ca_english],
@@ -1678,10 +1679,22 @@ doc.text("Term 4", 165, y);
     ["Social Science", data.ia_social_science, data.ca_social_science]
   ];
 
-  
+  doc.setFont("helvetica", "normal");
 
+  iaCaMarks.forEach(item => {
+    if (
+      (item[1] !== null && item[1] !== undefined && item[1] !== "") ||
+      (item[2] !== null && item[2] !== undefined && item[2] !== "")
+    ) {
+      doc.text(item[0], 20, y);
+      doc.text(String(item[1] ?? "—"), 105, y);
+      doc.text(String(item[2] ?? "—"), 135, y);
+      doc.text("40", 165, y);
+      y += 8;
+    }
+  });
 
-  } else if (isHalfAnnual) {  
+} else if (isHalfAnnual) {
 
   doc.setFont("helvetica", "bold");
   doc.setFontSize(8.5);
@@ -1720,8 +1733,7 @@ doc.text("Term 4", 165, y);
   y += 8;
 
   const pdfSubjectTotal = marks.reduce(
-    (sum, item) =>
-      sum + Number(item[1] ?? 0) + Number(item[2] ?? 0),
+    (sum, item) => sum + Number(item[1] ?? 0) + Number(item[2] ?? 0),
     0
   );
 
@@ -1738,9 +1750,7 @@ doc.text("Term 4", 165, y);
   doc.text("GRAND TOTAL: " + pdfGrandTotal + " / 840", 15, y);
   y += 8;
 
-        
 
-} else {
   const marks = className === "VIII"
       ? [
         ["MIL (Odia)", data.mil_odia],
