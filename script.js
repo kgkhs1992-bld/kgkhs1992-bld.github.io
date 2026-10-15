@@ -1744,48 +1744,57 @@ doc.text("Term 4", 165, y);
   });
 }
   
-  // RESULT SUMMARY - UPDATED
-  y += 10;
-
-  doc.setFontSize(11);
-
   
-const pdfPercentage =
+  // COLOURFUL RESULT SUMMARY PANEL
+  y += 4;
+
+  const summaryTop = y;
+
+  doc.setFillColor(239, 248, 242);
+  doc.roundedRect(12, summaryTop, pageWidth - 24, 40, 3, 3, "F");
+
+  doc.setDrawColor(176, 220, 190);
+  doc.roundedRect(12, summaryTop, pageWidth - 24, 40, 3, 3, "S");
+
+  const pdfPercentage =
     maxMarks > 0
-        ? (Number(data.total ?? 0) / maxMarks) * 100
-        : 0;
+      ? (Number(data.total ?? 0) / maxMarks) * 100
+      : 0;
 
-
-  doc.text("Total = " + (data.total ?? "—"), 15, y);
-  y += 8;
-
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(11);
+  doc.setTextColor(20, 89, 52);
   doc.text(
-    "Percentage = " + pdfPercentage.toFixed(2) + "%",
-    15,
-    y
+    "TOTAL MARKS: " + (data.total ?? "—") +
+      (maxMarks > 0 ? " / " + maxMarks : ""),
+    17, summaryTop + 9
   );
 
-  y += 8;
+  doc.setTextColor(20, 70, 137);
+  doc.text(
+    "PERCENTAGE: " + pdfPercentage.toFixed(2) + "%",
+    17, summaryTop + 17
+  );
 
-doc.text(
-  "Result Published on : " +
-    (
-      data.result_publication_date
+  doc.setFont("helvetica", "normal");
+  doc.setFontSize(8.5);
+  doc.setTextColor(52, 66, 84);
+
+  doc.text(
+    "Result Published on: " +
+      (data.result_publication_date
         ? new Date(data.result_publication_date).toLocaleDateString("en-IN")
-        : "Not available"
-    ),
-  15,
-  y
-);
+        : "Not available"),
+    17, summaryTop + 26
+  );
 
-y += 8;
+  doc.text(
+    "Downloaded on: " + new Date().toLocaleDateString("en-IN"),
+    17, summaryTop + 34
+  );
 
-doc.text(
-  "Downloaded on : " +
-    new Date().toLocaleDateString("en-IN"),
-  15,
-  y
-);
+  y = summaryTop + 44;
+
 
       y += 18;
 
