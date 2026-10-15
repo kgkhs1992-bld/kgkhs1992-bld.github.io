@@ -1860,20 +1860,45 @@ doc.text("Term 4", 165, y);
           reader.readAsDataURL(blob);
         });
 
-        doc.addImage(signatureData, "JPEG", 150, y - 8, 35, 18);
+        
 
-y += 15;
+        // ACTUAL HM SIGNATURE
+        const signatureX = pageWidth - 62;
 
-doc.text("Trilochan Panda", 150, y);
+        doc.addImage(
+          signatureData,
+          "JPEG",
+          signatureX + 8,
+          y - 8,
+          35,
+          18
+        );
 
-y += 8;
+        y += 15;
 
-doc.setFont("helvetica", "bold");
-doc.text("In-Charge Headmaster", 167.5, y, { align: "center" });
-doc.setFont("helvetica", "normal");
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(10);
+        doc.text(
+          "Mr Trilochan Panda",
+          signatureX + 25.5,
+          y,
+          { align: "center" }
+        );
+
+        y += 6;
+
+        doc.setFont("helvetica", "normal");
+        doc.setFontSize(9);
+        doc.text(
+          "In-Charge Headmaster",
+          signatureX + 25.5,
+          y,
+          { align: "center" }
+        );
+
         y += 10;
 
-      } catch (signatureError) {
+  } catch (signatureError) {
         console.error("Signature error:", signatureError);
 
         doc.text("Trilochan Panda", 150, y);
