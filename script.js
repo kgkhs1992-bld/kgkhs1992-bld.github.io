@@ -1528,13 +1528,21 @@ else grade = "F";
         }
     y += 12;
 
+    
+    // COLOURFUL SUBJECT-WISE MARKS HEADING
+    doc.setFillColor(28, 89, 164);
+    doc.roundedRect(12, y - 7, pageWidth - 24, 12, 2, 2, "F");
+
+    doc.setTextColor(255, 255, 255);
+    doc.setFont("helvetica", "bold");
     doc.setFontSize(12);
+    doc.text("SUBJECT-WISE MARKS", 16, y + 1);
 
-    doc.text("MARKS", 15, y);
-
-    y += 10;
-
+    y += 13;
+    doc.setTextColor(35, 48, 68);
+    doc.setFont("helvetica", "normal");
     doc.setFontSize(11);
+
 
     
 const isAspirational =
