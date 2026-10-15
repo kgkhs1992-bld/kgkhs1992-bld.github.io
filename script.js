@@ -1828,7 +1828,9 @@ doc.text("Trilochan Panda", 150, y);
 
 y += 8;
 
-doc.text("Sign of HM", 150, y);
+doc.setFont("helvetica", "bold");
+doc.text("In-Charge Headmaster", 167.5, y, { align: "center" });
+doc.setFont("helvetica", "normal");
         y += 10;
 
       } catch (signatureError) {
