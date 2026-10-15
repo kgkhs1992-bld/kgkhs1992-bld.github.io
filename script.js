@@ -1484,7 +1484,7 @@ if (className === "VIII") {
         assessmentName.includes("HALF YEARLY") ||
         assessmentName.includes("ANNUAL")
     ) {
-                maxMarks = className === "IX" ? 840 : 600;
+                maxMarks = 840;
 
     } else if (
         assessmentName.includes("UNIT TEST") ||
