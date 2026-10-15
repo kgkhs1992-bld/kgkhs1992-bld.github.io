@@ -1341,58 +1341,98 @@ script.onload = async function () {
     const jsPDF = window.jspdf.jsPDF;
 
     
+    
     const doc = new jsPDF();
     const pageWidth = doc.internal.pageSize.getWidth();
 
-    // ROYAL BLUE AND GOLD SCHOOL HEADER
+    // SCHOOL HEADER
     doc.setFillColor(18, 52, 112);
     doc.rect(0, 0, pageWidth, 44, "F");
     doc.setFillColor(247, 190, 43);
     doc.rect(0, 44, pageWidth, 3, "F");
 
+    // ACTUAL SCHOOL LOGO FROM THE WEBSITE
+    try {
+      const logoResponse = await fetch(
+        "https://kgkhs1992-bld.github.io/school-logo.png"
+      );
+
+      if (logoResponse.ok) {
+        const logoBlob = await logoResponse.blob();
+        const logoData = await new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onload = () => resolve(reader.result);
+          reader.onerror = reject;
+          reader.readAsDataURL(logoBlob);
+        });
+
+        doc.addImage(logoData, "PNG", 12, 5, 32, 32);
+      }
+    } catch (logoError) {
+      console.warn("School logo could not be loaded:", logoError);
+    }
+
     doc.setTextColor(255, 255, 255);
     doc.setFont("helvetica", "bold");
-    doc.setFontSize(15);
+    doc.setFontSize(13);
     doc.text(
       "KARUA GADADHAR KAR HIGH SCHOOL",
-      pageWidth / 2, 15, { align: "center" }
+      pageWidth / 2 + 10, 15, { align: "center" }
     );
 
-    doc.setFontSize(11);
+    doc.setFontSize(10);
     doc.text(
       "BELDANDIA | ESTD. 1992",
-      pageWidth / 2, 23, { align: "center" }
+      pageWidth / 2 + 10, 23, { align: "center" }
     );
 
     doc.setTextColor(255, 218, 91);
-    doc.setFontSize(16);
+    doc.setFontSize(15);
     doc.text(
       "STUDENT RESULT CARD",
-      pageWidth / 2, 35, { align: "center" }
+      pageWidth / 2 + 10, 35, { align: "center" }
     );
 
-    // STUDENT INFORMATION PANEL
+    // STUDENT DETAILS PANEL
+    const headerAssessment = String(
+      data.assessment || assessment || "Examination"
+    ).trim();
+
     doc.setFillColor(232, 242, 255);
-    doc.roundedRect(12, 54, pageWidth - 24, 34, 3, 3, "F");
+    doc.roundedRect(12, 54, pageWidth - 24, 43, 3, 3, "F");
     doc.setDrawColor(184, 208, 240);
-    doc.roundedRect(12, 54, pageWidth - 24, 34, 3, 3, "S");
+    doc.roundedRect(12, 54, pageWidth - 24, 43, 3, 3, "S");
 
     doc.setTextColor(24, 54, 101);
     doc.setFont("helvetica", "bold");
     doc.setFontSize(10);
-    doc.text("CLASS: " + (data.class || studentClass), 18, 64);
-    doc.text("ROLL NO.: " + (data.roll_no ?? "—"), 112, 64);
+
+    doc.text(
+      "CLASS: " + (data.class || studentClass),
+      18, 64
+    );
+
+    doc.text(
+      "ROLL NO.: " + (data.roll_no ?? "—"),
+      112, 64
+    );
 
     doc.setFont("helvetica", "normal");
     doc.text(
       "STUDENT NAME: " + (data.student_name || "—"),
-      18, 77
+      18, 75
     );
 
-    let y = 99;
+    doc.text(
+      "ASSESSMENT: " + headerAssessment,
+      18, 86
+    );
+
+    let y = 108;
     doc.setTextColor(35, 48, 68);
     doc.setFont("helvetica", "normal");
-    doc.setFontSize(11);
+    doc.setFontSize(10);
+
 
 
 const className = String(data.class || studentClass || "").trim().toUpperCase();
