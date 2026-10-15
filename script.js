@@ -1340,55 +1340,60 @@ details.appendChild(pdfButton);
 script.onload = async function () {
     const jsPDF = window.jspdf.jsPDF;
 
+    
     const doc = new jsPDF();
+    const pageWidth = doc.internal.pageSize.getWidth();
 
-    let y = 20;
+    // ROYAL BLUE AND GOLD SCHOOL HEADER
+    doc.setFillColor(18, 52, 112);
+    doc.rect(0, 0, pageWidth, 44, "F");
+    doc.setFillColor(247, 190, 43);
+    doc.rect(0, 44, pageWidth, 3, "F");
 
-    doc.setFontSize(16);
-
+    doc.setTextColor(255, 255, 255);
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(15);
     doc.text(
-      "KARUA GADADHAR KAR HIGH SCHOOL, BELDANDIA",
-      105,
-      y,
-      { align: "center" }
+      "KARUA GADADHAR KAR HIGH SCHOOL",
+      pageWidth / 2, 15, { align: "center" }
     );
-
-    y += 12;
-
-    doc.setFontSize(14);
-
-    doc.text(
-      "STUDENT RESULT",
-      105,
-      y,
-      { align: "center" }
-    );
-
-    y += 15;
 
     doc.setFontSize(11);
-
     doc.text(
-  "Class: " + (data.class || studentClass),
-  15,
-  y
-);
-
-    y += 8;
-
-    doc.text(
-      "Roll No.: " + data.roll_no,
-      15,
-      y
+      "BELDANDIA | ESTD. 1992",
+      pageWidth / 2, 23, { align: "center" }
     );
 
-    y += 8;
-
+    doc.setTextColor(255, 218, 91);
+    doc.setFontSize(16);
     doc.text(
-      "Name: " + (data.student_name || ""),
-      15,
-      y
+      "STUDENT RESULT CARD",
+      pageWidth / 2, 35, { align: "center" }
     );
+
+    // STUDENT INFORMATION PANEL
+    doc.setFillColor(232, 242, 255);
+    doc.roundedRect(12, 54, pageWidth - 24, 34, 3, 3, "F");
+    doc.setDrawColor(184, 208, 240);
+    doc.roundedRect(12, 54, pageWidth - 24, 34, 3, 3, "S");
+
+    doc.setTextColor(24, 54, 101);
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(10);
+    doc.text("CLASS: " + (data.class || studentClass), 18, 64);
+    doc.text("ROLL NO.: " + (data.roll_no ?? "—"), 112, 64);
+
+    doc.setFont("helvetica", "normal");
+    doc.text(
+      "STUDENT NAME: " + (data.student_name || "—"),
+      18, 77
+    );
+
+    let y = 99;
+    doc.setTextColor(35, 48, 68);
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(11);
+
 
 const className = String(data.class || studentClass || "").trim().toUpperCase();
 
