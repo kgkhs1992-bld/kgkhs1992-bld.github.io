@@ -1465,7 +1465,7 @@ doc.text(
       )
     : (className === "IX" || className === "X") &&
       assessmentName.includes("HALF YEARLY")
-        ? "Subject - HALF YEARLY RESULT CLASS " + className
+        ? ""
         : (className === "IX" || className === "X") &&
           assessmentName.includes("ANNUAL")
             ? "Subject - ANNUAL RESULT CLASS " + className
