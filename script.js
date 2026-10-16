@@ -1752,14 +1752,7 @@ doc.text("Term 4", 165, y);
   y += 8;
 
 
-  doc.text("SUBJECT MARKS: " + pdfSubjectTotal + " / 600", 15, y);
-  y += 8;
-  doc.text("IA TOTAL: " + pdfIATotal + " / 120", 15, y);
-  y += 8;
-  doc.text("CA TOTAL: " + pdfCATotal + " / 120", 15, y);
-  y += 8;
-  doc.text("GRAND TOTAL: " + pdfGrandTotal + " / 840", 15, y);
-  y += 8;
+ 
 
 
  const regularSubjectMarks = className === "VIII"
@@ -1786,23 +1779,6 @@ doc.text("Term 4", 165, y);
 
  regularSubjectMarks.forEach(item => {
 
-    if (
-      item[1] !== null &&
-      item[1] !== undefined &&
-      item[1] !== ""
-    ) {
-
-      doc.text(
-        item[0] + ": " + item[1],
-        20,
-        y
-      );
-
-      y += 8;
-    }
-
-  });
-}
   
   
   // COLOURFUL RESULT SUMMARY PANEL
