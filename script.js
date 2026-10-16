@@ -1875,7 +1875,7 @@ doc.text("Term 4", 165, y);
   signatureData,
   "JPEG",
   signatureX + 8,
-  signatureY,
+  signaturey,
   35,
   18
 );
