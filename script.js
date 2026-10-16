@@ -1907,7 +1907,13 @@ doc.setFontSize(8);
 doc.text("In-Charge Headmaster", signatureX + 25.5, bottomY + 8, {
   align: "center"
 });
-      doc.save(
+   
+      } catch (signatureError) {
+        console.error("Signature error:", signatureError);
+        doc.text("Trilochan Panda", 150, y);
+        y += 10;
+      }        
+        doc.save(
         "KGKHS_Result_" +
         (data.student_name || "Student") +
         "_" +
