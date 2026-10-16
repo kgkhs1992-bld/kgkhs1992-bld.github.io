@@ -1828,10 +1828,10 @@ doc.text("100", 171, y);
   const summaryTop = y;
 
   doc.setFillColor(239, 248, 242);
-  doc.roundedRect(12, summaryTop, pageWidth - 24, 40, 3, 3, "F");
+  doc.roundedRect(12, summaryTop, pageWidth - 24, 52, 3, 3, "F");
 
   doc.setDrawColor(176, 220, 190);
-  doc.roundedRect(12, summaryTop, pageWidth - 24, 40, 3, 3, "S");
+  doc.roundedRect(12, summaryTop, pageWidth - 24, 52, 3, 3, "S");
 
   const pdfPercentage =
     maxMarks > 0
