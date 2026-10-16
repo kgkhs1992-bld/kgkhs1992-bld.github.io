@@ -1900,7 +1900,9 @@ doc.text("100", 171, y);
    // BOTTOM RESULT DETAILS AND HM SIGNATURE
 const pageHeight = doc.internal.pageSize.getHeight();
 const signatureX = pageWidth - 62;
-const bottomY = pageHeight - 35;
+const bottomY = (className === "IX" || className === "X")
+  ? summaryTop + 40
+  : pageHeight - 35;
 
 // Percentage and Grade — bottom-left
 const finalPercentage =
@@ -1922,12 +1924,11 @@ doc.setFont("helvetica", "bold");
 doc.setFontSize(10);
 doc.setTextColor(20, 70, 137);
 if (
+  className === "VIII" &&
   !(
-    (className === "VIII" &&
-      (assessmentName.includes("SA1") ||
-       assessmentName.includes("SUMMATIVE ASSESSMENT 01") ||
-       assessmentName.includes("SUMMATIVE ASSESSMENT 1"))) ||
-    ((className === "IX" || className === "X") && isHalfAnnual)
+    assessmentName.includes("SA1") ||
+    assessmentName.includes("SUMMATIVE ASSESSMENT 01") ||
+    assessmentName.includes("SUMMATIVE ASSESSMENT 1")
   )
 ) {
   doc.text("Percentage: " + finalPercentage.toFixed(2) + "%", 17, bottomY);
