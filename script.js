@@ -1695,6 +1695,14 @@ doc.text("Secured Marks", 130, y);
 doc.text("Full Marks", 166, y);
   y += 8;
 
+  doc.text("Subject", 20, y);
+  doc.text("Subjective", 76, y);
+  doc.text("Objective", 104, y);
+  doc.text("Secured Marks", 130, y);
+  doc.text("Full Marks", 166, y);
+
+  y += 8;
+
   const marks = [
     ["MIL (Odia)", data.mil_odia_sub, data.mil_odia_obj],
     ["English", data.english_sub, data.english_obj],
@@ -1702,6 +1710,7 @@ doc.text("Full Marks", 166, y);
     ["Mathematics", data.mathematics_sub, data.mathematics_obj],
     ["Science", data.science_sub, data.science_obj],
     ["Social Science", data.social_science_sub, data.social_science_obj]
+  ];
 
   marks.forEach(item => {
     if (
