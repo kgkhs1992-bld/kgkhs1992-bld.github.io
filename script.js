@@ -1921,7 +1921,17 @@ else finalGrade = "F";
 doc.setFont("helvetica", "bold");
 doc.setFontSize(10);
 doc.setTextColor(20, 70, 137);
-doc.text("Percentage: " + finalPercentage.toFixed(2) + "%", 17, bottomY);
+if (
+  !(
+    (className === "VIII" &&
+      (assessmentName.includes("SA1") ||
+       assessmentName.includes("SUMMATIVE ASSESSMENT 01") ||
+       assessmentName.includes("SUMMATIVE ASSESSMENT 1"))) ||
+    ((className === "IX" || className === "X") && isHalfAnnual)
+  )
+) {
+  doc.text("Percentage: " + finalPercentage.toFixed(2) + "%", 17, bottomY);
+}
 
 doc.text("Grade: " + finalGrade, 17, bottomY + 10);
 
