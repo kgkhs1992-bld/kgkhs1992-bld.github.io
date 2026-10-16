@@ -1550,23 +1550,9 @@ else if (percentage >= 40) grade = "D";
 else if (percentage >= 33) grade = "E";
 else grade = "F";
 
-            y += 8;
-
-            doc.text(
-                "Percentage: " + percentage.toFixed(2) + "%",
-                15,
-                y
-            );
-
-            y += 8;
-
-            doc.text(
-                "Grade: " + grade,
-                15,
-                y
-            );
+       
         }
-    y += 12;
+   y += 2;
 
     
     // COLOURFUL SUBJECT-WISE MARKS HEADING
@@ -1703,9 +1689,10 @@ doc.text("Term 4", 165, y);
 
   doc.text("Subject", 20, y);
   doc.text("Subjective", 83, y);
-  doc.text("Objective", 115, y);
-  doc.text("Full Marks", 151, y);
-
+doc.text("Subjective", 76, y);
+doc.text("Objective", 104, y);
+doc.text("Secured Marks", 130, y);
+doc.text("Full Marks", 166, y);
   y += 8;
 
   const marks = [
@@ -1715,9 +1702,6 @@ doc.text("Term 4", 165, y);
     ["Mathematics", data.mathematics_sub, data.mathematics_obj],
     ["Science", data.science_sub, data.science_obj],
     ["Social Science", data.social_science_sub, data.social_science_obj]
-  ];
-
-  doc.setFont("helvetica", "normal");
 
   marks.forEach(item => {
     if (
@@ -1725,9 +1709,14 @@ doc.text("Term 4", 165, y);
       (item[2] !== null && item[2] !== undefined && item[2] !== "")
     ) {
       doc.text(item[0], 20, y);
-      doc.text(String(item[1] ?? "—"), 83, y);
-      doc.text(String(item[2] ?? "—"), 115, y);
-      doc.text("100", 151, y);
+    doc.text(String(item[1] ?? "—"), 76, y);
+doc.text(String(item[2] ?? "—"), 104, y);
+
+const securedMarks =
+  Number(item[1] ?? 0) + Number(item[2] ?? 0);
+
+doc.text(String(securedMarks), 137, y);
+doc.text("100", 171, y);
       y += 8;
     }
   });
@@ -1866,52 +1855,56 @@ doc.text("Term 4", 165, y);
           reader.readAsDataURL(blob);
         });
 
-        
+   // BOTTOM RESULT DETAILS AND HM SIGNATURE
+const pageHeight = doc.internal.pageSize.getHeight();
+const signatureX = pageWidth - 62;
+const bottomY = pageHeight - 35;
 
-        // ACTUAL HM SIGNATURE
-        const signatureX = pageWidth - 62;
+// Percentage and Grade — bottom-left
+const finalPercentage =
+  maxMarks > 0
+    ? (Number(data.total ?? 0) / maxMarks) * 100
+    : 0;
 
-        doc.addImage(
+let finalGrade = "";
+if (finalPercentage >= 90) finalGrade = "A1";
+else if (finalPercentage >= 80) finalGrade = "A2";
+else if (finalPercentage >= 70) finalGrade = "B1";
+else if (finalPercentage >= 60) finalGrade = "B2";
+else if (finalPercentage >= 50) finalGrade = "C";
+else if (finalPercentage >= 40) finalGrade = "D";
+else if (finalPercentage >= 33) finalGrade = "E";
+else finalGrade = "F";
+
+doc.setFont("helvetica", "bold");
+doc.setFontSize(10);
+doc.setTextColor(20, 70, 137);
+doc.text("Percentage: " + finalPercentage.toFixed(2) + "%", 17, bottomY);
+
+doc.text("Grade: " + finalGrade, 17, bottomY + 10);
+
+// HM signature — bottom-right
+doc.addImage(
   signatureData,
   "JPEG",
   signatureX + 8,
-  signaturey,
+  bottomY - 18,
   35,
   18
 );
-        
-   y += 15;
 
-        doc.setFont("helvetica", "bold");
-        doc.setFontSize(10);
-        doc.text(
-          "Mr Trilochan Panda",
-          signatureX + 25.5,
-          y,
-          { align: "center" }
-        );
+doc.setFont("helvetica", "bold");
+doc.setFontSize(9);
+doc.setTextColor(35, 48, 68);
+doc.text("Mr Trilochan Panda", signatureX + 25.5, bottomY + 2, {
+  align: "center"
+});
 
-        y += 6;
-
-        doc.setFont("helvetica", "normal");
-        doc.setFontSize(9);
-        doc.text(
-          "In-Charge Headmaster",
-          signatureX + 25.5,
-          y,
-          { align: "center" }
-        );
-
-        y += 10;
-
-  } catch (signatureError) {
-        console.error("Signature error:", signatureError);
-
-        doc.text("Trilochan Panda", 150, y);
-
-        y += 10;
-      }
-
+doc.setFont("helvetica", "normal");
+doc.setFontSize(8);
+doc.text("In-Charge Headmaster", signatureX + 25.5, bottomY + 8, {
+  align: "center"
+});
       doc.save(
         "KGKHS_Result_" +
         (data.student_name || "Student") +
