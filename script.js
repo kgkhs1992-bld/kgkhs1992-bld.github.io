@@ -1687,13 +1687,6 @@ doc.text("Term 4", 165, y);
   doc.setFont("helvetica", "bold");
   doc.setFontSize(8.5);
 
-  doc.text("Subject", 20, y);
-  doc.text("Subjective", 83, y);
-doc.text("Subjective", 76, y);
-doc.text("Objective", 104, y);
-doc.text("Secured Marks", 130, y);
-doc.text("Full Marks", 166, y);
-  y += 8;
 
   doc.text("Subject", 20, y);
   doc.text("Subjective", 76, y);
