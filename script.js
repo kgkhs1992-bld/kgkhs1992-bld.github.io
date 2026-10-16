@@ -1670,6 +1670,7 @@ doc.text("Term 4", 165, y);
   y += 8;
 
   
+ 
   const iaCaMarks = [
     ["MIL (Odia)", data.ia_mil_odia, data.ca_mil_odia],
     ["English", data.ia_english, data.ca_english],
@@ -1740,6 +1741,16 @@ doc.text("Term 4", 165, y);
   const pdfIATotal = Number(data.ia ?? 0);
   const pdfCATotal = Number(data.ac ?? 0);
   const pdfGrandTotal = pdfSubjectTotal + pdfIATotal + pdfCATotal;
+
+  doc.text("SUBJECT MARKS: " + pdfSubjectTotal + " / 600", 15, y);
+  y += 8;
+  doc.text("IA TOTAL: " + pdfIATotal + " / 120", 15, y);
+  y += 8;
+  doc.text("CA TOTAL: " + pdfCATotal + " / 120", 15, y);
+  y += 8;
+  doc.text("GRAND TOTAL: " + pdfGrandTotal + " / 840", 15, y);
+  y += 8;
+
 
   doc.text("SUBJECT MARKS: " + pdfSubjectTotal + " / 600", 15, y);
   y += 8;
