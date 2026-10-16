@@ -1762,7 +1762,7 @@ doc.text("Term 4", 165, y);
   y += 8;
 
 
-  const marks = className === "VIII"
+ const regularSubjectMarks = className === "VIII"
       ? [
         ["MIL (Odia)", data.mil_odia],
         ["English", data.english],
@@ -1784,7 +1784,7 @@ doc.text("Term 4", 165, y);
         ["Social Science", data.social_science]
       ];
 
-  marks.forEach(item => {
+ regularSubjectMarks.forEach(item => {
 
     if (
       item[1] !== null &&
