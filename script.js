@@ -1695,6 +1695,7 @@ doc.text("Term 4", 165, y);
     }
   });
 
+
 } else if (isHalfAnnual) {
 
   doc.setFont("helvetica", "bold");
@@ -1751,12 +1752,10 @@ doc.text("Term 4", 165, y);
   doc.text("GRAND TOTAL: " + pdfGrandTotal + " / 840", 15, y);
   y += 8;
 
+} else {
 
- 
-
-
- const regularSubjectMarks = className === "VIII"
-      ? [
+  const regularSubjectMarks = className === "VIII"
+    ? [
         ["MIL (Odia)", data.mil_odia],
         ["English", data.english],
         ["Hindi / Sanskrit", data.hindi_sanskrit],
@@ -1777,11 +1776,22 @@ doc.text("Term 4", 165, y);
         ["Social Science", data.social_science]
       ];
 
- regularSubjectMarks.forEach(item => {
+  doc.setFont("helvetica", "normal");
 
-  
-  
-  // COLOURFUL RESULT SUMMARY PANEL
+  regularSubjectMarks.forEach(item => {
+    if (
+      item[1] !== null &&
+      item[1] !== undefined &&
+      item[1] !== ""
+    ) {
+      doc.text(item[0] + ": " + item[1], 20, y);
+      y += 8;
+    }
+  });
+
+}
+
+    // COLOURFUL RESULT SUMMARY PANEL
   y += 4;
 
   const summaryTop = y;
