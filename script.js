@@ -1745,42 +1745,82 @@ doc.text("100", 171, y);
 
 } else {
 
-  const regularSubjectMarks = className === "VIII"
-    ? [
-        ["MIL (Odia)", data.mil_odia],
-        ["English", data.english],
-        ["Hindi / Sanskrit", data.hindi_sanskrit],
-        ["Mathematics", data.mathematics],
-        ["Science", data.science],
-        ["Social Science", data.social_science],
-        ["Drawing", data.drawing],
-        ["Kalashikhya", data.kalashikhya],
-        ["Bruti", data.bruti],
-        ["Saririka Swathya", data.saririka_swathya]
-      ]
-    : [
-        ["MIL (Odia)", data.mil_odia],
-        ["English", data.english],
-        ["Hindi / Sanskrit", data.hindi_sanskrit],
-        ["Mathematics", data.mathematics],
-        ["Science", data.science],
-        ["Social Science", data.social_science]
-      ];
+  const isClassVIII_SA1 =
+    className === "VIII" &&
+    (
+      assessmentName.includes("SA1") ||
+      assessmentName.includes("SUMMATIVE ASSESSMENT 01") ||
+      assessmentName.includes("SUMMATIVE ASSESSMENT 1")
+    );
 
-  doc.setFont("helvetica", "normal");
+  if (isClassVIII_SA1) {
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(9);
+    doc.text("Subject", 20, y);
+    doc.text("Secured Marks", 125, y);
+    doc.text("Full Marks", 166, y);
+    y += 8;
 
-  regularSubjectMarks.forEach(item => {
-    if (
-      item[1] !== null &&
-      item[1] !== undefined &&
-      item[1] !== ""
-    ) {
-      doc.text(item[0] + ": " + item[1], 20, y);
-      y += 8;
-    }
-  });
+    const classVIII_SA1Marks = [
+      ["MIL (Odia)", data.mil_odia, 50],
+      ["English", data.english, 50],
+      ["Hindi / Sanskrit", data.hindi_sanskrit, 50],
+      ["Mathematics", data.mathematics, 50],
+      ["Science", data.science, 50],
+      ["Social Science", data.social_science, 50],
+      ["Drawing", data.drawing, 50],
+      ["Kalashikhya", data.kalashikhya, 20],
+      ["Bruti", data.bruti, 20],
+      ["Saririka Swathya", data.saririka_swathya, 20]
+    ];
+
+    doc.setFont("helvetica", "normal");
+    classVIII_SA1Marks.forEach(item => {
+      if (item[1] !== null && item[1] !== undefined && item[1] !== "") {
+        doc.text(item[0], 20, y);
+        doc.text(String(item[1]), 137, y);
+        doc.text(String(item[2]), 171, y);
+        y += 8;
+      }
+    });
+  } else {
+    const regularSubjectMarks = className === "VIII"
+      ? [
+          ["MIL (Odia)", data.mil_odia],
+          ["English", data.english],
+          ["Hindi / Sanskrit", data.hindi_sanskrit],
+          ["Mathematics", data.mathematics],
+          ["Science", data.science],
+          ["Social Science", data.social_science],
+          ["Drawing", data.drawing],
+          ["Kalashikhya", data.kalashikhya],
+          ["Bruti", data.bruti],
+          ["Saririka Swathya", data.saririka_swathya]
+        ]
+      : [
+          ["MIL (Odia)", data.mil_odia],
+          ["English", data.english],
+          ["Hindi / Sanskrit", data.hindi_sanskrit],
+          ["Mathematics", data.mathematics],
+          ["Science", data.science],
+          ["Social Science", data.social_science]
+        ];
+
+    doc.setFont("helvetica", "normal");
+    regularSubjectMarks.forEach(item => {
+      if (
+        item[1] !== null &&
+        item[1] !== undefined &&
+        item[1] !== ""
+      ) {
+        doc.text(item[0] + ": " + item[1], 20, y);
+        y += 8;
+      }
+    });
+  }
 
 }
+
 
     // COLOURFUL RESULT SUMMARY PANEL
   y += 4;
